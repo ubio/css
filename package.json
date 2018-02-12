@@ -1,6 +1,6 @@
 {
   "name": "@ubio/css",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "UBIO CSS framework foundation",
   "main": "index.css",
   "repository": "git@github.com:universalbasket/css",
@@ -19,7 +19,9 @@
     "build:js": "browserify site/ -o docs/build/app.js",
     "build:html": "node build-html.js",
     "build:css": "postcss stylesheets/index.css -o index.css",
-    "watch:js": "watchify -p browserify-hmr site/ -o docs/build/app.js"
+    "watch:js": "watchify -p browserify-hmr site/ -o docs/build/app.js",
+    "preversion": "run-p check build",
+    "postversion": "npm publish"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

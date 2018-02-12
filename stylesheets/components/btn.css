@@ -1,0 +1,76 @@
+.btn {
+    display: inline-flex;
+    box-sizing: border-box;
+    height: var(--ctl__height);
+	padding: var(--gap-small) var(--gap);
+	border-radius: var(--border-radius);
+	border: 1px solid rgba(0,0,0,0.1);
+	background: var(--ui-default);
+	color: var(--ui-default--inverse);
+
+    font-family: var(--font__family);
+	font-size: var(--font__size);
+	line-height: 1;
+	text-decoration: none;
+    letter-spacing: 0.025em;
+
+    cursor: pointer;
+}
+
+.btn:hover {
+	text-decoration: none;
+}
+
+.btn[disabled] {
+	opacity: 0.5;
+	cursor: not-allowed;
+	pointer-events: none;
+}
+
+.btn--active, .btn:active {
+    box-shadow: 0 3px 8px rgba(0,0,0,.2) inset;
+    border-color: rgba(0,0,0,.2);
+}
+
+.btn__icon {
+    color: inherit;
+    margin-right: var(--gap-small);
+    text-align: center;
+}
+
+/* Colors */
+
+.btn--default {
+    background: var(--ui-default);
+    color: var(--ui-default--inverse);
+}
+
+.btn--primary {
+    background: var(--ui-primary);
+    color: var(--ui-primary--inverse);
+}
+
+.btn--secondary {
+    background: var(--ui-secondary);
+    color: var(--ui-secondary--inverse);
+}
+
+.btn--success {
+    background: var(--ui-success);
+    color: var(--ui-success--inverse);
+}
+
+.btn--warning {
+    background: var(--ui-warning);
+    color: var(--ui-warning--inverse);
+}
+
+.btn--danger {
+    background: var(--ui-danger);
+    color: var(--ui-danger--inverse);
+}
+
+.btn--muted {
+    background: var(--ui-muted);
+    color: var(--ui-muted--inverse);
+}

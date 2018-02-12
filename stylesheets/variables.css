@@ -1,0 +1,61 @@
+:root {
+
+    /* Typography */
+
+    --font__family: 'Libre Franklin', Helvetica, Arial, sans-serif;
+	--font__weight: 400;
+	--font__size: 12px;
+    --font__line-height: 1.35;
+
+	--font__family--mono: 'Menlo', monospace;
+	--font__size--mono: 11px;
+    --font__line-height--mono: 1.35;
+
+    /* Gaps */
+
+    --gap: 10px;
+	--gap-small: 5px;
+    --gap-large: 20px;
+
+    /* Color Palette */
+
+	--ui-base: #fff;
+    --ui-base--inverse: #242a2e;
+
+	--ui-default: #e5e5e5;
+    --ui-default--inverse: #242a2e;
+
+	--ui-primary: #483d8b;
+	--ui-primary: #2a52a2;
+    --ui-primary--inverse: #fff;
+
+	--ui-secondary: #d6d6d0;
+    --ui-secondary--inverse: #414a53;
+
+	--ui-success: #51a284;
+    --ui-success--inverse: #fff;
+
+    --ui-warning: #fdd25b;
+    --ui-warning--inverse: #242a2e;
+
+	--ui-failure: #c75068;
+    --ui-failure--inverse: #fff;
+
+	--ui-failure: #efd1d5;
+    --ui-failure--inverse: #242a2e;
+
+	--ui-danger: #dc143c;
+    --ui-danger--inverse: #fff;
+
+	--ui-muted: #777;
+    --ui-muted--inverse: #ccc;
+
+    /* Controls */
+
+    --ctl__height: 24px;
+
+    --border-color: #b9c1c6;
+	--border-radius: 2px;
+
+}
+

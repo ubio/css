@@ -1,5 +1,6 @@
 .group {
     display: inline-flex;
+    align-items: baseline;
 }
 
 .group--block {
@@ -14,7 +15,17 @@
     margin-left: var(--gap-small);
 }
 
-.group--center {
-    align-items: center;
+.group--merged {
+    white-space: nowrap;
 }
 
+.group--merged > *:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.group--merged > * + * {
+    margin-left: -1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}

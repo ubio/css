@@ -54,17 +54,25 @@
             <div class="block group group--gap-small">
                 <input type="text" class="input" placeholder="Regular input"/>
                 <input type="text" class="input" placeholder="Disabled" disabled/>
-                <button class="btn btn--default">Adjacent Button</button>
             </div>
 
-            <h2>Control groups</h2>
+            <h2>Groups</h2>
 
-            <div class="block group group--gap-small">
-                <div class="ctl-group ctl-group--inline">
+            <div class="block group group--gap">
+                <label>Text label</label>
+                <input type="text" class="input" placeholder="Text input"/>
+                <button class="btn btn--default">Adjacent Button</button>
+                <select class="input">
+                    <option>Dropdown menu</option>
+                </select>
+            </div>
+
+            <div class="block group group--gap">
+                <div class="group group--merged">
                     <button class="btn btn--default">Button</button>
                     <button class="btn btn--default">Another button</button>
                 </div>
-                <div class="ctl-group ctl-group--inline">
+                <div class="group group--merged">
                     <input type="text" class="input" placeholder="Text input">
                     <button class="btn btn--default">Button</button>
                 </div>

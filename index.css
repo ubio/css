@@ -237,30 +237,6 @@ h5 {
     color: var(--ui-muted);
     font-weight: 500;
 }
-.group {
-    display: inline-flex;
-}
-.group--block {
-    display: flex;
-}
-.group--gap > * + * {
-    margin-left: var(--gap);
-}
-.group--gap-small > * + * {
-    margin-left: var(--gap-small);
-}
-.group--center {
-    align-items: center;
-}
-.block {
-    margin: var(--gap) 0;
-}
-.block--small {
-    margin: var(--gap-small) 0;
-}
-.block--large {
-    margin: var(--gap-large) 0;
-}
 .btn {
     display: inline-flex;
     align-items: center;
@@ -367,6 +343,7 @@ h5 {
     padding: var(--gap-small);
     border-radius: var(--border-radius);
     border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: none;
 
     font-family: var(--font__family);
     font-size: var(--font__size);
@@ -384,19 +361,37 @@ h5 {
     cursor: not-allowed;
     pointer-events: none;
 }
-.ctl-group {
+.group {
+    display: inline-flex;
+    align-items: baseline;
+}
+.group--block {
     display: flex;
+}
+.group--gap > * + * {
+    margin-left: var(--gap);
+}
+.group--gap-small > * + * {
+    margin-left: var(--gap-small);
+}
+.group--merged {
     white-space: nowrap;
 }
-.ctl-group--inline {
-    display: inline-flex;
-}
-.ctl-group > *:not(:last-child) {
+.group--merged > *:not(:last-child) {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
-.ctl-group > * + * {
+.group--merged > * + * {
     margin-left: -1px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+}
+.block {
+    margin: var(--gap) 0;
+}
+.block--small {
+    margin: var(--gap-small) 0;
+}
+.block--large {
+    margin: var(--gap-large) 0;
 }

@@ -5,6 +5,7 @@
     padding: var(--gap-small);
     border-radius: var(--border-radius);
     border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: none;
 
     font-family: var(--font__family);
     font-size: var(--font__size);

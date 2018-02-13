@@ -1,30 +1,49 @@
 .btn {
     display: inline-flex;
+    align-items: center;
+    align-self: center;
+
     box-sizing: border-box;
     height: var(--ctl__height);
-	padding: var(--gap-small) var(--gap);
-	border-radius: var(--border-radius);
-	border: 1px solid rgba(0,0,0,0.1);
-	background: var(--ui-default);
-	color: var(--ui-default--inverse);
+    padding: var(--gap-small) var(--gap);
 
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(0,0,0,0.1);
+    background: var(--ui-default);
+    color: var(--ui-default--inverse);
+
+    font-size: var(--font__size);
     font-family: var(--font__family);
-	font-size: var(--font__size);
-	line-height: 1;
-	text-decoration: none;
+    line-height: 1;
+    text-decoration: none;
     letter-spacing: 0.025em;
+    text-transform: Capitalize;
 
     cursor: pointer;
 }
 
+.btn--small {
+    font-size: 10px;
+    height: 16px;
+    padding: 0 4px;
+    white-space: nowrap;
+}
+
+.btn--large {
+    font-size: 18px;
+    height: 46px;
+    padding: var(--gap) var(--gap-large);
+    border-radius: calc(var(--border-radius) * 2);
+}
+
 .btn:hover {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 .btn[disabled] {
-	opacity: 0.5;
-	cursor: not-allowed;
-	pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
 .btn--active, .btn:active {
@@ -48,6 +67,11 @@
 .btn--primary {
     background: var(--ui-primary);
     color: var(--ui-primary--inverse);
+}
+
+.btn--accent {
+    background: var(--ui-accent);
+    color: var(--ui-accent--inverse);
 }
 
 .btn--secondary {

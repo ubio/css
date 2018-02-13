@@ -15,6 +15,25 @@
                 <button class="btn btn--muted">Muted</button>
             </div>
 
+            <hr />
+            <div class="ctl-line">
+                <button class="btn btn--large btn--default">Default</button>
+                <button class="btn btn--large btn--primary">Primary</button>
+                <button class="btn btn--large btn--secondary">Secondary</button>
+                <button class="btn btn--large btn--accent">Accent</button>
+            </div>
+
+            <hr />
+            <div class="ctl-line">
+                <button class="btn btn--small btn--default">Default</button>
+                <button class="btn btn--small btn--primary">Primary</button>
+                <button class="btn btn--small btn--secondary">Secondary</button>
+                <button class="btn btn--small btn--success">Success</button>
+                <button class="btn btn--small btn--warning">Warning</button>
+                <button class="btn btn--small btn--danger">Danger</button>
+                <button class="btn btn--small btn--muted">Muted</button>
+            </div>
+
             <h2>Button states</h2>
             <div class="ctl-line">
                 <button class="btn btn--default">Normal</button>

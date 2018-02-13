@@ -4,59 +4,65 @@
     /* Typography */
 
     --font__family: 'Libre Franklin', Helvetica, Arial, sans-serif;
-	--font__weight: 400;
-	--font__size: 12px;
+    --font__weight: 400;
+    --font__size: 12px;
     --font__line-height: 1.35;
 
-	--font__family--mono: 'Menlo', monospace;
-	--font__size--mono: 11px;
+    --font__family--mono: 'Menlo', monospace;
+    --font__size--mono: 11px;
     --font__line-height--mono: 1.35;
 
     /* Gaps */
 
     --gap: 10px;
-	--gap-small: 5px;
+    --gap-small: 5px;
     --gap-large: 20px;
 
     /* Color Palette */
 
-	--ui-base: #fff;
+    --ui-base: #fff;
     --ui-base--inverse: #242a2e;
 
-	--ui-default: #e5e5e5;
+    --ui-pale: #f3f3f4;
+    --ui-pale--inverse: #222;
+
+    --ui-default: #e5e5e5;
     --ui-default--inverse: #242a2e;
 
-	--ui-primary: #483d8b;
-	--ui-primary: #2a52a2;
+    --ui-primary: #483d8b;
+    --ui-primary: #2a52a2;
     --ui-primary--inverse: #fff;
 
-	--ui-secondary: #d6d6d0;
+    --ui-secondary: #d6d6d0;
     --ui-secondary--inverse: #414a53;
 
-	--ui-success: #51a284;
+    --ui-accent: #FF5A5F;
+    --ui-accent--inverse: #fff;
+
+    --ui-success: #529265;
     --ui-success--inverse: #fff;
 
-    --ui-warning: #fdd25b;
-    --ui-warning--inverse: #242a2e;
+    --ui-info: #2c72bb;
+    --ui-info--inverse: #DCF2FD;
 
-	--ui-failure: #c75068;
+    --ui-warning: #fbce58;
+    --ui-warning--inverse: #866302;
+
+    --ui-failure: #c75068;
     --ui-failure--inverse: #fff;
 
-	--ui-failure: #efd1d5;
-    --ui-failure--inverse: #242a2e;
-
-	--ui-danger: #dc143c;
+    --ui-danger: #dc143c;
     --ui-danger--inverse: #fff;
 
-	--ui-muted: #777;
-    --ui-muted--inverse: #ccc;
+    --ui-muted: hsl(204, 15%, 50%);
+    --ui-muted--inverse: #f3f8fb;
 
     /* Controls */
 
     --ctl__height: 24px;
 
     --border-color: #b9c1c6;
-	--border-radius: 2px;
+    --border-radius: 2px;
 
 }
 /* http://meyerweb.com/eric/tools/css/reset/
@@ -91,158 +97,188 @@ q:before, q:after {
     content: none;
 }
 html, body {
-	height: 100%;
+    height: 100%;
 }
 body {
-	font-family: var(--font__family);
-	font-size: var(--font__size);
-	line-height: 1;
-	background: var(--ui-base);
-	color: var(--ui-base--inverse);
+    font-family: var(--font__family);
+    font-size: var(--font__size);
+    line-height: 1;
+    background: var(--ui-base);
+    color: var(--ui-base--inverse);
 }
 ol, ul {
-	list-style: none;
+    list-style: none;
+}
+hr {
+    margin: var(--gap) 0;
+    border: 1px dashed var(--border-color);
+    border-width: 1px 0 0 0;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 time, code, pre {
-	font-family: var(--font__family--mono);
-	font-size: var(--font__size--mono);
-	line-height: var(--font__line-height--mono);
-	word-wrap: break-word;
-	word-break: break-word;
-}
-a {
-	cursor: pointer;
-	color: var(--ui-primary);
-	text-decoration: none;
-}
-a:hover {
-	text-decoration: none;
+    font-family: var(--font__family--mono);
+    font-size: var(--font__size--mono);
+    line-height: var(--font__line-height--mono);
+    word-wrap: break-word;
+    word-break: break-word;
 }
 img {
-	max-width: 100%;
+    max-width: 100%;
 }
 input[type="radio"],
 input[type="checkbox"] {
-	display: inline-block;
-	height: auto;
-	vertical-align: middle;
+    display: inline-block;
+    height: auto;
+    vertical-align: middle;
 }
 input,
 textarea {
-	font-family: var(--font__family);
-	font-size: var(--font__size);
-	line-height: var(--font__line-height);
-	border: 1px solid var(--border-color);
-	padding: 1px var(--gap-small);
-	border-radius: var(--border-radius);
+    font-family: var(--font__family);
+    font-size: var(--font__size);
+    line-height: var(--font__line-height);
+    border: 1px solid var(--border-color);
+    padding: 1px var(--gap-small);
+    border-radius: var(--border-radius);
 }
 input[readonly],
 textarea[readonly] {
-	background: var(--ui-pale);
+    background: var(--ui-pale);
 }
 select {
-	line-height: 1;
-	height: 18px;
-	border: 0;
-	padding: 2px;
-	box-shadow: 0 0 0 1px var(--border-color);
-	font-family: var(--font__family);
+    line-height: 1;
+    height: 18px;
+    border: 0;
+    padding: 2px;
+    box-shadow: 0 0 0 1px var(--border-color);
+    font-family: var(--font__family);
 }
 select[multiple] {
-	height: auto;
+    height: auto;
 }
 button {
-	cursor: pointer;
+    cursor: pointer;
 }
 ::-webkit-scrollbar {
-	width: var(--gap-small);
-	height: var(--gap-small);
+    width: var(--gap-small);
+    height: var(--gap-small);
 }
 ::-webkit-scrollbar-track {
-	-webkit-box-shadow: none;
-	background: rgba(0,0,0,0.2);
-	border-radius: 0;
+    -webkit-box-shadow: none;
+    background: rgba(0,0,0,0.2);
+    border-radius: 0;
 }
 ::-webkit-scrollbar-thumb {
-	border-radius: 0;
-	background: rgba(0,0,0,0.25);
+    border-radius: 0;
+    background: rgba(0,0,0,0.25);
 }
 h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big,
 cite, code, del, dfn, em, small, strike, strong, sub, sup, b, u, i,
 dl, dt, dd, ol, ul, li, label, legend {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	vertical-align: baseline;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    box-sizing: border-box;
 }
 p {
-	margin: var(--gap) 0;
+    margin: var(--gap) 0;
+    font-size: 12px;
+    line-height: 1.35;
 }
-b, strong {
-	font-weight: 500;
+a {
+    cursor: pointer;
+    color: var(--ui-primary);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+}
+p a {
+    color: var(--ui-accent);
+}
+b {
+    font-weight: 700;
+}
+strong {
+    font-weight: 500;
 }
 h1 {
-	font-size: 18px;
-	line-height: 1;
-	font-weight: 300;
-	margin: var(--gap) 0;
+    font-size: 18px;
+    line-height: 1;
+    font-weight: 300;
+    margin: var(--gap) 0;
 }
 h2 {
-	font-size: 16px;
-	line-height: 24px;
-	font-weight: 300;
-	margin: var(--gap-large) 0 var(--gap);
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 300;
+    margin: var(--gap-large) 0 var(--gap);
 }
 h3 {
-	margin: var(--gap-small) 0;
-	font-size: 12px;
-	text-transform: uppercase;
-	color: #6c8393;
-	font-weight: 500;
-	line-height: 1.5;
+    margin: var(--gap-small) 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--ui-muted);
+    font-weight: 500;
+    line-height: 1.5;
 }
 h4 {
-	padding: var(--gap-small) 0;
-	font-size: 110%;
-	font-weight: 400;
+    padding: var(--gap-small) 0;
+    font-size: 110%;
+    font-weight: 400;
 }
 h5 {
-	margin: var(--gap) 0;
-	font-size: 10px;
-	text-transform: uppercase;
-	color: var(--ui-muted);
-	font-weight: 500;
+    margin: var(--gap) 0;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: var(--ui-muted);
+    font-weight: 500;
 }
 .btn {
     display: inline-flex;
+    align-items: center;
+    align-self: center;
+
     box-sizing: border-box;
     height: var(--ctl__height);
-	padding: var(--gap-small) var(--gap);
-	border-radius: var(--border-radius);
-	border: 1px solid rgba(0,0,0,0.1);
-	background: var(--ui-default);
-	color: var(--ui-default--inverse);
+    padding: var(--gap-small) var(--gap);
 
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(0,0,0,0.1);
+    background: var(--ui-default);
+    color: var(--ui-default--inverse);
+
+    font-size: var(--font__size);
     font-family: var(--font__family);
-	font-size: var(--font__size);
-	line-height: 1;
-	text-decoration: none;
+    line-height: 1;
+    text-decoration: none;
     letter-spacing: 0.025em;
+    text-transform: Capitalize;
 
     cursor: pointer;
 }
+.btn--small {
+    font-size: 10px;
+    height: 16px;
+    padding: 0 4px;
+    white-space: nowrap;
+}
+.btn--large {
+    font-size: 18px;
+    height: 46px;
+    padding: var(--gap) var(--gap-large);
+    border-radius: calc(var(--border-radius) * 2);
+}
 .btn:hover {
-	text-decoration: none;
+    text-decoration: none;
 }
 .btn[disabled] {
-	opacity: 0.5;
-	cursor: not-allowed;
-	pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 .btn--active, .btn:active {
     box-shadow: 0 3px 8px rgba(0,0,0,.2) inset;
@@ -261,6 +297,10 @@ h5 {
 .btn--primary {
     background: var(--ui-primary);
     color: var(--ui-primary--inverse);
+}
+.btn--accent {
+    background: var(--ui-accent);
+    color: var(--ui-accent--inverse);
 }
 .btn--secondary {
     background: var(--ui-secondary);

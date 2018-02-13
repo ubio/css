@@ -15,7 +15,8 @@
 }
 
 .input--block {
-    display: block;
+	display: block;
+	width: 100%;
 }
 
 .input[disabled] {

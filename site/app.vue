@@ -53,7 +53,7 @@ body {
 }
 
 .section {
-    margin: 32px 0;
+    margin-bottom: 32px;
 }
 
 .section__title {

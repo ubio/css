@@ -298,7 +298,8 @@ h5 {
     cursor: pointer;
 }
 .input--block {
-    display: block;
+	display: block;
+	width: 100%;
 }
 .input[disabled] {
 	opacity: 0.5;

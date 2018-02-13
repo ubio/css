@@ -14,6 +14,7 @@
 
     font-size: var(--font__size);
     font-family: var(--font__family);
+
     line-height: 1;
     text-decoration: none;
     letter-spacing: 0.025em;

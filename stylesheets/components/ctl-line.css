@@ -4,5 +4,5 @@
 }
 
 .ctl-line > * + * {
-	margin-left: var(--gap-small);
+    margin-left: var(--gap-small);
 }

@@ -2,13 +2,13 @@
     display: inline-flex;
     box-sizing: border-box;
     height: var(--ctl__height);
-	padding: var(--gap-small) var(--gap);
-	border-radius: var(--border-radius);
-	border: 1px solid rgba(0,0,0,0.1);
+    padding: var(--gap-small);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(0,0,0,0.1);
 
     font-family: var(--font__family);
-	font-size: var(--font__size);
-	line-height: 1;
+    font-size: var(--font__size);
+    line-height: 1;
     letter-spacing: 0.025em;
 
     cursor: pointer;
@@ -16,11 +16,12 @@
 
 .input--block {
     display: block;
+    width: 100%;
 }
 
 .input[disabled] {
-	opacity: 0.5;
-	cursor: not-allowed;
-	pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 

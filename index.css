@@ -286,7 +286,7 @@ h5 {
     display: inline-flex;
     box-sizing: border-box;
     height: var(--ctl__height);
-	padding: var(--gap-small) var(--gap);
+	padding: var(--gap-small);
 	border-radius: var(--border-radius);
 	border: 1px solid rgba(0,0,0,0.1);
 

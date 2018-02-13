@@ -237,6 +237,30 @@ h5 {
     color: var(--ui-muted);
     font-weight: 500;
 }
+.group {
+    display: inline-flex;
+}
+.group--block {
+    display: flex;
+}
+.group--gap > * + * {
+    margin-left: var(--gap);
+}
+.group--gap-small > * + * {
+    margin-left: var(--gap-small);
+}
+.group--center {
+    align-items: center;
+}
+.block {
+    margin: var(--gap) 0;
+}
+.block--small {
+    margin: var(--gap-small) 0;
+}
+.block--large {
+    margin: var(--gap-large) 0;
+}
 .btn {
     display: inline-flex;
     align-items: center;
@@ -261,18 +285,6 @@ h5 {
 
     cursor: pointer;
 }
-.btn--small {
-    font-size: 10px;
-    height: 16px;
-    padding: 0 4px;
-    white-space: nowrap;
-}
-.btn--large {
-    font-size: 18px;
-    height: 46px;
-    padding: var(--gap) var(--gap-large);
-    border-radius: calc(var(--border-radius) * 2);
-}
 .btn:hover {
     text-decoration: none;
 }
@@ -289,6 +301,19 @@ h5 {
     color: inherit;
     margin-right: var(--gap-small);
     text-align: center;
+}
+/* Sizes */
+.btn--small {
+    font-size: 10px;
+    height: 16px;
+    padding: 0 4px;
+    white-space: nowrap;
+}
+.btn--large {
+    font-size: 18px;
+    height: 46px;
+    padding: var(--gap) var(--gap-large);
+    border-radius: calc(var(--border-radius) * 2);
 }
 /* Colors */
 .btn--default {
@@ -307,6 +332,10 @@ h5 {
     background: var(--ui-secondary);
     color: var(--ui-secondary--inverse);
 }
+.btn--info {
+    background: var(--ui-info);
+    color: var(--ui-info--inverse);
+}
 .btn--success {
     background: var(--ui-success);
     color: var(--ui-success--inverse);
@@ -319,9 +348,17 @@ h5 {
     background: var(--ui-danger);
     color: var(--ui-danger--inverse);
 }
+.btn--failure {
+    background: var(--ui-failure);
+    color: var(--ui-failure--inverse);
+}
 .btn--muted {
     background: var(--ui-muted);
     color: var(--ui-muted--inverse);
+}
+.btn--accent {
+    background: var(--ui-accent);
+    color: var(--ui-accent--inverse);
 }
 .input {
     display: inline-flex;
@@ -362,11 +399,4 @@ h5 {
     margin-left: -1px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-}
-.ctl-line {
-    display: flex;
-    white-space: nowrap;
-}
-.ctl-line > * + * {
-    margin-left: var(--gap-small);
 }

@@ -1,0 +1,11 @@
+.block {
+    margin: var(--gap) 0;
+}
+
+.block--small {
+    margin: var(--gap-small) 0;
+}
+
+.block--large {
+    margin: var(--gap-large) 0;
+}

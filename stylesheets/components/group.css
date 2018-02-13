@@ -1,0 +1,20 @@
+.group {
+    display: inline-flex;
+}
+
+.group--block {
+    display: flex;
+}
+
+.group--gap > * + * {
+    margin-left: var(--gap);
+}
+
+.group--gap-small > * + * {
+    margin-left: var(--gap-small);
+}
+
+.group--center {
+    align-items: center;
+}
+

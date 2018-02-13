@@ -1,7 +1,7 @@
 <template>
     <div class="section">
         <div class="section__title">
-            <h1>Colours (Backoffice)</h1>
+            <h1>Colours</h1>
         </div>
         <div class="section__body">
             <ul class="ui-swatches">

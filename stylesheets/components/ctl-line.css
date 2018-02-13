@@ -1,8 +1,0 @@
-.ctl-line {
-    display: flex;
-    white-space: nowrap;
-}
-
-.ctl-line > * + * {
-    margin-left: var(--gap-small);
-}

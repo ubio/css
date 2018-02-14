@@ -1,7 +1,10 @@
 <template>
-    <div class="section">
-        <div class="section__title">
-            <h1>Controls</h1>
+    <div class="section" id="controls" :class="{ 'section--active': activeItem === 'controls' }">
+        <div class="section__title" :class="{ 'section__title--active': activeItem === 'controls' }">
+            <h1>
+                <i class="fa fa-gamepad"></i>
+                <span>Controls</span>
+            </h1>
         </div>
         <div class="section__body">
 
@@ -26,19 +29,6 @@
                 <button class="btn btn--small">Small</button>
                 <button class="btn btn--default">Normal</button>
                 <button class="btn btn--large btn--default">Large</button>
-            </div>
-
-            <div class="block group group--gap-small">
-                <button class="btn btn--small btn--default">Default</button>
-                <button class="btn btn--small btn--primary">Primary</button>
-                <button class="btn btn--small btn--secondary">Secondary</button>
-                <button class="btn btn--small btn--muted">Muted</button>
-                <button class="btn btn--small btn--info">Info</button>
-                <button class="btn btn--small btn--success">Success</button>
-                <button class="btn btn--small btn--warning">Warning</button>
-                <button class="btn btn--small btn--danger">Danger</button>
-                <button class="btn btn--small btn--failure">Failure</button>
-                <button class="btn btn--small btn--accent">Accent</button>
             </div>
 
             <h2>Button states</h2>
@@ -80,3 +70,11 @@
         </div>
     </div>
 </template>
+
+<script>
+module.exports = {
+    props: {
+        activeItem: { type: String, required: false, default: '' },
+    },
+};
+</script>

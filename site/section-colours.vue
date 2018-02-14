@@ -1,70 +1,34 @@
 <template>
-    <div class="section">
-        <div class="section__title">
-            <h1>Colours</h1>
+    <div class="section" id="colours" :class="{ 'section--active': activeItem === 'colours' }">
+        <div class="section__title" :class="{ 'section__title--active': activeItem === 'colours' }">
+            <h1>
+                <i class="fa fa-paint-brush"></i>
+                <span>Colours</span>
+            </h1>
         </div>
         <div class="section__body">
+            <h2>Backgrounds</h2>
             <ul class="ui-swatches">
-                <li class="ui-swatch ui-swatch--base ui-swatch--bg">
-                    base
-                    <small v-if="usage">BG</small>
-                </li>
-                <li class="ui-swatch ui-swatch--pale ui-swatch--bg">
-                    pale
-                    <small v-if="usage">BG</small>
-                </li>
-                <li class="ui-swatch ui-swatch--default ui-swatch--bg">
-                    default
-                    <small v-if="usage">BG, ctrl, text</small>
-                </li>
-                <li class="ui-swatch ui-swatch--primary">
-                    primary
-                    <small v-if="usage">ctrl, text</small>
-                </li>
-                <li class="ui-swatch ui-swatch--secondary">
-                    secondary
-                    <small v-if="usage">ctrl, text</small>
-                </li>
-                <li class="ui-swatch ui-swatch--muted">
-                    muted
-                    <small v-if="usage">ctrl, text</small>
-                </li>
-                <li class="ui-swatch ui-swatch--info">
-                    info
-                    <small v-if="usage">ctrl, text</small>
-                </li>
-                <li class="ui-swatch ui-swatch--warning">
-                    warning
-                    <small v-if="usage">ctrl, text</small>
-                </li>
-                <li class="ui-swatch ui-swatch--success">
-                    success
-                    <small v-if="usage">ctrl, text</small>
-                </li>
-                <li class="ui-swatch ui-swatch--failure">
-                    failure
-                    <small v-if="usage">ctrl, text</small>
-                </li>
-                <li class="ui-swatch ui-swatch--danger">
-                    danger
-                    <small v-if="usage">ctrl, text</small>
-                </li>
-                <li class="ui-swatch ui-swatch--accent">
-                    accent
-                    <small v-if="usage">ctrl, text</small>
-                </li>
+                <li class="ui-swatch ui-swatch--base ui-swatch--bg">base</li>
+                <li class="ui-swatch ui-swatch--pale ui-swatch--bg">pale</li>
+                <li class="ui-swatch ui-swatch--default ui-swatch--bg">default</li>
+                <li class="ui-swatch ui-swatch--primary">primary</li>
+                <li class="ui-swatch ui-swatch--secondary">secondary</li>
+                <li class="ui-swatch ui-swatch--muted">muted</li>
+                <li class="ui-swatch ui-swatch--warning">warning</li>
+                <li class="ui-swatch ui-swatch--success">success</li>
+                <li class="ui-swatch ui-swatch--failure">failure</li>
+                <li class="ui-swatch ui-swatch--danger">danger</li>
+                <li class="ui-swatch ui-swatch--accent">accent</li>
             </ul>
-            <a @click="usage = !usage"><i class="fa fa-cog"></i></a>
         </div>
     </div>
 </template>
 
 <script>
 module.exports = {
-    data() {
-        return {
-            usage: false,
-        };
+    props: {
+        activeItem: { type: String, required: false, default: '' },
     },
 };
 </script>
@@ -77,9 +41,10 @@ module.exports = {
 
 .ui-swatch {
     width: var(--swatch-size);
-    height: calc(var(--swatch-size) / 3);
-    box-shadow: 0 0 0 1px rgba(0,0,0,.1) inset;
-    margin: var(--gap-small) var(--gap) var(--gap-small) 0;
+    height: calc(var(--swatch-size) / 2);
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1);
+    /*margin: var(--gap-small) var(--gap) var(--gap-small) 0;*/
+    /*margin: 1px;*/
     display: inline-flex;
     float: left;
     flex-direction: column;
@@ -87,11 +52,11 @@ module.exports = {
     justify-content: center;
     text-transform: capitalize;
     letter-spacing: 0.025em;
-    border-radius: var(--border-radius);
+    border-radius: 0;
 }
 
 .ui-swatch--bg {
-    height: calc(var(--swatch-size) * 1.2);
+    height: calc(var(--swatch-size) * 1.5);
 }
 
 .ui-swatch small {

@@ -1,10 +1,8 @@
 <template>
     <div class="section" id="typography" :class="{ 'section--active': activeItem === 'typography' }">
         <div class="section__title" :class="{ 'section__title--active': activeItem === 'typography' }">
-            <h1>
-                <i class="fa fa-font"></i>
-                <span>Typography</span>
-            </h1>
+            <i class="fa fa-font section__title-icon"></i>
+            <span class="section__title-label">Typography</span>
         </div>
         <div class="section__body">
             <h1>Heading 1</h1>

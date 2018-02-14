@@ -1,10 +1,8 @@
 <template>
     <div class="section" id="controls" :class="{ 'section--active': activeItem === 'controls' }">
         <div class="section__title" :class="{ 'section__title--active': activeItem === 'controls' }">
-            <h1>
-                <i class="fa fa-gamepad"></i>
-                <span>Controls</span>
-            </h1>
+            <i class="fa fa-gamepad section__title-icon"></i>
+            <span class="section__title-label">Controls</span>
         </div>
         <div class="section__body">
 

@@ -1,10 +1,8 @@
 <template>
     <div class="section" id="colours" :class="{ 'section--active': activeItem === 'colours' }">
         <div class="section__title" :class="{ 'section__title--active': activeItem === 'colours' }">
-            <h1>
-                <i class="fa fa-paint-brush"></i>
-                <span>Colours</span>
-            </h1>
+            <i class="fa fa-paint-brush section__title-icon"></i>
+            <span class="section__title-label">Colours</span>
         </div>
         <div class="section__body">
             <h2>Backgrounds</h2>

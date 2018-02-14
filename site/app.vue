@@ -193,9 +193,14 @@ body, html {
 }
 
 .section__title {
+    display: block;
     background: var(--ui-pale);
     color: var(--app-nav-bg);
     position: relative;
+    padding: var(--gap);
+    margin: 0;
+    padding: 0;
+    line-height: 27px;
 }
 
 .section__title--active {
@@ -203,15 +208,7 @@ body, html {
     color: var(--app-highlight--inverse);
 }
 
-.section__title h1 {
-    display: block;
-    padding: var(--gap);
-    margin: 0;
-    padding: 0;
-    line-height: 27px;
-}
-
-.section__title h1 i {
+.section__title-icon {
     --icon-size: 27px;
     font-size: 16px;
     width: var(--icon-size);
@@ -219,14 +216,15 @@ body, html {
     text-align: center;
 }
 
-.section__title h1 span {
+.section__title-label {
     display: inline-block;
     transform: rotate(-90deg);
     position: absolute;
     bottom: 0;
     width: 27px;
     line-height: 40px;
-    font-size: 14px;
+    font-size: 13px;
+    font-weight: 300;
     text-transform: uppercase;
 }
 

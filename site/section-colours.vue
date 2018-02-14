@@ -5,20 +5,54 @@
             <span class="section__title-label">Colours</span>
         </div>
         <div class="section__body">
-            <h2>Backgrounds</h2>
-            <ul class="ui-swatches">
-                <li class="ui-swatch ui-swatch--base ui-swatch--bg">base</li>
-                <li class="ui-swatch ui-swatch--pale ui-swatch--bg">pale</li>
-                <li class="ui-swatch ui-swatch--default ui-swatch--bg">default</li>
-                <li class="ui-swatch ui-swatch--primary">primary</li>
-                <li class="ui-swatch ui-swatch--secondary">secondary</li>
-                <li class="ui-swatch ui-swatch--muted">muted</li>
-                <li class="ui-swatch ui-swatch--warning">warning</li>
-                <li class="ui-swatch ui-swatch--success">success</li>
-                <li class="ui-swatch ui-swatch--failure">failure</li>
-                <li class="ui-swatch ui-swatch--danger">danger</li>
-                <li class="ui-swatch ui-swatch--accent">accent</li>
-            </ul>
+            <article>
+                <h3>Backgrounds</h3>
+                <ul class="ui-swatches">
+                    <li class="ui-swatch ui-swatch--base ui-swatch--bg">
+                        <span class="ui-swatch__label">base</span>
+                    </li>
+                    <li class="ui-swatch ui-swatch--pale ui-swatch--bg">
+                        <span class="ui-swatch__label">pale</span>
+                    </li>
+                    <li class="ui-swatch ui-swatch--default ui-swatch--bg">
+                        <span class="ui-swatch__label">default</span>
+                    </li>
+                </ul>
+            </article>
+            <article>
+                <h3>Controls and text</h3>
+                <ul class="ui-swatches">
+                    <li class="ui-swatch ui-swatch--round ui-swatch--primary">
+                        <span class="ui-swatch__label">primary</span>
+                    </li>
+                    <li class="ui-swatch ui-swatch--round ui-swatch--secondary">
+                        <span class="ui-swatch__label">secondary</span>
+                    </li>
+                    <li class="ui-swatch ui-swatch--round ui-swatch--muted">
+                        <span class="ui-swatch__label">muted</span>
+                    </li>
+                </ul>
+            </article>
+            <article>
+                <h3>States</h3>
+                <ul class="ui-swatches">
+                    <li class="ui-swatch ui-swatch--round ui-swatch--warning">
+                        <span class="ui-swatch__label">warning</span>
+                    </li>
+                    <li class="ui-swatch ui-swatch--round ui-swatch--success">
+                        <span class="ui-swatch__label">success</span>
+                    </li>
+                    <li class="ui-swatch ui-swatch--round ui-swatch--failure">
+                        <span class="ui-swatch__label">failure</span>
+                    </li>
+                    <li class="ui-swatch ui-swatch--round ui-swatch--danger">
+                        <span class="ui-swatch__label">danger</span>
+                    </li>
+                    <li class="ui-swatch ui-swatch--round ui-swatch--accent">
+                        <span class="ui-swatch__label">accent</span>
+                    </li>
+                </ul>
+            </article>
         </div>
     </div>
 </template>
@@ -34,27 +68,33 @@ module.exports = {
 <style lang="css">
 .ui-swatches {
     --swatch-size: 100px;
-    overflow: hidden;
+    --swatch-size--round: 60px;
+    display: flex;
 }
 
 .ui-swatch {
-    width: var(--swatch-size);
-    height: calc(var(--swatch-size) / 2);
-    box-shadow: 0 0 0 1px rgba(0,0,0,.1);
-    /*margin: var(--gap-small) var(--gap) var(--gap-small) 0;*/
-    /*margin: 1px;*/
     display: inline-flex;
-    float: left;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1) inset;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-transform: capitalize;
     letter-spacing: 0.025em;
-    border-radius: 0;
+    margin: 0 var(--gap-small) var(--gap) 0;
 }
 
 .ui-swatch--bg {
+    width: var(--swatch-size);
     height: calc(var(--swatch-size) * 1.5);
+    border-radius: 0;
+}
+
+.ui-swatch--round {
+    width: var(--swatch-size--round);
+    height: var(--swatch-size--round);
+    border-radius: var(--swatch-size--round);
+    position: relative;
+    font-size: 10px;
 }
 
 .ui-swatch small {

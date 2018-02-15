@@ -1,20 +1,55 @@
 <template>
     <div class="app">
-        <div class="app__container">
+        <nav
+            class="app__navigation"
+            :class="{
+                'app__navigation--expanded': menuExpanded,
+                'app__navigation--collapsed': !menuExpanded,
+            }">
             <h1 class="app__title">
-                <img class="app__logo" src="./img/ubio-logo.png" width="96" alt="ubio"/>
                 <b>UBIO</b>
                 <span>CSS Framework</span>
             </h1>
-            <section-colours/>
-            <section-typography/>
-            <section-controls/>
+            <menu class="app__menu">
+                <img
+                    @click="menuExpanded = !menuExpanded"
+                    class="app__logo"
+                    :class="{ 'app__logo--zoomed': menuExpanded}"
+                    src="./img/ubio-logo--white.png"
+                    alt="ubio" />
+                <a
+                    v-for="item in menu"
+                    class="app__menu-item"
+                    :class="{ 'app__menu-item--active': item === activeMenuItem }"
+                    @click="activeMenuItem = item"
+                    :href="'#' + item">
+                    <i class="fa app__menu-icon" :class="{
+                        'fa-paint-brush': item === 'colours',
+                        'fa-font': item === 'typography',
+                        'fa-gamepad': item === 'controls',
+                    }"></i>
+                    <span v-if="menuExpanded">{{ item }}</span>
+                </a>
+            </menu>
+        </nav>
+        <div class="app__container">
+            <section-colours :active-item="activeMenuItem" />
+            <section-typography :active-item="activeMenuItem" />
+            <section-controls :active-item="activeMenuItem" />
         </div>
     </div>
 </template>
 
 <script>
 module.exports = {
+    data() {
+        return {
+            menu: ['colours', 'typography', 'controls'],
+            activeMenuItem: window.location.hash.replace('#', ''),
+            menuExpanded: false,
+        };
+    },
+
     components: {
         'section-colours': require('./section-colours.vue'),
         'section-typography': require('./section-typography.vue'),
@@ -26,56 +61,174 @@ module.exports = {
 <style lang="css">
 @import "stylesheets/index.css";
 
-body {
-    background: var(--ui-pale);
+body, html {
+    height: 100%;
+}
+
+:root {
+    --app-nav-bg: var(--ui-base--inverse);
+    --app-nav-color: var(--ui-base);
+    --app-highlight: var(--ui-accent);
+    --app-highlight--inverse: var(--ui-accent--inverse);
+}
+
+.app {
+    display: flex;
+    height: 100%;
+}
+
+.app__navigation {
+    --nav-size: 140px;
+    display: flex;
+    flex-direction: column;
+    background: var(--app-nav-bg);
+    color: var(--app-nav-color);
+    padding: 0;
+}
+
+.app__navigation--expanded {
+    min-width: var(--nav-size);
+}
+
+.app__title {
+    display: block;
+    font-size: 16px;
+    position: fixed;
+    bottom: var(--gap);
+    left: 0;
+    height: 160px;
+    line-height: 44px;
+    transform: rotate(-90deg);
+    margin: 0;
+    padding: 0;
+    color: var(--ui-secondary);
+}
+
+.app__logo {
+    --logo-size: 24px;
+    display: inline-block;
+    vertical-align: baseline;
+    margin-right: 2px;
+    width: var(--logo-size);
+    margin: var(--gap);
+    cursor: pointer;
+}
+
+.app__logo--zoomed {
+    width: calc(var(--logo-size) * 1.5);
+}
+
+.app__menu {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.5;
+    text-transform: capitalize;
+}
+
+.app__menu-item {
+    color: currentColor;
+    padding: var(--gap);
+    width: 100%;
+}
+
+.app__menu-item--active {
+    color: var(--app-highlight);
+    position: relative;
+}
+
+.app__menu-item--active:after {
+    --arrow-size: 4px;
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    margin-top: calc(-.5 * var(--arrow-size));
+    content: '';
+    display: block;
+    width: var(--arrow-size);
+    height: var(--arrow-size);
+    border-radius: var(--arrow-size);
+    background: var(--app-highlight);
+}
+
+.app__menu-icon {
+    width: 20px;
+    margin: 0 2px;
+    text-align: center;
 }
 
 .app__container {
+    display: flex;
+    flex-wrap: wrap;
+    background: var(--ui-base);
     margin: 0 auto;
+    height: 100%;
+    overflow: auto;
+    border-left: var;
 }
 
 @media (min-width: 960px) {
     .app__container {
-        width: 720px;
+        /*width: 720px;*/
     }
 }
 
-.app__title {
-    margin: 0;
-    padding: var(--gap-large) 0 0;
-    display: flex;
-    flex-flow: row nowrap;
-    font-size: 28px;
-    align-items: center;
-    color: var(--ui-secondary--inverse);
-}
-
-.app__logo {
-    --logo-size: 48px;
-    position: relative;
-    top: -2px;
-    margin-right: var(--gap);
-    width: var(--logo-size);
-    height: var(--logo-size);
-}
-
 .section {
-    margin: var(--gap-large) 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    border-top: 1px dashed var(--border-color);
+}
+
+.section:first-child {
+    border-top: 0;
+}
+
+.section--active {
+    --marker-size: 35px;
+    background: var(--ui-base);
+    position: relative;
 }
 
 .section__title {
-    background: var(--ui-secondary--inverse);
-    color: white;
+    display: block;
+    background: var(--ui-pale);
+    color: var(--app-nav-bg);
+    position: relative;
+    padding: var(--gap);
+    margin: 0;
+    padding: 0;
+    line-height: 27px;
 }
 
-.section__title h1 {
-    margin: 0;
-    padding: var(--gap-small) var(--gap);
-    font-size: 14px;
+.section__title--active {
+    background: var(--app-highlight);
+    color: var(--app-highlight--inverse);
+}
+
+.section__title-icon {
+    --icon-size: 27px;
+    font-size: 16px;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    text-align: center;
+}
+
+.section__title-label {
+    display: inline-block;
+    transform: rotate(-90deg);
+    position: absolute;
+    bottom: 0;
+    width: 27px;
+    line-height: 40px;
+    font-size: 13px;
+    font-weight: 300;
+    text-transform: uppercase;
 }
 
 .section__body {
-    padding: var(--gap);
-    background: var(--ui-base);
+    padding: 0 var(--gap-large) var(--gap);
 }
 </style>

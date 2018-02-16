@@ -15,6 +15,10 @@ time, mark, audio, video {
     box-sizing: border-box;
 }
 
+article, aside, footer, header, section {
+    display: block;
+}
+
 input, textarea, button, select {
     font: inherit;
 }

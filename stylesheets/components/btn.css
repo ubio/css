@@ -17,6 +17,7 @@
 
     line-height: 1;
     text-decoration: none;
+    text-align: center;
     letter-spacing: 0.025em;
     text-transform: Capitalize;
 
@@ -48,16 +49,16 @@
 
 .btn--small {
     font-size: 10px;
-    height: 16px;
-    padding: 0 4px;
+    height: 18px;
+    padding: 2px 4px;
     white-space: nowrap;
 }
 
 .btn--large {
     font-size: 18px;
-    height: 46px;
-    padding: var(--gap) var(--gap-large);
-    border-radius: calc(var(--border-radius) * 2);
+    height: 36px;
+    padding: 8px 15px;
+    border-radius: calc(var(--border-radius) * 1.5);
 }
 
 /* Colors */

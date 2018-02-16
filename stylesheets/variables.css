@@ -35,8 +35,11 @@
     --ui-secondary: #d6d6d0;
     --ui-secondary--inverse: #424B54;
 
-    --ui-accent: #FF5A5F;
-    --ui-accent--inverse: #fff;
+    --ui-production: #FF5A5F;
+    --ui-production--inverse: #fff;
+
+    --ui-staging: #829F59;
+    --ui-staging--inverse: #fff;
 
     --ui-success: #529265;
     --ui-success--inverse: #fff;
@@ -54,6 +57,7 @@
     --ui-danger--inverse: #fff;
 
     --ui-muted: hsl(204, 15%, 50%);
+    --ui-muted: #628395;
     --ui-muted--inverse: #f3f8fb;
 
     /* Controls */

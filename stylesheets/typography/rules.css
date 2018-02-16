@@ -25,7 +25,8 @@ a:hover {
 }
 
 p a {
-    color: var(--ui-accent);
+    color: var(--ui-primary);
+    text-decoration: underline;
 }
 
 b {
@@ -39,43 +40,45 @@ strong {
 h1 {
     font-size: 26px;
     line-height: 1;
-    font-weight: 300;
+    font-weight: 100;
     margin: var(--gap-large) 0;
 }
 
 h2 {
+    font-size: 21px;
+    line-height: 1;
+    font-weight: 200;
+    margin: var(--gap-large) 0;
+}
+
+h3 {
     font-size: 18px;
     line-height: 1;
     font-weight: 300;
     margin: var(--gap) 0;
 }
 
-h3 {
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 300;
-    margin: var(--gap) 0;
-}
-
 h4 {
-    font-size: 12px;
-    line-height: 1.5;
-    font-weight: 500;
-    margin: var(--gap) 0 var(--gap-small);
+    font-size: 13px;
+    line-height: 1;
+    font-weight: 400;
+    margin: var(--gap-large) 0 var(--gap);
     color: var(--ui-muted);
     text-transform: uppercase;
 }
 
 h5 {
-    font-size: 110%;
+    font-size: 130%;
+    line-height: 1.5;
     font-weight: 400;
-    margin: var(--gap-small) 0;
+    margin: var(--gap) 0;
 }
 
 h6 {
-    font-size: 10px;
-    font-weight: 500;
-    margin: var(--gap-small) 0;
+    font-size: 12px;
+    line-height: 1.25;
+    font-weight: 400;
+    margin: var(--gap) 0;
     text-transform: uppercase;
     color: var(--ui-muted);
 }

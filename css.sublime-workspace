@@ -478,9 +478,11 @@
 	[
 		"/Users/alisa/projects/backoffice/stylesheets/base.styl",
 		"/Users/alisa/projects/backoffice/stylesheets/components/button.styl",
+		"/Users/alisa/projects/backoffice/src/components/jobs/show/index.vue",
 		"/Users/alisa/projects/backoffice/stylesheets/variables.styl",
-		"/Users/alisa/projects/backoffice/src/components/services/services-filter/search.vue",
+		"/Users/alisa/projects/backoffice/stylesheets/components/panel.styl",
 		"/Users/alisa/projects/backoffice/src/utils/filter.js",
+		"/Users/alisa/projects/backoffice/src/components/services/services-filter/search.vue",
 		"/Users/alisa/projects/backoffice/src/components/_shared/duration.vue",
 		"/Users/alisa/projects/backoffice/src/components/jobs/list/job.vue",
 		"/Users/alisa/projects/backoffice/src/services/decoder.js",
@@ -515,7 +517,6 @@
 		"/Users/alisa/projects/backoffice/src/components/jobs/show/mimo-logs/index.vue",
 		"/Users/alisa/projects/backoffice/stylesheets/components/table.styl",
 		"/Users/alisa/projects/backoffice/src/components/services/show/scripts/list/service-script.vue",
-		"/Users/alisa/projects/backoffice/src/components/jobs/show/index.vue",
 		"/Users/alisa/projects/node-course/hello.js",
 		"/Users/alisa/projects/backoffice/src/store/mutations.js",
 		"/Users/alisa/projects/backoffice/src/store/actions.js",
@@ -550,7 +551,6 @@
 		"/Users/alisa/projects/backoffice/src/components/jobs/show/outputs/add/output-form.vue",
 		"/Users/alisa/projects/backoffice/src/components/_shared/archived-stamp.vue",
 		"/Users/alisa/projects/backoffice/src/components/scripts/show/script/action.vue",
-		"/Users/alisa/projects/backoffice/stylesheets/components/panel.styl",
 		"/Users/alisa/projects/backoffice/src/components/_shared/data-viewer.vue",
 		"/Users/alisa/projects/backoffice/src/components/scripts/show/script/context.vue",
 		"/Users/alisa/projects/backoffice/src/components/snapshots/show.vue",
@@ -749,6 +749,7 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"scr",
 			"swicth",
 			"search",
 			"key",
@@ -875,8 +876,7 @@
 			"nowrap",
 			"18",
 			"span",
-			"user-with-pic__initials",
-			"gap"
+			"user-with-pic__initials"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1020,6 +1020,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"pane",
+				"stylesheets/components/panel.styl"
+			],
 			[
 				"mimo",
 				"src/components/jobs/show/mimo-item.vue"
@@ -1251,10 +1255,6 @@
 			[
 				"data-v",
 				"src/components/_shared/data-viewer.vue"
-			],
-			[
-				"pane",
-				"stylesheets/components/panel.styl"
 			],
 			[
 				"tab",

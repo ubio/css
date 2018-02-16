@@ -28,14 +28,23 @@
                     <li class="ui-swatch ui-swatch--round ui-swatch--secondary">
                         <span class="ui-swatch__label">secondary</span>
                     </li>
+                    <li class="ui-swatch ui-swatch--round ui-swatch--text">
+                        <span class="ui-swatch__label">text base</span>
+                    </li>
                     <li class="ui-swatch ui-swatch--round ui-swatch--muted">
-                        <span class="ui-swatch__label">muted</span>
+                        <span class="ui-swatch__label">text muted</span>
+                    </li>
+                    <li class="ui-swatch ui-swatch--round ui-swatch--danger">
+                        <span class="ui-swatch__label">danger</span>
                     </li>
                 </ul>
             </article>
             <article>
-                <h3>States</h3>
+                <h3>Severity</h3>
                 <ul class="ui-swatches">
+                    <li class="ui-swatch ui-swatch--round ui-swatch--info">
+                        <span class="ui-swatch__label">info</span>
+                    </li>
                     <li class="ui-swatch ui-swatch--round ui-swatch--warning">
                         <span class="ui-swatch__label">warning</span>
                     </li>
@@ -45,11 +54,16 @@
                     <li class="ui-swatch ui-swatch--round ui-swatch--failure">
                         <span class="ui-swatch__label">failure</span>
                     </li>
-                    <li class="ui-swatch ui-swatch--round ui-swatch--danger">
-                        <span class="ui-swatch__label">danger</span>
+                </ul>
+            </article>
+            <article>
+                <h3>Environments</h3>
+                <ul class="ui-swatches">
+                    <li class="ui-swatch ui-swatch--round ui-swatch--staging">
+                        <span class="ui-swatch__label">stag</span>
                     </li>
-                    <li class="ui-swatch ui-swatch--round ui-swatch--accent">
-                        <span class="ui-swatch__label">accent</span>
+                    <li class="ui-swatch ui-swatch--round ui-swatch--production">
+                        <span class="ui-swatch__label">prod</span>
                     </li>
                 </ul>
             </article>
@@ -130,14 +144,24 @@ module.exports = {
     color: var(--ui-secondary--inverse);
 }
 
-.ui-swatch--accent {
-    background: var(--ui-accent);
-    color: var(--ui-accent--inverse);
+.ui-swatch--production {
+    background: var(--ui-production);
+    color: var(--ui-production--inverse);
+}
+
+.ui-swatch--staging {
+    background: var(--ui-staging);
+    color: var(--ui-staging--inverse);
 }
 
 .ui-swatch--primary {
     background: var(--ui-primary);
     color: var(--ui-primary--inverse);
+}
+
+.ui-swatch--text {
+    background: var(--ui-base--inverse);
+    color: var(--ui-base);
 }
 
 .ui-swatch--info {

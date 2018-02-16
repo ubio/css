@@ -27,6 +27,8 @@
                         'fa-paint-brush': item === 'colours',
                         'fa-font': item === 'typography',
                         'fa-gamepad': item === 'controls',
+                        'fa-columns': item === 'layout',
+                        'fa-wrench': item === 'tools',
                     }"></i>
                     <span v-if="menuExpanded">{{ item }}</span>
                 </a>
@@ -36,6 +38,8 @@
             <section-colours :active-item="activeMenuItem" />
             <section-typography :active-item="activeMenuItem" />
             <section-controls :active-item="activeMenuItem" />
+            <section-layout :active-item="activeMenuItem" />
+            <section-tools :active-item="activeMenuItem" />
         </div>
     </div>
 </template>
@@ -44,16 +48,45 @@
 module.exports = {
     data() {
         return {
-            menu: ['colours', 'typography', 'controls'],
+            menu: ['colours', 'typography', 'controls', 'layout', 'tools'],
             activeMenuItem: window.location.hash.replace('#', ''),
             menuExpanded: false,
         };
+    },
+
+    created() {
+        this.$nextTick(() => this.scrollToActive());
+    },
+
+    watch: {
+        activeMenuItem(hash) {
+            if (hash) {
+                this.scrollToActive();
+            }
+        },
+    },
+
+    methods: {
+        scrollToActive() {
+            if (!this.activeMenuItem) {
+                return;
+            }
+
+            try {
+                const el = this.$el.querySelector('#' + this.activeMenuItem);
+                if (el) {
+                    el.scrollIntoViewIfNeeded();
+                }
+            } catch (err) { }
+        },
     },
 
     components: {
         'section-colours': require('./section-colours.vue'),
         'section-typography': require('./section-typography.vue'),
         'section-controls': require('./section-controls.vue'),
+        'section-layout': require('./section-layout.vue'),
+        'section-tools': require('./tools/index.vue'),
     },
 };
 </script>
@@ -68,8 +101,8 @@ body, html {
 :root {
     --app-nav-bg: var(--ui-base--inverse);
     --app-nav-color: var(--ui-base);
-    --app-highlight: var(--ui-accent);
-    --app-highlight--inverse: var(--ui-accent--inverse);
+    --app-highlight: #27B9CC;
+    --app-highlight--inverse: white;
 }
 
 .app {
@@ -176,10 +209,12 @@ body, html {
 }
 
 .section {
+    --bookmark-size: 27px;
     margin: 0;
     width: 100%;
     display: flex;
     border-top: 1px dashed var(--border-color);
+    min-height: 25vh;
 }
 
 .section:first-child {
@@ -200,7 +235,7 @@ body, html {
     padding: var(--gap);
     margin: 0;
     padding: 0;
-    line-height: 27px;
+    line-height: var(--bookmark-size);
 }
 
 .section__title--active {
@@ -209,10 +244,11 @@ body, html {
 }
 
 .section__title-icon {
-    --icon-size: 27px;
+    --icon-size: var(--bookmark-size);
     font-size: 16px;
     width: var(--icon-size);
     height: var(--icon-size);
+    line-height: var(--icon-size);
     text-align: center;
 }
 
@@ -221,7 +257,7 @@ body, html {
     transform: rotate(-90deg);
     position: absolute;
     bottom: 0;
-    width: 27px;
+    width: var(--bookmark-size);
     line-height: 40px;
     font-size: 13px;
     font-weight: 300;
@@ -229,6 +265,30 @@ body, html {
 }
 
 .section__body {
-    padding: 0 var(--gap-large) var(--gap);
+    padding: var(--gap) var(--gap-large);
+    width: calc(100% - var(--bookmark-size));
+    box-sizing: border-box;
+}
+
+.section__table {
+    width: 100%;
+}
+
+.section__table th,
+.section__table td {
+    border: 1px solid var(--ui-base);
+    padding: var(--gap-small) var(--gap);
+    text-align: left;
+}
+
+.section__table th {
+    background: var(--ui-secondary--inverse);
+    color: var(--ui-base);
+    font-family: var(--font__family--mono);
+    font-weight: 300;
+}
+
+.section__table td {
+    background: var(--ui-pale);
 }
 </style>

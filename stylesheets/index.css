@@ -8,3 +8,6 @@
 @import "./components/input.css";
 @import "./components/group.css";
 @import "./components/block.css";
+@import "./components/tabs.css";
+
+@import "./_inbox.css";

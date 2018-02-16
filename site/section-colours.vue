@@ -17,6 +17,21 @@
                     <li class="ui-swatch ui-swatch--default ui-swatch--bg">
                         <span class="ui-swatch__label">default</span>
                     </li>
+                    <li class="ui-swatch ui-swatch--secondary ui-swatch--bg">
+                        <span class="ui-swatch__label">secondary</span>
+                    </li>
+                    <li class="ui-swatch ui-swatch--base--inverse ui-swatch--bg">
+                        <span class="ui-swatch__label">base--inverse</span>
+                    </li>
+                    <li class="ui-swatch ui-swatch--pale--inverse ui-swatch--bg">
+                        <span class="ui-swatch__label">pale--inverse</span>
+                    </li>
+                    <li class="ui-swatch ui-swatch--default--inverse ui-swatch--bg">
+                        <span class="ui-swatch__label">default--inverse</span>
+                    </li>
+                    <li class="ui-swatch ui-swatch--secondary--inverse ui-swatch--bg">
+                        <span class="ui-swatch__label">secondary--inverse</span>
+                    </li>
                 </ul>
             </article>
             <article>
@@ -59,10 +74,10 @@
             <article>
                 <h3>Environments</h3>
                 <ul class="ui-swatches">
-                    <li class="ui-swatch ui-swatch--round ui-swatch--staging">
+                    <li class="ui-swatch ui-swatch--round ui-swatch--stag">
                         <span class="ui-swatch__label">stag</span>
                     </li>
-                    <li class="ui-swatch ui-swatch--round ui-swatch--production">
+                    <li class="ui-swatch ui-swatch--round ui-swatch--prod">
                         <span class="ui-swatch__label">prod</span>
                     </li>
                 </ul>
@@ -81,47 +96,47 @@ module.exports = {
 
 <style lang="css">
 .ui-swatches {
-    --swatch-size: 100px;
+    --swatch-size: 90px;
     --swatch-size--round: 60px;
     display: flex;
 }
 
 .ui-swatch {
     display: inline-flex;
-    box-shadow: 0 0 0 1px rgba(0,0,0,.1) inset;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1);
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-transform: capitalize;
+    font-family: var(--font__family--mono);
     letter-spacing: 0.025em;
-    margin: 0 var(--gap-small) var(--gap) 0;
 }
 
 .ui-swatch--bg {
     width: var(--swatch-size);
     height: calc(var(--swatch-size) * 1.5);
     border-radius: 0;
+    margin: 0 0 var(--gap-large);
 }
 
 .ui-swatch--round {
+    margin: 0 var(--gap-small) var(--gap) 0;
     width: var(--swatch-size--round);
     height: var(--swatch-size--round);
     border-radius: var(--swatch-size--round);
     position: relative;
+    text-align: center;
     font-size: 10px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1) inset;
 }
 
-.ui-swatch small {
+.ui-swatch__label {
     display: inline-block;
     text-align: center;
     padding: 3px;
     text-align: center;
-    width: 80%;
+    width: 90%;
     margin-top: 2px;
-    font-size: 70%;
-    color: var(--ui-base);
-    background: var(--ui-base--inverse);
-    border-radius: var(--border-radius);
+    font-size: 90%;
 }
 
 .ui-swatch--base {
@@ -139,19 +154,39 @@ module.exports = {
     color: var(--ui-default--inverse);
 }
 
+.ui-swatch--base--inverse {
+    background: var(--ui-base--inverse);
+    color: var(--ui-base);
+}
+
+.ui-swatch--pale--inverse {
+    background: var(--ui-pale--inverse);
+    color: var(--ui-pale);
+}
+
+.ui-swatch--default--inverse {
+    background: var(--ui-default--inverse);
+    color: var(--ui-default);
+}
+
 .ui-swatch--secondary {
     background: var(--ui-secondary);
     color: var(--ui-secondary--inverse);
 }
 
-.ui-swatch--production {
-    background: var(--ui-production);
-    color: var(--ui-production--inverse);
+.ui-swatch--secondary--inverse {
+    background: var(--ui-secondary--inverse);
+    color: var(--ui-secondary);
 }
 
-.ui-swatch--staging {
-    background: var(--ui-staging);
-    color: var(--ui-staging--inverse);
+.ui-swatch--prod {
+    background: var(--ui-prod);
+    color: var(--ui-prod--inverse);
+}
+
+.ui-swatch--stag {
+    background: var(--ui-stag);
+    color: var(--ui-stag--inverse);
 }
 
 .ui-swatch--primary {

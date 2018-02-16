@@ -25,7 +25,7 @@ a:hover {
 }
 
 p a {
-    color: var(--ui-primary);
+    color: var(--ui-prod);
     text-decoration: underline;
 }
 

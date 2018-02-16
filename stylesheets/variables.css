@@ -23,23 +23,22 @@
     --ui-base--inverse: #242a2e;
 
     --ui-pale: #f3f3f4;
-    --ui-pale--inverse: #222;
+    --ui-pale--inverse: #23201a;
 
     --ui-default: #e5e5e5;
-    --ui-default--inverse: #242a2e;
+    --ui-default--inverse: #1c3038;
 
-    --ui-primary: #483d8b;
     --ui-primary: #2a52a2;
     --ui-primary--inverse: #fff;
 
     --ui-secondary: #d6d6d0;
     --ui-secondary--inverse: #424B54;
 
-    --ui-production: #FF5A5F;
-    --ui-production--inverse: #fff;
+    --ui-prod: #FF5A5F;
+    --ui-prod--inverse: #fff;
 
-    --ui-staging: #829F59;
-    --ui-staging--inverse: #fff;
+    --ui-stag: #829F59;
+    --ui-stag--inverse: #fff;
 
     --ui-success: #529265;
     --ui-success--inverse: #fff;

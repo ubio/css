@@ -41,6 +41,17 @@
             <section-layout :active-item="activeMenuItem" />
             <section-tools :active-item="activeMenuItem" />
         </div>
+
+        <ul class="brand-pallette">
+            <li><a class="brand-pallette__swatch brand-pallette__swatch--core" title="base/core colour"></a></li>
+            <li><a class="brand-pallette__swatch brand-pallette__swatch--primary" title="primary contrast"></a></li>
+            <li><a class="brand-pallette__swatch brand-pallette__swatch--complimentary" title="complimentary"></a></li>
+            <li><a class="brand-pallette__swatch brand-pallette__swatch--tertiary-medium" title="tertiary medium"></a></li>
+            <li><a class="brand-pallette__swatch brand-pallette__swatch--tertiary-dark" title="tertiary dark"></a></li>
+            <li><a class="brand-pallette__swatch brand-pallette__swatch--mono-white" title="mono white"></a></li>
+            <li><a class="brand-pallette__swatch brand-pallette__swatch--mono-gray" title="mono gray"></a></li>
+            <li><a class="brand-pallette__swatch brand-pallette__swatch--mono-black" title="mono black"></a></li>
+        </ul>
     </div>
 </template>
 
@@ -291,4 +302,31 @@ body, html {
 .section__table td {
     background: var(--ui-pale);
 }
+
+.brand-pallette {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    z-index: 1;
+    right: 0;
+    top: 0;
+    margin: var(--gap);
+}
+
+.brand-pallette__swatch {
+    --brand-swatch__size: 40px;
+    display: block;
+    height: var(--brand-swatch__size);
+    width: calc(var(--brand-swatch__size) / 3);
+}
+
+.brand-pallette__swatch--core { background: #27B9CC; }
+.brand-pallette__swatch--primary { background: #FF5A5F; }
+.brand-pallette__swatch--complimentary { background: #D6D6D0; }
+.brand-pallette__swatch--tertiary-medium { background: #628395; }
+.brand-pallette__swatch--tertiary-dark { background: #424B54; }
+.brand-pallette__swatch--mono-white { background: #fff; }
+.brand-pallette__swatch--mono-gray { background: #ccc; }
+.brand-pallette__swatch--mono-black { background: #000; }
+
 </style>

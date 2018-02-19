@@ -19,20 +19,23 @@
 
     /* Color Palette */
 
-    --ui-base: #fff;
+    --ui-base: #fff; /*mono white*/
     --ui-base--inverse: #242a2e;
 
-    --ui-pale: #f3f3f4;
-    --ui-pale--inverse: #23201a;
+    --ui-pale: #F6F6F6;
+    --ui-pale--inverse: #000;
 
-    --ui-default: #e5e5e5;
-    --ui-default--inverse: #1c3038;
+    --ui-default: #EDEEEF;
+    --ui-default--inverse: #4A4A4A;
 
     --ui-primary: #2a52a2;
     --ui-primary--inverse: #fff;
 
-    --ui-secondary: #d6d6d0;
-    --ui-secondary--inverse: #424B54;
+    --ui-secondary: #d6d6d0; /*complimantary*/
+    --ui-secondary--inverse: #424B54; /*tertiary dark*/
+
+    --ui-tertiary: #E1E9ED;
+    --ui-tertiary--inverse: #687789;
 
     --ui-prod: #FF5A5F;
     --ui-prod--inverse: #fff;
@@ -55,8 +58,7 @@
     --ui-danger: #dc143c;
     --ui-danger--inverse: #fff;
 
-    --ui-muted: hsl(204, 15%, 50%);
-    --ui-muted: #628395;
+    --ui-muted: #628395; /*tertiary menium*/
     --ui-muted--inverse: #f3f8fb;
 
     /* Controls */

@@ -5,7 +5,7 @@
             <span class="section__title-label">Colours</span>
         </div>
         <div class="section__body">
-            <article>
+            <article style="float: left; margin-right: var(--gap-large)">
                 <h3>Backgrounds</h3>
                 <ul class="ui-swatches">
                     <li class="ui-swatch ui-swatch--base ui-swatch--bg">
@@ -20,6 +20,11 @@
                     <li class="ui-swatch ui-swatch--secondary ui-swatch--bg">
                         <span class="ui-swatch__label">secondary</span>
                     </li>
+                    <li class="ui-swatch ui-swatch--tertiary ui-swatch--bg">
+                        <span class="ui-swatch__label">tertiary</span>
+                    </li>
+                </ul>
+                <ul class="ui-swatches">
                     <li class="ui-swatch ui-swatch--base--inverse ui-swatch--bg">
                         <span class="ui-swatch__label">base--inverse</span>
                     </li>
@@ -31,6 +36,9 @@
                     </li>
                     <li class="ui-swatch ui-swatch--secondary--inverse ui-swatch--bg">
                         <span class="ui-swatch__label">secondary--inverse</span>
+                    </li>
+                    <li class="ui-swatch ui-swatch--tertiary--inverse ui-swatch--bg">
+                        <span class="ui-swatch__label">tertiary--inverse</span>
                     </li>
                 </ul>
             </article>
@@ -55,7 +63,7 @@
                 </ul>
             </article>
             <article>
-                <h3>Messaging</h3>
+                <h4>Messaging</h4>
                 <ul class="ui-swatches">
                     <li class="ui-swatch ui-swatch--round ui-swatch--info">
                         <span class="ui-swatch__label">info</span>
@@ -72,7 +80,7 @@
                 </ul>
             </article>
             <article>
-                <h3>Environments</h3>
+                <h4>Environments</h4>
                 <ul class="ui-swatches">
                     <li class="ui-swatch ui-swatch--round ui-swatch--stag">
                         <span class="ui-swatch__label">stag</span>
@@ -96,7 +104,7 @@ module.exports = {
 
 <style lang="css">
 .ui-swatches {
-    --swatch-size: 90px;
+    --swatch-size: 80px;
     --swatch-size--round: 60px;
     display: flex;
 }
@@ -113,9 +121,9 @@ module.exports = {
 
 .ui-swatch--bg {
     width: var(--swatch-size);
-    height: calc(var(--swatch-size) * 1.5);
+    height: calc(var(--swatch-size) * 2);
     border-radius: 0;
-    margin: 0 0 var(--gap-large);
+    margin: 0;
 }
 
 .ui-swatch--round {
@@ -177,6 +185,16 @@ module.exports = {
 .ui-swatch--secondary--inverse {
     background: var(--ui-secondary--inverse);
     color: var(--ui-secondary);
+}
+
+.ui-swatch--tertiary {
+    background: var(--ui-tertiary);
+    color: var(--ui-tertiary--inverse);
+}
+
+.ui-swatch--tertiary--inverse {
+    background: var(--ui-tertiary--inverse);
+    color: var(--ui-tertiary);
 }
 
 .ui-swatch--prod {

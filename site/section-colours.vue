@@ -55,7 +55,7 @@
                 </ul>
             </article>
             <article>
-                <h3>Severity</h3>
+                <h3>Messaging</h3>
                 <ul class="ui-swatches">
                     <li class="ui-swatch ui-swatch--round ui-swatch--info">
                         <span class="ui-swatch__label">info</span>

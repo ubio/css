@@ -5,77 +5,153 @@
             <span class="section__title-label">Colours</span>
         </div>
         <div class="section__body">
+            <article v-if="false" style="float: left; margin-right: var(--gap-large)">
+                <h3>Palette</h3>
+                <ul class="ui-palete">
+                    <li>
+                        <div>
+                            <span><b>mono</b></span>
+                            <div class="ui-palete__color">
+                                <span class="ui-palete__color-swatch" style="background: #ccc">#ccc</span>
+                                <span class="ui-palete__color-swatch" style="background: white; height: 50px"></span>
+                                <span class="ui-palete__color-swatch" style="background: black; height: 50px"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li><palette-stripe color="#687789" name="cool" :gray="true" /></li>
+                    <li><palette-stripe color="#d6d6d0" name="warm" :gray="true" /></li>
+                    <li><palette-stripe color="#32539D" name="accent" /></li>
+                </ul>
+            </article>
+            <article v-if="false" style="float: left; margin-right: var(--gap-large)">
+                <h3>Traffic Lights</h3>
+                <ul class="ui-palete">
+                    <li><palette-stripe color="#3E71B5" name="info" /></li>
+                    <li><palette-stripe color="#4A90E2" name="info" /></li>
+                    <li><palette-stripe color="#F4CF6C" name="warning" /></li>
+                    <li><palette-stripe color="#619068" name="success" /></li>
+                    <li><palette-stripe color="#41a982" name="success" /></li>
+                    <li><palette-stripe color="#59bc69" name="CS success" /></li>
+                    <li><palette-stripe color="#28a745" name="GH-green" /></li>
+                    <li><palette-stripe color="#B95769" name="failure" /></li>
+                    <li><palette-stripe color="var(--ui-danger)" name="danger" /></li>
+                </ul>
+            </article>
             <article style="float: left; margin-right: var(--gap-large)">
-                <h3>Backgrounds</h3>
+                <h3>Box</h3>
                 <ul class="ui-swatches">
                     <li class="ui-swatch ui-swatch--base ui-swatch--bg">
-                        <span class="ui-swatch__label">base</span>
+                        <span class="ui-swatch__label">
+                            <span class="ui-swatch__name">BASE</span>
+                            <small>brand white</small>
+                            <code class="ui-swatch__code">white</code>
+                        </span>
                     </li>
-                    <li class="ui-swatch ui-swatch--pale ui-swatch--bg">
-                        <span class="ui-swatch__label">pale</span>
+                    <li class="ui-swatch ui-swatch--area ui-swatch--bg">
+                        <span class="ui-swatch__label">
+                            <span class="ui-swatch__name">AREA</span>
+                            <code class="ui-swatch__code">#f6f6f6</code>
+                        </span>
                     </li>
-                    <li class="ui-swatch ui-swatch--default ui-swatch--bg">
-                        <span class="ui-swatch__label">default</span>
+                    <li class="ui-swatch ui-swatch--panel ui-swatch--bg">
+                        <span class="ui-swatch__label">
+                            <span class="ui-swatch__name">PANEL</span>
+                            <code class="ui-swatch__code">#edeeef</code>
+                        </span>
                     </li>
                     <li class="ui-swatch ui-swatch--secondary ui-swatch--bg">
-                        <span class="ui-swatch__label">secondary</span>
+                        <span class="ui-swatch__label">
+                            <span class="ui-swatch__name">SECONDARY</span>
+                            <small>brand secondary</small>
+                            <code class="ui-swatch__code">#d6d6d0</code>
+                        </span>
                     </li>
                     <li class="ui-swatch ui-swatch--tertiary ui-swatch--bg">
-                        <span class="ui-swatch__label">tertiary</span>
+                        <span class="ui-swatch__label">
+                            <span class="ui-swatch__name">TERTIARY</span>
+                            <code class="ui-swatch__code">#e1e9ed</code>
+                        </span>
                     </li>
                 </ul>
                 <ul class="ui-swatches">
                     <li class="ui-swatch ui-swatch--base--inverse ui-swatch--bg">
-                        <span class="ui-swatch__label">base--inverse</span>
+                        <span class="ui-swatch__label">
+                            <span class="ui-swatch__name">BASE inverse</span>
+                            <code class="ui-swatch__code">#242a2e</code>
+                        </span>
                     </li>
-                    <li class="ui-swatch ui-swatch--pale--inverse ui-swatch--bg">
-                        <span class="ui-swatch__label">pale--inverse</span>
+                    <li class="ui-swatch ui-swatch--area--inverse ui-swatch--bg">
+                        <span class="ui-swatch__label">
+                            <span class="ui-swatch__name">AREA inverse</span>
+                            <small>brand black</small>
+                            <code class="ui-swatch__code">black</code>
+                        </span>
                     </li>
-                    <li class="ui-swatch ui-swatch--default--inverse ui-swatch--bg">
-                        <span class="ui-swatch__label">default--inverse</span>
+                    <li class="ui-swatch ui-swatch--panel--inverse ui-swatch--bg">
+                        <span class="ui-swatch__label">
+                            <span class="ui-swatch__name">PANEL inverse</span>
+                            <code class="ui-swatch__code">#4a4a4a</code>
+                        </span>
                     </li>
                     <li class="ui-swatch ui-swatch--secondary--inverse ui-swatch--bg">
-                        <span class="ui-swatch__label">secondary--inverse</span>
+                        <span class="ui-swatch__label">
+                            <span class="ui-swatch__name">SECONDARY inverse</span>
+                            <small>brand tertiary</small>
+                            <code class="ui-swatch__code">#424b54</code>
+                        </span>
                     </li>
                     <li class="ui-swatch ui-swatch--tertiary--inverse ui-swatch--bg">
-                        <span class="ui-swatch__label">tertiary--inverse</span>
+                        <span class="ui-swatch__label">
+                            <span class="ui-swatch__name">TERTIARY inverse</span>
+                            <code class="ui-swatch__code">#687789</code>
+                        </span>
                     </li>
                 </ul>
             </article>
             <article>
-                <h3>Controls and text</h3>
+                <h4>Base</h4>
                 <ul class="ui-swatches">
                     <li class="ui-swatch ui-swatch--round ui-swatch--primary">
-                        <span class="ui-swatch__label">primary</span>
+                        <span>CTA primary</span>
+                    </li>
+                    <li class="ui-swatch ui-swatch--round ui-swatch--panel">
+                        <span>CTA default</span>
                     </li>
                     <li class="ui-swatch ui-swatch--round ui-swatch--secondary">
-                        <span class="ui-swatch__label">secondary</span>
-                    </li>
-                    <li class="ui-swatch ui-swatch--round ui-swatch--text">
-                        <span class="ui-swatch__label">text base</span>
-                    </li>
-                    <li class="ui-swatch ui-swatch--round ui-swatch--muted">
-                        <span class="ui-swatch__label">text muted</span>
+                        <span>
+                            CTA secondary
+                            <small>brand secondary</small>
+                        </span>
                     </li>
                     <li class="ui-swatch ui-swatch--round ui-swatch--danger">
-                        <span class="ui-swatch__label">danger</span>
+                        <span>CTA danger</span>
+                    </li>
+                    <li class="ui-swatch ui-swatch--round ui-swatch--text">
+                        <span>TEXT</span>
+                    </li>
+                    <li class="ui-swatch ui-swatch--round ui-swatch--muted">
+                        <span>
+                            TEXT muted
+                            <small>brand tertiary</small>
+                        </span>
                     </li>
                 </ul>
-            </article>
-            <article>
-                <h4>Messaging</h4>
+                <h4>Traffic lights</h4>
                 <ul class="ui-swatches">
+                    <li class="ui-swatch ui-swatch--round ui-swatch--idle">
+                        <span>idle</span>
+                    </li>
                     <li class="ui-swatch ui-swatch--round ui-swatch--info">
-                        <span class="ui-swatch__label">info</span>
+                        <span>info</span>
                     </li>
                     <li class="ui-swatch ui-swatch--round ui-swatch--warning">
-                        <span class="ui-swatch__label">warning</span>
+                        <span>warning</span>
                     </li>
                     <li class="ui-swatch ui-swatch--round ui-swatch--success">
-                        <span class="ui-swatch__label">success</span>
+                        <span>success</span>
                     </li>
                     <li class="ui-swatch ui-swatch--round ui-swatch--failure">
-                        <span class="ui-swatch__label">failure</span>
+                        <span>failure</span>
                     </li>
                 </ul>
             </article>
@@ -83,13 +159,17 @@
                 <h4>Environments</h4>
                 <ul class="ui-swatches">
                     <li class="ui-swatch ui-swatch--round ui-swatch--stag">
-                        <span class="ui-swatch__label">stag</span>
+                        <span>STAG</span>
                     </li>
                     <li class="ui-swatch ui-swatch--round ui-swatch--prod">
-                        <span class="ui-swatch__label">prod</span>
+                        <span>
+                            PROD
+                            <small>brand contrast</small>
+                        </span>
                     </li>
                 </ul>
             </article>
+
         </div>
     </div>
 </template>
@@ -99,12 +179,20 @@ module.exports = {
     props: {
         activeItem: { type: String, required: false, default: '' },
     },
+
+    components: {
+        'palette-stripe': require('./palette-stripe.vue'),
+    },
 };
 </script>
 
 <style lang="css">
+.ui-palete {
+    display: flex;
+}
+
 .ui-swatches {
-    --swatch-size: 80px;
+    --swatch-size: 90px;
     --swatch-size--round: 60px;
     display: flex;
 }
@@ -113,9 +201,6 @@ module.exports = {
     display: inline-flex;
     box-shadow: 0 0 0 1px rgba(0,0,0,.1);
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font__family--mono);
     letter-spacing: 0.025em;
 }
 
@@ -127,6 +212,8 @@ module.exports = {
 }
 
 .ui-swatch--round {
+    justify-content: center;
+    align-items: center;
     margin: 0 var(--gap-small) var(--gap) 0;
     width: var(--swatch-size--round);
     height: var(--swatch-size--round);
@@ -134,17 +221,31 @@ module.exports = {
     position: relative;
     text-align: center;
     font-size: 10px;
+    padding: var(--gap-small);
     box-shadow: 0 0 0 1px rgba(0,0,0,.1) inset;
 }
 
 .ui-swatch__label {
-    display: inline-block;
-    text-align: center;
-    padding: 3px;
-    text-align: center;
-    width: 90%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: var(--gap-small);
+    width: 100%;
     margin-top: 2px;
     font-size: 90%;
+}
+
+.ui-swatch__name {
+    font-weight: 500;
+    padding: 3px 0;
+    line-height: 1.2;
+    flex: 1;
+}
+
+.ui-swatch__code {
+    line-height: 1;
+    display: inline-flex;
+    padding: var(--gap-small) 0 0;
 }
 
 .ui-swatch--base {
@@ -152,12 +253,12 @@ module.exports = {
     color: var(--ui-base--inverse);
 }
 
-.ui-swatch--pale {
+.ui-swatch--area {
     background: var(--ui-pale);
     color: var(--ui-pale--inverse);
 }
 
-.ui-swatch--default {
+.ui-swatch--panel {
     background: var(--ui-default);
     color: var(--ui-default--inverse);
 }
@@ -167,12 +268,12 @@ module.exports = {
     color: var(--ui-base);
 }
 
-.ui-swatch--pale--inverse {
+.ui-swatch--area--inverse {
     background: var(--ui-pale--inverse);
     color: var(--ui-pale);
 }
 
-.ui-swatch--default--inverse {
+.ui-swatch--panel--inverse {
     background: var(--ui-default--inverse);
     color: var(--ui-default);
 }
@@ -215,6 +316,11 @@ module.exports = {
 .ui-swatch--text {
     background: var(--ui-base--inverse);
     color: var(--ui-base);
+}
+
+.ui-swatch--idle {
+    background: #F6F6F4;
+    color: #E1E1E1;
 }
 
 .ui-swatch--info {

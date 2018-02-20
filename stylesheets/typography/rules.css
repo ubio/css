@@ -55,7 +55,7 @@ h3 {
     font-size: 18px;
     line-height: 1;
     font-weight: 300;
-    margin: var(--gap) 0;
+    margin: var(--gap-large) 0 var(--gap);
 }
 
 h4 {
@@ -81,4 +81,9 @@ h6 {
     margin: var(--gap) 0;
     text-transform: uppercase;
     color: var(--ui-muted);
+}
+
+small {
+    line-height: 1;
+    font-size: 80%;
 }

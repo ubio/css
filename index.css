@@ -1876,7 +1876,7 @@ readers do not read off random characters that represent icons */
     --ui-failure: #c75068;
     --ui-failure--inverse: #fff;
 
-    --ui-danger: #dc143c;
+    --ui-danger: #cb2431;
     --ui-danger--inverse: #fff;
 
     --ui-muted: #628395; /*tertiary menium*/
@@ -2050,7 +2050,7 @@ h3 {
     font-size: 18px;
     line-height: 1;
     font-weight: 300;
-    margin: var(--gap) 0;
+    margin: var(--gap-large) 0 var(--gap);
 }
 h4 {
     font-size: 13px;
@@ -2073,6 +2073,10 @@ h6 {
     margin: var(--gap) 0;
     text-transform: uppercase;
     color: var(--ui-muted);
+}
+small {
+    line-height: 1;
+    font-size: 80%;
 }
 .btn {
     display: inline-flex;
@@ -2279,6 +2283,36 @@ h6 {
 }
 .tab {
     padding: var(--gap);
+}
+.badge {
+    font-size: 10px;
+    line-height: 1.3;
+    display: inline-block;
+    border-radius: var(--border-radius);
+    margin: 0 var(--gap-small) 0 0;
+    background: var(--ui-pale);
+    padding: 2px 4px;
+}
+.badge--outlined {
+    box-shadow: 0 0 0 1px var(--ui-info) inset;
+    color: var(--ui-info);
+    background: transparent;
+}
+.badge--failure {
+    background: var(--ui-failure);
+    color: var(--ui-failure--inverse);
+}
+.badge--success {
+    background: var(--ui-success);
+    color: var(--ui-success--inverse);
+}
+.badge--warning {
+    background: var(--ui-warning);
+    color: var(--ui-warning--inverse);
+}
+.badge--info {
+    background: var(--ui-info);
+    color: var(--ui-info--inverse);
 }
 .ui-muted {
     color: var(--ui-muted);

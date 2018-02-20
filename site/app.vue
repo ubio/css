@@ -26,6 +26,7 @@
                     <i class="fa app__menu-icon" :class="{
                         'fa-paint-brush': item === 'colours',
                         'fa-font': item === 'typography',
+                        'fa-tag': item === 'badges',
                         'fa-gamepad': item === 'controls',
                         'fa-columns': item === 'layout',
                         'fa-wrench': item === 'tools',
@@ -37,6 +38,7 @@
         <div class="app__container">
             <section-colours :active-item="activeMenuItem" />
             <section-typography :active-item="activeMenuItem" />
+            <section-badges :active-item="activeMenuItem" />
             <section-controls :active-item="activeMenuItem" />
             <section-layout :active-item="activeMenuItem" />
             <section-tools :active-item="activeMenuItem" />
@@ -59,7 +61,7 @@
 module.exports = {
     data() {
         return {
-            menu: ['colours', 'typography', 'controls', 'layout', 'tools'],
+            menu: ['colours', 'typography', 'badges', 'controls', 'layout', 'tools'],
             activeMenuItem: window.location.hash.replace('#', ''),
             menuExpanded: false,
         };
@@ -97,6 +99,7 @@ module.exports = {
         'section-typography': require('./section-typography.vue'),
         'section-controls': require('./section-controls.vue'),
         'section-layout': require('./section-layout.vue'),
+        'section-badges': require('./section-badges.vue'),
         'section-tools': require('./tools/index.vue'),
     },
 };
@@ -225,7 +228,7 @@ body, html {
     width: 100%;
     display: flex;
     border-top: 1px dashed var(--border-color);
-    min-height: 25vh;
+    min-height: 140px;
 }
 
 .section:first-child {
@@ -276,7 +279,7 @@ body, html {
 }
 
 .section__body {
-    padding: var(--gap) var(--gap-large);
+    padding: var(--gap) var(--gap-large) var(--gap-large);
     width: calc(100% - var(--bookmark-size));
     box-sizing: border-box;
 }

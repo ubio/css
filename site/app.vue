@@ -149,6 +149,7 @@ body, html {
     margin: 0;
     padding: 0;
     color: var(--ui-secondary);
+    pointer-events: none;
 }
 
 .app__logo {

@@ -1,8 +1,8 @@
-@import "./typography/fonts.css";
-@import "./variables.css";
 @import "./reset.css";
+@import "./fonts.css";
+@import "./variables.css";
+@import "./typography.css";
 @import "./base.css";
-@import "./typography/rules.css";
 
 @import "./components/btn.css";
 @import "./components/input.css";

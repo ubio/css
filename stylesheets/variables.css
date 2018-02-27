@@ -2,20 +2,25 @@
 
     /* Typography */
 
-    --font__family: 'Libre Franklin', Helvetica, Arial, sans-serif;
-    --font__weight: 400;
-    --font__size: 12px;
-    --font__line-height: 1.35;
+    --font-family: 'Libre Franklin', Helvetica, Arial, sans-serif;
+    --font-weight: 400;
+    --font-size: 12px;
 
-    --font__family--mono: 'Menlo', monospace;
-    --font__size--mono: 11px;
-    --font__line-height--mono: 1.35;
+    --font-family--mono: 'Menlo', monospace;
+    --font-weight--mono: normal;
+    --font-size--mono: 11px;
 
     /* Gaps */
 
     --gap: 10px;
-    --gap-small: 5px;
-    --gap-large: 20px;
+    --gap--small: 5px;
+    --gap--large: 20px;
+
+    /* Controls */
+
+    --ctl-height: 24px;
+    --ctl-border-radius: 2px;
+    --ctl-border-color: rgba(0,0,0,0.1);
 
     /* Color Palette */
 
@@ -60,13 +65,6 @@
 
     --ui-muted: #628395; /*tertiary menium*/
     --ui-muted--inverse: #f3f8fb;
-
-    /* Controls */
-
-    --ctl__height: 24px;
-
-    --border-color: #b9c1c6;
-    --border-radius: 2px;
 
 }
 

@@ -1,14 +1,14 @@
 .input {
     display: inline-flex;
     box-sizing: border-box;
-    height: var(--ctl__height);
-    padding: var(--gap-small);
-    border-radius: var(--border-radius);
+    padding: var(--gap--small);
+    height: var(--ctl-height);
+    border-radius: var(--ctl-border-radius);
     border: 1px solid rgba(0,0,0,0.1);
     box-shadow: none;
 
-    font-family: var(--font__family);
-    font-size: var(--font__size);
+    font-family: var(--font-family);
+    font-size: var(--font-size);
     line-height: 1;
     letter-spacing: 0.025em;
 

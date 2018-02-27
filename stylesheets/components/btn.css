@@ -5,15 +5,15 @@
 
     box-sizing: border-box;
     height: var(--ctl__height);
-    padding: var(--gap-small) var(--gap);
+    padding: var(--gap--small) var(--gap);
 
-    border-radius: var(--border-radius);
+    border-radius: var(--ctl-border-radius);
     border: 1px solid rgba(0,0,0,0.1);
     background: var(--ui-default);
     color: var(--ui-default--inverse);
 
-    font-size: var(--font__size);
-    font-family: var(--font__family);
+    font-size: var(--font-size);
+    font-family: var(--font-family);
 
     line-height: 1;
     text-decoration: none;
@@ -41,7 +41,7 @@
 
 .btn__icon {
     color: inherit;
-    margin-right: var(--gap-small);
+    margin-right: var(--gap--small);
     text-align: center;
 }
 
@@ -58,7 +58,7 @@
     font-size: 18px;
     height: 36px;
     padding: 8px 15px;
-    border-radius: calc(var(--border-radius) * 1.5);
+    border-radius: calc(var(--ctl-border-radius) * 1.5);
 }
 
 /* Colors */
@@ -111,9 +111,4 @@
 .btn--muted {
     background: var(--ui-muted);
     color: var(--ui-muted--inverse);
-}
-
-.btn--accent {
-    background: var(--ui-accent);
-    color: var(--ui-accent--inverse);
 }

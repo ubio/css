@@ -3,9 +3,9 @@
 }
 
 .block--small {
-    margin: var(--gap-small) 0;
+    margin: var(--gap--small) 0;
 }
 
 .block--large {
-    margin: var(--gap-large) 0;
+    margin: var(--gap--large) 0;
 }

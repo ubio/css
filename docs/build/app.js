@@ -8438,9 +8438,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   module.hot.accept()
   module.hot.dispose(__vueify_style_dispose__)
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0b6f1b8f", __vue__options__)
+    hotAPI.createRecord("data-v-59ba0ef6", __vue__options__)
   } else {
-    hotAPI.reload("data-v-0b6f1b8f", __vue__options__)
+    hotAPI.reload("data-v-59ba0ef6", __vue__options__)
   }
 })()}
 },{"./section-badges.vue":7,"./section-colours.vue":8,"./section-controls.vue":9,"./section-layout.vue":10,"./section-typography.vue":11,"./tools/index.vue":13,"vue":3,"vue-hot-reload-api":2,"vueify/lib/insert-css":4}],6:[function(require,module,exports){
@@ -8467,9 +8467,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   module.hot.accept()
   module.hot.dispose(__vueify_style_dispose__)
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-f880143e", __vue__options__)
+    hotAPI.createRecord("data-v-08aea7cc", __vue__options__)
   } else {
-    hotAPI.reload("data-v-f880143e", __vue__options__)
+    hotAPI.reload("data-v-08aea7cc", __vue__options__)
   }
 })()}
 },{"vue":3,"vue-hot-reload-api":2,"vueify/lib/insert-css":4}],7:[function(require,module,exports){
@@ -8492,9 +8492,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-242452cc", __vue__options__)
+    hotAPI.createRecord("data-v-65d68cd3", __vue__options__)
   } else {
-    hotAPI.reload("data-v-242452cc", __vue__options__)
+    hotAPI.reload("data-v-65d68cd3", __vue__options__)
   }
 })()}
 },{"vue":3,"vue-hot-reload-api":2}],8:[function(require,module,exports){
@@ -8523,9 +8523,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   module.hot.accept()
   module.hot.dispose(__vueify_style_dispose__)
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1b858aa6", __vue__options__)
+    hotAPI.createRecord("data-v-776b4b94", __vue__options__)
   } else {
-    hotAPI.reload("data-v-1b858aa6", __vue__options__)
+    hotAPI.reload("data-v-776b4b94", __vue__options__)
   }
 })()}
 },{"./palette-stripe.vue":6,"vue":3,"vue-hot-reload-api":2,"vueify/lib/insert-css":4}],9:[function(require,module,exports){
@@ -8548,9 +8548,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-44b6a4a0", __vue__options__)
+    hotAPI.createRecord("data-v-654ab099", __vue__options__)
   } else {
-    hotAPI.reload("data-v-44b6a4a0", __vue__options__)
+    hotAPI.reload("data-v-654ab099", __vue__options__)
   }
 })()}
 },{"vue":3,"vue-hot-reload-api":2}],10:[function(require,module,exports){
@@ -8580,9 +8580,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7e5b28d8", __vue__options__)
+    hotAPI.createRecord("data-v-38bb21cd", __vue__options__)
   } else {
-    hotAPI.reload("data-v-7e5b28d8", __vue__options__)
+    hotAPI.reload("data-v-38bb21cd", __vue__options__)
   }
 })()}
 },{"vue":3,"vue-hot-reload-api":2}],11:[function(require,module,exports){
@@ -8605,9 +8605,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-16a4bbce", __vue__options__)
+    hotAPI.createRecord("data-v-406e93d2", __vue__options__)
   } else {
-    hotAPI.reload("data-v-16a4bbce", __vue__options__)
+    hotAPI.reload("data-v-406e93d2", __vue__options__)
   }
 })()}
 },{"vue":3,"vue-hot-reload-api":2}],12:[function(require,module,exports){
@@ -8673,9 +8673,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   module.hot.accept()
   module.hot.dispose(__vueify_style_dispose__)
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5d615e50", __vue__options__)
+    hotAPI.createRecord("data-v-3ae12192", __vue__options__)
   } else {
-    hotAPI.reload("data-v-5d615e50", __vue__options__)
+    hotAPI.reload("data-v-3ae12192", __vue__options__)
   }
 })()}
 },{"vue":3,"vue-hot-reload-api":2,"vueify/lib/insert-css":4}],13:[function(require,module,exports){
@@ -8702,9 +8702,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-9752e6e8", __vue__options__)
+    hotAPI.createRecord("data-v-94f1ae1a", __vue__options__)
   } else {
-    hotAPI.reload("data-v-9752e6e8", __vue__options__)
+    hotAPI.reload("data-v-94f1ae1a", __vue__options__)
   }
 })()}
 },{"./clipboard.vue":12,"vue":3,"vue-hot-reload-api":2}],14:[function(require,module,exports){

@@ -64,5 +64,6 @@ Should be replaced with proper docs once settled, decisions should be implemente
 
 ### Spacing (gaps)
 
-- TODO define from sketch (multiple sizes)
-
+- `--gap`
+- `--gap--small`
+- `--gap--large`

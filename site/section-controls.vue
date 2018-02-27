@@ -50,8 +50,6 @@
                     <select class="input">
                         <option>Dropdown menu</option>
                     </select>
-                </div>
-                <div class="group group--gap">
                     <div class="group group--merged">
                         <button class="btn btn--default">Button</button>
                         <button class="btn btn--default">Another button</button>

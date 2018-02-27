@@ -1,0 +1,7 @@
+- [ ] Make DECISIONS (see README) to unblock things
+- [ ] Replace Colours section with palette, refactor variables
+- [ ] Consider removing button sizes
+- [ ] Consider only leaving `btn--primary` and `btn--secondary` semantics
+- [ ] Consider adding outline and "frameless" button modifiers (use case: single icon which looks like a link), alternative: replace with a different component
+- [ ] COMPONENT removable tags (name tbd, use case: add/remove stuff, aka "multi-selection list", aka "tagline")
+- [ ] COMPONENT form row (name tbd, typical label on the left side, control on the right side)

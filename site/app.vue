@@ -228,7 +228,7 @@ body, html {
     margin: 0;
     width: 100%;
     display: flex;
-    border-top: 1px dashed var(--border-color);
+    border-top: 1px dashed var(--ui-default);
     min-height: 140px;
 }
 
@@ -280,7 +280,7 @@ body, html {
 }
 
 .section__body {
-    padding: var(--gap) var(--gap-large) var(--gap-large);
+    padding: var(--gap) var(--gap--large) var(--gap--large);
     width: calc(100% - var(--bookmark-size));
     box-sizing: border-box;
 }
@@ -292,14 +292,14 @@ body, html {
 .section__table th,
 .section__table td {
     border: 1px solid var(--ui-base);
-    padding: var(--gap-small) var(--gap);
+    padding: var(--gap--small) var(--gap);
     text-align: left;
 }
 
 .section__table th {
     background: var(--ui-secondary--inverse);
     color: var(--ui-base);
-    font-family: var(--font__family--mono);
+    font-family: var(--font-family--mono);
     font-weight: 300;
 }
 

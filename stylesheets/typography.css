@@ -41,28 +41,28 @@ h1 {
     font-size: 26px;
     line-height: 1;
     font-weight: 100;
-    margin: var(--gap-large) 0;
+    margin: var(--gap--large) 0;
 }
 
 h2 {
     font-size: 21px;
     line-height: 1;
     font-weight: 200;
-    margin: var(--gap-large) 0;
+    margin: var(--gap--large) 0;
 }
 
 h3 {
     font-size: 18px;
     line-height: 1;
     font-weight: 300;
-    margin: var(--gap-large) 0 var(--gap);
+    margin: var(--gap--large) 0 var(--gap);
 }
 
 h4 {
     font-size: 13px;
     line-height: 1;
     font-weight: 400;
-    margin: var(--gap-large) 0 var(--gap);
+    margin: var(--gap--large) 0 var(--gap);
     color: var(--ui-muted);
     text-transform: uppercase;
 }

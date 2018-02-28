@@ -7,7 +7,7 @@
         <div class="section__body">
             <article>
                 <h3>Buttons</h3>
-                <div class="group group--gap-small">
+                <div class="group group--gap--small">
                     <button class="btn btn--default">Default</button>
                     <button class="btn btn--primary">Primary</button>
                     <button class="btn btn--secondary">Secondary</button>
@@ -17,7 +17,7 @@
 
             <article>
                 <h4>Button sizes</h4>
-                <div class="group group--gap-small">
+                <div class="group group--gap--small">
                     <button class="btn btn--small">Small</button>
                     <button class="btn btn--default">Normal</button>
                     <button class="btn btn--large btn--default">Large</button>
@@ -26,7 +26,7 @@
 
             <article>
                 <h4>Button states</h4>
-                <div class="group group--gap-small">
+                <div class="group group--gap--small">
                     <button class="btn btn--default">Normal</button>
                     <button class="btn btn--default btn--active">Active</button>
                     <button class="btn btn--default" disabled>Disabled</button>
@@ -35,7 +35,7 @@
 
             <article>
                 <h3>Text inputs</h3>
-                <div class="group group--gap-small">
+                <div class="group group--gap--small">
                     <input type="text" class="input" placeholder="Regular input"/>
                     <input type="text" class="input" placeholder="Disabled" disabled/>
                 </div>

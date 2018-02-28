@@ -2,8 +2,8 @@
     font-size: 10px;
     line-height: 1.3;
     display: inline-block;
-    border-radius: var(--border-radius);
-    margin: 0 var(--gap-small) 0 0;
+    border-radius: var(--ctl-border-radius);
+    margin: 0 var(--gap--small) 0 0;
     background: var(--ui-pale);
     padding: 2px 4px;
 }

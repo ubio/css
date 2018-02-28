@@ -5,7 +5,7 @@
             <span class="section__title-label">Colours</span>
         </div>
         <div class="section__body">
-            <article v-if="false" style="float: left; margin-right: var(--gap-large)">
+            <article v-if="false" style="float: left; margin-right: var(--gap--large)">
                 <h3>Palette</h3>
                 <ul class="ui-palete">
                     <li>
@@ -23,7 +23,7 @@
                     <li><palette-stripe color="#32539D" name="accent" /></li>
                 </ul>
             </article>
-            <article v-if="false" style="float: left; margin-right: var(--gap-large)">
+            <article v-if="false" style="float: left; margin-right: var(--gap--large)">
                 <h3>Traffic Lights</h3>
                 <ul class="ui-palete">
                     <li><palette-stripe color="#3E71B5" name="info" /></li>
@@ -37,7 +37,7 @@
                     <li><palette-stripe color="var(--ui-danger)" name="danger" /></li>
                 </ul>
             </article>
-            <article style="float: left; margin-right: var(--gap-large)">
+            <article style="float: left; margin-right: var(--gap--large)">
                 <h3>Box</h3>
                 <ul class="ui-swatches">
                     <li class="ui-swatch ui-swatch--base ui-swatch--bg">
@@ -214,14 +214,14 @@ module.exports = {
 .ui-swatch--round {
     justify-content: center;
     align-items: center;
-    margin: 0 var(--gap-small) var(--gap) 0;
+    margin: 0 var(--gap--small) var(--gap) 0;
     width: var(--swatch-size--round);
     height: var(--swatch-size--round);
     border-radius: var(--swatch-size--round);
     position: relative;
     text-align: center;
     font-size: 10px;
-    padding: var(--gap-small);
+    padding: var(--gap--small);
     box-shadow: 0 0 0 1px rgba(0,0,0,.1) inset;
 }
 
@@ -229,7 +229,7 @@ module.exports = {
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding: var(--gap-small);
+    padding: var(--gap--small);
     width: 100%;
     margin-top: 2px;
     font-size: 90%;
@@ -245,7 +245,7 @@ module.exports = {
 .ui-swatch__code {
     line-height: 1;
     display: inline-flex;
-    padding: var(--gap-small) 0 0;
+    padding: var(--gap--small) 0 0;
 }
 
 .ui-swatch--base {

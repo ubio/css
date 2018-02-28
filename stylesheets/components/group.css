@@ -12,8 +12,8 @@
     margin-left: var(--gap);
 }
 
-.group--gap-small > * + * {
-    margin-left: var(--gap-small);
+.group--gap--small > * + * {
+    margin-left: var(--gap--small);
 }
 
 .group--nowrap {

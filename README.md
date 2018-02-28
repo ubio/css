@@ -14,7 +14,7 @@ Should be replaced with proper docs once settled, decisions should be implemente
 
 - `.block__element--modifier`
 - name components may consist of multiple words, separated by dash, e.g. `.block-name__element-name--modifier-name`
-- one block typically corresponds to component (exceptions to be documented)
+- one block typically corresponds to a single CSS component
 - use tag selectors only for base
 - nested rules for top level modifiers like `.block--modifier .block__element` are allowed
 

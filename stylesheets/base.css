@@ -3,8 +3,8 @@ html, body {
 }
 
 body {
-    font-family: var(--font__family);
-    font-size: var(--font__size);
+    font-family: var(--font-family);
+    font-size: var(--font-size);
     line-height: 1;
     background: var(--ui-base);
     color: var(--ui-base--inverse);
@@ -16,7 +16,7 @@ ol, ul {
 
 hr {
     margin: var(--gap) 0;
-    border: 1px dashed var(--border-color);
+    border: 1px dashed var(--ui-default);
     border-width: 1px 0 0 0;
 }
 
@@ -26,8 +26,8 @@ table {
 }
 
 time, code, pre {
-    font-family: var(--font__family--mono);
-    font-size: var(--font__size--mono);
+    font-family: var(--font-family--mono);
+    font-size: var(--font-size--mono);
     line-height: var(--font__line-height--mono);
     word-wrap: break-word;
     word-break: break-word;
@@ -46,12 +46,10 @@ input[type="checkbox"] {
 
 input,
 textarea {
-    font-family: var(--font__family);
-    font-size: var(--font__size);
-    line-height: var(--font__line-height);
-    border: 1px solid var(--border-color);
-    padding: 1px var(--gap-small);
-    border-radius: var(--border-radius);
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    border: 1px solid var(--ctl-border-color);
+    border-radius: var(--ctl-border-radius);
 }
 
 input[readonly],
@@ -60,12 +58,9 @@ textarea[readonly] {
 }
 
 select {
-    line-height: 1;
-    height: 18px;
     border: 0;
-    padding: 2px;
-    box-shadow: 0 0 0 1px var(--border-color);
-    font-family: var(--font__family);
+    box-shadow: 0 0 0 1px var(--ctl-border-color);
+    font-family: var(--font-family);
 }
 
 select[multiple] {
@@ -77,8 +72,8 @@ button {
 }
 
 ::-webkit-scrollbar {
-    width: var(--gap-small);
-    height: var(--gap-small);
+    width: var(--gap--small);
+    height: var(--gap--small);
 }
 
 ::-webkit-scrollbar-track {

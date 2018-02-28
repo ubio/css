@@ -1,7 +1,7 @@
 .input {
     display: inline-flex;
     box-sizing: border-box;
-    padding: var(--gap--small);
+    padding: 0 var(--gap--small);
     height: var(--ctl-height);
     border-radius: var(--ctl-border-radius);
     border: 1px solid rgba(0,0,0,0.1);

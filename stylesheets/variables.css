@@ -18,7 +18,8 @@
 
     /* Controls */
 
-    --ctl-height: 24px;
+    --ctl-height: 2em;
+    --ctl-height--small: 1.5em;
     --ctl-border-radius: 2px;
     --ctl-border-color: rgba(0,0,0,0.1);
 

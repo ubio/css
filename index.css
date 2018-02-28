@@ -54,7 +54,8 @@ q:before, q:after {
 
     /* Controls */
 
-    --ctl-height: 24px;
+    --ctl-height: 2em;
+    --ctl-height--small: 1.5em;
     --ctl-border-radius: 2px;
     --ctl-border-color: rgba(0,0,0,0.1);
 
@@ -258,8 +259,8 @@ button {
     align-self: center;
 
     box-sizing: border-box;
-    height: var(--ctl__height);
-    padding: var(--gap--small) var(--gap);
+    height: var(--ctl-height);
+    padding: 0 var(--gap);
 
     border-radius: var(--ctl-border-radius);
     border: 1px solid rgba(0,0,0,0.1);
@@ -297,13 +298,12 @@ button {
 /* Sizes */
 .btn--small {
     font-size: 10px;
-    height: 18px;
-    padding: 2px 4px;
+    height: var(--ctl-height--small);
+    padding: 0 4px;
     white-space: nowrap;
 }
 .btn--large {
     font-size: 18px;
-    height: 36px;
     padding: 8px 15px;
     border-radius: calc(var(--ctl-border-radius) * 1.5);
 }
@@ -351,7 +351,7 @@ button {
 .input {
     display: inline-flex;
     box-sizing: border-box;
-    padding: var(--gap--small);
+    padding: 0 var(--gap--small);
     height: var(--ctl-height);
     border-radius: var(--ctl-border-radius);
     border: 1px solid rgba(0,0,0,0.1);

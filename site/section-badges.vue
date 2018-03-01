@@ -5,14 +5,14 @@
             <span class="section__title-label">Badges</span>
         </div>
         <div class="section__body">
-            <p>
+            <div class="block">
                 <span class="badge badge--success">success</span>
                 <span class="badge badge--warning">warning</span>
                 <span class="badge badge--failure">failure</span>
                 <span class="badge badge--info">info</span>
                 <span class="badge badge--outlined">outlined</span>
-            </p>
-            <p>
+            </div>
+            <div class="block">
                 <span class="badge badge--success">
                     <i class="fa fa-flag-checkered"></i>
                     success
@@ -33,7 +33,15 @@
                     <i class="fa fa-list"></i>
                     outlined
                 </span>
-            </p>
+            </div>
+            <div class="block">
+                <span class="badge badge--round badge--info">
+                    round
+                </span>
+                <span class="badge badge--round badge--failure">
+                    1
+                </span>
+            </div>
         </div>
     </div>
 </template>

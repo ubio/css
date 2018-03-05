@@ -21,6 +21,8 @@
 }
 
 .group--merged {
+    flex-wrap: nowrap;
+    align-items: stretch;
     white-space: nowrap;
 }
 

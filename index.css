@@ -391,6 +391,8 @@ button {
     flex-wrap: nowrap;
 }
 .group--merged {
+    flex-wrap: nowrap;
+    align-items: stretch;
     white-space: nowrap;
 }
 .group--merged > *:not(:last-child) {

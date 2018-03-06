@@ -384,7 +384,7 @@ button {
 .group--gap > * + * {
     margin-left: var(--gap);
 }
-.group--gap--small > * + * {
+.group--gap-small > * + * {
     margin-left: var(--gap--small);
 }
 .group--nowrap {

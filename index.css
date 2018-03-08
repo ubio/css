@@ -433,6 +433,10 @@ button {
     padding: 2px 4px;
     font-size: var(--font-size--small);
 }
+textarea.input {
+    height: auto;
+    line-height: 1.35;
+}
 .group {
     display: inline-flex;
     align-items: center;

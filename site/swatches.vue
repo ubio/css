@@ -11,6 +11,7 @@
                     v-for="step of swatch.steps">
                     <div class="swatches__number">{{ step.number }}</div>
                     <div class="swatches__hex">{{ step.color.hex }}</div>
+                    <div class="swatches__hsl">{{ step.color.hsl }}</div>
                 </div>
             </div>
         </div>
@@ -19,8 +20,8 @@
 
 <script>
 const parseColor = require('parse-color');
-const swatchNames = ['mono', 'warm', 'cool', 'blue', 'green', 'yellow', 'red'];
-const swatchNumbers = ['100', '200', '300', '400', '500', '600', '700', '800', '900'];
+const swatchNames = ['mono', 'warm', 'cool', 'blue', 'green', 'yellow', 'red', 'brand-red', 'brand-blue'];
+const swatchNumbers = ['000', '100', '200', '300', '400', '500', '600', '700', '800', '900'];
 
 module.exports = {
 
@@ -82,7 +83,8 @@ function evalColor(style) {
     padding: var(--gap);
 }
 
-.swatches__hex {
+.swatches__hex,
+.swatches__hsl {
     margin-top: var(--gap--small);
     font-size: var(--font-size--small);
     opacity: .75;

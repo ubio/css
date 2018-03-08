@@ -2,8 +2,8 @@
     display: inline-flex;
     box-sizing: border-box;
     padding: 0 var(--gap--small);
-    height: var(--ctl-height);
-    border-radius: var(--ctl-border-radius);
+    height: var(--control-height);
+    border-radius: var(--control-border-radius);
     border: 1px solid rgba(0,0,0,0.1);
     box-shadow: none;
 
@@ -26,3 +26,8 @@
     pointer-events: none;
 }
 
+.input--small {
+    height: var(--control-height--small);
+    padding: 2px 4px;
+    font-size: var(--font-size--small);
+}

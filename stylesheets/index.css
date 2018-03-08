@@ -4,7 +4,7 @@
 @import "./typography.css";
 @import "./base.css";
 
-@import "./components/btn.css";
+@import "./components/button.css";
 @import "./components/input.css";
 @import "./components/group.css";
 @import "./components/block.css";

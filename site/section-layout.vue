@@ -1,6 +1,9 @@
 <template>
-    <div class="section" id="layout" :class="{ 'section--active': activeItem === 'layout' }">
-        <div class="section__title" :class="{ 'section__title--active': activeItem === 'layout' }">
+    <div id="layout"
+        class="section"
+        :class="{ 'section--active': activeItem === 'layout' }">
+        <div class="section__title"
+            :class="{ 'section__title--active': activeItem === 'layout' }">
             <i class="fa fa-columns section__title-icon"></i>
             <span class="section__title-label">layout</span>
         </div>

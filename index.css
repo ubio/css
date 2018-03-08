@@ -41,6 +41,7 @@ q:before, q:after {
     --font-family: 'Libre Franklin', Helvetica, Arial, sans-serif;
     --font-weight: 400;
     --font-size: 12px;
+    --font-size--small: 10px;
 
     --font-family--mono: 'Menlo', monospace;
     --font-weight--mono: normal;
@@ -54,12 +55,22 @@ q:before, q:after {
 
     /* Controls */
 
-    --ctl-height: 2em;
-    --ctl-height--small: 1.5em;
-    --ctl-border-radius: 2px;
-    --ctl-border-color: rgba(0,0,0,0.1);
+    --control-height: 2em;
+    --control-height--small: 1.75em;
+    --control-border-radius: 2px;
+    --control-border-color: rgba(0,0,0,0.1);
 
     /* Color Palette */
+
+    --color-warm--100: #f7f7f7;
+    --color-warm--200: #eee;
+    --color-warm--300: #ccc;
+    --color-warm--400: #bbb;
+    --color-warm--500: #999;
+    --color-warm--600: #888;
+    --color-warm--700: #777;
+    --color-warm--800: #555;
+    --color-warm--900: #333;
 
     --ui-base: #fff; /*mono white*/
     --ui-base--inverse: #242a2e;
@@ -222,8 +233,8 @@ input,
 textarea {
     font-family: var(--font-family);
     font-size: var(--font-size);
-    border: 1px solid var(--ctl-border-color);
-    border-radius: var(--ctl-border-radius);
+    border: 1px solid var(--control-border-color);
+    border-radius: var(--control-border-radius);
 }
 input[readonly],
 textarea[readonly] {
@@ -231,7 +242,7 @@ textarea[readonly] {
 }
 select {
     border: 0;
-    box-shadow: 0 0 0 1px var(--ctl-border-color);
+    box-shadow: 0 0 0 1px var(--control-border-color);
     font-family: var(--font-family);
 }
 select[multiple] {
@@ -253,16 +264,16 @@ button {
     border-radius: 0;
     background: rgba(0,0,0,0.25);
 }
-.btn {
+.button {
     display: inline-flex;
     align-items: center;
     align-self: center;
 
     box-sizing: border-box;
-    height: var(--ctl-height);
+    height: var(--control-height);
     padding: 0 var(--gap);
 
-    border-radius: var(--ctl-border-radius);
+    border-radius: var(--control-border-radius);
     border: 1px solid rgba(0,0,0,0.1);
     background: var(--ui-default);
     color: var(--ui-default--inverse);
@@ -274,86 +285,54 @@ button {
     text-decoration: none;
     text-align: center;
     letter-spacing: 0.025em;
-    text-transform: Capitalize;
+    text-transform: capitalize;
+    white-space: nowrap;
 
     cursor: pointer;
 }
-.btn:hover {
+.button:hover {
     text-decoration: none;
 }
-.btn[disabled] {
+.button[disabled] {
     opacity: 0.5;
     cursor: not-allowed;
     pointer-events: none;
 }
-.btn--active, .btn:active {
+.button--active, .button:active {
     box-shadow: 0 3px 8px rgba(0,0,0,.2) inset;
     border-color: rgba(0,0,0,.2);
 }
-.btn__icon {
+.button__icon {
     color: inherit;
     margin-right: var(--gap--small);
     text-align: center;
 }
 /* Sizes */
-.btn--small {
-    font-size: 10px;
-    height: var(--ctl-height--small);
-    padding: 0 4px;
-    white-space: nowrap;
+.button--small {
+    height: var(--control-height--small);
+    padding: 2px 4px;
+    font-size: var(--font-size--small);
 }
-.btn--large {
+.button--large {
     font-size: 18px;
     padding: 8px 15px;
-    border-radius: calc(var(--ctl-border-radius) * 1.5);
+    border-radius: calc(var(--control-border-radius) * 1.5);
 }
 /* Colors */
-.btn--default {
-    background: var(--ui-default);
-    color: var(--ui-default--inverse);
-}
-.btn--primary {
+.button--primary {
     background: var(--ui-primary);
     color: var(--ui-primary--inverse);
 }
-.btn--accent {
-    background: var(--ui-accent);
-    color: var(--ui-accent--inverse);
-}
-.btn--secondary {
+.button--secondary {
     background: var(--ui-secondary);
     color: var(--ui-secondary--inverse);
-}
-.btn--info {
-    background: var(--ui-info);
-    color: var(--ui-info--inverse);
-}
-.btn--success {
-    background: var(--ui-success);
-    color: var(--ui-success--inverse);
-}
-.btn--warning {
-    background: var(--ui-warning);
-    color: var(--ui-warning--inverse);
-}
-.btn--danger {
-    background: var(--ui-danger);
-    color: var(--ui-danger--inverse);
-}
-.btn--failure {
-    background: var(--ui-failure);
-    color: var(--ui-failure--inverse);
-}
-.btn--muted {
-    background: var(--ui-muted);
-    color: var(--ui-muted--inverse);
 }
 .input {
     display: inline-flex;
     box-sizing: border-box;
     padding: 0 var(--gap--small);
-    height: var(--ctl-height);
-    border-radius: var(--ctl-border-radius);
+    height: var(--control-height);
+    border-radius: var(--control-border-radius);
     border: 1px solid rgba(0,0,0,0.1);
     box-shadow: none;
 
@@ -372,6 +351,11 @@ button {
     opacity: 0.5;
     cursor: not-allowed;
     pointer-events: none;
+}
+.input--small {
+    height: var(--control-height--small);
+    padding: 2px 4px;
+    font-size: var(--font-size--small);
 }
 .group {
     display: inline-flex;
@@ -459,8 +443,9 @@ button {
 .badge {
     display: inline-block;
     padding: 4px;
+    box-sizing: border-box;
     margin: 0 var(--gap--small) 0 0;
-    border-radius: var(--ctl-border-radius);
+    border-radius: var(--control-border-radius);
 
     text-align: center;
     white-space: nowrap;
@@ -470,16 +455,12 @@ button {
 }
 .badge--round {
     min-width: 2em;
+    padding: 4px 6px;
     border-radius: 2em;
 }
-.badge--outlined {
-    box-shadow: 0 0 0 1px var(--ui-info) inset;
-    color: var(--ui-info);
-    background: transparent;
-}
-.badge--failure {
-    background: var(--ui-failure);
-    color: var(--ui-failure--inverse);
+.badge--info {
+    background: var(--ui-info);
+    color: var(--ui-info--inverse);
 }
 .badge--success {
     background: var(--ui-success);
@@ -489,7 +470,27 @@ button {
     background: var(--ui-warning);
     color: var(--ui-warning--inverse);
 }
-.badge--info {
-    background: var(--ui-info);
-    color: var(--ui-info--inverse);
+.badge--failure {
+    background: var(--ui-failure);
+    color: var(--ui-failure--inverse);
+}
+.badge--outlined-info {
+    box-shadow: 0 0 0 1px var(--ui-info) inset;
+    color: var(--ui-info);
+    background: transparent;
+}
+.badge--outlined-success {
+    box-shadow: 0 0 0 1px var(--ui-success) inset;
+    color: var(--ui-success);
+    background: transparent;
+}
+.badge--outlined-warning {
+    box-shadow: 0 0 0 1px var(--ui-warning) inset;
+    color: var(--ui-warning);
+    background: transparent;
+}
+.badge--outlined-failure {
+    box-shadow: 0 0 0 1px var(--ui-failure) inset;
+    color: var(--ui-failure);
+    background: transparent;
 }

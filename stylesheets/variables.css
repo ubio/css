@@ -5,6 +5,7 @@
     --font-family: 'Libre Franklin', Helvetica, Arial, sans-serif;
     --font-weight: 400;
     --font-size: 12px;
+    --font-size--small: 10px;
 
     --font-family--mono: 'Menlo', monospace;
     --font-weight--mono: normal;
@@ -18,12 +19,22 @@
 
     /* Controls */
 
-    --ctl-height: 2em;
-    --ctl-height--small: 1.5em;
-    --ctl-border-radius: 2px;
-    --ctl-border-color: rgba(0,0,0,0.1);
+    --control-height: 2em;
+    --control-height--small: 1.75em;
+    --control-border-radius: 2px;
+    --control-border-color: rgba(0,0,0,0.1);
 
     /* Color Palette */
+
+    --color-warm--100: #f7f7f7;
+    --color-warm--200: #eee;
+    --color-warm--300: #ccc;
+    --color-warm--400: #bbb;
+    --color-warm--500: #999;
+    --color-warm--600: #888;
+    --color-warm--700: #777;
+    --color-warm--800: #555;
+    --color-warm--900: #333;
 
     --ui-base: #fff; /*mono white*/
     --ui-base--inverse: #242a2e;

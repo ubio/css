@@ -41,5 +41,8 @@
     "vue": "^2.5.13",
     "vueify": "^9.4.1",
     "watchify": "^3.10.0"
+  },
+  "dependencies": {
+    "parse-color": "^1.0.0"
   }
 }

@@ -12,7 +12,7 @@
                         <th>base</th>
                         <th>:label, :title</th>
                         <th>:icon-size</th>
-                        <th>.btn</th>
+                        <th>.button</th>
                         <th>:fa-icon-class-name</th>
                     </tr>
                 </thead>
@@ -38,19 +38,19 @@
                         </td>
                         <td>
                             <span class="block group group--gap">
-                                <button class="btn btn--small btn--primary">
+                                <button class="button button--small button--primary">
                                     <clipboard
                                         data="We are ubio. We automate the web."
                                         :icon-size="9"
                                         label="Click Me!" />
                                 </button>
-                                <button class="btn btn--primary">
+                                <button class="button button--primary">
                                     <clipboard
                                         data="We are ubio. We automate the web."
                                         title="Hint text (optional)"
                                         label="Click Me!" />
                                 </button>
-                                <button class="btn btn--large btn--primary">
+                                <button class="button button--large button--primary">
                                     <clipboard
                                         data="We are ubio. We automate the web."
                                         title="Hint text (optional)"

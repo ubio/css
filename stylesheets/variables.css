@@ -24,6 +24,35 @@
     --control-border-radius: 2px;
     --control-border-color: rgba(0,0,0,0.1);
 
+    --body-color: var(--color-mono--900);
+    --body-background: #fff;
+
+    /* UI Colours */
+
+    --ui-primary: var(--color-brand-blue--600);
+    --ui-primary--inverse: #fff;
+
+    --ui-secondary: var(--color-warm--500);
+    --ui-secondary--inverse: #fff;
+
+    --ui-info: var(--color-blue--500);
+    --ui-info--inverse: #fff;
+
+    --ui-success: var(--color-green--500);
+    --ui-success--inverse: #fff;
+
+    --ui-warning: var(--color-yellow--500);
+    --ui-warning--inverse: #fff;
+
+    --ui-failure: var(--color-red--500);
+    --ui-failure--inverse: #fff;
+
+    --ui-production: var(--color-brand-red--500);
+    --ui-production--inverse: #fff;
+
+    --ui-staging: #829F59;
+    --ui-staging--inverse: #fff;
+
     /* Color Palette */
 
     --color-mono--000: #FCFCFC;
@@ -124,48 +153,6 @@
     --color-brand-blue--700: #0D626E;
     --color-brand-blue--800: #09545E;
     --color-brand-blue--900: #073E45;
-
-    --ui-base: #fff; /*mono white*/
-    --ui-base--inverse: #242a2e;
-
-    --ui-pale: #F6F6F6;
-    --ui-pale--inverse: #000;
-
-    --ui-default: #EDEEEF;
-    --ui-default--inverse: #4A4A4A;
-
-    --ui-primary: #2a52a2;
-    --ui-primary--inverse: #fff;
-
-    --ui-secondary: #d6d6d0; /*complimantary*/
-    --ui-secondary--inverse: #424B54; /*tertiary dark*/
-
-    --ui-tertiary: #E1E9ED;
-    --ui-tertiary--inverse: #687789;
-
-    --ui-prod: #FF5A5F;
-    --ui-prod--inverse: #fff;
-
-    --ui-stag: #829F59;
-    --ui-stag--inverse: #fff;
-
-    --ui-success: #529265;
-    --ui-success--inverse: #fff;
-
-    --ui-info: #2c72bb;
-    --ui-info--inverse: #DCF2FD;
-
-    --ui-warning: #fbce58;
-    --ui-warning--inverse: #866302;
-
-    --ui-failure: #c75068;
-    --ui-failure--inverse: #fff;
-
-    --ui-danger: #cb2431;
-    --ui-danger--inverse: #fff;
-
-    --ui-muted: #628395; /*tertiary menium*/
-    --ui-muted--inverse: #f3f8fb;
 
 }
 

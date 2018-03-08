@@ -113,8 +113,8 @@ body, html {
 }
 
 :root {
-    --app-nav-bg: var(--ui-base--inverse);
-    --app-nav-color: var(--ui-base);
+    --app-nav-bg: var(--color-cool--800);
+    --app-nav-color: #fff;
     --app-highlight: #27B9CC;
     --app-highlight--inverse: white;
 }
@@ -210,7 +210,7 @@ body, html {
 .app__container {
     display: flex;
     flex-wrap: wrap;
-    background: var(--ui-base);
+    background: #fff;
     margin: 0 auto;
     height: 100%;
     overflow: auto;
@@ -228,7 +228,7 @@ body, html {
     margin: 0;
     width: 100%;
     display: flex;
-    border-top: 1px dashed var(--ui-default);
+    border-top: 1px dashed var(--color-warm--300);
     min-height: 140px;
 }
 
@@ -238,13 +238,13 @@ body, html {
 
 .section--active {
     --marker-size: 35px;
-    background: var(--ui-base);
+    background: #fff;
     position: relative;
 }
 
 .section__title {
     display: block;
-    background: var(--ui-pale);
+    background: var(--color-warm--100);
     color: var(--app-nav-bg);
     position: relative;
     padding: var(--gap);
@@ -291,20 +291,20 @@ body, html {
 
 .section__table th,
 .section__table td {
-    border: 1px solid var(--ui-base);
+    border: 1px solid #fff;
     padding: var(--gap--small) var(--gap);
     text-align: left;
 }
 
 .section__table th {
     background: var(--ui-secondary--inverse);
-    color: var(--ui-base);
+    color: #fff;
     font-family: var(--font-family--mono);
     font-weight: 300;
 }
 
 .section__table td {
-    background: var(--ui-pale);
+    background: var(--color-warm--100);
 }
 
 .brand-pallette {

@@ -63,7 +63,7 @@ h4 {
     line-height: 1;
     font-weight: 400;
     margin: var(--gap--large) 0 var(--gap);
-    color: var(--ui-muted);
+    color: var(--color-cool--500);
     text-transform: uppercase;
 }
 
@@ -80,7 +80,7 @@ h6 {
     font-weight: 400;
     margin: var(--gap) 0;
     text-transform: uppercase;
-    color: var(--ui-muted);
+    color: var(--color-cool--500);
 }
 
 small {

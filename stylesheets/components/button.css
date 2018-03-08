@@ -9,8 +9,8 @@
 
     border-radius: var(--control-border-radius);
     border: 1px solid rgba(0,0,0,0.1);
-    background: var(--ui-default);
-    color: var(--ui-default--inverse);
+    background: transparent;
+    color: inherit;
 
     font-size: var(--font-size);
     font-family: var(--font-family);

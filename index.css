@@ -60,6 +60,35 @@ q:before, q:after {
     --control-border-radius: 2px;
     --control-border-color: rgba(0,0,0,0.1);
 
+    --body-color: var(--color-mono--900);
+    --body-background: #fff;
+
+    /* UI Colours */
+
+    --ui-primary: var(--color-brand-blue--600);
+    --ui-primary--inverse: #fff;
+
+    --ui-secondary: var(--color-warm--500);
+    --ui-secondary--inverse: #fff;
+
+    --ui-info: var(--color-blue--500);
+    --ui-info--inverse: #fff;
+
+    --ui-success: var(--color-green--500);
+    --ui-success--inverse: #fff;
+
+    --ui-warning: var(--color-yellow--500);
+    --ui-warning--inverse: #fff;
+
+    --ui-failure: var(--color-red--500);
+    --ui-failure--inverse: #fff;
+
+    --ui-production: var(--color-brand-red--500);
+    --ui-production--inverse: #fff;
+
+    --ui-staging: #829F59;
+    --ui-staging--inverse: #fff;
+
     /* Color Palette */
 
     --color-mono--000: #FCFCFC;
@@ -161,48 +190,6 @@ q:before, q:after {
     --color-brand-blue--800: #09545E;
     --color-brand-blue--900: #073E45;
 
-    --ui-base: #fff; /*mono white*/
-    --ui-base--inverse: #242a2e;
-
-    --ui-pale: #F6F6F6;
-    --ui-pale--inverse: #000;
-
-    --ui-default: #EDEEEF;
-    --ui-default--inverse: #4A4A4A;
-
-    --ui-primary: #2a52a2;
-    --ui-primary--inverse: #fff;
-
-    --ui-secondary: #d6d6d0; /*complimantary*/
-    --ui-secondary--inverse: #424B54; /*tertiary dark*/
-
-    --ui-tertiary: #E1E9ED;
-    --ui-tertiary--inverse: #687789;
-
-    --ui-prod: #FF5A5F;
-    --ui-prod--inverse: #fff;
-
-    --ui-stag: #829F59;
-    --ui-stag--inverse: #fff;
-
-    --ui-success: #529265;
-    --ui-success--inverse: #fff;
-
-    --ui-info: #2c72bb;
-    --ui-info--inverse: #DCF2FD;
-
-    --ui-warning: #fbce58;
-    --ui-warning--inverse: #866302;
-
-    --ui-failure: #c75068;
-    --ui-failure--inverse: #fff;
-
-    --ui-danger: #cb2431;
-    --ui-danger--inverse: #fff;
-
-    --ui-muted: #628395; /*tertiary menium*/
-    --ui-muted--inverse: #f3f8fb;
-
 }
 h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big,
 cite, code, del, dfn, em, small, strike, strong, sub, sup, b, u, i,
@@ -259,7 +246,7 @@ h4 {
     line-height: 1;
     font-weight: 400;
     margin: var(--gap--large) 0 var(--gap);
-    color: var(--ui-muted);
+    color: var(--color-cool--500);
     text-transform: uppercase;
 }
 h5 {
@@ -274,7 +261,7 @@ h6 {
     font-weight: 400;
     margin: var(--gap) 0;
     text-transform: uppercase;
-    color: var(--ui-muted);
+    color: var(--color-cool--500);
 }
 small {
     line-height: 1;
@@ -287,15 +274,15 @@ body {
     font-family: var(--font-family);
     font-size: var(--font-size);
     line-height: 1;
-    background: var(--ui-base);
-    color: var(--ui-base--inverse);
+    background: var(--body-background);
+    color: var(--body-color);
 }
 ol, ul {
     list-style: none;
 }
 hr {
     margin: var(--gap) 0;
-    border: 1px dashed var(--ui-default);
+    border: 1px dashed var(--color-warm--300);
     border-width: 1px 0 0 0;
 }
 table {
@@ -327,7 +314,7 @@ textarea {
 }
 input[readonly],
 textarea[readonly] {
-    background: var(--ui-pale);
+    background: var(--color-warm--100);
 }
 select {
     border: 0;
@@ -364,8 +351,8 @@ button {
 
     border-radius: var(--control-border-radius);
     border: 1px solid rgba(0,0,0,0.1);
-    background: var(--ui-default);
-    color: var(--ui-default--inverse);
+    background: transparent;
+    color: inherit;
 
     font-size: var(--font-size);
     font-family: var(--font-family);
@@ -492,20 +479,19 @@ button {
     display: flex;
     align-items: baseline;
     list-style: none;
-    border-bottom: var(--slider-size) solid var(--ui-pale);
+    border-bottom: var(--slider-size) solid var(--color-warm--100);
     margin: 0;
 }
 .tabs__item {
-    padding: var(--gap);
     position: relative;
     top: var(--slider-size);
-    background: var(--ui-base);
-    border-bottom: var(--slider-size) solid var(--ui-pale);
+    padding: var(--gap);
     margin: 0 var(--gap--small) 0 0;
-    text-decoration: none;
-    color: var(--ui-secondary--inverse);
+    border-bottom: var(--slider-size) solid var(--color-warm--100);
+    color: inherit;
     font-size: 13px;
     font-weight: 300;
+    text-decoration: none;
 }
 .tabs__item:after {
     content: '';
@@ -539,8 +525,6 @@ button {
     text-align: center;
     white-space: nowrap;
     font-size: 10px;
-
-    background: var(--ui-pale);
 }
 .badge--round {
     min-width: 2em;

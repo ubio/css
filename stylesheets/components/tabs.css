@@ -4,21 +4,20 @@
     display: flex;
     align-items: baseline;
     list-style: none;
-    border-bottom: var(--slider-size) solid var(--ui-pale);
+    border-bottom: var(--slider-size) solid var(--color-warm--100);
     margin: 0;
 }
 
 .tabs__item {
-    padding: var(--gap);
     position: relative;
     top: var(--slider-size);
-    background: var(--ui-base);
-    border-bottom: var(--slider-size) solid var(--ui-pale);
+    padding: var(--gap);
     margin: 0 var(--gap--small) 0 0;
-    text-decoration: none;
-    color: var(--ui-secondary--inverse);
+    border-bottom: var(--slider-size) solid var(--color-warm--100);
+    color: inherit;
     font-size: 13px;
     font-weight: 300;
+    text-decoration: none;
 }
 
 .tabs__item:after {

@@ -168,10 +168,10 @@ q:before, q:after {
     --color-red--800: #661A1C;
     --color-red--900: #4D1315;
 
-    --color-brand-red--000: #FFF7F8;
-    --color-brand-red--100: #FFF7F8;
-    --color-brand-red--200: #FFF0F0;
-    --color-brand-red--300: #FFD9DA;
+    --color-brand-red--000: #FFFAFA;
+    --color-brand-red--100: #FFF5F5;
+    --color-brand-red--200: #FFEDEE;
+    --color-brand-red--300: #FFD6D8;
     --color-brand-red--400: #FFB3B5;
     --color-brand-red--500: #FF5A5F;
     --color-brand-red--600: #E6353B;
@@ -179,7 +179,7 @@ q:before, q:after {
     --color-brand-red--800: #A12024;
     --color-brand-red--900: #871B1F;
 
-    --color-brand-blue--000: #F5FCFC;
+    --color-brand-blue--000: #F7FEFF;
     --color-brand-blue--100: #F0FDFF;
     --color-brand-blue--200: #E1F7FA;
     --color-brand-blue--300: #C2EAF0;

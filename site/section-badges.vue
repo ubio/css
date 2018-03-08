@@ -18,6 +18,10 @@
                 <span class="badge badge--outlined-failure">failure</span>
             </div>
             <div class="block">
+                <span class="badge badge--staging">staging</span>
+                <span class="badge badge--production">production</span>
+            </div>
+            <div class="block">
                 <span class="badge badge--info">
                     <i class="fa fa-info-circle"></i>
                     info

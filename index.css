@@ -567,3 +567,11 @@ button {
     color: var(--ui-failure);
     background: transparent;
 }
+.badge--staging {
+    background: var(--ui-staging);
+    color: var(--ui-staging--inverse);
+}
+.badge--production {
+    background: var(--ui-production);
+    color: var(--ui-production--inverse);
+}

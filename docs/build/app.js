@@ -9503,7 +9503,9 @@ function evalColor(style) {
     e.style = style;
     document.documentElement.appendChild(e);
     const s = window.getComputedStyle(e);
-    return parseColor(s['background-color']);
+    const bgColor = s['background-color'];
+    document.documentElement.removeChild(e);
+    return parseColor(bgColor);
 }
 })()
 if (module.exports.__esModule) module.exports = module.exports.default

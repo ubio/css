@@ -1,8 +1,9 @@
 .badge {
     display: inline-block;
     padding: 4px;
+    box-sizing: border-box;
     margin: 0 var(--gap--small) 0 0;
-    border-radius: var(--ctl-border-radius);
+    border-radius: var(--control-border-radius);
 
     text-align: center;
     white-space: nowrap;
@@ -13,18 +14,13 @@
 
 .badge--round {
     min-width: 2em;
+    padding: 4px 6px;
     border-radius: 2em;
 }
 
-.badge--outlined {
-    box-shadow: 0 0 0 1px var(--ui-info) inset;
-    color: var(--ui-info);
-    background: transparent;
-}
-
-.badge--failure {
-    background: var(--ui-failure);
-    color: var(--ui-failure--inverse);
+.badge--info {
+    background: var(--ui-info);
+    color: var(--ui-info--inverse);
 }
 
 .badge--success {
@@ -37,7 +33,32 @@
     color: var(--ui-warning--inverse);
 }
 
-.badge--info {
-    background: var(--ui-info);
-    color: var(--ui-info--inverse);
+.badge--failure {
+    background: var(--ui-failure);
+    color: var(--ui-failure--inverse);
 }
+
+.badge--outlined-info {
+    box-shadow: 0 0 0 1px var(--ui-info) inset;
+    color: var(--ui-info);
+    background: transparent;
+}
+
+.badge--outlined-success {
+    box-shadow: 0 0 0 1px var(--ui-success) inset;
+    color: var(--ui-success);
+    background: transparent;
+}
+
+.badge--outlined-warning {
+    box-shadow: 0 0 0 1px var(--ui-warning) inset;
+    color: var(--ui-warning);
+    background: transparent;
+}
+
+.badge--outlined-failure {
+    box-shadow: 0 0 0 1px var(--ui-failure) inset;
+    color: var(--ui-failure);
+    background: transparent;
+}
+

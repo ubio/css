@@ -48,8 +48,8 @@ input,
 textarea {
     font-family: var(--font-family);
     font-size: var(--font-size);
-    border: 1px solid var(--ctl-border-color);
-    border-radius: var(--ctl-border-radius);
+    border: 1px solid var(--control-border-color);
+    border-radius: var(--control-border-radius);
 }
 
 input[readonly],
@@ -59,7 +59,7 @@ textarea[readonly] {
 
 select {
     border: 0;
-    box-shadow: 0 0 0 1px var(--ctl-border-color);
+    box-shadow: 0 0 0 1px var(--control-border-color);
     font-family: var(--font-family);
 }
 

@@ -5,7 +5,7 @@ Should be replaced with proper docs once settled, decisions should be implemente
 
 ## Inbox
 
-- Remove `--border-color`, maybe replace with `--ctl-border-color`
+- Remove `--border-color`, maybe replace with `--control-border-color`
 - Change gap's naming convention to `--gap--small` to be more in line with naming scheme
 - Discuss luminosity steps
 - Discuss palette edge case: mono white and whether we need pure black
@@ -24,11 +24,11 @@ Should be replaced with proper docs once settled, decisions should be implemente
 
 - `--aspect--modifier`:
 - aspect may consist of multiple words, separated by dash
-- aspect follows hierarchy from top to bottom, e.g. "color of border of control" is `--ctl-border-color`
+- aspect follows hierarchy from top to bottom, e.g. "color of border of control" is `--control-border-color`
     - `--gap--small`
     - `--border-radius`
-    - `--ctl-height`
-    - `--ctl-height--small`
+    - `--control-height`
+    - `--control-height--small`
     - `--color-cyan`
     - `--color-cyan--light`
 

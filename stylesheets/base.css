@@ -6,8 +6,8 @@ body {
     font-family: var(--font-family);
     font-size: var(--font-size);
     line-height: 1;
-    background: var(--ui-base);
-    color: var(--ui-base--inverse);
+    background: var(--body-background);
+    color: var(--body-color);
 }
 
 ol, ul {
@@ -16,7 +16,7 @@ ol, ul {
 
 hr {
     margin: var(--gap) 0;
-    border: 1px dashed var(--ui-default);
+    border: 1px dashed var(--color-warm--300);
     border-width: 1px 0 0 0;
 }
 
@@ -54,7 +54,7 @@ textarea {
 
 input[readonly],
 textarea[readonly] {
-    background: var(--ui-pale);
+    background: var(--color-warm--100);
 }
 
 select {

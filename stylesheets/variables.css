@@ -29,10 +29,10 @@
 
     /* UI Colours */
 
-    --ui-primary: var(--color-brand-blue--600);
+    --ui-primary: var(--color-blue--500);
     --ui-primary--inverse: #fff;
 
-    --ui-secondary: var(--color-warm--500);
+    --ui-secondary: var(--color-cool--500);
     --ui-secondary--inverse: #fff;
 
     --ui-info: var(--color-blue--500);

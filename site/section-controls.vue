@@ -15,6 +15,7 @@
                     <button class="button">Default</button>
                     <button class="button button--primary">Primary</button>
                     <button class="button button--secondary">Secondary</button>
+                    <button class="button button--outlined-primary">Outlined</button>
                 </div>
             </article>
 

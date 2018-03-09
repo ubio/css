@@ -65,10 +65,10 @@ q:before, q:after {
 
     /* UI Colours */
 
-    --ui-primary: var(--color-brand-blue--600);
+    --ui-primary: var(--color-blue--500);
     --ui-primary--inverse: #fff;
 
-    --ui-secondary: var(--color-warm--500);
+    --ui-secondary: var(--color-cool--500);
     --ui-secondary--inverse: #fff;
 
     --ui-info: var(--color-blue--500);
@@ -369,11 +369,6 @@ button {
 .button:hover {
     text-decoration: none;
 }
-.button[disabled] {
-    opacity: 0.5;
-    cursor: not-allowed;
-    pointer-events: none;
-}
 .button--active, .button:active {
     box-shadow: 0 3px 8px rgba(0,0,0,.2) inset;
     border-color: rgba(0,0,0,.2);
@@ -402,6 +397,23 @@ button {
 .button--secondary {
     background: var(--ui-secondary);
     color: var(--ui-secondary--inverse);
+}
+.button--outlined-primary {
+    color: var(--ui-primary);
+    border: 1px solid var(--ui-primary);
+    background: #fff;
+}
+.button--outlined-secondary {
+    color: var(--ui-secondary);
+    border: 1px solid var(--ui-secondary);
+    background: #fff;
+}
+/* Disabled */
+.button[disabled] {
+    background: var(--color-mono--300);
+    color: #fff;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 .input {
     display: inline-flex;

@@ -118,7 +118,7 @@ q:before, q:after {
     --color-cool--200: #EBF0F5;
     --color-cool--300: #D5DFE8;
     --color-cool--400: #B8C8D9;
-    --color-cool--500: #657C94;
+    --color-cool--500: #6A7F94;
     --color-cool--600: #364554;
     --color-cool--700: #26303B;
     --color-cool--800: #192129;
@@ -146,16 +146,16 @@ q:before, q:after {
     --color-green--800: #2E5726;
     --color-green--900: #23421D;
 
-    --color-yellow--000: #FCFCF7;
-    --color-yellow--100: #FAFAEB;
-    --color-yellow--200: #FAF7CA;
-    --color-yellow--300: #F5ECB3;
-    --color-yellow--400: #F7DF7C;
-    --color-yellow--500: #EBBF13;
-    --color-yellow--600: #CC9814;
-    --color-yellow--700: #996B0F;
-    --color-yellow--800: #80500D;
-    --color-yellow--900: #66400A;
+    --color-yellow--000: #FFFFF2;
+    --color-yellow--100: #FFFFD9;
+    --color-yellow--200: #FFFAB3;
+    --color-yellow--300: #FFEE80;
+    --color-yellow--400: #FFDE59;
+    --color-yellow--500: #FFBB00;
+    --color-yellow--600: #E69900;
+    --color-yellow--700: #B36B00;
+    --color-yellow--800: #8C4B00;
+    --color-yellow--900: #663000;
 
     --color-red--000: #FCFAFA;
     --color-red--100: #FAF5F5;

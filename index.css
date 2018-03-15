@@ -409,7 +409,7 @@ button {
 }
 /* Disabled */
 .button[disabled] {
-    background: var(--color-mono--300);
+    background: var(--color-mono--400);
     color: #fff;
     cursor: not-allowed;
     pointer-events: none;
@@ -478,6 +478,10 @@ textarea.input {
     margin-left: -1px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+}
+.group--separated {
+    display: flex;
+    justify-content: space-between;
 }
 .block {
     margin: var(--gap) 0;

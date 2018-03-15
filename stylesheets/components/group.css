@@ -36,3 +36,8 @@
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
+
+.group--separated {
+    display: flex;
+    justify-content: space-between;
+}

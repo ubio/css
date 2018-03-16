@@ -1,6 +1,6 @@
 {
   "name": "@ubio/css",
-  "version": "1.3.7",
+  "version": "1.3.8",
   "description": "UBIO CSS framework foundation",
   "main": "index.css",
   "repository": "git@github.com:universalbasket/css",

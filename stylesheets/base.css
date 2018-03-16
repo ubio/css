@@ -42,6 +42,7 @@ input[type="checkbox"] {
     display: inline-block;
     height: auto;
     vertical-align: middle;
+    margin: 0;
 }
 
 input,

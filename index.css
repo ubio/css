@@ -304,6 +304,7 @@ input[type="checkbox"] {
     display: inline-block;
     height: auto;
     vertical-align: middle;
+    margin: 0;
 }
 input,
 textarea {
@@ -538,7 +539,6 @@ textarea.input {
     display: inline-block;
     padding: 4px;
     box-sizing: border-box;
-    margin: 0 var(--gap--small) 0 0;
     border-radius: var(--control-border-radius);
 
     text-align: center;

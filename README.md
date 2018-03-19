@@ -67,3 +67,16 @@ Should be replaced with proper docs once settled, decisions should be implemente
 - `--gap`
 - `--gap--small`
 - `--gap--large`
+
+## About the project
+
+In case of conflicts in docs/build/app.js, no need to resolve the conflicts in built files, just to overwrite them
+
+```
+yarn run build
+```
+
+To publish
+```
+yarn version --new-version <patch|minor|major>
+```

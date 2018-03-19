@@ -328,19 +328,6 @@ select[multiple] {
 button {
     cursor: pointer;
 }
-::-webkit-scrollbar {
-    width: var(--gap--small);
-    height: var(--gap--small);
-}
-::-webkit-scrollbar-track {
-    -webkit-box-shadow: none;
-    background: rgba(0,0,0,0.2);
-    border-radius: 0;
-}
-::-webkit-scrollbar-thumb {
-    border-radius: 0;
-    background: rgba(0,0,0,0.25);
-}
 .button {
     display: inline-flex;
     align-items: center;

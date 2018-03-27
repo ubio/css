@@ -1,7 +1,7 @@
 .group {
     display: inline-flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .group--block {
@@ -14,10 +14,6 @@
 
 .group--gap-small > * + * {
     margin-left: var(--gap--small);
-}
-
-.group--nowrap {
-    flex-wrap: nowrap;
 }
 
 .group--merged {

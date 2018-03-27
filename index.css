@@ -441,7 +441,7 @@ textarea.input {
 .group {
     display: inline-flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 .group--block {
     display: flex;
@@ -451,9 +451,6 @@ textarea.input {
 }
 .group--gap-small > * + * {
     margin-left: var(--gap--small);
-}
-.group--nowrap {
-    flex-wrap: nowrap;
 }
 .group--merged {
     flex-wrap: nowrap;

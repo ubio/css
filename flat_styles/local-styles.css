@@ -1,0 +1,67 @@
+/* Only things that affect the example page structure and elements are in here */
+
+#main-grid {
+  display: grid;
+  grid-template-columns: 100px 800px 1fr;
+  grid-template-rows: 120px auto 120px;
+}
+
+#main-grid>h1, #main-grid>h1>img {
+  grid-column-start: 2;
+  height: 42px;
+  vertical-align: middle;
+}
+
+#main-grid>h1 {
+  margin-top: 50px;
+}
+
+#main-grid>h1>img {
+  margin-top: -4px;
+}
+
+.item-grid {
+  display: grid;
+  grid-template-columns: 240px auto;
+  grid-template-rows: 100%;
+  grid-column-start: 2;
+  grid-row-start: 2;
+}
+
+.item-grid hr {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.helper {
+  color: var(--color-blue--500);
+  grid-column-start: 1;
+  margin: 0;
+  min-height: 62px;
+}
+
+.subhead {
+  color: var(--color-blue--500) !important;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  margin: var(--gap--xlarge) 0 52px 0;
+}
+
+.extra-height {
+  min-height: 75px;
+}
+
+hr.solid {
+  border: 1px solid var(--color-warm--300);
+  margin-top: 20px;
+}
+
+.notes {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.forced_divider {
+  min-height: 12px;
+  display: block;
+}

@@ -73,5 +73,5 @@ button {
 }
 
 input:focus, button:focus, a:focus { 
-    outline-color: var(--color-brand-red--600);
+    outline-color: var(--color-blue--500);
 }

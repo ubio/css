@@ -14,6 +14,7 @@
 
         <link rel="stylesheet" href="button.css">
         <link rel="stylesheet" href="group.css">
+        <link rel="stylesheet" href="input.css">
 
         <link rel="stylesheet" href="local-styles.css">
 
@@ -196,14 +197,15 @@
               <button>Three</button>
             </div>
 
-            <p class="helper"><strong>.group--merged.button--primary</strong></p>
+            <p class="helper"><strong>.group--merged .button--primary</strong></p>
             <div class="group--merged">
               <button class="button--primary">A</button>
               <button class="button--primary">B</button>
               <button class="button--primary">C</button>
+              <button class="button--primary">D</button>
             </div>
 
-            <p class="helper"><strong>.group--merged.icon-only</strong></p>
+            <p class="helper"><strong>.group--merged .icon-only</strong></p>
             <div class="group--merged">
               <button class="button--primary icon-only"><i class="fas fa-play"></i></button>
               <button class="button--primary icon-only" disabled="disabled"><i class="fas fa-pause"></i></button>
@@ -229,6 +231,26 @@
                     <span class="toggle-inner toggle-inner--small"></span>
                     <span class="toggle-switch toggle-switch--small"></span>
                 </label>
+            </div>
+
+            <!-- Forms -->
+            <hr class="solid">
+            <h2 class="subhead">Forms: Base</h2>
+            <p class="helper"><strong>input</strong></p>
+            <div>
+              <input type="" name="" placeholder="Basic input">
+            </div>
+
+            <p class="helper"><strong>Left label + input</strong></p>
+            <div class="input-group">
+              <label class="label--left" for="form1">Left label</label>
+              <input class="input-group--input " id="form1" placeholder="Left label + input">
+            </div>
+
+            <p class="helper"><strong>Top label + input</strong></p>
+            <div class="label--top">
+              <label class="label--top" for="form2">Top label</label>
+              <input id="form2" placeholder="Top label + input">
             </div>
 
             <!-- NOTES -->

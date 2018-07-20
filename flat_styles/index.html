@@ -241,16 +241,74 @@
               <input type="" name="" placeholder="Basic input">
             </div>
 
-            <p class="helper"><strong>Left label + input</strong></p>
+            <p class="helper"><strong>Disabled</strong></p>
             <div class="input-group">
-              <label class="label--left" for="form1">Left label</label>
-              <input class="input-group--input " id="form1" placeholder="Left label + input">
+              <input class="input input-group--input " disabled="disabled" id="form3" placeholder="Disabled">
             </div>
 
             <p class="helper"><strong>Top label + input</strong></p>
             <div class="label--top">
-              <label class="label--top" for="form2">Top label</label>
-              <input id="form2" placeholder="Top label + input">
+              <label class="label--top" for="form1">Top label</label>
+              <input id="form1" placeholder="Top label + input">
+            </div>
+
+            <p class="helper"><strong>Left label + input</strong></p>
+            <div class="input-group">
+              <label class="label--left" for="form2">Left label</label>
+              <input class="input input-group--input" id="form2" placeholder="Left label + input">
+            </div>
+
+            <p class="helper"><strong>Left label + input</strong></p>
+            <div class="input-group">
+              <label class="label--left" for="form3"><i class="fas fa-search"></i></label>
+              <input class="input input-group--input" id="form3" placeholder="Left label + input">
+            </div>
+
+            <p class="helper"><strong>Icon inside</strong></p>
+            <div class="input-group">
+              <input class="input input-group--input icon-inside" style="" id="form4" placeholder="Search">
+              <i class="fa fa-search icon-inside--label"></i>
+            </div>
+
+            <hr>
+            <h2 class="subhead">Forms: Grouped with buttons</h2>
+            <p class="helper"><strong>.ungrouped-set</strong></p>
+            <div class="ungrouped-set">
+              <input type="" name="" placeholder="Basic input">
+              <button>Submit</button>
+            </div>
+
+            <p class="helper"><strong>.group--merged</strong></p>
+            <div class="group--merged">
+              <input type="" name="" placeholder="Basic input">
+              <button>Submit</button>
+            </div>
+
+            <p class="helper"><strong>.group--merged basic</strong></p>
+            <div class="group--merged">
+              <input type="" name="" placeholder="Basic input">
+              <button class="button--primary">Submit</button>
+            </div>
+
+            <p class="helper"><strong>Autopilot example</strong></p>
+            <div class="group--merged">
+              <input type="" name="" placeholder="Basic input">
+              <button class="button--secondary icon-only"><i class="fas fa-cog"></i></button>
+              <button class="button--primary icon-only"><i class="fas fa-mouse-pointer"></i></button>
+            </div>
+
+            <hr>
+            <h2 class="subhead">Forms: Other controls</h2>
+            <p class="helper"><strong>Radio/Checkbox label left</strong></p>
+            <div class="input-group">
+              <label class="label--left" for="form3">Label left</label>
+              <input type="checkbox" name="">
+            </div>
+
+            <p class="helper"><strong>Radio/Checkbox label right</strong></p>
+            <div>
+              <input type="checkbox" name="">
+              <label class="label--left" for="form3">Label right</label>
             </div>
 
             <!-- NOTES -->

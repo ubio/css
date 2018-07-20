@@ -27,7 +27,7 @@ input, .input {
 }
 
 .input[disabled] {
-    opacity: 0.5;
+    opacity: 0.3;
     cursor: not-allowed;
     pointer-events: none;
 }
@@ -77,4 +77,60 @@ label {
     display: inline-block;
     margin: 0 0 6px 0;
 
+}
+
+.icon-inside {
+    padding-left: 26px;
+}
+
+.icon-inside--label {
+    position: relative;
+    z-index: 1;
+    left: 8px;
+    top: -20px;
+    color: var(--color-mono--800);
+    cursor: pointer;
+    width: 0;
+}
+
+/* Sets */
+.ungrouped-set {
+    display: grid;
+    grid-template-columns: 300px 6px auto 1fr;
+    grid-template-rows: auto;
+    height: var(--control-height);
+}
+
+.ungrouped-set button {
+    grid-column-start: 3;
+    grid-column-end: 3;
+}
+
+.group--merged>input {
+    width: 300px;
+    vertical-align: top;
+}
+
+.group--merged>button {
+    margin-left: -4px;
+    border: 1px solid var(--color-mono--400);
+    box-shadow: none;
+    vertical-align: top;
+}
+
+.group--merged>button.button--primary {
+    border: 1px solid var(--color-blue--600);
+}
+
+.group--merged>button.button--secondary {
+    border: 1px solid var(--color-cool--600);
+}
+
+/* Other items */
+
+input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
+    margin: 6px 4px 0 0;
+    vertical-align: text-bottom;
 }

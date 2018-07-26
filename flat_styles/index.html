@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="button.css">
         <link rel="stylesheet" href="group.css">
         <link rel="stylesheet" href="input.css">
+        <link rel="stylesheet" href="badge.css">
 
         <link rel="stylesheet" href="local-styles.css">
 
@@ -298,23 +299,78 @@
             </div>
 
             <hr>
+            <h2 class="subhead">Forms: Select list</h2>
+            <p class="helper"><strong>Standard select list</strong></p>
+            <div class="input-group">
+              <label class="label--left" for="form10">Type of biscuit</label>
+              <select class="input-group input-group--input" id="form10">
+                <option value="0">Please select an option</option>
+                <option value="0" disabled="disabled">────────────</option>
+                <option value="1">Bourbon</option>
+                <option value="2">Custard cream</option>
+                <option value="3">Digestive</option>
+                <option value="0" disabled="disabled">────────────</option>
+                <option value="4">Chocolate hobnob</option>
+                <option value="5">Garibaldi</option>
+                <option value="6">Brandy snap</option>
+              </select>
+            </div>
+
+
+            <hr>
             <h2 class="subhead">Forms: Other controls</h2>
             <p class="helper"><strong>Radio/Checkbox label left</strong></p>
             <div class="input-group">
-              <label class="label--left" for="form3">Label left</label>
-              <input type="checkbox" name="">
+              <label class="label--left" for="form4">Label left</label>
+              <input type="checkbox" name="" id="form4">
             </div>
 
             <p class="helper"><strong>Radio/Checkbox label right</strong></p>
             <div>
-              <input type="checkbox" name="">
-              <label class="label--left" for="form3">Label right</label>
+              <input type="checkbox" name="" id="form5">
+              <label class="label--left" for="form5">Label right</label>
             </div>
+
+            <p class="helper"><strong>Grouped inline</strong></p>
+            <div class="input-group extra-bottom-pad">
+              <label class="label--left" for="form6">Left label</label>
+              <input class="input input-group--input" id="form6" placeholder="Inline!">
+ 
+              <label class="label--left" for="form7">Checkbox label</label>
+              <input type="checkbox" name="" id="form7">
+            </div>
+
+            <p class="helper"><strong>Grouped indented</strong></p>
+            <div class="input-group extra-bottom-pad">
+              <label class="label--left" for="form8">Left label</label>
+              <input class="input input-group--input" id="form8" placeholder="Indented!">
+              <div class="input-indent">
+                <input type="checkbox" name="" id="form9">
+                <label class="label--left" for="form9">Intented checkbox label</label>
+              </div>
+            </div>
+
+            <hr class="solid">
+            <h2 class="subhead">Badges &amp; Tags</h2>
+            <p class="helper"><strong>Environment</strong></p>
+            <div>
+              <span class="badge badge--env badge--env--production">Production</span>
+              <span class="badge badge--env badge--env--staging">Staging</span>
+            </div>
+
+            <p class="helper"><strong>Environment Small</strong></p>
+            <div>
+              <span class="badge badge--small badge--env badge--env--production">P</span>
+              <span class="badge badge--small badge--env badge--env--staging">S</span>
+            </div>
+
+
 
             <!-- NOTES -->
             <hr class="solid">
             <h2 class="subhead">Notes &amp; known issues</h2>
             <ol class="notes">
+              <li>Todo: Preformatted text for selectors</li>
               <li>Numbers in the <strong>Typography: Lists ol</strong> have questionable horizontal alignment.</li>
               <li><strong>Buttons in sets</strong> have an uneven separating gap which seems to be affected by font weight and/or size or page zoom level. This looks like a pixel calculation which results in either 1px or 2px depending on the text/zoom conditions.</li>
               <li><strong>Buttons in sets</strong> don't work so gracefully with button--outline and could do with additional work on the borders/separating gaps.</li>

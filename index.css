@@ -60,7 +60,7 @@ q:before, q:after {
     --control-border-radius: 2px;
     --control-border-color: rgba(0,0,0,0.1);
 
-    --badge-height: 1.75em;
+    --badge-height: 21px;
 
     --body-color: var(--color-mono--800);
     --body-background: #fff;

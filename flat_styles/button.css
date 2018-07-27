@@ -85,7 +85,7 @@ button[disabled] {
 button[disabled].button--primary {
     background: var(--color-blue--300);
     color: var(--color-blue--400);
-    box-shadow: 0 1px 0 0 var(--button-shadow--light);
+    box-shadow: 0;
 }
 
 .button--secondary {
@@ -162,10 +162,15 @@ button.icon-only i {
 
 .toggle-label {
     display: block; 
+    height: 31px;
     overflow: hidden; 
     cursor: pointer;
     border: 2px solid #fff; 
     border-radius: 18px;
+}
+
+.toggle-label--small {
+    height: 26px;
 }
 
 .toggle-inner {

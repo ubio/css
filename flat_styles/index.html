@@ -9,157 +9,368 @@
         <link rel="stylesheet" href="variables.css">
 
         <link rel="stylesheet" href="base.css">
-        <link rel="stylesheet" href="../stylesheets/reset.css">
-        <link rel="stylesheet" href="../stylesheets/fonts.css">
+        <link rel="stylesheet" href="reset.css">
+        <link rel="stylesheet" href="fonts.css">
 
         <link rel="stylesheet" href="button.css">
         <link rel="stylesheet" href="group.css">
         <link rel="stylesheet" href="input.css">
         <link rel="stylesheet" href="badge.css">
+        <link rel="stylesheet" href="loader.css">
 
         <link rel="stylesheet" href="local-styles.css">
 
     </head>
     <body>
         <section id="main-grid">
-          <h1><img src="assets/ubio-logo.png" width="42" height="42" alt="ubio Robot"/> <strong>ubio</strong> CSS Framework v2.0</h1>
+          <div id="header">
+            <img src="assets/ubio-logo.png" width="42" height="42" alt="ubio Robot"/>
+            <h1><strong>ubio</strong> CSS Framework <span class="feint"> v2.0</span></h1>
+            <ul>
+              <li><a href="#colour"><i class="fas fa-paint-brush"></i>Colour</a></li>
+              <li><a href="#typography"><i class="fas fa-font"></i>Typography</a></li>
+              <li><a href="#buttons"><i class="fas fa-hand-pointer"></i>Buttons</a></li>
+              <li><a href="#forms"><i class="fas fa-keyboard"></i>Forms &amp; controls</a></li>
+              <li><a href="#badges"><i class="fas fa-certificate"></i>Badges &amp; tags</a></li>
+              <li><a href="#loaders"><i class="fas fa-spinner"></i>Loaders</a></li>
+            </ul>
+          </div>
+
           <div class="item-grid">
 
+            <!-- COLOUR -->
+            <a name="colour"></a>
+            <h2 class="subhead">Colour</h2>
+            <div class="colour-grid">
+              <table>
+                <tr>
+                  <td class="top-header"><div></div></td>
+                  <td class="top-header"><div>mono</div></td>
+                  <td class="top-header"><div>warm</div></td>
+                  <td class="top-header"><div>cool</div></td>
+                  <td class="top-header"><div>blue</div></td>
+                  <td class="top-header"><div>green</div></td>
+                  <td class="top-header"><div>yellow</div></td>
+                  <td class="top-header"><div>red</div></td>
+                  <td class="top-header"><div>brand-red</div></td>
+                  <td class="top-header"><div>brand-blue</div></td>
+                </tr>
+                <tr>
+                  <td class="header"><div>000</div></td>
+                  <td class="mono-000"><div>#fcfcfc</div></td>
+                  <td class="warm-000"><div>#fcfcfa</div></td>
+                  <td class="cool-000"><div>#fafbfc</div></td>
+                  <td class="blue-000"><div>#f5f9fa</div></td>
+                  <td class="green-000"><div>#f5faf7</div></td>
+                  <td class="yellow-000"><div>#fffff2</div></td>
+                  <td class="red-000"><div>#fcfafa</div></td>
+                  <td class="brand-red-000"><div>#fffafa</div></td>
+                  <td class="brand-blue-000"><div>#f7feff</div></td>
+                </tr>
+                <tr>
+                  <td class="header"><div>100</div></td>
+                  <td class="mono-100"><div>#f5f5f5</div></td>
+                  <td class="warm-100"><div>#f7f7f5</div></td>
+                  <td class="cool-100"><div>#f5f7fa</div></td>
+                  <td class="blue-100"><div>#edf7fa</div></td>
+                  <td class="green-100"><div>#f0faf5</div></td>
+                  <td class="yellow-100"><div>#ffffd9</div></td>
+                  <td class="red-100"><div>#faf5f5</div></td>
+                  <td class="brand-red-100"><div>#fff5f5</div></td>
+                  <td class="brand-blue-100"><div>#f0fdff</div></td>
+                </tr>
+                <tr>
+                  <td class="header"><div>200</div></td>
+                  <td class="mono-200"><div>#ededed</div></td>
+                  <td class="warm-200"><div>#f2f2ed</div></td>
+                  <td class="cool-200"><div>#ebf0f5</div></td>
+                  <td class="blue-200"><div>#dff1f7</div></td>
+                  <td class="green-200"><div>#e4f5eb</div></td>
+                  <td class="yellow-200"><div>#fffab3</div></td>
+                  <td class="red-200"><div>#f7ebeb</div></td>
+                  <td class="brand-red-200"><div>#ffedee</div></td>
+                  <td class="brand-blue-200"><div>#e1f7fa</div></td>
+                </tr>
+                <tr>
+                  <td class="header"><div>300</div></td>
+                  <td class="mono-300"><div>#dbdbdb</div></td>
+                  <td class="warm-300"><div>#deded7</div></td>
+                  <td class="cool-300"><div>#d5dfe8</div></td>
+                  <td class="blue-300"><div>#c5e2ed</div></td>
+                  <td class="green-300"><div>#cfe6d9</div></td>
+                  <td class="yellow-300"><div>#ffee80</div></td>
+                  <td class="red-300"><div>#f0d1d2</div></td>
+                  <td class="brand-red-300"><div>#ffd6d8</div></td>
+                  <td class="brand-blue-300"><div>#c2eaf0</div></td>
+                </tr>
+                <tr>
+                  <td class="header"><div>400</div></td>
+                  <td class="mono-400"><div>#c2c2c2</div></td>
+                  <td class="warm-400"><div>#c7c7c1</div></td>
+                  <td class="cool-400"><div>#b8c8d9</div></td>
+                  <td class="blue-400"><div>#a0ccde</div></td>
+                  <td class="green-400"><div>#aed1be</div></td>
+                  <td class="yellow-400"><div>#ffde59</div></td>
+                  <td class="red-400"><div>#f0b4b6</div></td>
+                  <td class="brand-red-400"><div>#ffb3b5</div></td>
+                  <td class="brand-blue-400"><div>#9dd9e0</div></td>
+                </tr>
+                <tr>
+                  <td class="header"><div>500</div></td>
+                  <td class="mono-500"><div>#787878</div></td>
+                  <td class="warm-500"><div>#808075</div></td>
+                  <td class="cool-500"><div>#6a7f94</div></td>
+                  <td class="blue-500"><div>#489cc7</div></td>
+                  <td class="green-500"><div>#6ba360</div></td>
+                  <td class="yellow-500"><div>#ffbb00</div></td>
+                  <td class="red-500"><div>#d95559</div></td>
+                  <td class="brand-red-500"><div>#ff5a5f</div></td>
+                  <td class="brand-blue-500"><div>#27b9cc</div></td>
+                </tr>
+                <tr>
+                  <td class="header"><div>600</div></td>
+                  <td class="mono-600"><div>#4f4f4f</div></td>
+                  <td class="warm-600"><div>#525245</div></td>
+                  <td class="cool-600"><div>#364554</div></td>
+                  <td class="blue-600"><div>#327fa6</div></td>
+                  <td class="green-600"><div>#548c54</div></td>
+                  <td class="yellow-600"><div>#e69900</div></td>
+                  <td class="red-600"><div>#b3393d</div></td>
+                  <td class="brand-red-600"><div>#e6353b</div></td>
+                  <td class="brand-blue-600"><div>#0c8999</div></td>
+                </tr>
+                <tr>
+                  <td class="header"><div>700</div></td>
+                  <td class="mono-700"><div>#383838</div></td>
+                  <td class="warm-700"><div>#33332b</div></td>
+                  <td class="cool-700"><div>#26303b</div></td>
+                  <td class="blue-700"><div>#1c6285</div></td>
+                  <td class="green-700"><div>#396b3f</div></td>
+                  <td class="yellow-700"><div>#b36b00</div></td>
+                  <td class="red-700"><div>#802629</div></td>
+                  <td class="brand-red-700"><div>#c72227</div></td>
+                  <td class="brand-blue-700"><div>#0d626e</div></td>
+                </tr>
+                <tr>
+                  <td class="header"><div>800</div></td>
+                  <td class="mono-800"><div>#262626</div></td>
+                  <td class="warm-800"><div>#1f1f1c</div></td>
+                  <td class="cool-800"><div>#192129</div></td>
+                  <td class="blue-800"><div>#185370</div></td>
+                  <td class="green-800"><div>#2e5726</div></td>
+                  <td class="yellow-800"><div>#8c4b00</div></td>
+                  <td class="red-800"><div>#661a1c</div></td>
+                  <td class="brand-red-800"><div>#a12024</div></td>
+                  <td class="brand-blue-800"><div>#09545e</div></td>
+                </tr>
+                <tr>
+                  <td class="header"><div>900</div></td>
+                  <td class="mono-900"><div>#121212</div></td>
+                  <td class="warm-900"><div>#0d0d09</div></td>
+                  <td class="cool-900"><div>#090c0f</div></td>
+                  <td class="blue-900"><div>#124057</div></td>
+                  <td class="green-900"><div>#23421d</div></td>
+                  <td class="yellow-900"><div>#663000</div></td>
+                  <td class="red-900"><div>#4d1315</div></td>
+                  <td class="brand-red-900"><div>#871b1f</div></td>
+                  <td class="brand-blue-900"><div>#073e45</div></td>
+                </tr>
+              </table>
+            </div>
+            <p class="code"><em>variables.css</em><br>
+              <em>Variants (90):<br>
+                var(--color-mono--000) to var(--color-mono--900)<br>
+                var(--color-warm--000) to var(--color-warm--900)<br>
+                var(--color-cool--000) to var(--color-cool--900)<br>
+                var(--color-blue--000) to var(--color-blue--900)<br>
+                var(--color-green--000) to var(--color-green--900)<br>
+                var(--color-yellow--000) to var(--color-yellow--900)<br>
+                var(--color-red--000) to var(--color-red--900)<br>
+                var(--color-brand-red--000) to var(--color-brand-red--900)<br>
+                var(--color-brand-blue--000) to var(--color-brand-blue--900)<br>
+              </em>
+            </p>
+
             <!--  TYPOGRAPHY  -->
+            <hr class="solid">
+            <a name="typography"></a>
             <h2 class="subhead">Typography: Standard headings</h2>
 
-            <p class="helper extra-height"><strong>h1</strong> 32px 400</p>
+            <p class="helper extra-height">h1</p>
             <h1>We are <strong>ubio</strong>. We automate the web.</h1>
+            <p class="code"><em>typography.css</em><br>&lt;h1&gt;<em>[&hellip;]</em>&lt;/h1&gt;</p>
 
-            <p class="helper extra-height"><strong>h2</strong> 25px 400</p>
+            <p class="helper extra-height">h2</p>
             <h2>We are <strong>ubio</strong>. We automate the web.</h2>
+            <p class="code"><em>typography.css</em><br>&lt;h2&gt;<em>[&hellip;]</em>&lt;/h2&gt;</p>
 
-            <p class="helper extra-height"><strong>h3</strong> 22px 400</p>
+            <p class="helper extra-height">h3</p>
             <h3>We automate the web</h3>
+            <p class="code"><em>typography.css</em><br>&lt;h3&gt;<em>[&hellip;]</em>&lt;/h3&gt;</p>
 
-            <p class="helper"><strong>h4</strong> 18px 500</p>
+            <p class="helper">h4</p>
             <h4>We automate the web</h4>
+            <p class="code"><em>typography.css</em><br>&lt;h4&gt;<em>[&hellip;]</em>&lt;/h4&gt;</p>
 
-            <p class="helper"><strong>h5</strong> 16px 500</p>
+            <p class="helper">h5</p>
             <h5>We automate the web</h5>
+            <p class="code"><em>typography.css</em><br>&lt;h5&gt;<em>[&hellip;]</em>&lt;/h5&gt;</p>
 
-            <p class="helper"><strong>h6</strong> 13px 600</p>
+            <p class="helper">h6</p>
             <h6>We automate the web</h6>
+            <p class="code"><em>typography.css</em><br>&lt;h6&gt;<em>[&hellip;]</em>&lt;/h6&gt;</p>
 
             <hr>
             <h2 class="subhead">Typography: Capitalised headings</h2>
 
-            <p class="helper extra-height"><strong>h1.caps</strong> 26px 400</p>
+            <p class="helper extra-height">h1 all caps</p>
             <h1 class="caps">We are ubio. We automate the web.</h1>
+            <p class="code"><em>typography.css</em><br>&lt;h1 class="caps"&gt;<em>[&hellip;]</em>&lt;/h1&gt;</p>
 
-            <p class="helper extra-height"><strong>h2.caps</strong> 21px 400</p>
+            <p class="helper extra-height">h2 all caps</p>
             <h2 class="caps">We are ubio. We automate the web.</h2>
+            <p class="code"><em>typography.css</em><br>&lt;h2 class="caps"&gt;<em>[&hellip;]</em>&lt;/h2&gt;</p>
 
-            <p class="helper"><strong>h3.caps</strong> 18px 400</p>
+            <p class="helper">h3 all caps</p>
             <h3 class="caps">We automate the web</h3>
+            <p class="code"><em>typography.css</em><br>&lt;h3 class="caps"&gt;<em>[&hellip;]</em>&lt;/h3&gt;</p>
 
-            <p class="helper"><strong>h4.caps</strong> 16px 500</p>
+            <p class="helper">h4 all caps</p>
             <h4 class="caps">We automate the web</h4>
+            <p class="code"><em>typography.css</em><br>&lt;h4 class="caps"&gt;<em>[&hellip;]</em>&lt;/h4&gt;</p>
 
-            <p class="helper"><strong>h5.caps</strong> 15px 500</p>
+            <p class="helper">h5 all caps</p>
             <h5 class="caps">We automate the web</h5>
+            <p class="code"><em>typography.css</em><br>&lt;h5 class="caps"&gt;<em>[&hellip;]</em>&lt;/h5&gt;</p>
 
-            <p class="helper"><strong>h6.caps</strong> 14px 600</p>
+            <p class="helper">h6 all caps</p>
             <h6 class="caps">We automate the web</h6>
+            <p class="code"><em>typography.css</em><br>&lt;h6 class="caps"&gt;<em>[&hellip;]</em>&lt;/h6&gt;</p>
 
             <hr>
             <h2 class="subhead">Typography: Text styles</h2>
 
-            <p class="helper"><strong>p</strong> 13px 400</p>
+            <p class="helper">Standard paragraph</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare non odio sed lobortis. Mauris in tortor vitae ex venenatis tempus. Donec efficitur eget lectus eget placerat. Ut non condimentum mauris, eu sodales neque. Proin porttitor bibendum ullamcorper. Mauris suscipit pretium lectus, nec pharetra mauris vulputate molestie.</p>
+            <p class="code"><em>typography.css</em><br>&lt;p&gt;<em>[&hellip;]</em>&lt;/p&gt;</p>
 
-            <p class="helper"><strong>strong</strong> 700<br><strong>.highlight</strong> --color-yellow--400<br><strong>a</strong> --color-blue--500, underline</p>
+            <p class="helper">Bold emphaisis, highlight and test links</p>
             <p><strong>Lorem ipsum dolor sit amet</strong>, consectetur adipiscing elit. Ut ornare non odio sed lobortis. Mauris in tortor vitae ex venenatis tempus. <span class="highlight">Proin porttitor bibendum ullamcorper.</span> Mauris suscipit pretium lectus, nec pharetra mauris vulputate molestie. Donec efficitur eget lectus eget placerat. <a href="#">Ut non condimentum mauris eu sodales neque</a>.</p>
+            <p class="code"><em>typography.css</em><br>
+              &lt;strong&gt;<em>[&hellip;]</em>&lt;/strong&gt;<br>
+              &lt;span class="highlight"&gt;<em>[&hellip;]</em>&lt;/span&gt;<br>
+              &lt;p&gt;&lt;a href=""&gt;<em>[&hellip;]</em>&lt;/a&gt;&lt;/p&gt;</p>
 
-            <p class="helper"><strong>.tinted,green</strong> --color-green--100</p>
+            <p class="helper">Tinted box - Green</p>
             <p class="tinted green">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare non odio sed lobortis. Mauris in tortor vitae ex venenatis tempus. Donec efficitur eget lectus eget placerat. Ut non condimentum mauris, eu sodales neque. Proin porttitor bibendum ullamcorper. Mauris suscipit pretium lectus, nec pharetra mauris vulputate molestie.</p>
+            <p class="code"><em>typography.css</em><br>
+              &lt;p class="tinted green"&gt;<em>[&hellip;]</em>&lt;/p&gt;<br>
+              <em>Variants:<br>
+                green<br>
+                yellow<br>
+                red<br>
+                mono<br>
+              </em>
+            </p>
 
-            <p class="helper"><strong>.tinted.yellow</strong> --color-yellow--100</p>
+            <p class="helper">Tinted box - Yellow</p>
             <p class="tinted yellow">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare non odio sed lobortis. Mauris in tortor vitae ex venenatis tempus. Donec efficitur eget lectus eget placerat. Ut non condimentum mauris, eu sodales neque. Proin porttitor bibendum ullamcorper. Mauris suscipit pretium lectus, nec pharetra mauris vulputate molestie.</p>
 
-            <p class="helper"><strong>.tinted.red</strong> --color-red--100</p>
+            <p class="helper">Tinted box - Red</p>
             <p class="tinted red">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare non odio sed lobortis. Mauris in tortor vitae ex venenatis tempus. Donec efficitur eget lectus eget placerat. Ut non condimentum mauris, eu sodales neque. Proin porttitor bibendum ullamcorper. Mauris suscipit pretium lectus, nec pharetra mauris vulputate molestie.</p>
 
-            <p class="helper"><strong>.tinted.mono</strong> --color-mono--100</p>
-            <p class="tinted mono">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare non odio sed lobortis. Mauris in tortor vitae ex venenatis tempus. Donec efficitur eget lectus eget placerat. Ut non condimentum mauris, eu sodales neque. Proin porttitor bibendum ullamcorper. Mauris suscipit pretium lectus, nec pharetra mauris vulputate molestie.</p>
+            <p class="helper">Tinted box - Mono</p>
+            <p class="tinted mono">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare non odio sed lobortis. Mauris in tortor vitae ex venenatis tempus. Donec efficitur eget lectus eget placerat. Ut non condimentum mauris, eu sodales neque. Proin porttitor bibendum ullamcorper. Mauris suscipit pretium lectus, nec
 
-            <p class="helper"><strong>.bordered.green</strong> --color-green--200</p>
+            <p class="helper">Bordered box - Green</p>
             <p class="bordered green">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare non odio sed lobortis. Mauris in tortor vitae ex venenatis tempus. Donec efficitur eget lectus eget placerat. Ut non condimentum mauris, eu sodales neque. Proin porttitor bibendum ullamcorper. Mauris suscipit pretium lectus, nec pharetra mauris vulputate molestie.</p>
+            <p class="code"><em>typography.css</em><br>
+              &lt;p class="bordered green"&gt;<em>[&hellip;]</em>&lt;/p&gt;<br>
+              <em>Variants:<br>
+                green<br>
+                yellow<br>
+                red<br>
+                mono<br>
+              </em>
+            </p>
 
-            <p class="helper"><strong>.bordered.yellow</strong> --color-yellow--200</p>
+            <p class="helper">Bordered box - Yellow</p>
             <p class="bordered yellow">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare non odio sed lobortis. Mauris in tortor vitae ex venenatis tempus. Donec efficitur eget lectus eget placerat. Ut non condimentum mauris, eu sodales neque. Proin porttitor bibendum ullamcorper. Mauris suscipit pretium lectus, nec pharetra mauris vulputate molestie.</p>
 
-            <p class="helper"><strong>.bordered.red</strong> --color-red--200</p>
+            <p class="helper">Bordered box - Red</p>
             <p class="bordered red">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare non odio sed lobortis. Mauris in tortor vitae ex venenatis tempus. Donec efficitur eget lectus eget placerat. Ut non condimentum mauris, eu sodales neque. Proin porttitor bibendum ullamcorper. Mauris suscipit pretium lectus, nec pharetra mauris vulputate molestie.</p>
 
-            <p class="helper"><strong>.bordered.mono</strong> --color-mono--200</p>
+            <p class="helper">Bordered box - Mono</p>
             <p class="bordered mono">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare non odio sed lobortis. Mauris in tortor vitae ex venenatis tempus. Donec efficitur eget lectus eget placerat. Ut non condimentum mauris, eu sodales neque. Proin porttitor bibendum ullamcorper. Mauris suscipit pretium lectus, nec pharetra mauris vulputate molestie.</p>
 
             <hr>
             <h2 class="subhead">Typography: Lists</h2>
 
-            <p class="helper"><strong>ul</strong></p>
+            <p class="helper">Unordered list</p>
             <ul>
               <li>Lorem ipsum dolor sit amet</li>
               <li>Consectetur adipiscing elit</li>
               <li>Ut ornare non odio sed lobortis</li>
             </ul>
+            <p class="code"><em>typography.css</em><br>&lt;ul&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<em>[&hellip;]</em>&lt;/li&gt;<br>&lt;/ul&gt;</p>
 
-            <p class="helper"><strong>ol</strong></p>
+            <p class="helper">Ordered list</p>
              <ol>
               <li>Lorem ipsum dolor sit amet</li>
               <li>Consectetur adipiscing elit</li>
               <li>Ut ornare non odio sed lobortis</li>
             </ol>
+            <p class="code"><em>typography.css</em><br>&lt;ol&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<em>[&hellip;]</em>&lt;/li&gt;<br>&lt;/ol&gt;</p>
 
             <hr class="solid">
 
             <!-- BUTTONS -->
+            <a name="buttons"></a>
             <h2 class="subhead">Buttons: Base</h2>
-            <p class="helper"><strong>button</strong></p>
+            <p class="helper">Base button and standard spacing</p>
             <div>
               <button class="button--space--r">Default</button>
               <button class="button--active button--space--r">Active</button>
               <button disabled="disabled">Disabled</button>
             </div>
+            <p class="code"><em>button.css</em><br>&lt;button&gt;<em>[&hellip;]</em>&lt;/button&gt;<br>&lt;button class="button--space--r"&gt;<em>[&hellip;]</em>&lt;/button&gt;</p>
 
-            <p class="helper"><strong>.button--primary</strong></p>
+            <p class="helper">Primary button</p>
             <div>
               <button class="button--primary button--space--r">Default</button>
               <button class="button--primary button--active button--space--r">Active</button>
               <button class="button--primary" disabled="disabled">Disabled</button>
             </div>
+            <p class="code"><em>button.css</em><br>&lt;button class="button--primary"&gt;<em>[&hellip;]</em>&lt;/button&gt;</p>
 
-            <p class="helper"><strong>.button--secondary</strong></p>
+            <p class="helper">Secondary button</p>
             <div>
               <button class="button--secondary button--space--r">Default</button>
               <button class="button--secondary button--active button--space--r">Active</button>
               <button class="button--secondary" disabled="disabled">Disabled</button>
             </div>
+            <p class="code"><em>button.css</em><br>&lt;button class="button--secondary"&gt;<em>[&hellip;]</em>&lt;/button&gt;</p>
 
-            <p class="helper"><strong>.button--outline</strong></p>
+            <p class="helper">Outline button</p>
             <div>
               <button class="button--outline button--space--r">Default</button>
               <button class="button--outline button--active button--space--r">Active</button>
               <button class="button--outline" disabled="disabled">Disabled</button>
             </div>
+            <p class="code"><em>button.css</em><br>&lt;button class="button--outline"&gt;<em>[&hellip;]</em>&lt;/button&gt;</p>
 
-             <p class="helper"><strong>.button--frameless</strong></p>
+             <p class="helper">Frameless button</p>
             <div>
               <button class="button--frameless button--space--r">Default</button>
               <button class="button--frameless button--active button--space--r">Active</button>
               <button class="button--frameless" disabled="disabled">Disabled</button>
             </div>
+            <p class="code"><em>button.css</em><br>&lt;button class="button--frameless"&gt;<em>[&hellip;]</em>&lt;/button&gt;</p>
 
             <hr>
             <h2 class="subhead">Buttons: With icon</h2>
 
-            <p class="helper"><strong>&lt;i class="fas fa-[x]&gt;&lt;/&gt;</strong></p>
+            <p class="helper">Variants with icons</p>
             <div>
               <button class="button--space--r button--space--b"><i class="fas fa-bullseye"></i>Default icon</button>
               <button class="button--primary button--space--r button--space--b"><i class="fas fa-bullseye"></i>Primary icon</button>
@@ -168,8 +379,9 @@
               <button class="button--outline button--space--r button--space--b"><i class="fas fa-bullseye"></i>Outline icon</button>
               <button class="button--frameless button--space--r button--space--b"><i class="fas fa-bullseye"></i>Frameless icon</button>
             </div>
+            <p class="code"><em>button.css</em><br>&lt;button&gt;&lt;i class="fas fa-<em>[&hellip;]</em>"&gt;&lt;/i&gt;<em>[&hellip;]</em>&lt;/button&gt;</p>
 
-            <p class="helper"><strong>.icon-only</strong></p>
+            <p class="helper">Icon only</p>
             <div>
               <button class="icon-only button--space--r button--space--b"><i class="fas fa-bullseye"></i></button>
               <button class="icon-only button--primary button--space--r button--space--b"><i class="fas fa-bullseye"></i></button>
@@ -177,46 +389,70 @@
               <button class="icon-only button--outline button--space--r button--space--b"><i class="fas fa-bullseye"></i></button>
               <button class="icon-only button--frameless button--space--r button--space--b"><i class="fas fa-bullseye"></i></button>
             </div>
+            <p class="code"><em>button.css</em><br>&lt;button class="icon-only"&gt;&lt;i class="fas fa-<em>[&hellip;]</em>"&gt;&lt;/i&gt;&lt;/button&gt;</p>
 
             <hr>
             <h2 class="subhead">Buttons: Size</h2>
 
-            <p class="helper"><strong>.button--small, .button--large</strong></p>
+            <p class="helper">Small, normal &amp; large</p>
             <div>
               <button class="button--small button--space--r button--space--b">Small</button>
               <button class="button--space--r button--space--b">Normal</button>
               <button class="button--large button--space--r button--space--b">Large</button>
             </div>
+            <p class="code"><em>button.css</em><br>&lt;button class="button--small"&gt;<em>[&hellip;]</em>&lt;/button&gt;<br>&lt;button&gt;<em>[&hellip;]</em>&lt;/button&gt;<br>&lt;button class="button--large"&gt;<em>[&hellip;]</em>&lt;/button&gt;</p>
 
             <hr>
             <h2 class="subhead">Buttons: Sets</h2>
 
-            <p class="helper"><strong>.group--merged</strong></p>
+            <p class="helper">Grouped &amp; merged></p>
             <div class="group--merged">
               <button>One</button>
               <button>Two</button>
               <button>Three</button>
             </div>
+            <p class="code"><em>button.css</em><br>
+              &lt;div class="group--merged"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;button&gt;<em>[&hellip;]</em>&lt;/button&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;button&gt;<em>[&hellip;]</em>&lt;/button&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;button&gt;<em>[&hellip;]</em>&lt;/button&gt;<br>
+              &lt;/div&gt;
+            </p>
 
-            <p class="helper"><strong>.group--merged .button--primary</strong></p>
+            <p class="helper">Merged variants</p>
             <div class="group--merged">
               <button class="button--primary">A</button>
               <button class="button--primary">B</button>
               <button class="button--primary">C</button>
               <button class="button--primary">D</button>
             </div>
+            <p class="code"><em>button.css</em><br>
+              &lt;div class="group--merged"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;button class="button--primary"&gt;<em>[&hellip;]</em>&lt;/button&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;button class="button--primary"&gt;<em>[&hellip;]</em>&lt;/button&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;button class="button--primary"&gt;<em>[&hellip;]</em>&lt;/button&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;button class="button--primary"&gt;<em>[&hellip;]</em>&lt;/button&gt;<br>
+              &lt;/div&gt;
+            </p>
 
-            <p class="helper"><strong>.group--merged .icon-only</strong></p>
+            <p class="helper">Merged - icon only</p>
             <div class="group--merged">
               <button class="button--primary icon-only"><i class="fas fa-play"></i></button>
               <button class="button--primary icon-only" disabled="disabled"><i class="fas fa-pause"></i></button>
               <button class="button--primary icon-only"><i class="fas fa-stop"></i></button>
             </div>
+            <p class="code"><em>button.css</em><br>
+              &lt;div class="group--merged"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;button class="button--primary icon-only"&gt;<em>[&hellip;]</em>&lt;/button&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;button class="button--primary icon-only"&gt;<em>[&hellip;]</em>&lt;/button&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;button class="button--primary icon-only"&gt;<em>[&hellip;]</em>&lt;/button&gt;<br>
+              &lt;/div&gt;
+            </p>
 
             <hr>
             <h2 class="subhead">Buttons: Toggles</h2>
 
-            <p class="helper"><strong>.toggle component set</strong></p>
+            <p class="helper">Toggle</p>
             <div class="toggle">
                 <input type="checkbox" name="toggle" class="toggle-checkbox" id="toggle" checked>
                 <label class="toggle-label" for="toggle">
@@ -224,83 +460,153 @@
                     <span class="toggle-switch"></span>
                 </label>
             </div>
+            <p class="code"><em>button.css</em><br>
+              &lt;div class="toggle"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="checkbox" name="toggle" class="toggle-checkbox" id="toggle" checked&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;label class="toggle-label" for="toggle"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="toggle-inner"&gt;&lt;/span&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="toggle-switch"&gt;&lt;/span&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;/span&gt;<br>
+              &lt;/div&gt;
+            </p>
 
-            <p class="helper"><strong>[toggle]--small</strong></p>
+            <p class="helper">Toggle - small variant</p>
             <div class="toggle toggle--small">
                 <input type="checkbox" name="toggle" class="toggle-checkbox" id="toggle1" checked>
-                <label class="toggle-label" for="toggle1">
+                <label class="toggle-label toggle-label--small" for="toggle1">
                     <span class="toggle-inner toggle-inner--small"></span>
                     <span class="toggle-switch toggle-switch--small"></span>
                 </label>
             </div>
+            <p class="code"><em>button.css</em><br>
+              &lt;div class="toggle toggle--small"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="checkbox" name="toggle" class="toggle-checkbox" id="toggle" checked&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;label class="toggle-label toggle-label--small" for="toggle"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="toggle-inner--small"&gt;&lt;/span&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="toggle-switch--small"&gt;&lt;/span&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;/span&gt;<br>
+              &lt;/div&gt;
+            </p>
 
             <!-- Forms -->
             <hr class="solid">
+            <a name="forms"></a>
             <h2 class="subhead">Forms: Base</h2>
-            <p class="helper"><strong>input</strong></p>
+            <p class="helper">Basic input field</p>
             <div>
               <input type="" name="" placeholder="Basic input">
             </div>
+            <p class="code"><em>input.css</em><br>&lt;input&gt;</p>
 
             <p class="helper"><strong>Disabled</strong></p>
-            <div class="input-group">
+            <div>
               <input class="input input-group--input " disabled="disabled" id="form3" placeholder="Disabled">
             </div>
 
-            <p class="helper"><strong>Top label + input</strong></p>
-            <div class="label--top">
+
+            <p class="helper">Label top</p>
+            <div>
               <label class="label--top" for="form1">Top label</label>
               <input id="form1" placeholder="Top label + input">
             </div>
+            <p class="code"><em>input.css</em><br>
+              &lt;div&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;label class="label--top" for="<em>[id]</em>"&gt;<em>[&hellip;]</em>&lt;/label&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;input id="<em>[id]</em>" placeholder="Text"&gt;<br>
+              &lt;/div&gt;
+            </p>
 
-            <p class="helper"><strong>Left label + input</strong></p>
+            <p class="helper">Label left</p>
             <div class="input-group">
               <label class="label--left" for="form2">Left label</label>
               <input class="input input-group--input" id="form2" placeholder="Left label + input">
             </div>
+            <p class="code"><em>input.css, group.css</em><br>
+              &lt;div class="input-group"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;label class="label--left" for="<em>[id]</em>"&gt;<em>[&hellip;]</em>&lt;/label&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;input id="<em>[id]</em>" placeholder="Text"&gt;<br>
+              &lt;/div&gt;
+            </p>
 
-            <p class="helper"><strong>Left label + input</strong></p>
+            <p class="helper">Icon label</p>
             <div class="input-group">
               <label class="label--left" for="form3"><i class="fas fa-search"></i></label>
               <input class="input input-group--input" id="form3" placeholder="Left label + input">
             </div>
+            <p class="code"><em>input.css, group.css</em><br>
+              &lt;div class="input-group"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;label class="label--left" for="<em>[id]</em>"&gt;&lt;i class="fas fa-<em>[&hellip;]</em>"&gt;&lt;/i&gt;&lt;/label&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;input id="<em>[id]</em>" placeholder="Text"&gt;<br>
+              &lt;/div&gt;
+            </p>
 
-            <p class="helper"><strong>Icon inside</strong></p>
+            <p class="helper">Search icon inside form</p>
             <div class="input-group">
               <input class="input input-group--input icon-inside" style="" id="form4" placeholder="Search">
               <i class="fa fa-search icon-inside--label"></i>
             </div>
+            <p class="code"><em>input.css, group.css</em><br>
+              &lt;div class="input-group"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;input class="input input-group--input icon-inside" style="" id="<em>[id]</em>" placeholder="Search"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;i class="fa fa-search icon-inside--label"&gt;&lt;/i&gt;<br>
+              &lt;/div&gt;
+            </p>
 
             <hr>
             <h2 class="subhead">Forms: Grouped with buttons</h2>
-            <p class="helper"><strong>.ungrouped-set</strong></p>
+            <p class="helper">Ungrouped</p>
             <div class="ungrouped-set">
               <input type="" name="" placeholder="Basic input">
               <button>Submit</button>
             </div>
+            <p class="code"><em>input.css, group.css</em><br>
+              &lt;div class="ungrouped-set"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="" name="" placeholder="Text"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;button&gt;<em>[&hellip;]</em>&lt;/button&gt;<br>
+              &lt;/div&gt;
+            </p>
 
-            <p class="helper"><strong>.group--merged</strong></p>
+            <p class="helper">Merged as group</p>
             <div class="group--merged">
               <input type="" name="" placeholder="Basic input">
               <button>Submit</button>
             </div>
+            <p class="code"><em>input.css, group.css</em><br>
+              &lt;div class="group--merged"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="" name="" placeholder="Text"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;button&gt;<em>[&hellip;]</em>&lt;/button&gt;<br>
+              &lt;/div&gt;
+            </p>
 
-            <p class="helper"><strong>.group--merged basic</strong></p>
+            <p class="helper"><strong>Merged - primary example</strong></p>
             <div class="group--merged">
               <input type="" name="" placeholder="Basic input">
               <button class="button--primary">Submit</button>
             </div>
+            <p class="code"><em>input.css, group.css</em><br>
+              &lt;div class="group--merged"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="" name="" placeholder="Text"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;button class="button--primary"&gt;<em>[&hellip;]</em>&lt;/button&gt;<br>
+              &lt;/div&gt;
+            </p>
 
-            <p class="helper"><strong>Autopilot example</strong></p>
+            <p class="helper">Autopilot example</p>
             <div class="group--merged">
-              <input type="" name="" placeholder="Basic input">
+              <input type="" name="" placeholder="Selector">
               <button class="button--secondary icon-only"><i class="fas fa-cog"></i></button>
               <button class="button--primary icon-only"><i class="fas fa-mouse-pointer"></i></button>
             </div>
+            <p class="code"><em>input.css, group.css</em><br>
+              &lt;div class="group--merged"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="" name="" placeholder="Selector"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;button class="button--secondary"&gt;&lt;i class="fas fa-cog"&gt;&lt;/i&gt;&lt;/button&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;button class="button--primary"&gt;&lt;i class="fas fa-mouse-pointer"&gt;&lt;/i&gt;&lt;/button&gt;<br>
+              &lt;/div&gt;
+            </p>
 
             <hr>
             <h2 class="subhead">Forms: Select list</h2>
-            <p class="helper"><strong>Standard select list</strong></p>
+            <p class="helper">Standard select list</p>
             <div class="input-group">
               <label class="label--left" for="form10">Type of biscuit</label>
               <select class="input-group input-group--input" id="form10">
@@ -315,23 +621,45 @@
                 <option value="6">Brandy snap</option>
               </select>
             </div>
-
+            <p class="code"><em>input.css, group.css</em><br>
+              &lt;div class="input-group"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;label class="label--left" for="<em>[id]</em>"&gt;<em>[&hellip;]</em>&lt;/label&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;select class="input-group input-group--input" id="<em>[id]</em>"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="1"&gt;First option&lt;/option&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Next option uses a special unicode character for divider --&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="0" disabled="disabled"&gt;────────────&lt;/option&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="2"&gt;Second option&lt;/option&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;/select&gt;<br>
+              &lt;/div&gt;
+            </p>
 
             <hr>
             <h2 class="subhead">Forms: Other controls</h2>
-            <p class="helper"><strong>Radio/Checkbox label left</strong></p>
+            <p class="helper">Radio/Checkbox - label left</p>
             <div class="input-group">
               <label class="label--left" for="form4">Label left</label>
               <input type="checkbox" name="" id="form4">
             </div>
+            <p class="code"><em>input.css</em><br>
+              &lt;div class="input-group"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;label class="label--left" for="<em>[id]</em>"&gt;<em>[&hellip;]</em>&lt;/label&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="checkbox" name="" id="<em>[id]</em>"&gt;<br>
+              &lt;/div&gt;
+            </p>
 
-            <p class="helper"><strong>Radio/Checkbox label right</strong></p>
+            <p class="helper">Radio/Checkbox - label right</p>
             <div>
               <input type="checkbox" name="" id="form5">
               <label class="label--left" for="form5">Label right</label>
             </div>
+            <p class="code"><em>input.css</em><br>
+              &lt;div&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="checkbox" name="" id="<em>[id]</em>"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;label  class="label--left" for="<em>[id]</em>"&gt;<em>[&hellip;]</em>&lt;/label&gt;<br>
+              &lt;/div&gt;
+            </p>
 
-            <p class="helper"><strong>Grouped inline</strong></p>
+            <p class="helper">Grouped inline</p>
             <div class="input-group extra-bottom-pad">
               <label class="label--left" for="form6">Left label</label>
               <input class="input input-group--input" id="form6" placeholder="Inline!">
@@ -339,8 +667,16 @@
               <label class="label--left" for="form7">Checkbox label</label>
               <input type="checkbox" name="" id="form7">
             </div>
+            <p class="code"><em>input.css, group.css</em><br>
+              &lt;div class="input-group"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;label class="label--left" for="<em>[id]</em>"&gt;<em>[&hellip;]</em>&lt;/label&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;input class="input input-group--input" id="<em>[id]</em>" placeholder="Text"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;label class="label--left" for="<em>[id]</em>"&gt;<em>[&hellip;]</em>&lt;/label&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="checkbox" name="" id="<em>[id]</em>"&gt;<br>
+              &lt;/div&gt;
+            </p>
 
-            <p class="helper"><strong>Grouped indented</strong></p>
+            <p class="helper">Grouped indented</p>
             <div class="input-group extra-bottom-pad">
               <label class="label--left" for="form8">Left label</label>
               <input class="input input-group--input" id="form8" placeholder="Indented!">
@@ -349,29 +685,280 @@
                 <label class="label--left" for="form9">Intented checkbox label</label>
               </div>
             </div>
+            <p class="code"><em>input.css, group.css</em><br>
+              &lt;div class="input-group"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;label class="label--left" for="<em>[id]</em>"&gt;<em>[&hellip;]</em>&lt;/label&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;input class="input input-group--input" id="<em>[id]</em>" placeholder="Text"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="input-group"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="checkbox" name="" id="<em>[id]</em>"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label class="label--left" for="<em>[id]</em>"&gt;<em>[&hellip;]</em>&lt;/label&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;              
+              &lt;/div&gt;
+            </p>
 
             <hr class="solid">
+            <a name="badges"></a>
             <h2 class="subhead">Badges &amp; Tags</h2>
-            <p class="helper"><strong>Environment</strong></p>
+            <p class="helper">Environment</p>
             <div>
-              <span class="badge badge--env badge--env--production">Production</span>
-              <span class="badge badge--env badge--env--staging">Staging</span>
+              <span class="badge badge--env--production">Production</span>
+              <span class="badge badge--env--staging">Staging</span>
             </div>
+            <p class="code"><em>badge.css</em><br>
+              &lt;span class="badge badge--env--production"&gt;Production&lt;/span&gt;<br>
+              &lt;span class="badge badge--env--staging"&gt;Staging&lt;/span&gt;<br>
+            </p>
 
-            <p class="helper"><strong>Environment Small</strong></p>
+            <p class="helper">Environment Small</p>
             <div>
-              <span class="badge badge--small badge--env badge--env--production">P</span>
-              <span class="badge badge--small badge--env badge--env--staging">S</span>
+              <span class="badge badge--small badge--env--production">P</span>
+              <span class="badge badge--small badge--env--staging">S</span>
             </div>
+            <p class="code"><em>badge.css</em><br>
+              &lt;span class="badge badge--small badge--env--production"&gt;P&lt;/span&gt;<br>
+              &lt;span class="badge badge--small badge--env--staging"&gt;S&lt;/span&gt;<br>
+            </p>
 
+            <p class="helper">Environment Small alt</p>
+            <div>
+              <div class="badge--hexagon-wrapper">
+                <div class="badge--hexagon badge--hexagon--production"><span>P</span></div>
+              </div>
 
+              <div class="badge--hexagon-wrapper">
+                <div class="badge--hexagon badge--hexagon--staging"><span>S</span></div>
+              </div>
+            </div>
+            <p class="code"><em>badge.css</em><br>
+              &lt;div class="badge--hexagon-wrapper"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="badge--hexagon badge--hexagon--production"&gt;&lt;span&gt;P&lt;/span&gt;&lt;/div&gt;<br>
+              &lt;/div&gt;<br>
+              &lt;div class="badge--hexagon-wrapper"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="badge--hexagon badge--hexagon--staging"&gt;&lt;span&gt;S&lt;/span&gt;&lt;/div&gt;<br>
+              &lt;/div&gt;
+            </p>
+
+            <hr>
+            <h2 class="subhead">Badges &amp; Tags: Badges</h2>
+            <p class="helper">Variable width (Standard)></p>
+            <div>
+              <span class="badge badge--info">Info</span>
+              <span class="badge badge--success">Success</span>
+              <span class="badge badge--warning">Warning</span>
+              <span class="badge badge--fail">Fail</span>
+              <span class="badge badge--fail-muted">Fail (muted)</span>
+              <span class="badge badge--other">Other</span>
+            </div>
+            <p class="code"><em>badge.css</em><br>
+              &lt;span class="badge badge--info"&gt;<em>[&hellip;]</em>&lt;/span&gt;<br>
+              <em>Variants:<br>
+                badge--info<br>
+                badge--success<br>
+                badge--warning<br>
+                badge--fail<br>
+                badge--fail-muted<br>
+                badge--other<br>
+              </em>
+            </p>
+
+            <p class="helper">Variable width outline</p>
+            <div>
+              <span class="badge badge--outline badge--outline--info">Info</span>
+              <span class="badge badge--outline badge--outline--success">Success</span>
+              <span class="badge badge--outline badge--outline--warning">Warning</span>
+              <span class="badge badge--outline badge--outline--fail">Fail</span>
+              <span class="badge badge--outline badge--outline--fail-muted">Fail (muted)</span>
+              <span class="badge badge--outline badge--outline--other">Other</span>
+            </div>
+            <p class="code"><em>badge.css</em><br>
+              &lt;span class="badge badge--outline badge--info"&gt;<em>[&hellip;]</em>&lt;/span&gt;<br>
+              <em>Variants:<br>
+                badge--info<br>
+                badge--success<br>
+                badge--warning<br>
+                badge--fail<br>
+                badge--fail-muted<br>
+                badge--other<br>
+              </em>
+            </p>
+
+            <p class="helper">Fixed width</p>
+            <div>
+              <span class="badge badge--fixed badge--info">Info</span>
+              <span class="badge badge--fixed badge--success">Success</span>
+              <span class="badge badge--fixed badge--warning">Warning</span>
+              <span class="badge badge--fixed badge--fail">Fail</span>
+              <span class="badge badge--fixed badge--fail-muted">Fail (muted)</span>
+              <span class="badge badge--fixed badge--other">Other</span>
+            </div>
+            <p class="code"><em>badge.css</em><br>
+              &lt;span class="badge badge--fixed badge--info"&gt;<em>[&hellip;]</em>&lt;/span&gt;<br>
+              <em>Variants:<br>
+                badge--info<br>
+                badge--success<br>
+                badge--warning<br>
+                badge--fail<br>
+                badge--fail-muted<br>
+                badge--other<br>
+              </em>
+            </p>
+
+            <p class="helper">Fixed width outline</p>
+            <div>
+              <span class="badge badge--fixed badge--outline--info">Info</span>
+              <span class="badge badge--fixed badge--outline--success">Success</span>
+              <span class="badge badge--fixed badge--outline--warning">Warning</span>
+              <span class="badge badge--fixed badge--outline--fail">Fail</span>
+              <span class="badge badge--fixed badge--outline--fail-muted">Fail (muted)</span>
+              <span class="badge badge--fixed badge--outline--other">Other</span>
+            </div>
+            <p class="code"><em>badge.css</em><br>
+              &lt;span class="badge badge--fixed badge--outline--info"&gt;<em>[&hellip;]</em>&lt;/span&gt;<br>
+              <em>Variants:<br>
+                badge--outline--info<br>
+                badge--outline--success<br>
+                badge--outline--warning<br>
+                badge--outline--fail<br>
+                badge--outline--fail-muted<br>
+                badge--outline--other<br>
+              </em>
+            </p>
+
+            <p class="helper">Variable width + icon</p>
+            <div>
+              <span class="badge badge--icon badge--info"><i class="fas fa-info-circle"></i>Info</span>
+              <span class="badge badge--icon badge--success"><i class="fas fa-check-circle"></i>Success</span>
+              <span class="badge badge--icon badge--warning"><i class="fas fa-exclamation-triangle"></i>Warning</span>
+              <span class="badge badge--icon badge--fail"><i class="fas fa-exclamation-circle"></i>Fail</span>
+              <span class="badge badge--icon badge--fail-muted"><i class="fas fa-exclamation-circle"></i>Fail (muted)</span>
+              <span class="badge badge--icon badge--other"><i class="fas fa-question-circle"></i>Other</span>
+            </div>
+            <p class="code"><em>badge.css</em><br>
+              &lt;span class="badge badge--icon badge--info"&gt;&lt;i class="fas fa-<em>[&hellip;]</em>"&gt;&lt;/i&gt;<em>[&hellip;]</em>&lt;/span&gt;<br>
+              <em>Variants:<br>
+                badge--info<br>
+                badge--success<br>
+                badge--warning<br>
+                badge--fail<br>
+                badge--fail-muted<br>
+                badge--other<br>
+              </em>
+            </p>
+
+            <p class="helper">Variable width outline + icon</p>
+            <div>
+              <span class="badge badge--icon badge--outline--info"><i class="fas fa-info-circle"></i>Info</span>
+              <span class="badge badge--icon badge--outline--success"><i class="fas fa-check-circle"></i>Success</span>
+              <span class="badge badge--icon badge--outline--warning"><i class="fas fa-exclamation-triangle"></i>Warning</span>
+              <span class="badge badge--icon badge--outline--fail"><i class="fas fa-exclamation-circle"></i>Fail</span>
+              <span class="badge badge--icon badge--outline--fail-muted"><i class="fas fa-exclamation-circle"></i>Fail (muted)</span>
+              <span class="badge badge--icon badge--outline--other"><i class="fas fa-question-circle"></i>Other</span>
+            </div>
+            <p class="code"><em>badge.css</em><br>
+              &lt;span class="badge badge--icon badge--outline--info"&gt;&lt;i class="fas fa-<em>[&hellip;]</em>"&gt;&lt;/i&gt;<em>[&hellip;]</em>&lt;/span&gt;<br>
+              <em>Variants:<br>
+                badge--outline--info<br>
+                badge--outline--success<br>
+                badge--outline--warning<br>
+                badge--outline--fail<br>
+                badge--outline--fail-muted<br>
+                badge--outline--other<br>
+              </em>
+            </p>
+
+            <p class="helper">Fixed width + icon</p>
+            <div>
+              <span class="badge badge--icon badge--fixed badge--info"><i class="fas fa-info-circle"></i>Info</span>
+              <span class="badge badge--icon badge--fixed badge--success"><i class="fas fa-check-circle"></i>Success</span>
+              <span class="badge badge--icon badge--fixed badge--warning"><i class="fas fa-exclamation-triangle"></i>Warning</span>
+              <span class="badge badge--icon badge--fixed badge--fail"><i class="fas fa-exclamation-circle"></i>Fail</span>
+              <span class="badge badge--icon badge--fixed badge--fail-muted"><i class="fas fa-exclamation-circle"></i>Fail (muted)</span>
+              <span class="badge badge--icon badge--fixed badge--other"><i class="fas fa-question-circle"></i>Other</span>
+            </div>
+            <p class="code"><em>badge.css</em><br>
+              &lt;span class="badge badge--icon badge--fixed badge--info"&gt;&lt;i class="fas fa-<em>[&hellip;]</em>"&gt;&lt;/i&gt;<em>[&hellip;]</em>&lt;/span&gt;<br>
+              <em>Variants:<br>
+                badge--info<br>
+                badge--success<br>
+                badge--warning<br>
+                badge--fail<br>
+                badge--fail-muted<br>
+                badge--other<br>
+              </em>
+            </p>
+
+            <p class="helper">Fixed width outline + icon</p>
+            <div>
+              <span class="badge badge--icon badge--fixed badge--outline--info"><i class="fas fa-info-circle"></i>Info</span>
+              <span class="badge badge--icon badge--fixed badge--outline--success"><i class="fas fa-check-circle"></i>Success</span>
+              <span class="badge badge--icon badge--fixed badge--outline--warning"><i class="fas fa-exclamation-triangle"></i>Warning</span>
+              <span class="badge badge--icon badge--fixed badge--outline--fail"><i class="fas fa-exclamation-circle"></i>Fail</span>
+              <span class="badge badge--icon badge--fixed badge--outline--fail-muted"><i class="fas fa-exclamation-circle"></i>Fail (muted)</span>
+              <span class="badge badge--icon badge--fixed badge--outline--other"><i class="fas fa-question-circle"></i>Other</span>
+            </div>
+            <p class="code"><em>badge.css</em><br>
+              &lt;span class="badge badge--icon badge--fixed badge--outline--info"&gt;&lt;i class="fas fa-<em>[&hellip;]</em>"&gt;&lt;/i&gt;<em>[&hellip;]</em>&lt;/span&gt;<br>
+              <em>Variants:<br>
+                badge--outline--info<br>
+                badge--outline--success<br>
+                badge--outline--warning<br>
+                badge--outline--fail<br>
+                badge--outline--fail-muted<br>
+                badge--outline--other<br>
+              </em>
+            </p>
+
+            <hr>
+            <h2 class="subhead">Badges &amp; Tags: Tags</h2>
+            <p class="helper">Variable width (Standard)</p>
+            <div>
+              <span class="tag tag--green"><span>MSM</span><a href="#"><i class="fas fa-times"></i></a></span>
+              <span class="tag tag--yellow"><span>GoCompare</span><a href="#"><i class="fas fa-times"></i></a></span>
+              <span class="tag tag--red"><span>KAYAK</span><a href="#"><i class="fas fa-times"></i></a></span>
+              <span class="tag tag--blue"><span>Mihai Ene</span><a href="#"><i class="fas fa-times"></i></a></span>
+              <span class="tag tag--cool"><span>Alisa</span><a href="#"><i class="fas fa-times"></i></a></span>
+              <span class="tag tag--warm"><span>CSI</span><a href="#"><i class="fas fa-times"></i></a></span>
+              <span class="tag tag--mono"><span>aa@ub.io</span><a href="#"><i class="fas fa-times"></i></a></span>
+            </div>
+            <p class="code"><em>badge.css</em><br>
+              &lt;span class="tag tag--green"&gt;&lt;span&gt;<em>[&hellip;]</em>&lt;/span&gt;&lt;a href="#"&gt;&lt;i class="fas fa-times"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/span><br>
+              <em>Variants:<br>
+                tag--green<br>
+                tag--yellow<br>
+                tag--red<br>
+                tag--blue<br>
+                tag--cool<br>
+                tag--warm<br>
+                tag--mono<br>
+              </em>
+            </p>
+
+            <hr class="solid">
+            <a name="loaders"></a>
+            <h2 class="subhead">Loaders</h2>
+            <p class="helper">Circular loader</p>
+            <div>
+              <div class="loader"></div>
+            </div>
+            <p class="code"><em>loader.css</em><br>
+              &lt;div class="loader"&gt;&lt;/div&gt;
+            </p>
+
+            <p class="helper">Horizontal loader</p>
+            <div class="loader--horizontal">
+              <div></div><div></div><div></div><div></div><div></div>
+            </div>
+            <p class="code"><em>loader.css</em><br>
+              &lt;div class="loader--horizontal"&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;<br>
+              &lt;/div&gt;
+            </p>
 
             <!-- NOTES -->
             <hr class="solid">
             <h2 class="subhead">Notes &amp; known issues</h2>
             <ol class="notes">
-              <li>Todo: Preformatted text for selectors</li>
-              <li>Numbers in the <strong>Typography: Lists ol</strong> have questionable horizontal alignment.</li>
+              <li>Alisa may take issue with my half-arsed and clumsy <strong>class naming</strong>.</li>
               <li><strong>Buttons in sets</strong> have an uneven separating gap which seems to be affected by font weight and/or size or page zoom level. This looks like a pixel calculation which results in either 1px or 2px depending on the text/zoom conditions.</li>
               <li><strong>Buttons in sets</strong> don't work so gracefully with button--outline and could do with additional work on the borders/separating gaps.</li>
             </ol>

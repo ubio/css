@@ -1,10 +1,12 @@
 .badge {
 	display: inline-block;
 	height: 21px;
+	width: auto;
 	color: #fff;
 	padding: 5px 12px;
 	border-radius: 3px;
 	letter-spacing: 0.6px;
+	text-transform: uppercase;
 }
 
 .badge--small {
@@ -24,9 +26,7 @@
 	letter-spacing: 0.6px;
 }
 
-.badge--env {
-	text-transform: uppercase;
-}
+/* Variants */
 
 .badge--env--production {
 	background-color: var(--color-brand-red--500);
@@ -34,4 +34,206 @@
 
 .badge--env--staging {
 	background-color: var(--color-green--500);
+}
+
+.badge--info {
+	background-color: var(--color-blue--500);
+}
+
+.badge--success {
+	background-color: var(--color-green--500);
+}
+
+.badge--warning {
+	background-color: var(--color-yellow--500);
+}
+
+.badge--fail {
+	background-color: var(--color-red--500);
+}
+
+.badge--fail-muted {
+	background-color: var(--color-red--400);
+}
+
+.badge--other {
+	background-color: var(--color-cool--500);
+}
+
+.badge--fixed {
+	width: 110px;
+	padding: 5px 8px;
+}
+
+/* Outline style */
+
+.badge--outline {
+	background-color: #fff;
+}
+
+.badge--outline--info {
+	box-shadow: inset 0 0 0 2px var(--color-blue--500);
+	color: var(--color-blue--500);
+	font-weight: 500;
+}
+
+.badge--outline--success {
+	box-shadow: inset 0 0 0 2px var(--color-green--500);
+	color: var(--color-green--500);
+	font-weight: 500;
+}
+
+.badge--outline--warning {
+	box-shadow: inset 0 0 0 2px var(--color-yellow--500);
+	color: var(--color-yellow--500);
+	font-weight: 500;
+}
+
+.badge--outline--fail {
+	box-shadow: inset 0 0 0 2px var(--color-red--500);
+	color: var(--color-red--500);
+	font-weight: 500;
+}
+
+.badge--outline--fail-muted {
+	box-shadow: inset 0 0 0 2px var(--color-red--400);
+	color: var(--color-red--400);
+	font-weight: 500;
+}
+
+.badge--outline--other {
+	box-shadow: inset 0 0 0 2px var(--color-cool--500);
+	color: var(--color-cool--500);
+	font-weight: 500;
+}
+
+/* With icon */
+
+.badge--icon {
+	padding: 5px 12px 5px 8px;
+}
+
+.badge--icon>i {
+	padding: 0 4px 0 0;
+}
+
+.badge--icon.badge--fixed {
+	width: 124px;
+}
+
+/* Hex style */
+
+.badge--hexagon-wrapper {
+  width: 22px;
+  height: 21px;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+  margin: 0 3px 0 0;
+}
+
+.badge--hexagon {
+  height: 100%;
+  width: calc(100% * 0.57735);
+  display: inline-block;
+  color: #fff;
+  border-radius: 2px;
+}
+
+.badge--hexagon:before {
+  position: absolute;
+  top: 0;
+  right: calc((100% / 2) - ((100% * 0.57735) / 2));
+  background-color: inherit;
+  height: inherit;
+  width: inherit;
+  content: '';
+  transform: rotateZ(60deg);
+  border-radius: 2px;
+}
+
+.badge--hexagon:after {
+  position: absolute;
+  top: 0;
+  right: calc((100% / 2) - ((100% * 0.57735) / 2));
+  background-color: inherit;
+  height: inherit;
+  width: inherit;
+  content: '';
+  transform: rotateZ(-60deg);
+  border-radius: 2px;
+}
+
+.badge--hexagon--production {
+	background-color: var(--color-brand-red--500);
+}
+
+.badge--hexagon--staging {
+	background-color: var(--color-green--500);
+}
+
+.badge--hexagon>span {
+  z-index: 100;
+  position: relative;
+  display: inline-block;
+  padding: 5px 0;
+}
+
+/* Tags */
+
+.tag {
+	display: inline-block;
+	height: 21px;
+	width: auto;
+	color: var(--color-mono--700);
+	padding: 0 2px 0 12px;
+	border-radius: 1px;
+	font-weight: 500;
+	margin-right: 4px;
+}
+
+.tag--green {
+	background-color: var(--color-green--300);
+}
+
+.tag--yellow {
+	background-color: var(--color-yellow--300);
+}
+
+.tag--red {
+	background-color: var(--color-red--300);
+}
+
+.tag--blue {
+	background-color: var(--color-blue--300);
+}
+
+.tag--cool {
+	background-color: var(--color-cool--300);
+}
+
+.tag--warm {
+	background-color: var(--color-warm--300);
+}
+
+.tag--mono {
+	background-color: var(--color-mono--300);
+}
+
+.tag>a {
+	color: #fff;
+	padding: 0 0 0 6px;
+	margin: 0;
+}
+
+.tag>span {
+	padding: 4px 5px 0 0;
+}
+
+.tag i {
+	border-left: 2px solid #fff;
+	height: 100%;
+	padding: 5px 3px 0 5px;
+	top: 0;
 }

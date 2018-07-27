@@ -57,6 +57,7 @@ label {
     font-weight: 500;
     font-size: 14px;
     margin: 0 auto;
+    height: var(--control-height);
 }
 
 .input-group--input {
@@ -68,7 +69,6 @@ label {
     display: inline-flex;
     margin: 7px 8px auto 0;
     height: var(--control-height);
-  
     display: inline-block;
     vertical-align: middle;
 }
@@ -86,7 +86,7 @@ label {
 .icon-inside--label {
     position: relative;
     z-index: 1;
-    left: 8px;
+    left: 14px;
     top: -20px;
     color: var(--color-mono--800);
     cursor: pointer;

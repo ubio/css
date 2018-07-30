@@ -113,9 +113,9 @@ body, html {
 }
 
 :root {
-    --app-nav-bg: var(--color-cool--800);
+    --app-nav-bg: var(--color-mono--800);
     --app-nav-color: #fff;
-    --app-highlight: #27B9CC;
+    --app-highlight: var(--color-yellow--500);
     --app-highlight--inverse: white;
 }
 
@@ -148,7 +148,7 @@ body, html {
     transform: rotate(-90deg);
     margin: 0;
     padding: 0;
-    color: var(--ui-secondary);
+    color: var(--color-warm--400);
     pointer-events: none;
 }
 
@@ -225,9 +225,9 @@ body, html {
 
 .section {
     --bookmark-size: 27px;
+    display: flex;
     margin: 0;
     width: 100%;
-    display: flex;
     border-top: 1px dashed var(--color-warm--300);
     min-height: 140px;
 }
@@ -243,14 +243,15 @@ body, html {
 }
 
 .section__title {
-    display: block;
-    background: var(--color-warm--100);
-    color: var(--app-nav-bg);
-    position: relative;
+    background: var(--color-warm--600);
+    color: white;
     padding: var(--gap);
     margin: 0;
     padding: 0;
     line-height: var(--bookmark-size);
+    text-align: right;
+    text-orientation: sideways;
+    width: var(--bookmark-size);
 }
 
 .section__title--active {
@@ -269,14 +270,11 @@ body, html {
 
 .section__title-label {
     display: inline-block;
-    transform: rotate(-90deg);
-    position: absolute;
-    bottom: 0;
-    width: var(--bookmark-size);
-    line-height: 40px;
     font-size: 13px;
     font-weight: 300;
     text-transform: uppercase;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
 }
 
 .section__body {

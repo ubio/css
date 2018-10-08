@@ -26,6 +26,11 @@
 	letter-spacing: 0.6px;
 }
 
+.badge--no-caps {
+	text-transform: none;
+	letter-spacing: 0;
+}
+
 /* Variants */
 
 .badge--env--production {

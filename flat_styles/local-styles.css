@@ -139,7 +139,7 @@ hr.solid {
 }
 
 .badge, .tag {
-  margin-bottom: 2px;
+  margin: 4px;
 }
 
 /* Colour */

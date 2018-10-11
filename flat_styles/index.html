@@ -651,25 +651,138 @@
 
             <hr class="solid">
             <a name="badges"></a>
-            <h2 class="subhead">Badges &amp; Tags</h2>
+            <h2 class="subhead">Badges</h2>
+            <p class="helper">Basics</p>
+            <div>
+              <span class="badge badge--small">Small</span>
+              <span class="badge">Standard</span>
+              <span class="badge badge--large">Large</span>
+            </div>
+            <p class="code"><em>badge.css</em><br>
+              .badge.badge--small<br>
+              .badge<br>
+              .badge.badge--large
+            </p>
+
+            <p class="helper">Variable width (Standard)</p>
+            <div>
+              <span class="badge badge--colour" style="--colour: var(--color-blue--500)">Info</span>
+              <span class="badge badge--colour" style="--colour: var(--color-green--500)">Success</span>
+              <span class="badge badge--small badge--colour" style="--colour: var(--color-yellow--600)">Warning</span>
+              <span class="badge badge--small badge--colour" style="--colour: var(--color-red--500)">Error</span>
+            </div>
+
+            <p class="code"><em>badge.css</em><br>
+              .badge.badge--colour [style='--colour: var(<em>[colour variable]</em>)']
+            </p>
+
+            <p class="helper">Variable width outline</p>
+            <div>
+              <span class="badge badge--outline badge--colour" style="--colour: var(--color-blue--500)">Info</span>
+              <span class="badge badge--outline badge--colour" style="--colour: var(--color-green--500)">Success</span>
+              <span class="badge badge--small badge--outline badge--colour" style="--colour: var(--color-yellow--600)">Warning</span>
+              <span class="badge badge--small badge--outline badge--colour" style="--colour: var(--color-red--500)">Error</span>
+            </div>
+            <p class="code"><em>badge.css</em><br>
+              .badge.badge--outline.badge--colour [style='--colour: var(<em>[colour variable]</em>)']
+            </p>
+
+            <p class="helper">Variable width no caps<br>(e.g. for server messages)</p>
+            <div>
+              <span class="badge badge--no-caps badge--colour" style="--colour: var(--color-blue--500)">awaitingInput</span>
+              <span class="badge badge--no-caps badge--colour" style="--colour: var(--color-green--500)">success</span>
+              <span class="badge badge--small badge--no-caps badge--colour" style="--colour: var(--color-yellow--600)">awaitingTds</span>
+              <span class="badge badge--small badge--no-caps badge--colour" style="--colour: var(--color-red--500)">fail</span>
+            </div>
+            <p class="code"><em>badge.css</em><br>
+              .badge.badge--no-caps.badge--colour [style='--colour: var(<em>[colour variable]</em>)']
+            </p>
+
+            <p class="helper">Fixed width</p>
+            <div>
+              <span class="badge badge--fixed badge--colour" style="--colour: var(--color-blue--500)">Info</span>
+              <span class="badge badge--fixed badge--colour" style="--colour: var(--color-green--500)">Success</span>
+              <span class="badge badge--small badge--fixed badge--colour" style="--colour: var(--color-yellow--600)">Warning</span>
+              <span class="badge badge--small badge--fixed badge--colour" style="--colour: var(--color-red--500)">Error</span>
+            </div>
+            <p class="code"><em>badge.css</em><br>
+              .badge.badge--fixed.badge--colour [style='--colour: var(<em>[colour variable]</em>)']
+            </p>
+
+            <p class="helper">Fixed width outline</p>
+            <div>
+              <span class="badge badge--outline--fixed badge--colour" style="--colour: var(--color-blue--500)">Info</span>
+              <span class="badge badge--outline--fixed badge--colour" style="--colour: var(--color-green--500)">Success</span>
+              <span class="badge badge--small badge--outline--fixed badge--colour" style="--colour: var(--color-yellow--600)">Warning</span>
+              <span class="badge badge--small badge--outline--fixed badge--colour" style="--colour: var(--color-red--500)">Error</span>
+            </div>
+            <p class="code"><em>badge.css</em><br>
+              .badge.badge--outline--fixed.badge--colour [style='--colour: var(<em>[colour variable]</em>)']
+            </p>
+
+            <p class="helper">Variable width + icon</p>
+            <div>
+              <span class="badge badge--icon badge--colour" style="--colour: var(--color-blue--500)"><i class="fas fa-info-circle"></i>Info</span>
+              <span class="badge badge--icon badge--colour" style="--colour: var(--color-green--500)"><i class="fas fa-check-circle"></i>Success</span>
+              <span class="badge badge--small badge--icon badge--colour" style="--colour: var(--color-yellow--600)"><i class="fas fa-exclamation-triangle"></i>Warning</span>
+              <span class="badge badge--small badge--icon badge--colour" style="--colour: var(--color-red--500)"><i class="fas fa-exclamation-circle"></i>Error</span>
+            </div>
+            <p class="code"><em>badge.css</em><br>
+              .badge.badge--icon.badge--colour [style='--colour: var(<em>[colour variable]</em>)']
+            </p>
+
+            <p class="helper">Variable width outline + icon</p>
+            <div>
+              <span class="badge badge--outline--icon badge--colour" style="--colour: var(--color-blue--500)"><i class="fas fa-info-circle"></i>Info</span>
+              <span class="badge badge--outline--icon badge--colour" style="--colour: var(--color-green--500)"><i class="fas fa-check-circle"></i>Success</span>
+              <span class="badge badge--small badge--outline--icon badge--colour" style="--colour: var(--color-yellow--600)"><i class="fas fa-exclamation-triangle"></i>Warning</span>
+              <span class="badge badge--small badge--outline--icon badge--colour" style="--colour: var(--color-red--500)"><i class="fas fa-exclamation-circle"></i>Error</span>
+            </div>
+            <p class="code"><em>badge.css</em><br>
+              .badge.badge--outline--icon.badge--colour [style='--colour: var(<em>[colour variable]</em>)']
+            </p>
+
+            <p class="helper">Fixed width + icon</p>
+            <div>
+              <span class="badge badge--icon--fixed badge--colour" style="--colour: var(--color-blue--500)"><i class="fas fa-info-circle"></i>Info</span>
+              <span class="badge badge--icon--fixed badge--colour" style="--colour: var(--color-green--500)"><i class="fas fa-check-circle"></i>Success</span>
+              <span class="badge badge--small badge--icon--fixed badge--colour" style="--colour: var(--color-yellow--600)"><i class="fas fa-exclamation-triangle"></i>Warning</span>
+              <span class="badge badge--small badge--icon--fixed badge--colour" style="--colour: var(--color-red--500)"><i class="fas fa-exclamation-circle"></i>Error</span>
+            </div>
+            <p class="code"><em>badge.css</em><br>
+              .badge.badge--icon--fixed.badge--colour [style='--colour: var(<em>[colour variable]</em>)']
+            </p>
+
+            <p class="helper">Fixed width outline + icon</p>
+            <div>
+              <span class="badge badge--outline--icon--fixed badge--colour" style="--colour: var(--color-blue--500)"><i class="fas fa-info-circle"></i>Info</span>
+              <span class="badge badge--outline--icon--fixed badge--colour" style="--colour: var(--color-green--500)"><i class="fas fa-check-circle"></i>Success</span>
+              <span class="badge badge--small badge--outline--icon--fixed badge--colour" style="--colour: var(--color-yellow--600)"><i class="fas fa-exclamation-triangle"></i>Warning</span>
+              <span class="badge badge--small badge--outline--icon--fixed badge--colour" style="--colour: var(--color-red--500)"><i class="fas fa-exclamation-circle"></i>Error</span>
+            </div>
+            <p class="code"><em>badge.css</em><br>
+              .badge.badge--outline--icon--fixed.badge--colour [style='--colour: var(<em>[colour variable]</em>)']
+            </p>
+
+
             <p class="helper">Environment</p>
             <div>
               <span class="badge badge--env--production">Production</span>
               <span class="badge badge--env--staging">Staging</span>
             </div>
             <p class="code"><em>badge.css</em><br>
-              span.badge.badge--env--production<br>
-              span.badge.badge--env--staging<br>
+              .badge.badge--env--production<br>
+              .badge.badge--env--staging<br>
             </p>
 
             <p class="helper">Environment Small</p>
             <div>
-              <span class="badge badge--small badge--env--production">P</span>
-              <span class="badge badge--small badge--env--staging">S</span>
+              <span class="badge badge--minor badge--env--production">P</span>
+              <span class="badge badge--minor badge--env--staging">S</span>
             </div>
             <p class="code"><em>badge.css</em><br>
-              span.badge.badge--small.badge--env--production<br>
-              span.badge.badge--small.badge--env--staging<br>
+              .badge.badge--minor.badge--env--production<br>
+              .badge.badge--minor.badge--env--staging<br>
             </p>
 
             <p class="helper">Environment Small alt</p>
@@ -683,205 +796,14 @@
               </div>
             </div>
             <p class="code"><em>badge.css</em><br>
-              div.badge--hexagon-wrapper<br>
-              div.badge--hexagon.badge--hexagon--production<br><br>
-              div.badge--hexagon-wrapper<br>
-              div.badge--hexagon.badge--hexagon--staging
+              .badge--hexagon-wrapper<br>
+              .badge--hexagon.badge--hexagon--production<br><br>
+              .badge--hexagon-wrapper<br>
+              .badge--hexagon.badge--hexagon--staging
             </p>
 
             <hr>
-            <h2 class="subhead">Badges &amp; Tags: Badges</h2>
-            <p class="helper">Variable width (Standard)></p>
-            <div>
-              <span class="badge badge--info">Info</span>
-              <span class="badge badge--success">Success</span>
-              <span class="badge badge--warning">Warning</span>
-              <span class="badge badge--fail">Fail</span>
-              <span class="badge badge--fail-muted">Fail (muted)</span>
-              <span class="badge badge--other">Other</span>
-            </div>
-            <p class="code"><em>badge.css</em><br>
-              span.badge.badge--info<br>
-              <em>Variants:<br>
-                .badge--info<br>
-                .badge--success<br>
-                .badge--warning<br>
-                .badge--fail<br>
-                .badge--fail-muted<br>
-                .badge--other<br>
-              </em>
-            </p>
-
-            <p class="helper">Variable width outline</p>
-            <div>
-              <span class="badge badge--outline badge--outline--info">Info</span>
-              <span class="badge badge--outline badge--outline--success">Success</span>
-              <span class="badge badge--outline badge--outline--warning">Warning</span>
-              <span class="badge badge--outline badge--outline--fail">Fail</span>
-              <span class="badge badge--outline badge--outline--fail-muted">Fail (muted)</span>
-              <span class="badge badge--outline badge--outline--other">Other</span>
-            </div>
-            <p class="code"><em>badge.css</em><br>
-              span.badge.badge--outline.badge--info<br>
-              <em>Variants:<br>
-                .badge--info<br>
-                .badge--success<br>
-                .badge--warning<br>
-                .badge--fail<br>
-                .badge--fail-muted<br>
-                .badge--other<br>
-              </em>
-            </p>
-
-            <p class="helper">Variable width no caps<br>(e.g. for server messages)</p>
-            <div>
-              <span class="badge badge--no-caps badge--info">awaitingInput</span>
-              <span class="badge badge--no-caps badge--success">success</span>
-              <span class="badge badge--no-caps badge--warning">awaitingTds</span>
-              <span class="badge badge--no-caps badge--fail">fail</span>
-              <span class="badge badge--no-caps badge--fail-muted">fail (muted)</span>
-              <span class="badge badge--no-caps badge--other">other</span>
-            </div>
-            <p class="code"><em>badge.css</em><br>
-              span.badge.badge--no-caps.badge--info<br>
-              <em>Variants:<br>
-                .badge--info<br>
-                .badge--success<br>
-                .badge--warning<br>
-                .badge--fail<br>
-                .badge--fail-muted<br>
-                .badge--other<br>
-              </em>
-            </p>
-
-            <p class="helper">Fixed width</p>
-            <div>
-              <span class="badge badge--fixed badge--info">Info</span>
-              <span class="badge badge--fixed badge--success">Success</span>
-              <span class="badge badge--fixed badge--warning">Warning</span>
-              <span class="badge badge--fixed badge--fail">Fail</span>
-              <span class="badge badge--fixed badge--fail-muted">Fail (muted)</span>
-              <span class="badge badge--fixed badge--other">Other</span>
-            </div>
-            <p class="code"><em>badge.css</em><br>
-              span.badge.badge--fixed.badge--info<br>
-              <em>Variants:<br>
-                .badge--info<br>
-                .badge--success<br>
-                .badge--warning<br>
-                .badge--fail<br>
-                .badge--fail-muted<br>
-                .badge--other<br>
-              </em>
-            </p>
-
-            <p class="helper">Fixed width outline</p>
-            <div>
-              <span class="badge badge--fixed badge--outline--info">Info</span>
-              <span class="badge badge--fixed badge--outline--success">Success</span>
-              <span class="badge badge--fixed badge--outline--warning">Warning</span>
-              <span class="badge badge--fixed badge--outline--fail">Fail</span>
-              <span class="badge badge--fixed badge--outline--fail-muted">Fail (muted)</span>
-              <span class="badge badge--fixed badge--outline--other">Other</span>
-            </div>
-            <p class="code"><em>badge.css</em><br>
-              span.badge.badge--fixed.badge--outline--info<br>
-              <em>Variants:<br>
-                .badge--outline--info<br>
-                .badge--outline--success<br>
-                .badge--outline--warning<br>
-                .badge--outline--fail<br>
-                .badge--outline--fail-muted<br>
-                .badge--outline--other<br>
-              </em>
-            </p>
-
-            <p class="helper">Variable width + icon</p>
-            <div>
-              <span class="badge badge--icon badge--info"><i class="fas fa-info-circle"></i>Info</span>
-              <span class="badge badge--icon badge--success"><i class="fas fa-check-circle"></i>Success</span>
-              <span class="badge badge--icon badge--warning"><i class="fas fa-exclamation-triangle"></i>Warning</span>
-              <span class="badge badge--icon badge--fail"><i class="fas fa-exclamation-circle"></i>Fail</span>
-              <span class="badge badge--icon badge--fail-muted"><i class="fas fa-exclamation-circle"></i>Fail (muted)</span>
-              <span class="badge badge--icon badge--other"><i class="fas fa-question-circle"></i>Other</span>
-            </div>
-            <p class="code"><em>badge.css</em><br>
-              span.badge.badge--icon.badge--info i.fas.fa-<em>[&hellip;]</em><br>
-              <em>Variants:<br>
-                .badge--info<br>
-                .badge--success<br>
-                .badge--warning<br>
-                .badge--fail<br>
-                .badge--fail-muted<br>
-                .badge--other<br>
-              </em>
-            </p>
-
-            <p class="helper">Variable width outline + icon</p>
-            <div>
-              <span class="badge badge--icon badge--outline--info"><i class="fas fa-info-circle"></i>Info</span>
-              <span class="badge badge--icon badge--outline--success"><i class="fas fa-check-circle"></i>Success</span>
-              <span class="badge badge--icon badge--outline--warning"><i class="fas fa-exclamation-triangle"></i>Warning</span>
-              <span class="badge badge--icon badge--outline--fail"><i class="fas fa-exclamation-circle"></i>Fail</span>
-              <span class="badge badge--icon badge--outline--fail-muted"><i class="fas fa-exclamation-circle"></i>Fail (muted)</span>
-              <span class="badge badge--icon badge--outline--other"><i class="fas fa-question-circle"></i>Other</span>
-            </div>
-            <p class="code"><em>badge.css</em><br>
-              span.badge.badge--icon.badge--outline--info i.fas.fa-<em>[&hellip;]</em><br>
-              <em>Variants:<br>
-                .badge--outline--info<br>
-                .badge--outline--success<br>
-                .badge--outline--warning<br>
-                .badge--outline--fail<br>
-                .badge--outline--fail-muted<br>
-                .badge--outline--other<br>
-              </em>
-            </p>
-
-            <p class="helper">Fixed width + icon</p>
-            <div>
-              <span class="badge badge--icon badge--fixed badge--info"><i class="fas fa-info-circle"></i>Info</span>
-              <span class="badge badge--icon badge--fixed badge--success"><i class="fas fa-check-circle"></i>Success</span>
-              <span class="badge badge--icon badge--fixed badge--warning"><i class="fas fa-exclamation-triangle"></i>Warning</span>
-              <span class="badge badge--icon badge--fixed badge--fail"><i class="fas fa-exclamation-circle"></i>Fail</span>
-              <span class="badge badge--icon badge--fixed badge--fail-muted"><i class="fas fa-exclamation-circle"></i>Fail (muted)</span>
-              <span class="badge badge--icon badge--fixed badge--other"><i class="fas fa-question-circle"></i>Other</span>
-            </div>
-            <p class="code"><em>badge.css</em><br>
-              span.badge.badge--icon badge--fixed.badge--info i.fas.fa-<em>[&hellip;]</em><br>
-              <em>Variants:<br>
-                .badge--info<br>
-                .badge--success<br>
-                .badge--warning<br>
-                .badge--fail<br>
-                .badge--fail-muted<br>
-                .badge--other<br>
-              </em>
-            </p>
-
-            <p class="helper">Fixed width outline + icon</p>
-            <div>
-              <span class="badge badge--icon badge--fixed badge--outline--info"><i class="fas fa-info-circle"></i>Info</span>
-              <span class="badge badge--icon badge--fixed badge--outline--success"><i class="fas fa-check-circle"></i>Success</span>
-              <span class="badge badge--icon badge--fixed badge--outline--warning"><i class="fas fa-exclamation-triangle"></i>Warning</span>
-              <span class="badge badge--icon badge--fixed badge--outline--fail"><i class="fas fa-exclamation-circle"></i>Fail</span>
-              <span class="badge badge--icon badge--fixed badge--outline--fail-muted"><i class="fas fa-exclamation-circle"></i>Fail (muted)</span>
-              <span class="badge badge--icon badge--fixed badge--outline--other"><i class="fas fa-question-circle"></i>Other</span>
-            </div>
-            <p class="code"><em>badge.css</em><br>
-              span.badge.badge--icon.badge--fixed.badge--outline--info i.fas.fa-<em>[&hellip;]</em><br>
-              <em>Variants:<br>
-                .badge--outline--info<br>
-                .badge--outline--success<br>
-                .badge--outline--warning<br>
-                .badge--outline--fail<br>
-                .badge--outline--fail-muted<br>
-                .badge--outline--other<br>
-              </em>
-            </p>
-
-            <hr>
-            <h2 class="subhead">Badges &amp; Tags: Tags</h2>
+            <h2 class="subhead">Tags</h2>
             <p class="helper">Variable width (Standard)</p>
             <div>
               <span class="tag tag--green"><span>MSM</span><a href="#"><i class="fas fa-times"></i></a></span>
@@ -893,7 +815,7 @@
               <span class="tag tag--mono"><span>aa@ub.io</span><a href="#"><i class="fas fa-times"></i></a></span>
             </div>
             <p class="code"><em>badge.css</em><br>
-              span.tag.tag--green a i.fas.fa-times<br>
+              .tag.tag--green a i.fas.fa-times<br>
               <em>Variants:<br>
                 .tag--green<br>
                 .tag--yellow<br>

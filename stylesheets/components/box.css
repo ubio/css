@@ -1,0 +1,90 @@
+.box {
+    padding: var(--gap) 30px var(--gap) var(--gap--large);
+    border: 2px solid transparent;
+    line-height: 1.6;
+    border-radius: var(--border-radius);
+    font-weight: 400;
+    font-size: var(--font-size);
+    box-sizing: border-box;
+}
+
+.box--mono {
+    background: var(--color-mono--100);
+    color: var(--color-mono--500);
+}
+
+.box--cool {
+    background: var(--color-cool--100);
+    color: var(--color-cool--500);
+}
+
+.box--warm {
+    background: var(--color-warm--100);
+    color: var(--color-warm--500);
+}
+
+.box--blue {
+    background: var(--color-blue--100);
+    color: var(--color-blue--500);
+}
+
+.box--yellow {
+    background: var(--color-yellow--100);
+    color: var(--color-yellow--500);
+}
+
+.box--red {
+    background: var(--color-red--100);
+    color: var(--color-red--600);
+}
+
+.box--green {
+    background: var(--color-green--100);
+    color: var(--color-green--500);
+}
+
+.box--brand-red {
+    background: var(--color-brand-red--100);
+    color: var(--color-brand-red--500);
+}
+
+.box--brand-blue {
+    background: var(--color-brand-blue--100);
+    color: var(--color-brand-blue--500);
+}
+
+.box--outline {
+    border-color: currentColor;
+    background: transparent;
+}
+
+.box--small {
+    padding: var(--gap--small) var(--gap--large);
+    font-size: var(--font-size--small);
+}
+.box--large {
+    padding: var(--gap--large) calc(2 * var(--gap--large));
+    font-size: var(--font-size--large);
+}
+
+.box--panel {
+    padding: var(--gap);
+    line-height: 1.6;
+    font-size: var(--font-size);
+    color: var(--ui-color);
+}
+
+.box--panel--mono { background: var(--color-mono--200) }
+.box--panel--cool { background: var(--color-cool--200) }
+.box--panel--warm { background: var(--color-warm--200) }
+.box--panel--blue { background: var(--color-blue--200) }
+.box--panel--yellow { background: var(--color-yellow--200) }
+.box--panel--green { background: var(--color-green--200) }
+.box--panel--red { background: var(--color-red--200) }
+
+.box--panel--border {
+    border-radius: var(--border-radius);
+}
+
+.box--panel--small { padding: var(--gap--small) }
+.box--panel--large { padding: var(--gap--large) }

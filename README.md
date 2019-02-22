@@ -1,76 +1,109 @@
 # ubio CSS Framework
 
-This is a WIP spec for decision making and approval.
-Should be replaced with proper docs once settled, decisions should be implemented as CSS framework.
+This framework provides the UI foundation layer for any UBIO-style app.
+Demo https://universalbasket.github.io/css/
 
-## Inbox
+## Idea
+In order to make UBIO apps visually consistent, we extract core styles responsible for colour scheme and typography into a single CSS file, so it can be used as a base layer of any project.
 
-- Remove `--border-color`, maybe replace with `--control-border-color`
-- Change gap's naming convention to `--gap--small` to be more in line with naming scheme
-- Discuss luminosity steps
-- Discuss palette edge case: mono white and whether we need pure black
+This is a living project, that evolves as we go.
 
-## Naming conventions
+We keep it simple, scalable and flexible.
+This doesn't include grid framework and icons, it's up to a particular project to care of its layout and chose icons. For prototyping purposes we recommend https://fontawesome.com/icons
 
-- `.block__element--modifier`
-- name components may consist of multiple words, separated by dash, e.g. `.block-name__element-name--modifier-name`
-- one block typically corresponds to a single CSS component
-- use tag selectors only for base
-- nested rules for top level modifiers like `.block--modifier .block__element` are allowed
+## Recommended naming convention: BEM
 
-## Core variables
+- BEM stands for `.block__element--modifier` http://getbem.com/introduction/
+- Component name may consist of multiple words, separated by dash, e.g. `.block-name__element-name--modifier-name`
+- One block typically corresponds to a single CSS component
+- Use tag selectors only for base
+- Avoid nesting rules in general, keep it flat and scoped
+- Nested rules for top-level modifiers like `.block--modifier .block__element` are allowed
 
-### Naming scheme
 
-- `--aspect--modifier`:
-- aspect may consist of multiple words, separated by dash
-- aspect follows hierarchy from top to bottom, e.g. "color of border of control" is `--control-border-color`
+## Project structure
+- `Libre Franklin` font, served by fonts.googleapis.com – UBIO's font of choice
+- `variables.css` – by overriding this one can customize core UI components to specific project needs
+- `reset.css` – unifies browser-specific HTML styles
+- `base.css` – a tiny layer that styles up semantic HTML tags
+- `components/` - this folder contains a set of core UI styles, each UI component is described in a separate CSS file, the component name matches the file name. Examples: button.css, input.css, e.t.c.
+- `helpers/` - this folder contains a set of CSS class helpers: utility classes, colour, background helpers.
+- `print.css` - a base layer for the print stylesheet
+
+To consider: CDN vs. serve statically (e.g. GH Pages) vs. inlining in applications
+
+### Variables
+
+#### Naming scheme
+
+- `--aspect--modifier`
+- aspect may consist of multiple words, separated by a dash,
+- aspect can match CSS keys (`font-size`, `font-family`, `border-radius`) or be custom (`color-brand-red`)
+- aspect follows hierarchy from top to bottom, e.g. "height of control" is `--control-height`
     - `--gap--small`
     - `--border-radius`
+    - `--border-radius--active`
     - `--control-height`
     - `--control-height--small`
-    - `--color-cyan`
-    - `--color-cyan--light`
 
-### Palette
+#### Variables.css structure
+- `Typography` section defines base and monospace font families.
+- `Gaps` section provides a small set of fixed gaps that help with building consistent negative space: margins and paddings (as this spacing is independent of a particular element's font-size – elements appear better aligned together)
+- `Base` components such as font sizes & control heights, border colour and radius – this helps align UI elements together as they either fit into small/regular/large size grid or are fully responsive and adjust to any scale. Fill free to amend base font-size or override small/large font/control sizes with hardcoded pixel values if responsibility is not what you look for.
+- `CTA colours` - are responsible for default and accent colouring of "calls to action" (such as buttons, button-sets, toggles, sliders e.t.c) Amend this if your main accent colour is something else, but it's recommended to pick colours from the palette provided as part of the framework.
+- `UI Colours` - are for default background and foreground colours, there is also primary, secondary, muted colours for the foreground. Amend as per project needs. This will affect text, links and the background, but the call to actions (mainly buttons) are described separately (use CTA colour variables for that)
+- `Colour Palette`
 
-- brand hues: cyan, magenta, stone
-- core UI hues: petrol, graphite (grey)
-- traffic UI hues: red, amber, green
-- luminosity steps:
-    - darker
-    - dark
-    - normal
-    - light
-    - lighter
-- palette variable conventions:
-    - `--color-cyan--darker`
-    - `--color-cyan--dark`
-    - `--color-cyan`
-    - `--color-cyan--light`
-    - `--color-cyan--lighter`
 
-### Typography
+#### Palette
 
-- Main: <insert font size here> Libre Franklin Regular 400
-- Main weights:
-    - Libre Franklin Regular 400
-    - Libre Franklin Medium 500
-    - Libre Franklin Semi Bold 600
-    - Libre Franklin Bold 700
-- Monospace: <insert font size here> Menlo <insert font weight here>
-- Icon font: Font Awesome 5
-- To consider: CDN vs. serve statically (e.g. GH Pages) vs. inlining in applications
+Amend with caution, this affects many UI elements provided by the framework.
 
-### Spacing (gaps)
+- core UI greys: mono, warm, cool
+- traffic UI hues: blue, yellow, red, green
+- brand UI hues: brand-blue, brand-red
+- luminosity steps: 000 to 900
+    - 000 (pale line) recommended for lightly tinted large areas
+    - 400 (light line, highlight) as background works with dark text, as a foreground works as tinted text on dark mode background
+    - 500 (baseline) recommended foreground colour for text, icons, buttons e.t.c, works on white; traffic hues work on both white and dark mode background
+    - 800 (dark line) recommended for text, works for small boxes as a max contract background, `--color-cool--800` is the recommended dark-mode background colour;
+- palette variable convention: `--color-[name]--step`
 
-- `--gap`
-- `--gap--small`
-- `--gap--large`
+### Base
+
+The base layer is most interesting from the typography and from UI point of view, as it describes semantically meaningful HTML tags that one can use without any additional CSS classes.
+
+In order to amend typography for a specific project, it's recommended to create specific classes describing the desired style, rather than overriding the base.css with new rules for tags, as base.css might change in future. Think of it as of a prototyping tool that serves a project with lightly styled HTML tags.
+
+### Core UI components
+- form
+  - button - default, primary, secondary, accent
+  - input - covers common input types including textarea and select
+  - toggle - styles for toggle (TODO: convert toggle into a web-component)
+  - group - utility classes to align buttons and inputs into control sets
+- containers
+  - block - works best for panels, size scales only paddings, font size stays the same
+  - box - works best for messages and panels, text size if responsive to boxes size
+  - tabs
+- badge
+- tag
+- loaders
+  - loader
+  - spinner
+  - progress-bar
+
+### UI helpers
+- utils - useful helpers to speed up prototyping, are subject to change, should be moved to Core UI components sections as tested and proven to be useful as a part of the core
+- color (named after CSS rule `color`) - set of most used foreground colours (default and dark mode)
+- bg - set of most used background colours (default and dark mode)
+
+### Print styles
+- a base layer for the print stylesheet
+- provides `.no-print` helper to use on elements that are not suitable for the printing (e.g animated spinners)
 
 ## About the project
 
-In case of conflicts in docs/build/app.js, no need to resolve the conflicts in built files, just to overwrite them
+In case of conflicts in docs/build/app.js, no need to resolve the conflicts in build files, just to overwrite them
 
 ```
 yarn run build

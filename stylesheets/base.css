@@ -1,4 +1,13 @@
-html, body {
+/* Base states */
+:disabled,
+[disabled] {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: .7;
+}
+
+html {
+    scroll-behavior: smooth;
     height: 100%;
 }
 
@@ -6,18 +15,18 @@ body {
     font-family: var(--font-family);
     font-size: var(--font-size);
     line-height: 1;
-    background: var(--body-background);
-    color: var(--body-color);
-}
+    background: var(--ui-background);
+    color: var(--ui-color);
 
-ol, ul {
-    list-style: none;
+    height: auto;
+    min-height: 100vh;
 }
 
 hr {
     margin: var(--gap) 0;
-    border: 1px dashed var(--color-warm--300);
-    border-width: 1px 0 0 0;
+    border: 0;
+    height: 1px;
+    background: var(--color-mono--300);
 }
 
 table {
@@ -25,43 +34,109 @@ table {
     border-spacing: 0;
 }
 
-time, code, pre {
-    font-family: var(--font-family--mono);
-    font-size: var(--font-size--mono);
-    line-height: var(--font__line-height--mono);
-    word-wrap: break-word;
-    word-break: break-word;
-}
-
 img {
     max-width: 100%;
 }
 
-input[type="radio"],
-input[type="checkbox"] {
-    display: inline-block;
-    height: auto;
-    vertical-align: middle;
-    margin: 0;
+label {
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1.1em;
+    line-height: 1.5em;
+    margin-bottom: .25em;
 }
 
 input,
 textarea {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: calc((var(--control-height) - var(--font-size) * 1.35)/ 2) .5em;
+
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 1px 2px rgba(2,36,102,.15) inset;
+    background-color: var(--ui-background);
+
+    text-overflow: ellipsis;
+
     font-family: var(--font-family);
     font-size: var(--font-size);
-    border: 1px solid var(--control-border-color);
-    border-radius: var(--control-border-radius);
+    line-height: 1.35;
+    letter-spacing: 0;
+}
+
+input:hover,
+textarea:hover,
+select:hover {
+    border-color: var(--border-color--hover);
+}
+
+button:focus,
+input:focus,
+textarea:focus,
+select:focus,
+a:focus,
+a:active {
+    border-color: #4A90E2;
+    box-shadow: 0 0 0 2px #ADD3FC;
+    outline: none;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"] {
+    height: var(--control-height);
+    width: 100%;
+}
+
+textarea {
+    line-height: 1.35;
+    min-height: var(--control-height);
+    width: 100%;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    height: auto;
+    margin: var(--gap--small);
 }
 
 input[readonly],
 textarea[readonly] {
     background: var(--color-warm--100);
+    box-shadow: none;
 }
 
 select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560"><path d="M480 344.2L268.9 131.9c-15.8-15.9-41.3-15.9-57.1 0 -15.8 15.9-15.8 41.6 0 57.4l237.6 238.9c8.4 8.5 19.6 12.3 30.6 11.7 11 0.6 22.2-3.2 30.6-11.7l237.6-238.9c15.8-15.9 15.8-41.6 0-57.4s-41.3-15.9-57.1 0L480 344.2z"/></svg>');
+    background-position: 100%;
+    background-size: 1.5em;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    color: currentColor;
+
+    height: 2em;
+    padding: 0 2em 0 var(--gap--small);
+    border-radius: 4px;
     border: 0;
-    box-shadow: 0 0 0 1px var(--control-border-color);
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
     font-family: var(--font-family);
+    font-size: 1em;
+}
+
+select:hover {
+    background-color: var(--color-warm--200);
+}
+
+select[disabled] {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="grey" viewBox="0 0 960 560"><path d="M480 344.2L268.9 131.9c-15.8-15.9-41.3-15.9-57.1 0 -15.8 15.9-15.8 41.6 0 57.4l237.6 238.9c8.4 8.5 19.6 12.3 30.6 11.7 11 0.6 22.2-3.2 30.6-11.7l237.6-238.9c15.8-15.9 15.8-41.6 0-57.4s-41.3-15.9-57.1 0L480 344.2z"/></svg>');
 }
 
 select[multiple] {
@@ -69,5 +144,161 @@ select[multiple] {
 }
 
 button {
+    display: inline-flex;
+    box-sizing: border-box;
+
+    height: var(--control-height);
+    padding: calc((var(--control-height) - 1em)/2 - 2px) 1.25em;
+
+    border-radius: 4px;
+    box-shadow: 0 -1px 0 0 rgba(0,0,0,0.3) inset;
+    border: 0;
+
+    background: var(--color-mono--200);
+    fill: var(--ui-color);
+    color: var(--ui-color);
+
+    font-size: 1em;
+    font-family: var(--font-family);
+    line-height: 1.25;
+    font-weight: 500;
+    letter-spacing: .01em;
     cursor: pointer;
+}
+
+button[disabled] {
+    cursor: not-allowed;
+    color: var(--color-mono--500);
+    fill: var(--color-mono--500);
+    opacity: .7;
+}
+
+button:hover {
+    background: var(--color-mono--300);
+    color: var(--ui-color);
+}
+
+/* Base Typography elements */
+
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big,
+cite, code, del, dfn, em, small, strike, strong, sub, sup, b, u, i,
+dl, dt, dd, ol, ul, li, label, legend {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    box-sizing: border-box;
+}
+
+p {
+    line-height: 1.5;
+    margin: .5em 0;
+}
+
+ul {
+    list-style-type: disc;
+}
+
+ol {
+    list-style-type: decimal;
+}
+
+li {
+    line-height: 1.5;
+    margin: 0 0 .65em 1.4em;
+    list-style-position: outside;
+}
+
+a {
+    cursor: pointer;
+    color: var(--cta-color--accent);
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+    color: var(--ui-color--secondary);
+}
+
+b {
+    font-weight: 600;
+}
+
+strong {
+    font-weight: 700;
+}
+
+time, code, pre {
+    font-family: var(--font-family--mono);
+    line-height: 1.6;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+code {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+pre {
+    white-space: pre-wrap;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1;
+    margin: 0 0 2rem;
+}
+
+h1 {
+    margin: 0 0 2rem;
+    font-size: 32px;
+    font-weight: 300;
+}
+
+h2 {
+    font-size: 25px;
+    line-height: 1;
+    font-weight: 300;
+}
+
+h3 {
+    font-size: 22px;
+    line-height: 1;
+    font-weight: 300;
+}
+
+h4 {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+h5 {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 1rem;
+}
+
+h6 {
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0 0 1rem;
+}
+
+small {
+    line-height: 1;
+    font-size: 80%;
+}
+
+big {
+    font-size: var(--font-size--large);
+}
+
+sub {
+    font-size: 70%;
+}
+
+mark {
+    background-color: var(--color-yellow--400);
+    border-radius: 2px;
+    box-shadow: 1px 0 0 var(--color-yellow--400), -1px 0 0 var(--color-yellow--400);
 }

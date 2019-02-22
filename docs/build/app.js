@@ -1,4 +1,89 @@
-(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+(function(){function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}return e})()({1:[function(require,module,exports){
+var convert = require('color-convert');
+
+module.exports = function (cstr) {
+    var m, conv, parts, alpha;
+    if (m = /^((?:rgb|hs[lv]|cmyk|xyz|lab)a?)\s*\(([^\)]*)\)/.exec(cstr)) {
+        var name = m[1];
+        var base = name.replace(/a$/, '');
+        var size = base === 'cmyk' ? 4 : 3;
+        conv = convert[base];
+        
+        parts = m[2].replace(/^\s+|\s+$/g, '')
+            .split(/\s*,\s*/)
+            .map(function (x, i) {
+                if (/%$/.test(x) && i === size) {
+                    return parseFloat(x) / 100;
+                }
+                else if (/%$/.test(x)) {
+                    return parseFloat(x);
+                }
+                return parseFloat(x);
+            })
+        ;
+        if (name === base) parts.push(1);
+        alpha = parts[size] === undefined ? 1 : parts[size];
+        parts = parts.slice(0, size);
+        
+        conv[base] = function () { return parts };
+    }
+    else if (/^#[A-Fa-f0-9]+$/.test(cstr)) {
+        var base = cstr.replace(/^#/,'');
+        var size = base.length;
+        conv = convert.rgb;
+        parts = base.split(size === 3 ? /(.)/ : /(..)/);
+        parts = parts.filter(Boolean)
+            .map(function (x) {
+                if (size === 3) {
+                    return parseInt(x + x, 16);
+                }
+                else {
+                    return parseInt(x, 16)
+                }
+            })
+        ;
+        alpha = 1;
+        conv.rgb = function () { return parts };
+        if (!parts[0]) parts[0] = 0;
+        if (!parts[1]) parts[1] = 0;
+        if (!parts[2]) parts[2] = 0;
+    }
+    else {
+        conv = convert.keyword;
+        conv.keyword = function () { return cstr };
+        parts = cstr;
+        alpha = 1;
+    }
+    
+    var res = {
+        rgb: undefined,
+        hsl: undefined,
+        hsv: undefined,
+        cmyk: undefined,
+        keyword: undefined,
+        hex: undefined
+    };
+    try { res.rgb = conv.rgb(parts) } catch (e) {}
+    try { res.hsl = conv.hsl(parts) } catch (e) {}
+    try { res.hsv = conv.hsv(parts) } catch (e) {}
+    try { res.cmyk = conv.cmyk(parts) } catch (e) {}
+    try { res.keyword = conv.keyword(parts) } catch (e) {}
+    
+    if (res.rgb) res.hex = '#' + res.rgb.map(function (x) {
+        var s = x.toString(16);
+        if (s.length === 1) return '0' + s;
+        return s;
+    }).join('');
+    
+    if (res.rgb) res.rgba = res.rgb.concat(alpha);
+    if (res.hsl) res.hsla = res.hsl.concat(alpha);
+    if (res.hsv) res.hsva = res.hsv.concat(alpha);
+    if (res.cmyk) res.cmyka = res.cmyk.concat(alpha);
+    
+    return res;
+};
+
+},{"color-convert":3}],2:[function(require,module,exports){
 /* MIT license */
 
 module.exports = {
@@ -698,7 +783,7 @@ for (var key in cssKeywords) {
   reverseKeywords[JSON.stringify(cssKeywords[key])] = key;
 }
 
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 var conversions = require("./conversions");
 
 var convert = function() {
@@ -791,92 +876,7 @@ Converter.prototype.getValues = function(space) {
 });
 
 module.exports = convert;
-},{"./conversions":1}],3:[function(require,module,exports){
-var convert = require('color-convert');
-
-module.exports = function (cstr) {
-    var m, conv, parts, alpha;
-    if (m = /^((?:rgb|hs[lv]|cmyk|xyz|lab)a?)\s*\(([^\)]*)\)/.exec(cstr)) {
-        var name = m[1];
-        var base = name.replace(/a$/, '');
-        var size = base === 'cmyk' ? 4 : 3;
-        conv = convert[base];
-        
-        parts = m[2].replace(/^\s+|\s+$/g, '')
-            .split(/\s*,\s*/)
-            .map(function (x, i) {
-                if (/%$/.test(x) && i === size) {
-                    return parseFloat(x) / 100;
-                }
-                else if (/%$/.test(x)) {
-                    return parseFloat(x);
-                }
-                return parseFloat(x);
-            })
-        ;
-        if (name === base) parts.push(1);
-        alpha = parts[size] === undefined ? 1 : parts[size];
-        parts = parts.slice(0, size);
-        
-        conv[base] = function () { return parts };
-    }
-    else if (/^#[A-Fa-f0-9]+$/.test(cstr)) {
-        var base = cstr.replace(/^#/,'');
-        var size = base.length;
-        conv = convert.rgb;
-        parts = base.split(size === 3 ? /(.)/ : /(..)/);
-        parts = parts.filter(Boolean)
-            .map(function (x) {
-                if (size === 3) {
-                    return parseInt(x + x, 16);
-                }
-                else {
-                    return parseInt(x, 16)
-                }
-            })
-        ;
-        alpha = 1;
-        conv.rgb = function () { return parts };
-        if (!parts[0]) parts[0] = 0;
-        if (!parts[1]) parts[1] = 0;
-        if (!parts[2]) parts[2] = 0;
-    }
-    else {
-        conv = convert.keyword;
-        conv.keyword = function () { return cstr };
-        parts = cstr;
-        alpha = 1;
-    }
-    
-    var res = {
-        rgb: undefined,
-        hsl: undefined,
-        hsv: undefined,
-        cmyk: undefined,
-        keyword: undefined,
-        hex: undefined
-    };
-    try { res.rgb = conv.rgb(parts) } catch (e) {}
-    try { res.hsl = conv.hsl(parts) } catch (e) {}
-    try { res.hsv = conv.hsv(parts) } catch (e) {}
-    try { res.cmyk = conv.cmyk(parts) } catch (e) {}
-    try { res.keyword = conv.keyword(parts) } catch (e) {}
-    
-    if (res.rgb) res.hex = '#' + res.rgb.map(function (x) {
-        var s = x.toString(16);
-        if (s.length === 1) return '0' + s;
-        return s;
-    }).join('');
-    
-    if (res.rgb) res.rgba = res.rgb.concat(alpha);
-    if (res.hsl) res.hsla = res.hsl.concat(alpha);
-    if (res.hsv) res.hsva = res.hsv.concat(alpha);
-    if (res.cmyk) res.cmyka = res.cmyk.concat(alpha);
-    
-    return res;
-};
-
-},{"color-convert":2}],4:[function(require,module,exports){
+},{"./conversions":2}],4:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -1063,85 +1063,6 @@ process.chdir = function (dir) {
 process.umask = function() { return 0; };
 
 },{}],5:[function(require,module,exports){
-(function (setImmediate,clearImmediate){
-var nextTick = require('process/browser.js').nextTick;
-var apply = Function.prototype.apply;
-var slice = Array.prototype.slice;
-var immediateIds = {};
-var nextImmediateId = 0;
-
-// DOM APIs, for completeness
-
-exports.setTimeout = function() {
-  return new Timeout(apply.call(setTimeout, window, arguments), clearTimeout);
-};
-exports.setInterval = function() {
-  return new Timeout(apply.call(setInterval, window, arguments), clearInterval);
-};
-exports.clearTimeout =
-exports.clearInterval = function(timeout) { timeout.close(); };
-
-function Timeout(id, clearFn) {
-  this._id = id;
-  this._clearFn = clearFn;
-}
-Timeout.prototype.unref = Timeout.prototype.ref = function() {};
-Timeout.prototype.close = function() {
-  this._clearFn.call(window, this._id);
-};
-
-// Does not start the time, just sets up the members needed.
-exports.enroll = function(item, msecs) {
-  clearTimeout(item._idleTimeoutId);
-  item._idleTimeout = msecs;
-};
-
-exports.unenroll = function(item) {
-  clearTimeout(item._idleTimeoutId);
-  item._idleTimeout = -1;
-};
-
-exports._unrefActive = exports.active = function(item) {
-  clearTimeout(item._idleTimeoutId);
-
-  var msecs = item._idleTimeout;
-  if (msecs >= 0) {
-    item._idleTimeoutId = setTimeout(function onTimeout() {
-      if (item._onTimeout)
-        item._onTimeout();
-    }, msecs);
-  }
-};
-
-// That's not how node.js implements it but the exposed api is the same.
-exports.setImmediate = typeof setImmediate === "function" ? setImmediate : function(fn) {
-  var id = nextImmediateId++;
-  var args = arguments.length < 2 ? false : slice.call(arguments, 1);
-
-  immediateIds[id] = true;
-
-  nextTick(function onNextTick() {
-    if (immediateIds[id]) {
-      // fn.call() is faster so we optimize for the common use-case
-      // @see http://jsperf.com/call-apply-segu
-      if (args) {
-        fn.apply(null, args);
-      } else {
-        fn.call(null);
-      }
-      // Prevent ids from leaking
-      exports.clearImmediate(id);
-    }
-  });
-
-  return id;
-};
-
-exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate : function(id) {
-  delete immediateIds[id];
-};
-}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":4,"timers":5}],6:[function(require,module,exports){
 var Vue // late bind
 var version
 var map = (window.__VUE_HOT_MAP__ = Object.create(null))
@@ -1181,8 +1102,6 @@ exports.install = function (vue, browserify) {
  */
 
 exports.createRecord = function (id, options) {
-  if(map[id]) { return }
-  
   var Ctor = null
   if (typeof options === 'function') {
     Ctor = options
@@ -1194,16 +1113,6 @@ exports.createRecord = function (id, options) {
     options: options,
     instances: []
   }
-}
-
-/**
- * Check if module is recorded
- *
- * @param {String} id
- */
-
-exports.isRecorded = function (id) {
-  return typeof map[id] !== 'undefined'
 }
 
 /**
@@ -1383,113 +1292,11 @@ exports.reload = tryWrap(function (id, options) {
   })
 })
 
-},{}],7:[function(require,module,exports){
-var inserted = exports.cache = {}
-
-function noop () {}
-
-exports.insert = function (css) {
-  if (inserted[css]) return noop
-  inserted[css] = true
-
-  var elem = document.createElement('style')
-  elem.setAttribute('type', 'text/css')
-
-  if ('textContent' in elem) {
-    elem.textContent = css
-  } else {
-    elem.styleSheet.cssText = css
-  }
-
-  document.getElementsByTagName('head')[0].appendChild(elem)
-  return function () {
-    document.getElementsByTagName('head')[0].removeChild(elem)
-    inserted[css] = false
-  }
-}
-
-},{}],8:[function(require,module,exports){
-var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("@import \"https://fonts.googleapis.com/css?family=Libre+Franklin:100,200,300,400,500,600,700\";\n@import \"https://universalbasket.github.io/css/static/fa/css/fontawesome-all.css\";\n/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe, img, ins, kbd, q, s, samp, tt, var,\nfieldset, form, table, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n    margin: 0;\n    padding: 0;\n    border: 0;\n    vertical-align: baseline;\n    box-sizing: border-box;\n}\narticle, aside, footer, header, section {\n    display: block;\n}\ninput, textarea, button, select {\n    font: inherit;\n}\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n    display: block;\n}\nblockquote, q {\n    quotes: none;\n}\nblockquote:before, blockquote:after,\nq:before, q:after {\n    content: '';\n    content: none;\n}\n:root {\n\n    /* Typography */\n\n    --font-family: 'Libre Franklin', Helvetica, Arial, sans-serif;\n    --font-weight: 400;\n    --font-size: 12px;\n    --font-size--small: 10px;\n\n    --font-family--mono: 'Menlo', monospace;\n    --font-weight--mono: normal;\n    --font-size--mono: 11px;\n\n    /* Gaps */\n\n    --gap: 10px;\n    --gap--small: 5px;\n    --gap--large: 20px;\n\n    /* Base components */\n\n    --control-height: 2em;\n    --control-height--small: 1.75em;\n    --control-border-radius: 2px;\n    --control-border-color: rgba(0,0,0,0.1);\n\n    --badge-height: 21px;\n\n    --body-color: var(--color-mono--800);\n    --body-background: #fff;\n\n    /* UI Colours */\n\n    --ui-primary: var(--color-blue--500);\n    --ui-primary--inverse: #fff;\n\n    --ui-secondary: var(--color-cool--500);\n    --ui-secondary--inverse: #fff;\n\n    --ui-info: var(--color-blue--500);\n    --ui-info--inverse: #fff;\n\n    --ui-success: var(--color-green--500);\n    --ui-success--inverse: #fff;\n\n    --ui-warning: var(--color-yellow--500);\n    --ui-warning--inverse: #fff;\n\n    --ui-failure: var(--color-red--500);\n    --ui-failure--inverse: #fff;\n\n    --ui-production: var(--color-brand-red--500);\n    --ui-production--inverse: #fff;\n\n    --ui-staging: #829F59;\n    --ui-staging--inverse: #fff;\n\n    /* Color Palette */\n\n    --color-mono--000: #FCFCFC;\n    --color-mono--100: #F5F5F5;\n    --color-mono--200: #EDEDED;\n    --color-mono--300: #DBDBDB;\n    --color-mono--400: #C2C2C2;\n    --color-mono--500: #787878;\n    --color-mono--600: #4F4F4F;\n    --color-mono--700: #383838;\n    --color-mono--800: #262626;\n    --color-mono--900: #121212;\n\n    --color-warm--000: #FCFCFA;\n    --color-warm--100: #f7f7f5;\n    --color-warm--200: #F2F2ED;\n    --color-warm--300: #DEDED7;\n    --color-warm--400: #C7C7C1;\n    --color-warm--500: #808075;\n    --color-warm--600: #525245;\n    --color-warm--700: #33332B;\n    --color-warm--800: #1F1F1C;\n    --color-warm--900: #0D0D09;\n\n    --color-cool--000: #FAFBFC;\n    --color-cool--100: #F5F7FA;\n    --color-cool--200: #EBF0F5;\n    --color-cool--300: #D5DFE8;\n    --color-cool--400: #B8C8D9;\n    --color-cool--500: #6A7F94;\n    --color-cool--600: #364554;\n    --color-cool--700: #26303B;\n    --color-cool--800: #192129;\n    --color-cool--900: #090C0F;\n\n    --color-blue--000: #F5F9FA;\n    --color-blue--100: #EDF7FA;\n    --color-blue--200: #DFF1F7;\n    --color-blue--300: #C5E2ED;\n    --color-blue--400: #A0CCDE;\n    --color-blue--500: #489CC7;\n    --color-blue--600: #327FA6;\n    --color-blue--700: #1C6285;\n    --color-blue--800: #185370;\n    --color-blue--900: #124057;\n\n    --color-green--000: #F5FAF7;\n    --color-green--100: #F0FAF5;\n    --color-green--200: #E4F5EB;\n    --color-green--300: #CFE6D9;\n    --color-green--400: #AED1BE;\n    --color-green--500: #6BA360;\n    --color-green--600: #548C54;\n    --color-green--700: #396B3F;\n    --color-green--800: #2E5726;\n    --color-green--900: #23421D;\n\n    --color-yellow--000: #FFFFF2;\n    --color-yellow--100: #FFFFD9;\n    --color-yellow--200: #FFFAB3;\n    --color-yellow--300: #FFEE80;\n    --color-yellow--400: #FFDE59;\n    --color-yellow--500: #FFBB00;\n    --color-yellow--600: #E69900;\n    --color-yellow--700: #B36B00;\n    --color-yellow--800: #8C4B00;\n    --color-yellow--900: #663000;\n\n    --color-red--000: #FCFAFA;\n    --color-red--100: #FAF5F5;\n    --color-red--200: #F7EBEB;\n    --color-red--300: #F0D1D2;\n    --color-red--400: #F0B4B6;\n    --color-red--500: #D95559;\n    --color-red--600: #B3393D;\n    --color-red--700: #802629;\n    --color-red--800: #661A1C;\n    --color-red--900: #4D1315;\n\n    --color-brand-red--000: #FFFAFA;\n    --color-brand-red--100: #FFF5F5;\n    --color-brand-red--200: #FFEDEE;\n    --color-brand-red--300: #FFD6D8;\n    --color-brand-red--400: #FFB3B5;\n    --color-brand-red--500: #FF5A5F;\n    --color-brand-red--600: #E6353B;\n    --color-brand-red--700: #C72227;\n    --color-brand-red--800: #A12024;\n    --color-brand-red--900: #871B1F;\n\n    --color-brand-blue--000: #F7FEFF;\n    --color-brand-blue--100: #F0FDFF;\n    --color-brand-blue--200: #E1F7FA;\n    --color-brand-blue--300: #C2EAF0;\n    --color-brand-blue--400: #9DD9E0;\n    --color-brand-blue--500: #27B9CC;\n    --color-brand-blue--600: #0C8999;\n    --color-brand-blue--700: #0D626E;\n    --color-brand-blue--800: #09545E;\n    --color-brand-blue--900: #073E45;\n\n}\nh1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big,\ncite, code, del, dfn, em, small, strike, strong, sub, sup, b, u, i,\ndl, dt, dd, ol, ul, li, label, legend {\n    margin: 0;\n    padding: 0;\n    border: 0;\n    vertical-align: baseline;\n    box-sizing: border-box;\n}\np {\n    margin: var(--gap) 0;\n    font-size: 12px;\n    line-height: 1.35;\n}\na {\n    cursor: pointer;\n    color: var(--ui-primary);\n    text-decoration: none;\n}\na:hover {\n    text-decoration: none;\n}\np a {\n    color: var(--ui-prod);\n    text-decoration: underline;\n}\nb {\n    font-weight: 700;\n}\nstrong {\n    font-weight: 500;\n}\nh1 {\n    font-size: 26px;\n    line-height: 1;\n    font-weight: 100;\n    margin: var(--gap--large) 0;\n}\nh2 {\n    font-size: 21px;\n    line-height: 1;\n    font-weight: 200;\n    margin: var(--gap--large) 0;\n}\nh3 {\n    font-size: 18px;\n    line-height: 1;\n    font-weight: 300;\n    margin: var(--gap--large) 0 var(--gap);\n}\nh4 {\n    font-size: 13px;\n    line-height: 1;\n    font-weight: 400;\n    margin: var(--gap--large) 0 var(--gap);\n    color: var(--color-cool--500);\n    text-transform: uppercase;\n}\nh5 {\n    font-size: 130%;\n    line-height: 1.5;\n    font-weight: 400;\n    margin: var(--gap) 0;\n}\nh6 {\n    font-size: 12px;\n    line-height: 1.25;\n    font-weight: 400;\n    margin: var(--gap) 0;\n    text-transform: uppercase;\n    color: var(--color-cool--500);\n}\nsmall {\n    line-height: 1;\n    font-size: 80%;\n}\nhtml, body {\n    height: 100%;\n}\nbody {\n    font-family: var(--font-family);\n    font-size: var(--font-size);\n    line-height: 1;\n    background: var(--body-background);\n    color: var(--body-color);\n}\nol, ul {\n    list-style: none;\n}\nhr {\n    margin: var(--gap) 0;\n    border: 1px dashed var(--color-warm--300);\n    border-width: 1px 0 0 0;\n}\ntable {\n    border-collapse: collapse;\n    border-spacing: 0;\n}\ntime, code, pre {\n    font-family: var(--font-family--mono);\n    font-size: var(--font-size--mono);\n    line-height: var(--font__line-height--mono);\n    word-wrap: break-word;\n    word-break: break-word;\n}\nimg {\n    max-width: 100%;\n}\ninput[type=\"radio\"],\ninput[type=\"checkbox\"] {\n    display: inline-block;\n    height: auto;\n    vertical-align: middle;\n    margin: 0;\n}\ninput,\ntextarea {\n    font-family: var(--font-family);\n    font-size: var(--font-size);\n    border: 1px solid var(--control-border-color);\n    border-radius: var(--control-border-radius);\n}\ninput[readonly],\ntextarea[readonly] {\n    background: var(--color-warm--100);\n}\nselect {\n    border: 0;\n    box-shadow: 0 0 0 1px var(--control-border-color);\n    font-family: var(--font-family);\n}\nselect[multiple] {\n    height: auto;\n}\nbutton {\n    cursor: pointer;\n}\n.button {\n    display: inline-flex;\n    align-items: center;\n    align-self: center;\n\n    box-sizing: border-box;\n    height: var(--control-height);\n    padding: 0 var(--gap);\n\n    border-radius: var(--control-border-radius);\n    border: 1px solid rgba(0,0,0,0.1);\n    background: transparent;\n    color: inherit;\n\n    font-size: var(--font-size);\n    font-family: var(--font-family);\n\n    line-height: 1;\n    text-decoration: none;\n    text-align: center;\n    letter-spacing: 0.025em;\n    white-space: nowrap;\n\n    cursor: pointer;\n}\n.button:hover {\n    text-decoration: none;\n}\n.button--active, .button:active {\n    box-shadow: 0 3px 8px rgba(0,0,0,.2) inset;\n    border-color: rgba(0,0,0,.2);\n}\n.button__icon {\n    color: inherit;\n    margin-right: var(--gap--small);\n    text-align: center;\n}\n/* Sizes */\n.button--small {\n    height: var(--control-height--small);\n    padding: 2px 4px;\n    font-size: var(--font-size--small);\n}\n.button--large {\n    font-size: 18px;\n    padding: 8px 15px;\n    border-radius: calc(var(--control-border-radius) * 1.5);\n}\n/* Colors */\n.button--primary {\n    background: var(--ui-primary);\n    color: var(--ui-primary--inverse);\n}\n.button--secondary {\n    background: var(--ui-secondary);\n    color: var(--ui-secondary--inverse);\n}\n.button--outlined-primary {\n    color: var(--ui-primary);\n    border: 1px solid var(--ui-primary);\n    background: #fff;\n}\n.button--outlined-secondary {\n    color: var(--ui-secondary);\n    border: 1px solid var(--ui-secondary);\n    background: #fff;\n}\n/* Disabled */\n.button[disabled] {\n    background: var(--color-mono--400);\n    color: #fff;\n    cursor: not-allowed;\n    pointer-events: none;\n}\n.input {\n    display: inline-flex;\n    box-sizing: border-box;\n    padding: 0 var(--gap--small);\n    height: var(--control-height);\n    border-radius: var(--control-border-radius);\n    border: 1px solid rgba(0,0,0,0.1);\n    box-shadow: none;\n\n    font-family: var(--font-family);\n    font-size: var(--font-size);\n    line-height: 1;\n    letter-spacing: 0.025em;\n\n    cursor: pointer;\n}\n.input--block {\n    display: block;\n    width: 100%;\n}\n.input[disabled] {\n    opacity: 0.5;\n    cursor: not-allowed;\n    pointer-events: none;\n}\n.input--small {\n    height: var(--control-height--small);\n    padding: 2px 4px;\n    font-size: var(--font-size--small);\n}\ntextarea.input {\n    height: auto;\n    line-height: 1.35;\n}\n.group {\n    display: inline-flex;\n    align-items: center;\n    flex-wrap: nowrap;\n}\n.group--block {\n    display: flex;\n}\n.group--gap > * + * {\n    margin-left: var(--gap);\n}\n.group--gap-small > * + * {\n    margin-left: var(--gap--small);\n}\n.group--merged {\n    flex-wrap: nowrap;\n    align-items: stretch;\n    white-space: nowrap;\n}\n.group--merged > *:not(:last-child) {\n    border-top-right-radius: 0;\n    border-bottom-right-radius: 0;\n}\n.group--merged > * + * {\n    margin-left: -1px;\n    border-top-left-radius: 0;\n    border-bottom-left-radius: 0;\n}\n.group--separated {\n    display: flex;\n    justify-content: space-between;\n}\n.block {\n    margin: var(--gap) 0;\n}\n.block--small {\n    margin: var(--gap--small) 0;\n}\n.block--large {\n    margin: var(--gap--large) 0;\n}\n.tabs {\n    --slider-size: 2px;\n\n    display: flex;\n    align-items: baseline;\n    list-style: none;\n    border-bottom: var(--slider-size) solid var(--color-warm--100);\n    margin: 0;\n}\n.tabs__item {\n    position: relative;\n    top: var(--slider-size);\n    padding: var(--gap);\n    margin: 0 var(--gap--small) 0 0;\n    border-bottom: var(--slider-size) solid var(--color-warm--100);\n    color: inherit;\n    font-size: 13px;\n    font-weight: 300;\n    text-decoration: none;\n}\n.tabs__item:after {\n    content: '';\n    position: absolute;\n    display: block;\n    bottom: calc(-1 * var(--slider-size));\n    left: 0;\n    height: var(--slider-size);\n    width: 0%;\n    background: transparent;\n    border-radius: var(--slider-size);\n    transition: width 0.4s;\n}\n.tabs__item--active {\n    font-weight: 500;\n}\n.tabs__item--active:after {\n    background: var(--ui-primary);\n    width: 100%;\n}\n.tab {\n    padding: var(--gap);\n}\n.badge {\n    display: inline-block;\n    padding: 4px;\n    height: var(--badge-height);\n    box-sizing: border-box;\n    border-radius: var(--control-border-radius);\n\n    text-align: center;\n    white-space: nowrap;\n    font-size: 10px;\n}\n.badge--round {\n    min-width: 2em;\n    padding: 4px 6px;\n    border-radius: 2em;\n}\n.badge--info {\n    background: var(--ui-info);\n    color: var(--ui-info--inverse);\n}\n.badge--success {\n    background: var(--ui-success);\n    color: var(--ui-success--inverse);\n}\n.badge--warning {\n    background: var(--ui-warning);\n    color: var(--ui-warning--inverse);\n}\n.badge--failure {\n    background: var(--ui-failure);\n    color: var(--ui-failure--inverse);\n}\n.badge--outlined-info {\n    box-shadow: 0 0 0 1px var(--ui-info) inset;\n    color: var(--ui-info);\n    background: transparent;\n}\n.badge--outlined-success {\n    box-shadow: 0 0 0 1px var(--ui-success) inset;\n    color: var(--ui-success);\n    background: transparent;\n}\n.badge--outlined-warning {\n    box-shadow: 0 0 0 1px var(--ui-warning) inset;\n    color: var(--ui-warning);\n    background: transparent;\n}\n.badge--outlined-failure {\n    box-shadow: 0 0 0 1px var(--ui-failure) inset;\n    color: var(--ui-failure);\n    background: transparent;\n}\n.badge--staging {\n    background: var(--ui-staging);\n    color: var(--ui-staging--inverse);\n}\n.badge--production {\n    background: var(--ui-production);\n    color: var(--ui-production--inverse);\n}\nbody, html {\n    height: 100%;\n}\n:root {\n    --app-nav-bg: var(--color-cool--800);\n    --app-nav-color: #fff;\n    --app-highlight: #27B9CC;\n    --app-highlight--inverse: white;\n}\n.app {\n    display: flex;\n    height: 100%;\n}\n.app__navigation {\n    --nav-size: 140px;\n    display: flex;\n    flex-direction: column;\n    background: var(--app-nav-bg);\n    color: var(--app-nav-color);\n    padding: 0;\n}\n.app__navigation--expanded {\n    min-width: var(--nav-size);\n}\n.app__title {\n    display: block;\n    font-size: 16px;\n    position: fixed;\n    bottom: var(--gap);\n    left: 0;\n    height: 160px;\n    line-height: 44px;\n    transform: rotate(-90deg);\n    margin: 0;\n    padding: 0;\n    color: var(--ui-secondary);\n    pointer-events: none;\n}\n.app__logo {\n    --logo-size: 24px;\n    display: inline-block;\n    vertical-align: baseline;\n    margin-right: 2px;\n    width: var(--logo-size);\n    margin: var(--gap);\n    cursor: pointer;\n}\n.app__logo--zoomed {\n    width: calc(var(--logo-size) * 1.5);\n}\n.app__menu {\n    display: flex;\n    align-items: flex-start;\n    flex-direction: column;\n    flex: 1;\n    font-size: 14px;\n    line-height: 1.5;\n    text-transform: capitalize;\n}\n.app__menu-item {\n    color: currentColor;\n    padding: var(--gap);\n    width: 100%;\n}\n.app__menu-item--active {\n    color: var(--app-highlight);\n    position: relative;\n}\n.app__menu-item--active:after {\n    --arrow-size: 4px;\n    position: absolute;\n    right: 6px;\n    top: 50%;\n    margin-top: calc(-.5 * var(--arrow-size));\n    content: '';\n    display: block;\n    width: var(--arrow-size);\n    height: var(--arrow-size);\n    border-radius: var(--arrow-size);\n    background: var(--app-highlight);\n}\n.app__menu-icon {\n    width: 20px;\n    margin: 0 2px;\n    text-align: center;\n}\n.app__container {\n    display: flex;\n    flex-wrap: wrap;\n    background: #fff;\n    margin: 0 auto;\n    height: 100%;\n    overflow: auto;\n    border-left: var;\n}\n@media (min-width: 960px) {\n    .app__container {\n        /*width: 720px;*/\n    }\n}\n.section {\n    --bookmark-size: 27px;\n    margin: 0;\n    width: 100%;\n    display: flex;\n    border-top: 1px dashed var(--color-warm--300);\n    min-height: 140px;\n}\n.section:first-child {\n    border-top: 0;\n}\n.section--active {\n    --marker-size: 35px;\n    background: #fff;\n    position: relative;\n}\n.section__title {\n    display: block;\n    background: var(--color-warm--100);\n    color: var(--app-nav-bg);\n    position: relative;\n    padding: var(--gap);\n    margin: 0;\n    padding: 0;\n    line-height: var(--bookmark-size);\n}\n.section__title--active {\n    background: var(--app-highlight);\n    color: var(--app-highlight--inverse);\n}\n.section__title-icon {\n    --icon-size: var(--bookmark-size);\n    font-size: 16px;\n    width: var(--icon-size);\n    height: var(--icon-size);\n    line-height: var(--icon-size);\n    text-align: center;\n}\n.section__title-label {\n    display: inline-block;\n    transform: rotate(-90deg);\n    position: absolute;\n    bottom: 0;\n    width: var(--bookmark-size);\n    line-height: 40px;\n    font-size: 13px;\n    font-weight: 300;\n    text-transform: uppercase;\n}\n.section__body {\n    padding: var(--gap) var(--gap--large) var(--gap--large);\n    width: calc(100% - var(--bookmark-size));\n    box-sizing: border-box;\n}\n.section__table {\n    width: 100%;\n}\n.section__table th,\n.section__table td {\n    border: 1px solid #fff;\n    padding: var(--gap--small) var(--gap);\n    text-align: left;\n}\n.section__table th {\n    background: var(--ui-secondary--inverse);\n    color: #fff;\n    font-family: var(--font-family--mono);\n    font-weight: 300;\n}\n.section__table td {\n    background: var(--color-warm--100);\n}\n.brand-pallette {\n    display: flex;\n    flex-direction: column;\n    position: fixed;\n    z-index: 1;\n    right: 0;\n    top: 0;\n    margin: var(--gap);\n}\n.brand-pallette__swatch {\n    --brand-swatch__size: 40px;\n    display: block;\n    height: var(--brand-swatch__size);\n    width: calc(var(--brand-swatch__size) / 3);\n}\n.brand-pallette__swatch--core { background: #27B9CC; }\n.brand-pallette__swatch--primary { background: #FF5A5F; }\n.brand-pallette__swatch--complimentary { background: #D6D6D0; }\n.brand-pallette__swatch--tertiary-medium { background: #628395; }\n.brand-pallette__swatch--tertiary-dark { background: #424B54; }\n.brand-pallette__swatch--mono-white { background: #fff; }\n.brand-pallette__swatch--mono-gray { background: #ccc; }\n.brand-pallette__swatch--mono-black { background: #000; }")
-;(function(){
-
-
-module.exports = {
-    data() {
-        return {
-            menu: ['colours', 'typography', 'badges', 'controls', 'layout', 'tools'],
-            activeMenuItem: window.location.hash.replace('#', ''),
-            menuExpanded: false
-        };
-    },
-
-    created() {
-        this.$nextTick(() => this.scrollToActive());
-    },
-
-    watch: {
-        activeMenuItem(hash) {
-            if (hash) {
-                this.scrollToActive();
-            }
-        }
-    },
-
-    methods: {
-        scrollToActive() {
-            if (!this.activeMenuItem) {
-                return;
-            }
-
-            try {
-                const el = this.$el.querySelector('#' + this.activeMenuItem);
-                if (el) {
-                    el.scrollIntoViewIfNeeded();
-                }
-            } catch (err) {}
-        }
-    },
-
-    components: {
-        'section-colours': require('./section-colours.vue'),
-        'section-typography': require('./section-typography.vue'),
-        'section-controls': require('./section-controls.vue'),
-        'section-layout': require('./section-layout.vue'),
-        'section-badges': require('./section-badges.vue'),
-        'section-tools': require('./tools/index.vue')
-    }
-};
-})()
-if (module.exports.__esModule) module.exports = module.exports.default
-var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
-if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"app"},[_c('nav',{staticClass:"app__navigation",class:{
-            'app__navigation--expanded': _vm.menuExpanded,
-            'app__navigation--collapsed': !_vm.menuExpanded,
-        }},[_vm._m(0),_vm._v(" "),_c('menu',{staticClass:"app__menu"},[_c('img',{staticClass:"app__logo",class:{ 'app__logo--zoomed': _vm.menuExpanded},attrs:{"src":"./img/ubio-logo--white.png","alt":"ubio"},on:{"click":function($event){_vm.menuExpanded = !_vm.menuExpanded}}}),_vm._v(" "),_vm._l((_vm.menu),function(item){return _c('a',{staticClass:"app__menu-item",class:{ 'app__menu-item--active': item === _vm.activeMenuItem },attrs:{"href":'#' + item},on:{"click":function($event){_vm.activeMenuItem = item}}},[_c('i',{staticClass:"fa app__menu-icon",class:{
-                    'fa-paint-brush': item === 'colours',
-                    'fa-font': item === 'typography',
-                    'fa-tag': item === 'badges',
-                    'fa-gamepad': item === 'controls',
-                    'fa-columns': item === 'layout',
-                    'fa-wrench': item === 'tools',
-                }}),_vm._v(" "),(_vm.menuExpanded)?_c('span',[_vm._v(_vm._s(item))]):_vm._e()])})],2)]),_vm._v(" "),_c('div',{staticClass:"app__container"},[_c('section-colours',{attrs:{"active-item":_vm.activeMenuItem}}),_vm._v(" "),_c('section-typography',{attrs:{"active-item":_vm.activeMenuItem}}),_vm._v(" "),_c('section-badges',{attrs:{"active-item":_vm.activeMenuItem}}),_vm._v(" "),_c('section-controls',{attrs:{"active-item":_vm.activeMenuItem}}),_vm._v(" "),_c('section-layout',{attrs:{"active-item":_vm.activeMenuItem}}),_vm._v(" "),_c('section-tools',{attrs:{"active-item":_vm.activeMenuItem}})],1),_vm._v(" "),_vm._m(1)])}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('h1',{staticClass:"app__title"},[_c('b',[_vm._v("UBIO")]),_vm._v(" "),_c('span',[_vm._v("CSS Framework")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"brand-pallette"},[_c('li',[_c('a',{staticClass:"brand-pallette__swatch brand-pallette__swatch--core",attrs:{"title":"base/core colour"}})]),_vm._v(" "),_c('li',[_c('a',{staticClass:"brand-pallette__swatch brand-pallette__swatch--primary",attrs:{"title":"primary contrast"}})]),_vm._v(" "),_c('li',[_c('a',{staticClass:"brand-pallette__swatch brand-pallette__swatch--complimentary",attrs:{"title":"complimentary"}})]),_vm._v(" "),_c('li',[_c('a',{staticClass:"brand-pallette__swatch brand-pallette__swatch--tertiary-medium",attrs:{"title":"tertiary medium"}})]),_vm._v(" "),_c('li',[_c('a',{staticClass:"brand-pallette__swatch brand-pallette__swatch--tertiary-dark",attrs:{"title":"tertiary dark"}})]),_vm._v(" "),_c('li',[_c('a',{staticClass:"brand-pallette__swatch brand-pallette__swatch--mono-white",attrs:{"title":"mono white"}})]),_vm._v(" "),_c('li',[_c('a',{staticClass:"brand-pallette__swatch brand-pallette__swatch--mono-gray",attrs:{"title":"mono gray"}})]),_vm._v(" "),_c('li',[_c('a',{staticClass:"brand-pallette__swatch brand-pallette__swatch--mono-black",attrs:{"title":"mono black"}})])])}]
-if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  module.hot.dispose(__vueify_style_dispose__)
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4226694e", __vue__options__)
-  } else {
-    hotAPI.reload("data-v-4226694e", __vue__options__)
-  }
-})()}
-},{"./section-badges.vue":10,"./section-colours.vue":11,"./section-controls.vue":12,"./section-layout.vue":13,"./section-typography.vue":14,"./tools/index.vue":17,"vue":9,"vue-hot-reload-api":6,"vueify/lib/insert-css":7}],9:[function(require,module,exports){
-(function (process,global,setImmediate){
+},{}],6:[function(require,module,exports){
+(function (process,global){
 /*!
- * Vue.js v2.5.16
- * (c) 2014-2018 Evan You
+ * Vue.js v2.5.13
+ * (c) 2014-2017 Evan You
  * Released under the MIT License.
  */
 'use strict';
@@ -1670,15 +1477,9 @@ var hyphenate = cached(function (str) {
 });
 
 /**
- * Simple bind polyfill for environments that do not support it... e.g.
- * PhantomJS 1.x. Technically we don't need this anymore since native bind is
- * now more performant in most browsers, but removing it would be breaking for
- * code that was able to run in PhantomJS 1.x, so this must be kept for
- * backwards compatibility.
+ * Simple bind, faster than native
  */
-
-/* istanbul ignore next */
-function polyfillBind (fn, ctx) {
+function bind (fn, ctx) {
   function boundFn (a) {
     var l = arguments.length;
     return l
@@ -1687,18 +1488,10 @@ function polyfillBind (fn, ctx) {
         : fn.call(ctx, a)
       : fn.call(ctx)
   }
-
+  // record original fn length
   boundFn._length = fn.length;
   return boundFn
 }
-
-function nativeBind (fn, ctx) {
-  return fn.bind(ctx)
-}
-
-var bind = Function.prototype.bind
-  ? nativeBind
-  : polyfillBind;
 
 /**
  * Convert an Array-like object to a real Array.
@@ -1925,7 +1718,7 @@ var config = ({
    * Exposed for legacy reasons
    */
   _lifecycleHooks: LIFECYCLE_HOOKS
-})
+});
 
 /*  */
 
@@ -1969,6 +1762,7 @@ function parsePath (path) {
 
 /*  */
 
+
 // can we use __proto__?
 var hasProto = '__proto__' in {};
 
@@ -2007,7 +1801,7 @@ var _isServer;
 var isServerRendering = function () {
   if (_isServer === undefined) {
     /* istanbul ignore if */
-    if (!inBrowser && !inWeex && typeof global !== 'undefined') {
+    if (!inBrowser && typeof global !== 'undefined') {
       // detect presence of vue-server-renderer and avoid
       // Webpack shimming the process
       _isServer = global['process'].env.VUE_ENV === 'server';
@@ -2152,14 +1946,14 @@ if (process.env.NODE_ENV !== 'production') {
 /*  */
 
 
-var uid = 0;
+var uid$1 = 0;
 
 /**
  * A dep is an observable that can have multiple
  * directives subscribing to it.
  */
 var Dep = function Dep () {
-  this.id = uid++;
+  this.id = uid$1++;
   this.subs = [];
 };
 
@@ -2264,7 +2058,8 @@ function createTextVNode (val) {
 // used for static nodes and slot nodes because they may be reused across
 // multiple renders, cloning them avoids errors when DOM manipulations rely
 // on their elm reference.
-function cloneVNode (vnode) {
+function cloneVNode (vnode, deep) {
+  var componentOptions = vnode.componentOptions;
   var cloned = new VNode(
     vnode.tag,
     vnode.data,
@@ -2272,7 +2067,7 @@ function cloneVNode (vnode) {
     vnode.text,
     vnode.elm,
     vnode.context,
-    vnode.componentOptions,
+    componentOptions,
     vnode.asyncFactory
   );
   cloned.ns = vnode.ns;
@@ -2283,7 +2078,24 @@ function cloneVNode (vnode) {
   cloned.fnOptions = vnode.fnOptions;
   cloned.fnScopeId = vnode.fnScopeId;
   cloned.isCloned = true;
+  if (deep) {
+    if (vnode.children) {
+      cloned.children = cloneVNodes(vnode.children, true);
+    }
+    if (componentOptions && componentOptions.children) {
+      componentOptions.children = cloneVNodes(componentOptions.children, true);
+    }
+  }
   return cloned
+}
+
+function cloneVNodes (vnodes, deep) {
+  var len = vnodes.length;
+  var res = new Array(len);
+  for (var i = 0; i < len; i++) {
+    res[i] = cloneVNode(vnodes[i], deep);
+  }
+  return res
 }
 
 /*
@@ -2292,9 +2104,7 @@ function cloneVNode (vnode) {
  */
 
 var arrayProto = Array.prototype;
-var arrayMethods = Object.create(arrayProto);
-
-var methodsToPatch = [
+var arrayMethods = Object.create(arrayProto);[
   'push',
   'pop',
   'shift',
@@ -2302,12 +2112,7 @@ var methodsToPatch = [
   'splice',
   'sort',
   'reverse'
-];
-
-/**
- * Intercept mutating methods and emit events
- */
-methodsToPatch.forEach(function (method) {
+].forEach(function (method) {
   // cache original method
   var original = arrayProto[method];
   def(arrayMethods, method, function mutator () {
@@ -2338,20 +2143,20 @@ methodsToPatch.forEach(function (method) {
 var arrayKeys = Object.getOwnPropertyNames(arrayMethods);
 
 /**
- * In some cases we may want to disable observation inside a component's
- * update computation.
+ * By default, when a reactive property is set, the new value is
+ * also converted to become reactive. However when passing down props,
+ * we don't want to force conversion because the value may be a nested value
+ * under a frozen data structure. Converting it would defeat the optimization.
  */
-var shouldObserve = true;
-
-function toggleObserving (value) {
-  shouldObserve = value;
-}
+var observerState = {
+  shouldConvert: true
+};
 
 /**
- * Observer class that is attached to each observed
- * object. Once attached, the observer converts the target
+ * Observer class that are attached to each observed
+ * object. Once attached, the observer converts target
  * object's property keys into getter/setters that
- * collect dependencies and dispatch updates.
+ * collect dependencies and dispatches updates.
  */
 var Observer = function Observer (value) {
   this.value = value;
@@ -2377,7 +2182,7 @@ var Observer = function Observer (value) {
 Observer.prototype.walk = function walk (obj) {
   var keys = Object.keys(obj);
   for (var i = 0; i < keys.length; i++) {
-    defineReactive(obj, keys[i]);
+    defineReactive(obj, keys[i], obj[keys[i]]);
   }
 };
 
@@ -2427,7 +2232,7 @@ function observe (value, asRootData) {
   if (hasOwn(value, '__ob__') && value.__ob__ instanceof Observer) {
     ob = value.__ob__;
   } else if (
-    shouldObserve &&
+    observerState.shouldConvert &&
     !isServerRendering() &&
     (Array.isArray(value) || isPlainObject(value)) &&
     Object.isExtensible(value) &&
@@ -2460,9 +2265,6 @@ function defineReactive (
 
   // cater for pre-defined getter/setters
   var getter = property && property.get;
-  if (!getter && arguments.length === 2) {
-    val = obj[key];
-  }
   var setter = property && property.set;
 
   var childOb = !shallow && observe(val);
@@ -2509,11 +2311,6 @@ function defineReactive (
  * already exist.
  */
 function set (target, key, val) {
-  if (process.env.NODE_ENV !== 'production' &&
-    (isUndef(target) || isPrimitive(target))
-  ) {
-    warn(("Cannot set reactive property on undefined, null, or primitive value: " + ((target))));
-  }
   if (Array.isArray(target) && isValidArrayIndex(key)) {
     target.length = Math.max(target.length, key);
     target.splice(key, 1, val);
@@ -2544,11 +2341,6 @@ function set (target, key, val) {
  * Delete a property and trigger change if necessary.
  */
 function del (target, key) {
-  if (process.env.NODE_ENV !== 'production' &&
-    (isUndef(target) || isPrimitive(target))
-  ) {
-    warn(("Cannot delete reactive property on undefined, null, or primitive value: " + ((target))));
-  }
   if (Array.isArray(target) && isValidArrayIndex(key)) {
     target.splice(key, 1);
     return
@@ -3015,18 +2807,12 @@ function validateProp (
   var prop = propOptions[key];
   var absent = !hasOwn(propsData, key);
   var value = propsData[key];
-  // boolean casting
-  var booleanIndex = getTypeIndex(Boolean, prop.type);
-  if (booleanIndex > -1) {
+  // handle boolean props
+  if (isType(Boolean, prop.type)) {
     if (absent && !hasOwn(prop, 'default')) {
       value = false;
-    } else if (value === '' || value === hyphenate(key)) {
-      // only cast empty string / same name to boolean if
-      // boolean has higher priority
-      var stringIndex = getTypeIndex(String, prop.type);
-      if (stringIndex < 0 || booleanIndex < stringIndex) {
-        value = true;
-      }
+    } else if (!isType(String, prop.type) && (value === '' || value === hyphenate(key))) {
+      value = true;
     }
   }
   // check default value
@@ -3034,10 +2820,10 @@ function validateProp (
     value = getPropDefaultValue(vm, prop, key);
     // since the default value is a fresh copy,
     // make sure to observe it.
-    var prevShouldObserve = shouldObserve;
-    toggleObserving(true);
+    var prevShouldConvert = observerState.shouldConvert;
+    observerState.shouldConvert = true;
     observe(value);
-    toggleObserving(prevShouldObserve);
+    observerState.shouldConvert = prevShouldConvert;
   }
   if (
     process.env.NODE_ENV !== 'production' &&
@@ -3170,20 +2956,17 @@ function getType (fn) {
   return match ? match[1] : ''
 }
 
-function isSameType (a, b) {
-  return getType(a) === getType(b)
-}
-
-function getTypeIndex (type, expectedTypes) {
-  if (!Array.isArray(expectedTypes)) {
-    return isSameType(expectedTypes, type) ? 0 : -1
+function isType (type, fn) {
+  if (!Array.isArray(fn)) {
+    return getType(fn) === getType(type)
   }
-  for (var i = 0, len = expectedTypes.length; i < len; i++) {
-    if (isSameType(expectedTypes[i], type)) {
-      return i
+  for (var i = 0, len = fn.length; i < len; i++) {
+    if (getType(fn[i]) === getType(type)) {
+      return true
     }
   }
-  return -1
+  /* istanbul ignore next */
+  return false
 }
 
 /*  */
@@ -3246,19 +3029,19 @@ function flushCallbacks () {
   }
 }
 
-// Here we have async deferring wrappers using both microtasks and (macro) tasks.
-// In < 2.4 we used microtasks everywhere, but there are some scenarios where
-// microtasks have too high a priority and fire in between supposedly
+// Here we have async deferring wrappers using both micro and macro tasks.
+// In < 2.4 we used micro tasks everywhere, but there are some scenarios where
+// micro tasks have too high a priority and fires in between supposedly
 // sequential events (e.g. #4521, #6690) or even between bubbling of the same
-// event (#6566). However, using (macro) tasks everywhere also has subtle problems
+// event (#6566). However, using macro tasks everywhere also has subtle problems
 // when state is changed right before repaint (e.g. #6813, out-in transitions).
-// Here we use microtask by default, but expose a way to force (macro) task when
+// Here we use micro task by default, but expose a way to force macro task when
 // needed (e.g. in event handlers attached by v-on).
 var microTimerFunc;
 var macroTimerFunc;
 var useMacroTask = false;
 
-// Determine (macro) task defer implementation.
+// Determine (macro) Task defer implementation.
 // Technically setImmediate should be the ideal choice, but it's only available
 // in IE. The only polyfill that consistently queues the callback after all DOM
 // events triggered in the same loop is by using MessageChannel.
@@ -3285,7 +3068,7 @@ if (typeof setImmediate !== 'undefined' && isNative(setImmediate)) {
   };
 }
 
-// Determine microtask defer implementation.
+// Determine MicroTask defer implementation.
 /* istanbul ignore next, $flow-disable-line */
 if (typeof Promise !== 'undefined' && isNative(Promise)) {
   var p = Promise.resolve();
@@ -3305,7 +3088,7 @@ if (typeof Promise !== 'undefined' && isNative(Promise)) {
 
 /**
  * Wrap a function so that if any code inside triggers state change,
- * the changes are queued using a (macro) task instead of a microtask.
+ * the changes are queued using a Task instead of a MicroTask.
  */
 function withMacroTask (fn) {
   return fn._withTask || (fn._withTask = function () {
@@ -3371,7 +3154,8 @@ if (process.env.NODE_ENV !== 'production') {
   };
 
   var hasProxy =
-    typeof Proxy !== 'undefined' && isNative(Proxy);
+    typeof Proxy !== 'undefined' &&
+    Proxy.toString().match(/native code/);
 
   if (hasProxy) {
     var isBuiltInModifier = makeMap('stop,prevent,self,ctrl,shift,alt,meta,exact');
@@ -3439,7 +3223,7 @@ function traverse (val) {
 function _traverse (val, seen) {
   var i, keys;
   var isA = Array.isArray(val);
-  if ((!isA && !isObject(val)) || Object.isFrozen(val) || val instanceof VNode) {
+  if ((!isA && !isObject(val)) || Object.isFrozen(val)) {
     return
   }
   if (val.__ob__) {
@@ -4322,30 +4106,29 @@ function updateChildComponent (
   // update $attrs and $listeners hash
   // these are also reactive so they may trigger child update if the child
   // used them during render
-  vm.$attrs = parentVnode.data.attrs || emptyObject;
+  vm.$attrs = (parentVnode.data && parentVnode.data.attrs) || emptyObject;
   vm.$listeners = listeners || emptyObject;
 
   // update props
   if (propsData && vm.$options.props) {
-    toggleObserving(false);
+    observerState.shouldConvert = false;
     var props = vm._props;
     var propKeys = vm.$options._propKeys || [];
     for (var i = 0; i < propKeys.length; i++) {
       var key = propKeys[i];
-      var propOptions = vm.$options.props; // wtf flow?
-      props[key] = validateProp(key, propOptions, propsData, vm);
+      props[key] = validateProp(key, vm.$options.props, propsData, vm);
     }
-    toggleObserving(true);
+    observerState.shouldConvert = true;
     // keep a copy of raw propsData
     vm.$options.propsData = propsData;
   }
 
   // update listeners
-  listeners = listeners || emptyObject;
-  var oldListeners = vm.$options._parentListeners;
-  vm.$options._parentListeners = listeners;
-  updateComponentListeners(vm, listeners, oldListeners);
-
+  if (listeners) {
+    var oldListeners = vm.$options._parentListeners;
+    vm.$options._parentListeners = listeners;
+    updateComponentListeners(vm, listeners, oldListeners);
+  }
   // resolve slots + force update if has children
   if (hasChildren) {
     vm.$slots = resolveSlots(renderChildren, parentVnode.context);
@@ -4399,8 +4182,6 @@ function deactivateChildComponent (vm, direct) {
 }
 
 function callHook (vm, hook) {
-  // #7573 disable dep collection when invoking lifecycle hooks
-  pushTarget();
   var handlers = vm.$options[hook];
   if (handlers) {
     for (var i = 0, j = handlers.length; i < j; i++) {
@@ -4414,7 +4195,6 @@ function callHook (vm, hook) {
   if (vm._hasHookEvent) {
     vm.$emit('hook:' + hook);
   }
-  popTarget();
 }
 
 /*  */
@@ -4559,7 +4339,7 @@ function queueWatcher (watcher) {
 
 /*  */
 
-var uid$1 = 0;
+var uid$2 = 0;
 
 /**
  * A watcher parses an expression, collects dependencies,
@@ -4588,7 +4368,7 @@ var Watcher = function Watcher (
     this.deep = this.user = this.lazy = this.sync = false;
   }
   this.cb = cb;
-  this.id = ++uid$1; // uid for batching
+  this.id = ++uid$2; // uid for batching
   this.active = true;
   this.dirty = this.lazy; // for lazy watchers
   this.deps = [];
@@ -4813,9 +4593,7 @@ function initProps (vm, propsOptions) {
   var keys = vm.$options._propKeys = [];
   var isRoot = !vm.$parent;
   // root instance props should be converted
-  if (!isRoot) {
-    toggleObserving(false);
-  }
+  observerState.shouldConvert = isRoot;
   var loop = function ( key ) {
     keys.push(key);
     var value = validateProp(key, propsOptions, propsData, vm);
@@ -4852,7 +4630,7 @@ function initProps (vm, propsOptions) {
   };
 
   for (var key in propsOptions) loop( key );
-  toggleObserving(true);
+  observerState.shouldConvert = true;
 }
 
 function initData (vm) {
@@ -4898,15 +4676,11 @@ function initData (vm) {
 }
 
 function getData (data, vm) {
-  // #7573 disable dep collection when invoking data getters
-  pushTarget();
   try {
     return data.call(vm, vm)
   } catch (e) {
     handleError(e, vm, "data()");
     return {}
-  } finally {
-    popTarget();
   }
 }
 
@@ -5044,7 +4818,7 @@ function initWatch (vm, watch) {
 
 function createWatcher (
   vm,
-  expOrFn,
+  keyOrFn,
   handler,
   options
 ) {
@@ -5055,7 +4829,7 @@ function createWatcher (
   if (typeof handler === 'string') {
     handler = vm[handler];
   }
-  return vm.$watch(expOrFn, handler, options)
+  return vm.$watch(keyOrFn, handler, options)
 }
 
 function stateMixin (Vue) {
@@ -5119,7 +4893,7 @@ function initProvide (vm) {
 function initInjections (vm) {
   var result = resolveInject(vm.$options.inject, vm);
   if (result) {
-    toggleObserving(false);
+    observerState.shouldConvert = false;
     Object.keys(result).forEach(function (key) {
       /* istanbul ignore else */
       if (process.env.NODE_ENV !== 'production') {
@@ -5135,7 +4909,7 @@ function initInjections (vm) {
         defineReactive(vm, key, result[key]);
       }
     });
-    toggleObserving(true);
+    observerState.shouldConvert = true;
   }
 }
 
@@ -5155,7 +4929,7 @@ function resolveInject (inject, vm) {
       var provideKey = inject[key].from;
       var source = vm;
       while (source) {
-        if (source._provided && hasOwn(source._provided, provideKey)) {
+        if (source._provided && provideKey in source._provided) {
           result[key] = source._provided[provideKey];
           break
         }
@@ -5270,14 +5044,6 @@ function resolveFilter (id) {
 
 /*  */
 
-function isKeyNotMatch (expect, actual) {
-  if (Array.isArray(expect)) {
-    return expect.indexOf(actual) === -1
-  } else {
-    return expect !== actual
-  }
-}
-
 /**
  * Runtime helper for checking keyCodes from config.
  * exposed as Vue.prototype._k
@@ -5286,15 +5052,16 @@ function isKeyNotMatch (expect, actual) {
 function checkKeyCodes (
   eventKeyCode,
   key,
-  builtInKeyCode,
-  eventKeyName,
-  builtInKeyName
+  builtInAlias,
+  eventKeyName
 ) {
-  var mappedKeyCode = config.keyCodes[key] || builtInKeyCode;
-  if (builtInKeyName && eventKeyName && !config.keyCodes[key]) {
-    return isKeyNotMatch(builtInKeyName, eventKeyName)
-  } else if (mappedKeyCode) {
-    return isKeyNotMatch(mappedKeyCode, eventKeyCode)
+  var keyCodes = config.keyCodes[key] || builtInAlias;
+  if (keyCodes) {
+    if (Array.isArray(keyCodes)) {
+      return keyCodes.indexOf(eventKeyCode) === -1
+    } else {
+      return keyCodes !== eventKeyCode
+    }
   } else if (eventKeyName) {
     return hyphenate(eventKeyName) !== key
   }
@@ -5366,9 +5133,11 @@ function renderStatic (
   var cached = this._staticTrees || (this._staticTrees = []);
   var tree = cached[index];
   // if has already-rendered static tree and not inside v-for,
-  // we can reuse the same tree.
+  // we can reuse the same tree by doing a shallow clone.
   if (tree && !isInFor) {
-    return tree
+    return Array.isArray(tree)
+      ? cloneVNodes(tree)
+      : cloneVNode(tree)
   }
   // otherwise, render a fresh tree.
   tree = cached[index] = this.$options.staticRenderFns[index].call(
@@ -5466,24 +5235,6 @@ function FunctionalRenderContext (
   Ctor
 ) {
   var options = Ctor.options;
-  // ensure the createElement function in functional components
-  // gets a unique context - this is necessary for correct named slot check
-  var contextVm;
-  if (hasOwn(parent, '_uid')) {
-    contextVm = Object.create(parent);
-    // $flow-disable-line
-    contextVm._original = parent;
-  } else {
-    // the context vm passed in is a functional context as well.
-    // in this case we want to make sure we are able to get a hold to the
-    // real context instance.
-    contextVm = parent;
-    // $flow-disable-line
-    parent = parent._original;
-  }
-  var isCompiled = isTrue(options._compiled);
-  var needNormalization = !isCompiled;
-
   this.data = data;
   this.props = props;
   this.children = children;
@@ -5491,6 +5242,12 @@ function FunctionalRenderContext (
   this.listeners = data.on || emptyObject;
   this.injections = resolveInject(options.inject, parent);
   this.slots = function () { return resolveSlots(children, parent); };
+
+  // ensure the createElement function in functional components
+  // gets a unique context - this is necessary for correct named slot check
+  var contextVm = Object.create(parent);
+  var isCompiled = isTrue(options._compiled);
+  var needNormalization = !isCompiled;
 
   // support for compiled functional template
   if (isCompiled) {
@@ -5504,7 +5261,7 @@ function FunctionalRenderContext (
   if (options._scopeId) {
     this._c = function (a, b, c, d) {
       var vnode = createElement(contextVm, a, b, c, d, needNormalization);
-      if (vnode && !Array.isArray(vnode)) {
+      if (vnode) {
         vnode.fnScopeId = options._scopeId;
         vnode.fnContext = parent;
       }
@@ -5547,28 +5304,14 @@ function createFunctionalComponent (
   var vnode = options.render.call(null, renderContext._c, renderContext);
 
   if (vnode instanceof VNode) {
-    return cloneAndMarkFunctionalResult(vnode, data, renderContext.parent, options)
-  } else if (Array.isArray(vnode)) {
-    var vnodes = normalizeChildren(vnode) || [];
-    var res = new Array(vnodes.length);
-    for (var i = 0; i < vnodes.length; i++) {
-      res[i] = cloneAndMarkFunctionalResult(vnodes[i], data, renderContext.parent, options);
+    vnode.fnContext = contextVm;
+    vnode.fnOptions = options;
+    if (data.slot) {
+      (vnode.data || (vnode.data = {})).slot = data.slot;
     }
-    return res
   }
-}
 
-function cloneAndMarkFunctionalResult (vnode, data, contextVm, options) {
-  // #7817 clone node before setting fnContext, otherwise if the node is reused
-  // (e.g. it was from a cached normal slot) the fnContext causes named slots
-  // that should not be matched to match.
-  var clone = cloneVNode(vnode);
-  clone.fnContext = contextVm;
-  clone.fnOptions = options;
-  if (data.slot) {
-    (clone.data || (clone.data = {})).slot = data.slot;
-  }
-  return clone
+  return vnode
 }
 
 function mergeProps (to, from) {
@@ -5598,7 +5341,7 @@ function mergeProps (to, from) {
 
 /*  */
 
-// inline hooks to be invoked on component VNodes during patch
+// hooks to be invoked on component VNodes during patch
 var componentVNodeHooks = {
   init: function init (
     vnode,
@@ -5606,15 +5349,7 @@ var componentVNodeHooks = {
     parentElm,
     refElm
   ) {
-    if (
-      vnode.componentInstance &&
-      !vnode.componentInstance._isDestroyed &&
-      vnode.data.keepAlive
-    ) {
-      // kept-alive components, treat as a patch
-      var mountedNode = vnode; // work around flow
-      componentVNodeHooks.prepatch(mountedNode, mountedNode);
-    } else {
+    if (!vnode.componentInstance || vnode.componentInstance._isDestroyed) {
       var child = vnode.componentInstance = createComponentInstanceForVnode(
         vnode,
         activeInstance,
@@ -5622,6 +5357,10 @@ var componentVNodeHooks = {
         refElm
       );
       child.$mount(hydrating ? vnode.elm : undefined, hydrating);
+    } else if (vnode.data.keepAlive) {
+      // kept-alive components, treat as a patch
+      var mountedNode = vnode; // work around flow
+      componentVNodeHooks.prepatch(mountedNode, mountedNode);
     }
   },
 
@@ -5756,8 +5495,8 @@ function createComponent (
     }
   }
 
-  // install component management hooks onto the placeholder node
-  installComponentHooks(data);
+  // merge component management hooks onto the placeholder node
+  mergeHooks(data);
 
   // return a placeholder vnode
   var name = Ctor.options.name || tag;
@@ -5797,11 +5536,22 @@ function createComponentInstanceForVnode (
   return new vnode.componentOptions.Ctor(options)
 }
 
-function installComponentHooks (data) {
-  var hooks = data.hook || (data.hook = {});
+function mergeHooks (data) {
+  if (!data.hook) {
+    data.hook = {};
+  }
   for (var i = 0; i < hooksToMerge.length; i++) {
     var key = hooksToMerge[i];
-    hooks[key] = componentVNodeHooks[key];
+    var fromParent = data.hook[key];
+    var ours = componentVNodeHooks[key];
+    data.hook[key] = fromParent ? mergeHook$1(ours, fromParent) : ours;
+  }
+}
+
+function mergeHook$1 (one, two) {
+  return function (a, b, c, d) {
+    one(a, b, c, d);
+    two(a, b, c, d);
   }
 }
 
@@ -5918,11 +5668,8 @@ function _createElement (
     // direct component options / constructor
     vnode = createComponent(tag, data, context, children);
   }
-  if (Array.isArray(vnode)) {
-    return vnode
-  } else if (isDef(vnode)) {
-    if (isDef(ns)) { applyNS(vnode, ns); }
-    if (isDef(data)) { registerDeepBindings(data); }
+  if (isDef(vnode)) {
+    if (ns) { applyNS(vnode, ns); }
     return vnode
   } else {
     return createEmptyVNode()
@@ -5939,23 +5686,10 @@ function applyNS (vnode, ns, force) {
   if (isDef(vnode.children)) {
     for (var i = 0, l = vnode.children.length; i < l; i++) {
       var child = vnode.children[i];
-      if (isDef(child.tag) && (
-        isUndef(child.ns) || (isTrue(force) && child.tag !== 'svg'))) {
+      if (isDef(child.tag) && (isUndef(child.ns) || isTrue(force))) {
         applyNS(child, ns, force);
       }
     }
-  }
-}
-
-// ref #5318
-// necessary to ensure parent re-render when deep bindings like :style and
-// :class are used on slot nodes
-function registerDeepBindings (data) {
-  if (isObject(data.style)) {
-    traverse(data.style);
-  }
-  if (isObject(data.class)) {
-    traverse(data.class);
   }
 }
 
@@ -6010,17 +5744,20 @@ function renderMixin (Vue) {
     var render = ref.render;
     var _parentVnode = ref._parentVnode;
 
-    // reset _rendered flag on slots for duplicate slot check
-    if (process.env.NODE_ENV !== 'production') {
+    if (vm._isMounted) {
+      // if the parent didn't update, the slot nodes will be the ones from
+      // last render. They need to be cloned to ensure "freshness" for this render.
       for (var key in vm.$slots) {
-        // $flow-disable-line
-        vm.$slots[key]._rendered = false;
+        var slot = vm.$slots[key];
+        // _rendered is a flag added by renderSlot, but may not be present
+        // if the slot is passed from manually written render functions
+        if (slot._rendered || (slot[0] && slot[0].elm)) {
+          vm.$slots[key] = cloneVNodes(slot, true /* deep */);
+        }
       }
     }
 
-    if (_parentVnode) {
-      vm.$scopedSlots = _parentVnode.data.scopedSlots || emptyObject;
-    }
+    vm.$scopedSlots = (_parentVnode && _parentVnode.data.scopedSlots) || emptyObject;
 
     // set parent vnode. this allows render functions to have access
     // to the data on the placeholder node.
@@ -6068,13 +5805,13 @@ function renderMixin (Vue) {
 
 /*  */
 
-var uid$3 = 0;
+var uid = 0;
 
 function initMixin (Vue) {
   Vue.prototype._init = function (options) {
     var vm = this;
     // a uid
-    vm._uid = uid$3++;
+    vm._uid = uid++;
 
     var startTag, endTag;
     /* istanbul ignore if */
@@ -6207,20 +5944,20 @@ function dedupe (latest, extended, sealed) {
   }
 }
 
-function Vue (options) {
+function Vue$3 (options) {
   if (process.env.NODE_ENV !== 'production' &&
-    !(this instanceof Vue)
+    !(this instanceof Vue$3)
   ) {
     warn('Vue is a constructor and should be called with the `new` keyword');
   }
   this._init(options);
 }
 
-initMixin(Vue);
-stateMixin(Vue);
-eventsMixin(Vue);
-lifecycleMixin(Vue);
-renderMixin(Vue);
+initMixin(Vue$3);
+stateMixin(Vue$3);
+eventsMixin(Vue$3);
+lifecycleMixin(Vue$3);
+renderMixin(Vue$3);
 
 /*  */
 
@@ -6449,15 +6186,13 @@ var KeepAlive = {
     }
   },
 
-  mounted: function mounted () {
-    var this$1 = this;
-
-    this.$watch('include', function (val) {
-      pruneCache(this$1, function (name) { return matches(val, name); });
-    });
-    this.$watch('exclude', function (val) {
-      pruneCache(this$1, function (name) { return !matches(val, name); });
-    });
+  watch: {
+    include: function include (val) {
+      pruneCache(this, function (name) { return matches(val, name); });
+    },
+    exclude: function exclude (val) {
+      pruneCache(this, function (name) { return !matches(val, name); });
+    }
   },
 
   render: function render () {
@@ -6505,11 +6240,11 @@ var KeepAlive = {
     }
     return vnode || (slot && slot[0])
   }
-}
+};
 
 var builtInComponents = {
   KeepAlive: KeepAlive
-}
+};
 
 /*  */
 
@@ -6557,25 +6292,20 @@ function initGlobalAPI (Vue) {
   initAssetRegisters(Vue);
 }
 
-initGlobalAPI(Vue);
+initGlobalAPI(Vue$3);
 
-Object.defineProperty(Vue.prototype, '$isServer', {
+Object.defineProperty(Vue$3.prototype, '$isServer', {
   get: isServerRendering
 });
 
-Object.defineProperty(Vue.prototype, '$ssrContext', {
+Object.defineProperty(Vue$3.prototype, '$ssrContext', {
   get: function get () {
     /* istanbul ignore next */
     return this.$vnode && this.$vnode.ssrContext
   }
 });
 
-// expose FunctionalRenderContext for ssr runtime helper installation
-Object.defineProperty(Vue, 'FunctionalRenderContext', {
-  value: FunctionalRenderContext
-});
-
-Vue.version = '2.5.16';
+Vue$3.version = '2.5.13';
 
 /*  */
 
@@ -6849,8 +6579,8 @@ function setTextContent (node, text) {
   node.textContent = text;
 }
 
-function setStyleScope (node, scopeId) {
-  node.setAttribute(scopeId, '');
+function setAttribute (node, key, val) {
+  node.setAttribute(key, val);
 }
 
 
@@ -6866,7 +6596,7 @@ var nodeOps = Object.freeze({
 	nextSibling: nextSibling,
 	tagName: tagName,
 	setTextContent: setTextContent,
-	setStyleScope: setStyleScope
+	setAttribute: setAttribute
 });
 
 /*  */
@@ -6884,11 +6614,11 @@ var ref = {
   destroy: function destroy (vnode) {
     registerRef(vnode, true);
   }
-}
+};
 
 function registerRef (vnode, isRemoval) {
   var key = vnode.data.ref;
-  if (!isDef(key)) { return }
+  if (!key) { return }
 
   var vm = vnode.context;
   var ref = vnode.componentInstance || vnode.elm;
@@ -7019,25 +6749,7 @@ function createPatchFunction (backend) {
   }
 
   var creatingElmInVPre = 0;
-
-  function createElm (
-    vnode,
-    insertedVnodeQueue,
-    parentElm,
-    refElm,
-    nested,
-    ownerArray,
-    index
-  ) {
-    if (isDef(vnode.elm) && isDef(ownerArray)) {
-      // This vnode was used in a previous render!
-      // now it's used as a new node, overwriting its elm would cause
-      // potential patch errors down the road when it's used as an insertion
-      // reference node. Instead, we clone the node on-demand before creating
-      // associated DOM element for it.
-      vnode = ownerArray[index] = cloneVNode(vnode);
-    }
-
+  function createElm (vnode, insertedVnodeQueue, parentElm, refElm, nested) {
     vnode.isRootInsert = !nested; // for transition enter check
     if (createComponent(vnode, insertedVnodeQueue, parentElm, refElm)) {
       return
@@ -7060,7 +6772,6 @@ function createPatchFunction (backend) {
           );
         }
       }
-
       vnode.elm = vnode.ns
         ? nodeOps.createElementNS(vnode.ns, tag)
         : nodeOps.createElement(tag, vnode);
@@ -7166,7 +6877,7 @@ function createPatchFunction (backend) {
         checkDuplicateKeys(children);
       }
       for (var i = 0; i < children.length; ++i) {
-        createElm(children[i], insertedVnodeQueue, vnode.elm, null, true, children, i);
+        createElm(children[i], insertedVnodeQueue, vnode.elm, null, true);
       }
     } else if (isPrimitive(vnode.text)) {
       nodeOps.appendChild(vnode.elm, nodeOps.createTextNode(String(vnode.text)));
@@ -7197,12 +6908,12 @@ function createPatchFunction (backend) {
   function setScope (vnode) {
     var i;
     if (isDef(i = vnode.fnScopeId)) {
-      nodeOps.setStyleScope(vnode.elm, i);
+      nodeOps.setAttribute(vnode.elm, i, '');
     } else {
       var ancestor = vnode;
       while (ancestor) {
         if (isDef(i = ancestor.context) && isDef(i = i.$options._scopeId)) {
-          nodeOps.setStyleScope(vnode.elm, i);
+          nodeOps.setAttribute(vnode.elm, i, '');
         }
         ancestor = ancestor.parent;
       }
@@ -7213,13 +6924,13 @@ function createPatchFunction (backend) {
       i !== vnode.fnContext &&
       isDef(i = i.$options._scopeId)
     ) {
-      nodeOps.setStyleScope(vnode.elm, i);
+      nodeOps.setAttribute(vnode.elm, i, '');
     }
   }
 
   function addVnodes (parentElm, refElm, vnodes, startIdx, endIdx, insertedVnodeQueue) {
     for (; startIdx <= endIdx; ++startIdx) {
-      createElm(vnodes[startIdx], insertedVnodeQueue, parentElm, refElm, false, vnodes, startIdx);
+      createElm(vnodes[startIdx], insertedVnodeQueue, parentElm, refElm);
     }
   }
 
@@ -7329,7 +7040,7 @@ function createPatchFunction (backend) {
           ? oldKeyToIdx[newStartVnode.key]
           : findIdxInOld(newStartVnode, oldCh, oldStartIdx, oldEndIdx);
         if (isUndef(idxInOld)) { // New element
-          createElm(newStartVnode, insertedVnodeQueue, parentElm, oldStartVnode.elm, false, newCh, newStartIdx);
+          createElm(newStartVnode, insertedVnodeQueue, parentElm, oldStartVnode.elm);
         } else {
           vnodeToMove = oldCh[idxInOld];
           if (sameVnode(vnodeToMove, newStartVnode)) {
@@ -7338,7 +7049,7 @@ function createPatchFunction (backend) {
             canMove && nodeOps.insertBefore(parentElm, vnodeToMove.elm, oldStartVnode.elm);
           } else {
             // same key but different element. treat as new element
-            createElm(newStartVnode, insertedVnodeQueue, parentElm, oldStartVnode.elm, false, newCh, newStartIdx);
+            createElm(newStartVnode, insertedVnodeQueue, parentElm, oldStartVnode.elm);
           }
         }
         newStartVnode = newCh[++newStartIdx];
@@ -7676,7 +7387,7 @@ var directives = {
   destroy: function unbindDirectives (vnode) {
     updateDirectives(vnode, emptyNode);
   }
-}
+};
 
 function updateDirectives (oldVnode, vnode) {
   if (oldVnode.data.directives || vnode.data.directives) {
@@ -7787,7 +7498,7 @@ function callHook$1 (dir, hook, vnode, oldVnode, isDestroy) {
 var baseModules = [
   ref,
   directives
-]
+];
 
 /*  */
 
@@ -7833,9 +7544,7 @@ function updateAttrs (oldVnode, vnode) {
 }
 
 function setAttr (el, key, value) {
-  if (el.tagName.indexOf('-') > -1) {
-    baseSetAttr(el, key, value);
-  } else if (isBooleanAttr(key)) {
+  if (isBooleanAttr(key)) {
     // set attribute for blank value
     // e.g. <option disabled>Select one</option>
     if (isFalsyAttrValue(value)) {
@@ -7857,39 +7566,35 @@ function setAttr (el, key, value) {
       el.setAttributeNS(xlinkNS, key, value);
     }
   } else {
-    baseSetAttr(el, key, value);
-  }
-}
-
-function baseSetAttr (el, key, value) {
-  if (isFalsyAttrValue(value)) {
-    el.removeAttribute(key);
-  } else {
-    // #7138: IE10 & 11 fires input event when setting placeholder on
-    // <textarea>... block the first input event and remove the blocker
-    // immediately.
-    /* istanbul ignore if */
-    if (
-      isIE && !isIE9 &&
-      el.tagName === 'TEXTAREA' &&
-      key === 'placeholder' && !el.__ieph
-    ) {
-      var blocker = function (e) {
-        e.stopImmediatePropagation();
-        el.removeEventListener('input', blocker);
-      };
-      el.addEventListener('input', blocker);
-      // $flow-disable-line
-      el.__ieph = true; /* IE placeholder patched */
+    if (isFalsyAttrValue(value)) {
+      el.removeAttribute(key);
+    } else {
+      // #7138: IE10 & 11 fires input event when setting placeholder on
+      // <textarea>... block the first input event and remove the blocker
+      // immediately.
+      /* istanbul ignore if */
+      if (
+        isIE && !isIE9 &&
+        el.tagName === 'TEXTAREA' &&
+        key === 'placeholder' && !el.__ieph
+      ) {
+        var blocker = function (e) {
+          e.stopImmediatePropagation();
+          el.removeEventListener('input', blocker);
+        };
+        el.addEventListener('input', blocker);
+        // $flow-disable-line
+        el.__ieph = true; /* IE placeholder patched */
+      }
+      el.setAttribute(key, value);
     }
-    el.setAttribute(key, value);
   }
 }
 
 var attrs = {
   create: updateAttrs,
   update: updateAttrs
-}
+};
 
 /*  */
 
@@ -7927,7 +7632,7 @@ function updateClass (oldVnode, vnode) {
 var klass = {
   create: updateClass,
   update: updateClass
-}
+};
 
 /*  */
 
@@ -8054,7 +7759,7 @@ function updateDOMListeners (oldVnode, vnode) {
 var events = {
   create: updateDOMListeners,
   update: updateDOMListeners
-}
+};
 
 /*  */
 
@@ -8148,7 +7853,7 @@ function isDirtyWithModifiers (elm, newVal) {
 var domProps = {
   create: updateDOMProps,
   update: updateDOMProps
-}
+};
 
 /*  */
 
@@ -8309,7 +8014,7 @@ function updateStyle (oldVnode, vnode) {
 var style = {
   create: updateStyle,
   update: updateStyle
-}
+};
 
 /*  */
 
@@ -8682,15 +8387,13 @@ function enter (vnode, toggleDisplay) {
     addTransitionClass(el, startClass);
     addTransitionClass(el, activeClass);
     nextFrame(function () {
+      addTransitionClass(el, toClass);
       removeTransitionClass(el, startClass);
-      if (!cb.cancelled) {
-        addTransitionClass(el, toClass);
-        if (!userWantsControl) {
-          if (isValidDuration(explicitEnterDuration)) {
-            setTimeout(cb, explicitEnterDuration);
-          } else {
-            whenTransitionEnds(el, type, cb);
-          }
+      if (!cb.cancelled && !userWantsControl) {
+        if (isValidDuration(explicitEnterDuration)) {
+          setTimeout(cb, explicitEnterDuration);
+        } else {
+          whenTransitionEnds(el, type, cb);
         }
       }
     });
@@ -8790,15 +8493,13 @@ function leave (vnode, rm) {
       addTransitionClass(el, leaveClass);
       addTransitionClass(el, leaveActiveClass);
       nextFrame(function () {
+        addTransitionClass(el, leaveToClass);
         removeTransitionClass(el, leaveClass);
-        if (!cb.cancelled) {
-          addTransitionClass(el, leaveToClass);
-          if (!userWantsControl) {
-            if (isValidDuration(explicitLeaveDuration)) {
-              setTimeout(cb, explicitLeaveDuration);
-            } else {
-              whenTransitionEnds(el, type, cb);
-            }
+        if (!cb.cancelled && !userWantsControl) {
+          if (isValidDuration(explicitLeaveDuration)) {
+            setTimeout(cb, explicitLeaveDuration);
+          } else {
+            whenTransitionEnds(el, type, cb);
           }
         }
       });
@@ -8871,7 +8572,7 @@ var transition = inBrowser ? {
       rm();
     }
   }
-} : {}
+} : {};
 
 var platformModules = [
   attrs,
@@ -8880,7 +8581,7 @@ var platformModules = [
   domProps,
   style,
   transition
-]
+];
 
 /*  */
 
@@ -8921,13 +8622,15 @@ var directive = {
     } else if (vnode.tag === 'textarea' || isTextInputType(el.type)) {
       el._vModifiers = binding.modifiers;
       if (!binding.modifiers.lazy) {
-        el.addEventListener('compositionstart', onCompositionStart);
-        el.addEventListener('compositionend', onCompositionEnd);
         // Safari < 10.2 & UIWebView doesn't fire compositionend when
         // switching focus before confirming composition choice
         // this also fixes the issue where some browsers e.g. iOS Chrome
         // fires "change" instead of "input" on autocomplete.
         el.addEventListener('change', onCompositionEnd);
+        if (!isAndroid) {
+          el.addEventListener('compositionstart', onCompositionStart);
+          el.addEventListener('compositionend', onCompositionEnd);
+        }
         /* istanbul ignore if */
         if (isIE9) {
           el.vmodel = true;
@@ -9061,7 +8764,7 @@ var show = {
     var oldValue = ref.oldValue;
 
     /* istanbul ignore if */
-    if (!value === !oldValue) { return }
+    if (value === oldValue) { return }
     vnode = locateNode(vnode);
     var transition$$1 = vnode.data && vnode.data.transition;
     if (transition$$1) {
@@ -9091,12 +8794,12 @@ var show = {
       el.style.display = el.__vOriginalDisplay;
     }
   }
-}
+};
 
 var platformDirectives = {
   model: directive,
   show: show
-}
+};
 
 /*  */
 
@@ -9285,7 +8988,7 @@ var Transition = {
 
     return rawChild
   }
-}
+};
 
 /*  */
 
@@ -9359,7 +9062,7 @@ var TransitionGroup = {
       this._vnode,
       this.kept,
       false, // hydrating
-      true // removeOnly (!important, avoids unnecessary moves)
+      true // removeOnly (!important avoids unnecessary moves)
     );
     this._vnode = this.kept;
   },
@@ -9426,7 +9129,7 @@ var TransitionGroup = {
       return (this._hasMove = info.hasTransform)
     }
   }
-}
+};
 
 function callPendingCbs (c) {
   /* istanbul ignore if */
@@ -9459,26 +9162,26 @@ function applyTranslation (c) {
 var platformComponents = {
   Transition: Transition,
   TransitionGroup: TransitionGroup
-}
+};
 
 /*  */
 
 // install platform specific utils
-Vue.config.mustUseProp = mustUseProp;
-Vue.config.isReservedTag = isReservedTag;
-Vue.config.isReservedAttr = isReservedAttr;
-Vue.config.getTagNamespace = getTagNamespace;
-Vue.config.isUnknownElement = isUnknownElement;
+Vue$3.config.mustUseProp = mustUseProp;
+Vue$3.config.isReservedTag = isReservedTag;
+Vue$3.config.isReservedAttr = isReservedAttr;
+Vue$3.config.getTagNamespace = getTagNamespace;
+Vue$3.config.isUnknownElement = isUnknownElement;
 
 // install platform runtime directives & components
-extend(Vue.options.directives, platformDirectives);
-extend(Vue.options.components, platformComponents);
+extend(Vue$3.options.directives, platformDirectives);
+extend(Vue$3.options.components, platformComponents);
 
 // install platform patch function
-Vue.prototype.__patch__ = inBrowser ? patch : noop;
+Vue$3.prototype.__patch__ = inBrowser ? patch : noop;
 
 // public mount method
-Vue.prototype.$mount = function (
+Vue$3.prototype.$mount = function (
   el,
   hydrating
 ) {
@@ -9488,199 +9191,568 @@ Vue.prototype.$mount = function (
 
 // devtools global hook
 /* istanbul ignore next */
-if (inBrowser) {
-  setTimeout(function () {
-    if (config.devtools) {
-      if (devtools) {
-        devtools.emit('init', Vue);
-      } else if (
-        process.env.NODE_ENV !== 'production' &&
-        process.env.NODE_ENV !== 'test' &&
-        isChrome
-      ) {
-        console[console.info ? 'info' : 'log'](
-          'Download the Vue Devtools extension for a better development experience:\n' +
-          'https://github.com/vuejs/vue-devtools'
-        );
-      }
-    }
-    if (process.env.NODE_ENV !== 'production' &&
-      process.env.NODE_ENV !== 'test' &&
-      config.productionTip !== false &&
-      typeof console !== 'undefined'
-    ) {
+Vue$3.nextTick(function () {
+  if (config.devtools) {
+    if (devtools) {
+      devtools.emit('init', Vue$3);
+    } else if (process.env.NODE_ENV !== 'production' && isChrome) {
       console[console.info ? 'info' : 'log'](
-        "You are running Vue in development mode.\n" +
-        "Make sure to turn on production mode when deploying for production.\n" +
-        "See more tips at https://vuejs.org/guide/deployment.html"
+        'Download the Vue Devtools extension for a better development experience:\n' +
+        'https://github.com/vuejs/vue-devtools'
       );
     }
-  }, 0);
-}
+  }
+  if (process.env.NODE_ENV !== 'production' &&
+    config.productionTip !== false &&
+    inBrowser && typeof console !== 'undefined'
+  ) {
+    console[console.info ? 'info' : 'log'](
+      "You are running Vue in development mode.\n" +
+      "Make sure to turn on production mode when deploying for production.\n" +
+      "See more tips at https://vuejs.org/guide/deployment.html"
+    );
+  }
+}, 0);
 
 /*  */
 
-module.exports = Vue;
+module.exports = Vue$3;
 
-}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("timers").setImmediate)
-},{"_process":4,"timers":5}],10:[function(require,module,exports){
-;(function(){
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"_process":4}],7:[function(require,module,exports){
+var inserted = exports.cache = {}
 
+function noop () {}
 
-module.exports = {
-    props: {
-        activeItem: { type: String, required: false, default: '' }
-    }
-};
-})()
-if (module.exports.__esModule) module.exports = module.exports.default
-var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
-if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"section",class:{ 'section--active': _vm.activeItem === 'badges' },attrs:{"id":"badges"}},[_c('div',{staticClass:"section__title",class:{ 'section__title--active': _vm.activeItem === 'badges' }},[_c('i',{staticClass:"fa fa-font section__title-icon"}),_vm._v(" "),_c('span',{staticClass:"section__title-label"},[_vm._v("Badges")])]),_vm._v(" "),_vm._m(0)])}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"section__body"},[_c('div',{staticClass:"block"},[_c('span',{staticClass:"badge badge--info"},[_vm._v("info")]),_vm._v(" "),_c('span',{staticClass:"badge badge--success"},[_vm._v("success")]),_vm._v(" "),_c('span',{staticClass:"badge badge--warning"},[_vm._v("warning")]),_vm._v(" "),_c('span',{staticClass:"badge badge--failure"},[_vm._v("failure")])]),_vm._v(" "),_c('div',{staticClass:"block"},[_c('span',{staticClass:"badge badge--outlined-info"},[_vm._v("info")]),_vm._v(" "),_c('span',{staticClass:"badge badge--outlined-success"},[_vm._v("success")]),_vm._v(" "),_c('span',{staticClass:"badge badge--outlined-warning"},[_vm._v("warning")]),_vm._v(" "),_c('span',{staticClass:"badge badge--outlined-failure"},[_vm._v("failure")])]),_vm._v(" "),_c('div',{staticClass:"block"},[_c('span',{staticClass:"badge badge--staging"},[_vm._v("staging")]),_vm._v(" "),_c('span',{staticClass:"badge badge--production"},[_vm._v("production")])]),_vm._v(" "),_c('div',{staticClass:"block"},[_c('span',{staticClass:"badge badge--info"},[_c('i',{staticClass:"fa fa-info-circle"}),_vm._v("\n                info\n            ")]),_vm._v(" "),_c('span',{staticClass:"badge badge--success"},[_c('i',{staticClass:"fa fa-flag-checkered"}),_vm._v("\n                success\n            ")]),_vm._v(" "),_c('span',{staticClass:"badge badge--warning"},[_c('i',{staticClass:"fa fa-exclamation-circle"}),_vm._v("\n                warning\n            ")]),_vm._v(" "),_c('span',{staticClass:"badge badge--failure"},[_c('i',{staticClass:"fa fa-flag-checkered"}),_vm._v("\n                failure\n            ")])]),_vm._v(" "),_c('div',{staticClass:"block"},[_c('span',{staticClass:"badge badge--round badge--info"},[_vm._v("\n                round\n            ")]),_vm._v(" "),_c('span',{staticClass:"badge badge--round badge--success"},[_vm._v("\n                1\n            ")]),_vm._v(" "),_c('span',{staticClass:"badge badge--round badge--warning"},[_c('i',{staticClass:"fa fa-exclamation-triangle"})])])])}]
-if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7c894490", __vue__options__)
+exports.insert = function (css) {
+  if (inserted[css]) return noop
+  inserted[css] = true
+
+  var elem = document.createElement('style')
+  elem.setAttribute('type', 'text/css')
+
+  if ('textContent' in elem) {
+    elem.textContent = css
   } else {
-    hotAPI.reload("data-v-7c894490", __vue__options__)
+    elem.styleSheet.cssText = css
   }
-})()}
-},{"vue":9,"vue-hot-reload-api":6}],11:[function(require,module,exports){
+
+  document.getElementsByTagName('head')[0].appendChild(elem)
+  return function () {
+    document.getElementsByTagName('head')[0].removeChild(elem)
+    inserted[css] = false
+  }
+}
+
+},{}],8:[function(require,module,exports){
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("@import \"https://fonts.googleapis.com/css?family=Libre+Franklin:100,200,300,400,500,600,700\";\n\n:root {\n\n    /* Typography */\n\n    --font-family: 'Libre Franklin', Helvetica, Arial, sans-serif;\n    --font-family--mono: Menlo, Consolas, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace;\n\n    /* Gaps */\n\n    --gap--small: 5px;\n    --gap: 10px;\n    --gap--large: 20px;\n\n\n    /* Base components */\n\n    --font-size: 12px;\n    --font-size--small: .8em;\n    --font-size--large: 1.5em;\n\n    --control-height: 2.3335em;\n    --control-height--small: 1.875em;\n    --control-height--large: 2.66675em;\n\n    --border-radius: 4px;\n    --border-color--hover: var(--color-blue--500);\n    --border-color: #C2CCD0;\n\n\n    /* CTA colours */\n\n    /*black on white*/\n    --cta-color: var(--color-mono--200);\n    --cta-color--active: var(--color-mono--300);\n\n    /*white on black*/\n    --cta-color--dark-mode: rgba(0,0,0,.5);\n    --cta-color--active--dark-mode: white;\n\n    /*colour on white and black*/\n    --cta-color--accent: var(--color-blue--500);\n    --cta-color--accent--active: var(--color-blue--600);\n\n\n    /* UI Colours */\n\n    /*black on white*/\n    --ui-color: var(--color-mono--800);\n    --ui-background: white;\n\n    /*white on black*/\n    --ui-color--dark-mode: white;\n    --ui-background--dark-mode: var(--color-cool--800);\n\n    /*colour on white and black*/\n    --ui-color--primary: var(--color-blue--600);\n    --ui-color--secondary: var(--color-cool--600);\n    --ui-color--accent: var(--color-brand-red--600);\n    --ui-color--muted: rgba(122,162,202,.3);\n\n    /*tabs*/\n    --tab-slider-size: 2px;\n    --tab-slider-color: var(--cta-color--accent);\n\n\n    /* Color Palette */\n\n    --color-mono--000: #FAFAFA;\n    --color-mono--100: #F3F3F3;\n    --color-mono--200: #EBEBEB;\n    --color-mono--300: #E0E0E0;\n    --color-mono--400: #CCCCCC;\n    --color-mono--500: #919191;\n    --color-mono--600: #757575;\n    --color-mono--700: #575757;\n    --color-mono--800: #383838;\n    --color-mono--900: #262626;\n\n    --color-warm--000: #FAFAF7;\n    --color-warm--100: #F5F5F0;\n    --color-warm--200: #EBEBE4;\n    --color-warm--300: #E0E0D7;\n    --color-warm--400: #CFCFBC;\n    --color-warm--500: #949485;\n    --color-warm--600: #787869;\n    --color-warm--700: #595947;\n    --color-warm--800: #3B3B2A;\n    --color-warm--900: #29291B;\n\n    --color-cool--000: #F7FAFC;\n    --color-cool--100: #EDF2F7;\n    --color-cool--200: #E4ECF5;\n    --color-cool--300: #D3E0ED;\n    --color-cool--400: #BFD0E3;\n    --color-cool--500: #8394A6;\n    --color-cool--600: #647A8F;\n    --color-cool--700: #445A70;\n    --color-cool--800: #2A3C4F;\n    --color-cool--900: #1C2936;\n\n    --color-blue--000: #F5FCFF;\n    --color-blue--100: #EBF7FC;\n    --color-blue--200: #D7F1FC;\n    --color-blue--300: #C2EBFC;\n    --color-blue--400: #95DDFC;\n    --color-blue--500: #31AADE;\n    --color-blue--600: #268FBD;\n    --color-blue--700: #0873A1;\n    --color-blue--800: #004969;\n    --color-blue--900: #003247;\n\n    --color-green--000: #F0FCF5;\n    --color-green--100: #E8FAF1;\n    --color-green--200: #DAF5E5;\n    --color-green--300: #C2F0D6;\n    --color-green--400: #94EBBB;\n    --color-green--500: #54B364;\n    --color-green--600: #489448;\n    --color-green--700: #2E732E;\n    --color-green--800: #144F14;\n    --color-green--900: #0D360D;\n\n    --color-yellow--000: #ffffd9;\n    --color-yellow--100: #FAF7C8;\n    --color-yellow--200: #F7EFBA;\n    --color-yellow--300: #F5E29F;\n    --color-yellow--400: #FCC962;\n    --color-yellow--500: #DE8500;\n    --color-yellow--600: #A66D19;\n    --color-yellow--700: #755127;\n    --color-yellow--800: #473521;\n    --color-yellow--900: #2B241C;\n\n    --color-red--000: #FFF7F8;\n    --color-red--100: #FAF0F1;\n    --color-red--200: #FFE2E4;\n    --color-red--300: #FFD1D5;\n    --color-red--400: #FFB5BB;\n    --color-red--500: #FA5C6A;\n    --color-red--600: #E64350;\n    --color-red--700: #C72633;\n    --color-red--800: #82161F;\n    --color-red--900: #590C12;\n\n    --color-brand-red--000: #FFF7F7;\n    --color-brand-red--100: #FAF0F0;\n    --color-brand-red--200: #FFE2E2;\n    --color-brand-red--300: #FFD1D1;\n    --color-brand-red--400: #FFB5B5;\n    --color-brand-red--500: #ff5a5f;\n    --color-brand-red--600: #E64343;\n    --color-brand-red--700: #C72828;\n    --color-brand-red--800: #821621;\n    --color-brand-red--900: #590C14;\n\n    --color-brand-blue--000: #F2FEFF;\n    --color-brand-blue--100: #E8F8FA;\n    --color-brand-blue--200: #D5F1F5;\n    --color-brand-blue--300: #BCEEF5;\n    --color-brand-blue--400: #8AE6F2;\n    --color-brand-blue--500: #28B5C7;\n    --color-brand-blue--600: #109CAD;\n    --color-brand-blue--700: #007987;\n    --color-brand-blue--800: #004E57;\n    --color-brand-blue--900: #003238;\n\n}\n\n/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\n\nhtml, body, div, span, applet, object, iframe, img, ins, kbd, q, s, samp, tt, var,\nfieldset, form, table, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n    margin: 0;\n    padding: 0;\n    border: 0;\n    vertical-align: baseline;\n    box-sizing: border-box;\n}\n\narticle, aside, footer, header, section {\n    display: block;\n}\n\ninput, textarea, button, select {\n    font: inherit;\n}\n\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n    display: block;\n}\n\nblockquote, q {\n    quotes: none;\n}\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n    content: '';\n    content: none;\n}\n\n/* Semantic tags styled */\n\n/* Base states */\n\n:disabled,\n[disabled] {\n    cursor: not-allowed;\n    pointer-events: none;\n    opacity: .7;\n}\n\nhtml {\n    scroll-behavior: smooth;\n    height: 100%;\n}\n\nbody {\n    font-family: var(--font-family);\n    font-size: var(--font-size);\n    line-height: 1;\n    background: var(--ui-background);\n    color: var(--ui-color);\n\n    height: auto;\n    min-height: 100vh;\n}\n\nhr {\n    margin: var(--gap) 0;\n    border: 0;\n    height: 1px;\n    background: var(--color-mono--300);\n}\n\ntable {\n    border-collapse: collapse;\n    border-spacing: 0;\n}\n\nimg {\n    max-width: 100%;\n}\n\nlabel {\n    cursor: pointer;\n    font-weight: 500;\n    font-size: 1.1em;\n    line-height: 1.5em;\n    margin-bottom: .25em;\n}\n\ninput,\ntextarea {\n    display: inline-block;\n    box-sizing: border-box;\n    padding: calc((var(--control-height) - var(--font-size) * 1.35)/ 2) .5em;\n\n    border-radius: var(--border-radius);\n    border: 1px solid var(--border-color);\n    box-shadow: 0 1px 2px rgba(2,36,102,.15) inset;\n    background-color: var(--ui-background);\n\n    text-overflow: ellipsis;\n\n    font-family: var(--font-family);\n    font-size: var(--font-size);\n    line-height: 1.35;\n    letter-spacing: 0;\n}\n\ninput:hover,\ntextarea:hover,\nselect:hover {\n    border-color: var(--border-color--hover);\n}\n\nbutton:focus,\ninput:focus,\ntextarea:focus,\nselect:focus,\na:focus,\na:active {\n    border-color: #4A90E2;\n    box-shadow: 0 0 0 2px #ADD3FC;\n    outline: none;\n}\n\ninput[type=\"text\"],\ninput[type=\"password\"],\ninput[type=\"email\"],\ninput[type=\"number\"] {\n    height: var(--control-height);\n    width: 100%;\n}\n\ntextarea {\n    line-height: 1.35;\n    min-height: var(--control-height);\n    width: 100%;\n}\n\ninput[type=\"radio\"],\ninput[type=\"checkbox\"] {\n    height: auto;\n    margin: var(--gap--small);\n}\n\ninput[readonly],\ntextarea[readonly] {\n    background: var(--color-warm--100);\n    box-shadow: none;\n}\n\nselect {\n    -moz-appearance: none;\n    -webkit-appearance: none;\n    appearance: none;\n    background-image: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 960 560\"><path d=\"M480 344.2L268.9 131.9c-15.8-15.9-41.3-15.9-57.1 0 -15.8 15.9-15.8 41.6 0 57.4l237.6 238.9c8.4 8.5 19.6 12.3 30.6 11.7 11 0.6 22.2-3.2 30.6-11.7l237.6-238.9c15.8-15.9 15.8-41.6 0-57.4s-41.3-15.9-57.1 0L480 344.2z\"/></svg>');\n    background-position: 100%;\n    background-size: 1.5em;\n    background-repeat: no-repeat;\n    background-color: transparent;\n    color: currentColor;\n\n    height: 2em;\n    padding: 0 2em 0 var(--gap--small);\n    border-radius: 4px;\n    border: 0;\n\n    text-overflow: ellipsis;\n    white-space: nowrap;\n\n    font-family: var(--font-family);\n    font-size: 1em;\n}\n\nselect:hover {\n    background-color: var(--color-warm--200);\n}\n\nselect[disabled] {\n    background-image: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"grey\" viewBox=\"0 0 960 560\"><path d=\"M480 344.2L268.9 131.9c-15.8-15.9-41.3-15.9-57.1 0 -15.8 15.9-15.8 41.6 0 57.4l237.6 238.9c8.4 8.5 19.6 12.3 30.6 11.7 11 0.6 22.2-3.2 30.6-11.7l237.6-238.9c15.8-15.9 15.8-41.6 0-57.4s-41.3-15.9-57.1 0L480 344.2z\"/></svg>');\n}\n\nselect[multiple] {\n    height: auto;\n}\n\nbutton {\n    display: inline-flex;\n    box-sizing: border-box;\n\n    height: var(--control-height);\n    padding: calc((var(--control-height) - 1em)/2 - 2px) 1.25em;\n\n    border-radius: 4px;\n    box-shadow: 0 -1px 0 0 rgba(0,0,0,0.3) inset;\n    border: 0;\n\n    background: var(--color-mono--200);\n    fill: var(--ui-color);\n    color: var(--ui-color);\n\n    font-size: 1em;\n    font-family: var(--font-family);\n    line-height: 1.25;\n    font-weight: 500;\n    letter-spacing: .01em;\n    cursor: pointer;\n}\n\nbutton[disabled] {\n    cursor: not-allowed;\n    color: var(--color-mono--500);\n    fill: var(--color-mono--500);\n    opacity: .7;\n}\n\nbutton:hover {\n    background: var(--color-mono--300);\n    color: var(--ui-color);\n}\n\n/* Base Typography elements */\n\nh1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big,\ncite, code, del, dfn, em, small, strike, strong, sub, sup, b, u, i,\ndl, dt, dd, ol, ul, li, label, legend {\n    margin: 0;\n    padding: 0;\n    border: 0;\n    vertical-align: baseline;\n    box-sizing: border-box;\n}\n\np {\n    line-height: 1.5;\n    margin: .5em 0;\n}\n\nul {\n    list-style-type: disc;\n}\n\nol {\n    list-style-type: decimal;\n}\n\nli {\n    line-height: 1.5;\n    margin: 0 0 .65em 1.4em;\n    list-style-position: outside;\n}\n\na {\n    cursor: pointer;\n    color: var(--cta-color--accent);\n    text-decoration: underline;\n}\n\na:hover {\n    text-decoration: none;\n    color: var(--ui-color--secondary);\n}\n\nb {\n    font-weight: 600;\n}\n\nstrong {\n    font-weight: 700;\n}\n\ntime, code, pre {\n    font-family: var(--font-family--mono);\n    line-height: 1.6;\n    word-wrap: break-word;\n    word-break: break-word;\n}\n\ncode {\n    font-size: inherit;\n    font-weight: inherit;\n}\n\npre {\n    white-space: pre-wrap;\n}\n\nh1, h2, h3, h4, h5, h6 {\n    line-height: 1;\n    margin: 0 0 2rem;\n}\n\nh1 {\n    margin: 0 0 2rem;\n    font-size: 32px;\n    font-weight: 300;\n}\n\nh2 {\n    font-size: 25px;\n    line-height: 1;\n    font-weight: 300;\n}\n\nh3 {\n    font-size: 22px;\n    line-height: 1;\n    font-weight: 300;\n}\n\nh4 {\n    font-size: 18px;\n    font-weight: 500;\n}\n\nh5 {\n    font-size: 16px;\n    font-weight: 500;\n    margin: 0 0 1rem;\n}\n\nh6 {\n    font-size: 13px;\n    font-weight: 600;\n    margin: 0 0 1rem;\n}\n\nsmall {\n    line-height: 1;\n    font-size: 80%;\n}\n\nbig {\n    font-size: var(--font-size--large);\n}\n\nsub {\n    font-size: 70%;\n}\n\nmark {\n    background-color: var(--color-yellow--400);\n    border-radius: 2px;\n    box-shadow: 1px 0 0 var(--color-yellow--400), -1px 0 0 var(--color-yellow--400);\n}\n\n/* Core UI components */\n\n.button {\n    display: inline-flex;\n    box-sizing: border-box;\n    align-items: center;\n\n    padding: calc((var(--control-height) - 1em)/2 - 2px) 1.25em;\n    height: var(--control-height);\n    border-radius: 4px;\n    box-shadow: 0 -1px 0 0 rgba(0,0,0,0.3) inset;\n    border: 0;\n\n    background-color: var(--cta-color);\n    fill: var(--ui-color);\n    color: var(--ui-color);\n\n    font-size: var(--font-size);\n    font-family: var(--font-family);\n    line-height: 1;\n    font-weight: 500;\n    white-space: nowrap;\n    letter-spacing: .01em;\n    text-decoration: none;\n    cursor: pointer;\n}\n\n.button:visited {\n    color: var(--color--default);\n}\n\n.button:hover {\n    text-decoration: none;\n    background: var(--cta-color--active);\n    color: var(--ui-color);\n}\n\n.button:focus,\n.button:active {\n    border-color: #4A90E2;\n    box-shadow: 0 0 0 2px #ADD3FC;\n    outline: none;\n}\n\n.button[disabled] {\n    color: var(--color-mono--500);\n    fill: var(--color-mono--500);\n    opacity: .7;\n}\n\n.button--primary,\n.button--primary:visited {\n    background: var(--cta-color--accent);\n    color: white;\n}\n\n.button--primary:hover {\n    background: var(--cta-color--accent--active);\n    color: white;\n}\n\n.button--primary[disabled] {\n    color: var(--color-mono--400);\n}\n\n.button--secondary,\n.button--secondary:visited {\n    color: var(--cta-color--accent);\n    background: transparent;\n    box-shadow: 0 0 0 2px currentColor inset;\n}\n\n.button--secondary:hover {\n    background: transparent;\n    color: var(--cta-color--accent--active);\n}\n\n.button--secondary[disabled] {\n    color: var(--cta-color--accent);\n    background: transparent;\n}\n\n.button--accent,\n.button--accent:visited {\n    background: var(--color-brand-red--500);\n    color: white;\n}\n\n.button--accent:hover {\n    background: var(--color-brand-red--600);\n    color: white;\n}\n\n.button--accent[disabled] {\n    background: var(--color-brand-red--300);\n    color: var(--color-brand-red--400);\n}\n\n.button.frameless { color: var(--ui-color) }\n\n.button--primary.frameless { color: var(--ui-color--primary) }\n\n.button--secondary.frameless { color: var(--ui-color--secondary) }\n\n.button--accent.frameless { color: var(--ui-color--accent) }\n\n.button--dark-mode,\n.button--dark-mode:visited {\n    background: var(--cta-color--dark-mode);\n    box-shadow: 0 -1px 0 0 rgba(0,0,0,0.9) inset;\n    color: white;\n}\n\n.button--dark-mode:hover {\n    background: var(--cta-color--dark-mode);\n    color: white;\n}\n\n.button--dark-mode[disabled] {\n    color: white;\n}\n\n.button--flat {\n    box-shadow: none;\n}\n\n.button--small {\n    font-size: calc(var(--font-size) / 1.25);\n    height: var(--control-height--small);\n    padding: calc(var(--control-height--small)/2 - var(--font-size--small)/2 - 2px) .85em;\n}\n\n.button--large {\n    font-size: calc(var(--font-size) * 1.5);\n    height: var(--control-height--large);\n    padding: calc(var(--control-height--large)/2 - var(--font-size--large)/2 - 2px) 1.25em;\n    border-radius: calc(var(--border-radius) * 1.5);\n}\n\n.button--icon {\n    padding: 0;\n    width: calc(var(--control-height) * 1.2);\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n}\n\n.button--icon.button--large {\n    width: calc(var(--control-height--large) * 1.1);\n}\n\n.button--icon.button--small {\n    width: calc(var(--control-height--small) * 1.3);\n}\n\n.button__icon {\n    position: relative;\n    width: auto;\n    color: currentColor;\n    fill: currentColor;\n    margin-right: .3em;\n    left: -.1em;\n    flex-shrink: 0;\n    line-height: inherit;\n    vertical-align: baseline;\n}\n\n.button--icon svg,\n.button--icon .button__icon {\n    height: 1em;\n    fill: currentColor;\n    color: currentColor;\n    left: 0;\n    margin: 0;\n}\n\n.input {\n    display: inline-flex;\n    box-sizing: border-box;\n\n    height: var(--control-height);\n    align-items: center;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n\n    border-radius: var(--border-radius);\n    border: 1px solid var(--border-color);\n    box-shadow: 0 1px 2px rgba(2,36,102,.15) inset;\n}\n\n.input:hover {\n    border-color: var(--border-color--hover);\n}\n\n.input.frameless:hover {\n    border-color: transparent;\n}\n\n.input:focus,\n.input:focus-within {\n    border-color: #4A90E2;\n    box-shadow: 0 0 0 2px #ADD3FC;\n    outline: none;\n}\n\n.input input,\n.input textarea {\n    border: 0;\n    box-shadow: none;\n    flex: 1;\n    background: transparent;\n}\n\n.input--area {\n    height: auto;\n}\n\n.input--area--fixed {\n    resize: vertical;\n}\n\n.input * {\n    max-height: 100%;\n}\n\n.input .icon {\n    justify-content: center;\n    align-items: center;\n}\n\n.input--block {\n    display: block;\n    width: 100%;\n}\n\n.input[disabled] {\n    opacity: 0.5;\n    cursor: not-allowed;\n    pointer-events: none;\n}\n\n.toggle {\n    --toggle__width: 4em;\n    --toggle__height: 1em;\n\n    font-size: 1em;\n    display: inline-grid;\n    grid-gap: var(--gap--small);\n    align-items: center;\n    grid-auto-flow: column;\n    justify-self: start;\n}\n\n.toggle__toggler {\n    position: relative;\n    display: inline-block;\n    width: var(--toggle__width);\n    height: calc(2 * 3px + var(--toggle__height));\n    vertical-align: middle;\n}\n\n.toggle__label {\n    font-weight: 500;\n}\n\n.toggle__slider {\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    display: inline-block;\n    margin: 0 !important;\n    padding: 0;\n    border-radius: var(--toggle__height);\n    cursor: pointer;\n    background-color: #888;\n    background-color: var(--color-mono--400);\n    transition: 0.4s;\n}\n\n.toggle__slider:before {\n    content: '';\n    position: absolute;\n    left: 3px;\n    bottom: 3px;\n    display: block;\n    height: var(--toggle__height);\n    width: var(--toggle__height);\n    border-radius: 50%;\n    background-color: #fff;\n    transition: 0.4s;\n}\n\n.toggle__input {\n    display: none;\n    visibility: hidden;\n}\n\n.toggle__slider--on {\n    background-color: var(--color-blue--500);\n}\n\n.toggle__slider--on:before {\n    transform: translateX(calc(var(--toggle__width) - var(--toggle__height) - 6px));\n}\n\n.toggle__slider:after {\n    position: absolute;\n    top: 3px;\n    bottom: 3px;\n    line-height: var(--toggle__height);\n    color: #fff;\n    height: var(--toggle__height);\n    width: calc(var(--toggle__width) - 2 * var(--toggle__height));\n}\n\n.toggle__slider--on:after {\n    content: 'On';\n    left: 6px;\n}\n\n.toggle__slider--off:after {\n    content: 'Off';\n    left: calc(var(--toggle__height) + 7px);\n    text-align: left;\n}\n\n.group {\n    display: inline-flex;\n    align-items: center;\n    max-width: 100%;\n}\n\n.group > * {\n    margin: 0;\n}\n\n.group--gap > * + * { margin-left: var(--gap) }\n\n.group--gap--small > * + * { margin-left: var(--gap--small) }\n\n.group--gap--large > * + * { margin-left: var(--gap--large) }\n\n.group--block {\n    display: flex;\n}\n\n.group--merged {\n    flex-wrap: nowrap;\n    align-items: stretch;\n    white-space: nowrap;\n    border-radius: var(--border-radius);\n}\n\n.group--merged > *:not(:last-child) {\n    border-top-right-radius: 0;\n    border-bottom-right-radius: 0;\n}\n\n.group--merged > * + * {\n    margin-left: -1px;\n    border-top-left-radius: 0;\n    border-bottom-left-radius: 0;\n}\n\n.group--merged--border > * + * {\n    border-left: 1px solid var(--border-color);\n}\n\n.group--semi-merged {\n    display: inline-grid;\n    grid-auto-flow: column;\n    grid-gap: 2px;\n    align-content: center;\n}\n\n.group--semi-merged > * {\n    border-radius: 0;\n}\n\n.group--semi-merged > *:first-child {\n    border-top-left-radius: var(--border-radius);\n    border-bottom-left-radius: var(--border-radius);\n}\n\n.group--semi-merged > *:last-child {\n    border-top-right-radius: var(--border-radius);\n    border-bottom-right-radius: var(--border-radius);\n}\n\n.box {\n    padding: var(--gap) 30px var(--gap) var(--gap--large);\n    border: 2px solid transparent;\n    line-height: 1.6;\n    border-radius: var(--border-radius);\n    font-weight: 400;\n    font-size: var(--font-size);\n    box-sizing: border-box;\n}\n\n.box--mono {\n    background: var(--color-mono--100);\n    color: var(--color-mono--500);\n}\n\n.box--cool {\n    background: var(--color-cool--100);\n    color: var(--color-cool--500);\n}\n\n.box--warm {\n    background: var(--color-warm--100);\n    color: var(--color-warm--500);\n}\n\n.box--blue {\n    background: var(--color-blue--100);\n    color: var(--color-blue--500);\n}\n\n.box--yellow {\n    background: var(--color-yellow--100);\n    color: var(--color-yellow--500);\n}\n\n.box--red {\n    background: var(--color-red--100);\n    color: var(--color-red--600);\n}\n\n.box--green {\n    background: var(--color-green--100);\n    color: var(--color-green--500);\n}\n\n.box--brand-red {\n    background: var(--color-brand-red--100);\n    color: var(--color-brand-red--500);\n}\n\n.box--brand-blue {\n    background: var(--color-brand-blue--100);\n    color: var(--color-brand-blue--500);\n}\n\n.box--outline {\n    border-color: currentColor;\n    background: transparent;\n}\n\n.box--small {\n    padding: var(--gap--small) var(--gap--large);\n    font-size: var(--font-size--small);\n}\n\n.box--large {\n    padding: var(--gap--large) calc(2 * var(--gap--large));\n    font-size: var(--font-size--large);\n}\n\n.box--panel {\n    padding: var(--gap);\n    line-height: 1.6;\n    font-size: var(--font-size);\n    color: var(--ui-color);\n}\n\n.box--panel--mono { background: var(--color-mono--200) }\n\n.box--panel--cool { background: var(--color-cool--200) }\n\n.box--panel--warm { background: var(--color-warm--200) }\n\n.box--panel--blue { background: var(--color-blue--200) }\n\n.box--panel--yellow { background: var(--color-yellow--200) }\n\n.box--panel--green { background: var(--color-green--200) }\n\n.box--panel--red { background: var(--color-red--200) }\n\n.box--panel--border {\n    border-radius: var(--border-radius);\n}\n\n.box--panel--small { padding: var(--gap--small) }\n\n.box--panel--large { padding: var(--gap--large) }\n\n.tabs {\n    display: flex;\n    align-items: baseline;\n    list-style: none;\n    border-bottom: var(--tab-slider-size) solid var(--color-warm--200);\n    margin: 0;\n}\n\n.tabs__item {\n    position: relative;\n    top: var(--tab-slider-size);\n    padding: var(--gap) var(--gap--large);\n    margin: 0 var(--gap--small) 0 0;\n    border-bottom: var(--tab-slider-size) solid var(--color-warm--200);\n    color: inherit;\n    font-size: 13px;\n    font-weight: 300;\n    text-decoration: none;\n    cursor: pointer;\n}\n\n.tabs__icon {\n    width: 1.5em;\n}\n\n.tabs__item:after {\n    content: '';\n    position: absolute;\n    display: block;\n    bottom: calc(-1 * var(--tab-slider-size));\n    left: 0;\n    height: var(--tab-slider-size);\n    width: 0%;\n    background: transparent;\n    border-radius: var(--tab-slider-size);\n    transition: width 0.4s;\n}\n\n.tabs__item--active {\n    font-weight: 500;\n}\n\n.tabs__item--active:after {\n    background: var(--tab-slider-color);\n    width: 100%;\n}\n\n.block {\n    padding: var(--gap);\n    line-height: 1.6;\n    font-size: var(--font-size);\n}\n\n.block--mono { background: var(--color-mono--200) }\n\n.block--cool { background: var(--color-cool--200) }\n\n.block--warm { background: var(--color-warm--200) }\n\n.block--blue { background: var(--color-blue--200) }\n\n.block--yellow { background: var(--color-yellow--200) }\n\n.block--green { background: var(--color-green--200) }\n\n.block--red { background: var(--color-red--200) }\n\n.block--border {\n    border-radius: var(--border-radius);\n}\n\n.block--small { padding: var(--gap--small) var(--gap) }\n\n.block--large { padding: var(--gap--large) }\n\n.badge {\n    display: inline-grid;\n    grid-gap: 4px;\n    grid-auto-flow: column;\n    align-items: center;\n    justify-content: start;\n\n    padding: 0 .8em;\n    box-sizing: border-box;\n\n    border-radius: 2px;\n\n    text-align: center;\n    white-space: nowrap;\n\n    letter-spacing: 0.6px;\n    font-weight: 500;\n\n    color: var(--ui-background);\n    background-color: var(--color-mono--500);\n    border: 0;\n    line-height: 2em;\n    font-size: inherit;\n    text-transform: uppercase;\n}\n\n.badge--inline {\n    line-height: inherit;\n    text-transform: initial;\n    font-size: .8em;\n    font-weight: 400;\n}\n\n.badge--production { background-color: var(--color-brand-red--500) }\n\n.badge--staging { background-color: var(--color-green--500) }\n\n.badge--mono { background-color: var(--color-mono--500) }\n\n.badge--cool { background-color: var(--color-cool--500) }\n\n.badge--warm { background-color: var(--color-warm--500) }\n\n.badge--blue { background-color: var(--color-blue--500) }\n\n.badge--brand-blue { background-color: var(--color-brand-blue--500) }\n\n.badge--yellow { background-color: var(--color-yellow--500) }\n\n.badge--red { background-color: var(--color-red--500) }\n\n.badge--brand-red { background-color: var(--color-brand-red--500) }\n\n.badge--green { background-color: var(--color-green--500) }\n\n.badge--mono--light {\n    background-color: var(--color-mono--400);\n    color: var(--ui-color);\n}\n\n.badge--cool--light {\n    background-color: var(--color-cool--400);\n    color: var(--ui-color);\n}\n\n.badge--warm--light {\n    background-color: var(--color-warm--400);\n    color: var(--ui-color);\n}\n\n.badge--blue--light {\n    background-color: var(--color-blue--400);\n    color: var(--ui-color);\n}\n\n.badge--yellow--light {\n    background-color: var(--color-yellow--400);\n    color: var(--ui-color);\n}\n\n.badge--red--light {\n    background-color: var(--color-red--400);\n    color: var(--ui-color);\n}\n\n.badge--green--light {\n    background-color: var(--color-green--400);\n    color: var(--ui-color);\n}\n\n.badge--brand-red--light {\n    background-color: var(--color-brand-red--400);\n    color: var(--ui-color);\n}\n\n.badge--brand-blue--light {\n    background-color: var(--color-brand-blue--400);\n    color: var(--ui-color);\n}\n\n.badge--outline {\n    box-shadow: 0 0 0 1px currentColor inset;\n    color: var(--color-mono--500);\n    background: transparent;\n}\n\n.badge--mono--outline {\n    color: var(--color-mono--600);\n    background: transparent;\n    box-shadow: 0 0 0 1px currentColor inset;\n}\n\n.badge--cool--outline {\n    color: var(--color-cool--600);\n    background: transparent;\n    box-shadow: 0 0 0 1px currentColor inset;\n}\n\n.badge--warm--outline {\n    color: var(--color-warm--600);\n    background: transparent;\n    box-shadow: 0 0 0 1px currentColor inset;\n}\n\n.badge--blue--outline {\n    color: var(--color-blue--600);\n    background: transparent;\n    box-shadow: 0 0 0 1px currentColor inset;\n}\n\n.badge--yellow--outline {\n    color: var(--color-yellow--600);\n    background: transparent;\n    box-shadow: 0 0 0 1px currentColor inset;\n}\n\n.badge--red--outline {\n    color: var(--color-red--600);\n    background: transparent;\n    box-shadow: 0 0 0 1px currentColor inset;\n}\n\n.badge--green--outline {\n    color: var(--color-green--600);\n    background: transparent;\n    box-shadow: 0 0 0 1px currentColor inset;\n}\n\n.badge--brand-red--outline {\n    color: var(--color-brand-red--600);\n    background: transparent;\n    box-shadow: 0 0 0 1px currentColor inset;\n}\n\n.badge--brand-blue--outline {\n    color: var(--color-brand-blue--600);\n    background: transparent;\n    box-shadow: 0 0 0 1px currentColor inset;\n}\n\n.badge--small {\n    line-height: calc(1.1 * var(--font-size));\n    height: calc(1.1 * var(--font-size));\n    font-size: var(--font-size--small)\n}\n\n.badge--large {\n    line-height: calc(2.75 * var(--font-size));\n    height: calc(2.75 * var(--font-size));\n    font-size: var(--font-size--large)\n}\n\n.badge--fixed {\n    min-width: 12ch;\n    max-width: 100%;\n}\n\n.badge--round {\n    min-width: 3ch;\n    padding: 0;\n    border-radius: 2.5em;\n    justify-content: center;\n}\n\n.badge--round.badge--small {\n    min-width: 15px;\n    font-size: 10px;\n}\n\n.badge--round.badge--large {\n    min-width: 2.8ch;\n}\n\n.loader {\n    height: var(--gap);\n    text-align: center;\n    display: inline-flex;\n}\n\n.loader--small { height: var(--gap--small) }\n\n.loader--large { height: var(--gap--large) }\n\n.loader__rect {\n    background: currentColor;\n    height: 100%;\n    width: 4px;\n    border-radius: 1.5px;\n    margin: 0 2px;\n\n    animation: loading 1s ease-in-out infinite;\n}\n\n.loader__rect2 {\n    animation-delay: -1.1s;\n}\n\n.loader__rect3 {\n    animation-delay: -1.0s;\n}\n\n.loader__rect4 {\n    animation-delay: -0.9s;\n}\n\n.loader__rect5 {\n    animation-delay: -0.8s;\n}\n\n@keyframes loading {\n    0% {\n        transform: scale(1);\n    }\n    20% {\n        transform: scale(1, 2.2);\n    }\n    40% {\n        transform: scale(1);\n    }\n}\n\n.spinner {\n    --spinner-size: 28;\n    animation: spin 1.3s infinite linear;\n    width: var(--control-height);\n    height: var(--control-height);\n}\n\n.spinner--small {\n    width: calc(.5 * var(--control-height));\n    height: calc(.5 * var(--control-height));\n}\n\n.spinner--large {\n    width: calc(2 * var(--control-height));\n    height: calc(2 * var(--control-height));\n}\n\n@keyframes spin {\n    0% {\n        transform:rotate(0deg)\n    }\n    to {\n        transform:rotate(1turn)\n    }\n}\n\n.progress-bar {\n    color: var(--color-cool--400);\n    display: flex;\n    position: relative;\n    min-width: 5vw;\n    font-size: 10px;\n    background: var(--color-cool--100);\n    box-shadow: 0 0 0 1px currentColor inset;\n    vertical-align: middle;\n    line-height: 15px;\n    border-radius: 0;\n    overflow: hidden;\n    border-radius: 1px;\n}\n\n.progress-bar--large {\n    line-height: 26px;\n    font-size: 15px;\n    border-radius: 3px;\n}\n\n.progress-bar__width {\n    position: absolute;\n    left: 0;\n    top: 0;\n    bottom: 0;\n    width: 0;\n    background-color: var(--color-cool--400);\n    border-radius: inherit;\n    transition: width 1s;\n}\n\n.progress-bar__counter {\n    align-self: center;\n    margin-left: auto;\n    font-weight: 600;\n    padding: 0 var(--gap--small);\n    color: var(--color-mono--800);\n    z-index: 2;\n}\n\n.tag {\n    display: inline-flex;\n    align-items: stretch;\n    justify-content: center;\n    line-height: 1.75em;\n    width: auto;\n    color: var(--ui-color);\n    border-radius: 1px;\n    font-weight: 500;\n    margin-right: 4px;\n    background-color: var(--color-mono--200);\n}\n\n.tag__remover {\n    color: #fff;\n    border-left: 2px solid var(--ui-background);\n    padding: 0 var(--gap--small);\n}\n\n.tag__label {\n    padding: 0 var(--gap--small);\n}\n\n.tag--mono { background-color: var(--color-mono--400) }\n\n.tag--cool { background-color: var(--color-cool--400) }\n\n.tag--warm { background-color: var(--color-warm--400) }\n\n.tag--blue { background-color: var(--color-blue--400) }\n\n.tag--yellow { background-color: var(--color-yellow--400) }\n\n.tag--red { background-color: var(--color-red--400) }\n\n.tag--green { background-color: var(--color-green--400) }\n\n.tag--brand-red { background-color: var(--color-brand-red--400) }\n\n.tag--brand-blue { background-color: var(--color-brand-blue--400) }\n\n/* UI helpers */\n\n/*TEXT*/\n\n.text--mono { font-family: var(--font-family--mono) }\n\n.text--highlight {\n    background-color: var(--color-yellow--400);\n    padding: 3px 0;\n    border-radius: 2px;\n    box-shadow: 3px 0 0 var(--color-yellow--400), -3px 0 0 var(--color-yellow--400);\n}\n\n.text--truncate {\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    overflow: hidden;\n    max-width: 100%;\n}\n\n.code {\n    color: var(--color-blue--500);\n    font-family: var(--font-family--mono);\n    background: var(--color-cool--200);\n    display: inline-block;\n    padding: 0 3px;\n    border-radius: 2px;\n    font-size: inherit;\n    font-weight: inherit;\n}\n\n.pre {\n    display: block;\n\n    font-family: var(--font-family--mono);\n    line-height: 1.6;\n    font-size: 1.1em;\n    font-weight: 400;\n    word-wrap: break-word;\n    word-break: break-word;\n    white-space: pre-wrap;\n\n    background: var(--color-cool--800);\n    color: white;\n    border-radius: var(--border-radius);\n    padding: var(--gap);\n    overflow-x: auto;\n}\n\n.no-caps { text-transform: initial }\n\n.all-caps { text-transform: uppercase }\n\n/*CONTROLS */\n\n.frameless {\n    border-color: transparent;\n    box-shadow: none;\n    background: transparent;\n}\n\n.frameless:hover {\n    background: var(--color-warm--200);\n}\n\n.select {\n    box-shadow: 0 0 0 1px var(--border-color);\n    box-shadow: 0 -1px 0 0 rgba(0,0,0,0.3) inset;\n    background-color: var(--color-mono--200);\n    height: 2em;\n    padding: 0 2em 0 .5em;\n    font-weight: 500;\n}\n\n/*GRID*/\n\n.grid {\n    display: grid;\n    align-items: start;\n    justify-items: start;\n    max-width: 100%;\n}\n\n.grid--gap { grid-gap: var(--gap) }\n\n.grid--gap--small { grid-gap: var(--gap--small) }\n\n.grid--gap--large { grid-gap: var(--gap--large) }\n\n.shift { margin-left: var(--control-height) }\n\n.shift--small { margin-left: var(--control-height--small) }\n\n.shift--large { margin-left: var(--control-height--large) }\n\n.icon {\n    display: inline-flex;\n    width: var(--control-height);\n    align-items: center;\n    justify-content: start;\n}\n\n.icon--small {\n    width: var(--control-height--small);\n    font-size: var(--font-size--small);\n}\n\n.icon--large {\n    width: var(--control-height--large);\n    font-size: var(--font-size--large);\n}\n\n/*BLOCKS*/\n\n.stretch {\n    width: 100%;\n    justify-items: stretch;\n}\n\n/* semantic foreground colours */\n\n.color--default { color: var(--ui-color) }\n\n.color--dark-mode { color: var(--ui-color--dark-mode) }\n\n.color--primary { color: var(--color-brand-red--500) }\n\n.color--secondary { color: var(--ui-color--secondary) }\n\n.color--muted { color: var(--ui-color--muted) }\n\n/* base foreground colours */\n\n.color--mono { color: var(--color-mono--500) }\n\n.color--cool { color: var(--color-cool--500) }\n\n.color--warm { color: var(--color-warm--500) }\n\n.color--blue { color: var(--color-blue--500) }\n\n.color--yellow { color: var(--color-yellow--500) }\n\n.color--green { color: var(--color-green--500) }\n\n.color--red { color: var(--color-red--500) }\n\n.color--brand-red { color: var(--color-brand-red--500) }\n\n.color--brand-blue { color: var(--color-brand-blue--500) }\n\n.color--mono--dark-mode { color: var(--color-mono--400) }\n\n.color--cool--dark-mode { color: var(--color-cool--400) }\n\n.color--warm--dark-mode { color: var(--color-warm--400) }\n\n.color--blue--dark-mode { color: var(--color-blue--400) }\n\n.color--yellow--dark-mode { color: var(--color-yellow--400) }\n\n.color--green--dark-mode { color: var(--color-green--400) }\n\n.color--red--dark-mode { color: var(--color-red--400) }\n\n.color--brand-red--dark-mode { color: var(--color-brand-red--400) }\n\n.color--brand-blue--dark-mode { color: var(--color-brand-blue--400) }\n\n/* semantic background colours */\n\n.bg--default { background: var(--ui-background) }\n\n.bg--dark-mode { background: var(--ui-background--dark-mode) }\n\n/* base background colours */\n\n.bg--mono { background: var(--color-mono--500) }\n\n.bg--cool { background: var(--color-cool--500) }\n\n.bg--warm { background: var(--color-warm--500) }\n\n.bg--blue { background: var(--color-blue--500) }\n\n.bg--yellow { background: var(--color-yellow--500) }\n\n.bg--green { background: var(--color-green--500) }\n\n.bg--red { background: var(--color-red--500) }\n\n.bg--brand-red { background: var(--color-brand-red--500) }\n\n.bg--brand-blue { background: var(--color-brand-blue--500) }\n\n.bg--mono--pale { background: var(--color-mono--000) }\n\n.bg--cool--pale { background: var(--color-cool--000) }\n\n.bg--warm--pale { background: var(--color-warm--000) }\n\n.bg--blue--pale { background: var(--color-blue--000) }\n\n.bg--yellow--pale { background: var(--color-yellow--000) }\n\n.bg--green--pale { background: var(--color-green--000) }\n\n.bg--red--pale { background: var(--color-red--000) }\n\n.bg--brand-red--pale { background: var(--color-brand-red--000) }\n\n.bg--brand-blue--pale { background: var(--color-brand-blue--000) }\n\n.bg--mono--light { background: var(--color-mono--400) }\n\n.bg--cool--light { background: var(--color-cool--400) }\n\n.bg--warm--light { background: var(--color-warm--400) }\n\n.bg--blue--light { background: var(--color-blue--400) }\n\n.bg--yellow--light { background: var(--color-yellow--400) }\n\n.bg--green--light { background: var(--color-green--400) }\n\n.bg--red--light { background: var(--color-red--400) }\n\n.bg--brand-red--light { background: var(--color-brand-red--400) }\n\n.bg--brand-blue--light { background: var(--color-brand-blue--400) }\n\n.bg--mono--dark { background: var(--color-mono--800) }\n\n.bg--cool--dark { background: var(--color-cool--800) }\n\n.bg--warm--dark { background: var(--color-warm--800) }\n\n.bg--blue--dark { background: var(--color-blue--800) }\n\n.bg--yellow--dark { background: var(--color-yellow--800) }\n\n.bg--green--dark { background: var(--color-green--800) }\n\n.bg--red--dark { background: var(--color-red--800) }\n\n.bg--brand-red--dark { background: var(--color-brand-red--800) }\n\n.bg--brand-blue--dark { background: var(--color-brand-blue--800) }\n\n/* Print CSS base */\n\n@media print {\n    body {\n        color: #000;\n        background: white;\n        width: 100%;\n        margin: 0;\n        padding: 0;\n    }\n\n    * {\n        print-color-adjust: exact;\n    }\n\n    .no-print {\n        display: none;\n    }\n\n    @page {\n        margin: 1.5cm;\n    }\n}\n\n.demo {\n    padding: 0 40px 0 80px;\n    display: grid;\n    grid-template-rows: 100vh;\n}\n\n.demo__snippet {\n    display: grid;\n    grid-gap: var(--gap);\n    background-color: var(--color-warm--100);\n    color: var(--color-cool--500);\n    border-radius: 3px;\n    padding: var(--gap);\n    font-size: 1em;\n    line-height: 1.6;\n    align-items: start;\n    width: 100%;\n}\n\n.demo__snippet-source {\n    color: var(--color-yellow--500);\n}\n\n.demo__snippet-code {\n    height: min-content;\n    white-space: pre-wrap;\n}\n\n/* Inbox */\n\nsection {\n    border-bottom: 0.5px solid var(--color-warm--300);\n    margin-bottom: var(--gap);\n    padding-bottom: var(--gap--large);\n}\n\nsection:last-of-type {\n    border-bottom: 0;\n}\n\nsection > header {\n    position: sticky;\n    top: 0;\n    left: 0;\n    z-index: 1;\n\n    background: rgba(255,255,255,.85);\n    padding: var(--gap--large) 0;\n\n    color: var(--color-blue--500);\n    margin: var(--gap--large) 0;\n\n    font-size: 25px;\n    line-height: 1;\n    font-weight: 300;\n}\n\narticle {\n    border-bottom: 0.5px dashed var(--color-warm--300);\n    padding-bottom: var(--gap--large);\n    margin: var(--gap--large) 0;\n    display: grid;\n    grid-gap: var(--gap);\n}\n\narticle:last-of-type {\n    border-bottom: 0;\n}\n\narticle > header {\n    color: var(--color-blue--500);\n\n    position: sticky;\n    top: 65px;\n    left: 0;\n    z-index: 1;\n\n    background: rgba(255,255,255,.85);\n    margin: var(--gap) 0 calc(2 * var(--gap--large));\n    padding: 0 0 var(--gap--large);\n\n    font-size: 18px;\n    line-height: 1;\n    font-weight: 300;\n}\n\n.navigation {\n    padding-top: 60px;\n}\n\n.navigation__headline {\n    display: grid;\n    grid-auto-flow: column;\n    grid-gap: var(--gap);\n    align-items: center;\n    justify-content: start;\n}\n\n.navigation__headline-logo {\n    display: inline-grid;\n}\n\n.navigation__headline-title {\n    line-height: 1;\n    font-size: 32px;\n    margin: 0;\n    padding: 0;\n}\n\n.navigation__menu {\n    position: sticky;\n    top: 0;\n    left: 0;\n    padding: var(--gap--large) 0;\n}\n\n.navigation__menu-item {\n    list-style-type: none;\n    display: inline-grid;\n    grid-gap: var(--gap--small);\n    align-items: baseline;\n    grid-auto-flow: column;\n    margin: 15px 30px 0 0;\n    font-size: 16px;\n    text-decoration: none;\n}\n\n.navigation__menu-icon {\n    width: 16px;\n    color: currentColor;\n}\n\n.navigation__up {\n    text-decoration: none;\n    position: fixed;\n    bottom: 0;\n    left: 0;\n    padding: var(--gap--large);\n    display: grid;\n    grid-gap: var(--gap--small);\n    align-items: center;\n    justify-content: center;\n    justify-items: center;\n    font-size: var(--font-size--large);\n\n    color: var(--ui-color--muted);\n    font-size: var(--font-size--large);\n}")
 ;(function(){
 
 
 module.exports = {
-
-    components: {
-        swatches: require('./swatches.vue')
-    },
-
-    props: {
-        activeItem: { type: String, required: false, default: '' }
-    }
-
-};
-})()
-if (module.exports.__esModule) module.exports = module.exports.default
-var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
-if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"section section-colours",class:{ 'section--active': _vm.activeItem === 'colours' },attrs:{"id":"colours"}},[_c('div',{staticClass:"section__title",class:{ 'section__title--active': _vm.activeItem === 'colours' }},[_c('i',{staticClass:"fa fa-paint-brush section__title-icon"}),_vm._v(" "),_c('span',{staticClass:"section__title-label"},[_vm._v("Colours")])]),_vm._v(" "),_c('div',{staticClass:"section__body"},[_c('h2',[_vm._v("Palette")]),_vm._v(" "),_c('swatches')],1)])}
-__vue__options__.staticRenderFns = []
-if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-370f8b77", __vue__options__)
-  } else {
-    hotAPI.reload("data-v-370f8b77", __vue__options__)
-  }
-})()}
-},{"./swatches.vue":15,"vue":9,"vue-hot-reload-api":6}],12:[function(require,module,exports){
-;(function(){
-
-
-module.exports = {
-    props: {
-        activeItem: { type: String, required: false, default: '' }
-    }
-};
-})()
-if (module.exports.__esModule) module.exports = module.exports.default
-var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
-if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"section",class:{ 'section--active': _vm.activeItem === 'controls' },attrs:{"id":"controls"}},[_c('div',{staticClass:"section__title",class:{ 'section__title--active': _vm.activeItem === 'controls' }},[_c('i',{staticClass:"fa fa-gamepad section__title-icon"}),_vm._v(" "),_c('span',{staticClass:"section__title-label"},[_vm._v("Controls")])]),_vm._v(" "),_vm._m(0)])}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"section__body"},[_c('article',[_c('h3',[_vm._v("Buttons")]),_vm._v(" "),_c('div',{staticClass:"group group--gap-small"},[_c('button',{staticClass:"button"},[_vm._v("Default")]),_vm._v(" "),_c('button',{staticClass:"button button--primary"},[_vm._v("Primary")]),_vm._v(" "),_c('button',{staticClass:"button button--secondary"},[_vm._v("Secondary")]),_vm._v(" "),_c('button',{staticClass:"button button--outlined-primary"},[_vm._v("Outlined")])])]),_vm._v(" "),_c('article',[_c('h4',[_vm._v("Button sizes")]),_vm._v(" "),_c('div',{staticClass:"group group--gap-small"},[_c('button',{staticClass:"button button--small"},[_vm._v("Small")]),_vm._v(" "),_c('button',{staticClass:"button"},[_vm._v("Normal")]),_vm._v(" "),_c('button',{staticClass:"button button--large"},[_vm._v("Large")])])]),_vm._v(" "),_c('article',[_c('h4',[_vm._v("Button states")]),_vm._v(" "),_c('div',{staticClass:"group group--gap-small"},[_c('button',{staticClass:"button"},[_vm._v("Normal")]),_vm._v(" "),_c('button',{staticClass:"button button--active"},[_vm._v("Active")]),_vm._v(" "),_c('button',{staticClass:"button",attrs:{"disabled":""}},[_vm._v("Disabled")])])]),_vm._v(" "),_c('article',[_c('h3',[_vm._v("Text inputs")]),_vm._v(" "),_c('div',{staticClass:"group group--gap-small"},[_c('input',{staticClass:"input",attrs:{"type":"text","placeholder":"Regular input"}}),_vm._v(" "),_c('input',{staticClass:"input",attrs:{"type":"text","placeholder":"Disabled","disabled":""}})])]),_vm._v(" "),_c('article',[_c('h4',[_vm._v("Groups")]),_vm._v(" "),_c('div',{staticClass:"block"},[_c('div',{staticClass:"group group--gap"},[_c('div',{staticClass:"group group--gap-small"},[_c('label',[_vm._v("Text label")]),_vm._v(" "),_c('input',{staticClass:"input",attrs:{"type":"text","placeholder":"Text input"}})]),_vm._v(" "),_c('button',{staticClass:"button"},[_vm._v("Adjacent Button")]),_vm._v(" "),_c('select',{staticClass:"input"},[_c('option',[_vm._v("Dropdown menu")])]),_vm._v(" "),_c('div',{staticClass:"group group--merged"},[_c('button',{staticClass:"button"},[_vm._v("Button")]),_vm._v(" "),_c('button',{staticClass:"button"},[_vm._v("Another button")])]),_vm._v(" "),_c('div',{staticClass:"group group--merged"},[_c('input',{staticClass:"input",attrs:{"type":"text","placeholder":"Text input"}}),_vm._v(" "),_c('button',{staticClass:"button button--primary"},[_vm._v("Button")])])])]),_vm._v(" "),_c('div',{staticClass:"block"},[_c('div',{staticClass:"group group--gap"},[_c('input',{staticClass:"input input--small",attrs:{"type":"text","placeholder":"Small input"}}),_vm._v(" "),_c('button',{staticClass:"button button--small"},[_vm._v("Small button")]),_vm._v(" "),_c('div',{staticClass:"group group--merged"},[_c('input',{staticClass:"input input--small",attrs:{"type":"text","placeholder":"Small input"}}),_vm._v(" "),_c('button',{staticClass:"button button--small"},[_vm._v("Small button")])])])])])])}]
-if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-cba325d4", __vue__options__)
-  } else {
-    hotAPI.reload("data-v-cba325d4", __vue__options__)
-  }
-})()}
-},{"vue":9,"vue-hot-reload-api":6}],13:[function(require,module,exports){
-;(function(){
-
-
-module.exports = {
-    props: {
-        activeItem: { type: String, required: false, default: '' }
-    },
-
     data() {
         return {
-            tabs: ['Lorem', 'Ipsum', 'Dolor Sit Amet'],
-            activeTab: 'Lorem'
+            sections: {
+                'colour': 'Colour',
+                'typography': 'Typography',
+                'buttons': 'Buttons',
+                'inputs': 'Inputs',
+                'badges': 'Badges',
+                'tags': 'Tags',
+                'containers': 'Containers',
+                'loaders': 'Loaders'
+            }
         };
+    },
+
+    components: {
+        'navigation': require('./navigation.vue'),
+        'colour': require('./sections/colour/index.vue'),
+        'typography': require('./sections/typography/index.vue'),
+        'buttons': require('./sections/button/index.vue'),
+        'inputs': require('./sections/inputs/index.vue'),
+        'badges': require('./sections/badge.vue'),
+        'tags': require('./sections/tag.vue'),
+        'containers': require('./sections/containers/index.vue'),
+        'loaders': require('./sections/loaders/index.vue')
     }
 };
 })()
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"section",class:{ 'section--active': _vm.activeItem === 'layout' },attrs:{"id":"layout"}},[_c('div',{staticClass:"section__title",class:{ 'section__title--active': _vm.activeItem === 'layout' }},[_c('i',{staticClass:"fa fa-columns section__title-icon"}),_vm._v(" "),_c('span',{staticClass:"section__title-label"},[_vm._v("layout")])]),_vm._v(" "),_c('div',{staticClass:"section__body"},[_c('article',{attrs:{"id":"tabs"}},[_c('h3',[_vm._v("Tabs")]),_vm._v(" "),_c('menu',{staticClass:"tabs"},_vm._l((_vm.tabs),function(tab){return _c('a',{staticClass:"tabs__item",class:{ 'tabs__item--active': tab === _vm.activeTab },attrs:{"href":"#"},on:{"click":function($event){_vm.activeTab = tab}}},[_vm._v("\n                    "+_vm._s(tab)+"\n                ")])})),_vm._v(" "),_c('div',{staticClass:"tab"},[_c('p',[_c('b',[_vm._v(_vm._s(_vm.activeTab)+" content")]),_vm._v("\n                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet sollicitudin tellus, eget eleifend sapien volutpat sed. Curabitur vestibulum vitae dui et tincidunt. Proin tellus magna, imperdiet nec rutrum id, pulvinar vitae nunc. Quisque eu ligula eleifend, fringilla enim sit amet, porttitor felis. Donec nec varius felis, non imperdiet nunc. Donec vel suscipit nulla. Aliquam viverra, magna ut fermentum facilisis, mi nunc lacinia justo, ut ornare lorem odio at erat. Integer suscipit nulla quis enim euismod, a dapibus massa condimentum.\n                ")])])])])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"demo"},[_c('navigation',{attrs:{"sections":_vm.sections}}),_vm._v(" "),_c('div',{staticClass:"demo__container"},_vm._l((_vm.sections),function(sectionTitle,component){return _c('section',{key:component,staticClass:"section",class:_vm.activeItem === component ? 'section--active' : '',attrs:{"id":component}},[_c('header',[_vm._v(_vm._s(sectionTitle))]),_vm._v(" "),_c(component,{tag:"component"})],1)}))],1)}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  module.hot.dispose(__vueify_style_dispose__)
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3d7a7128", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-3d7a7128", __vue__options__)
+  }
+})()}
+},{"./navigation.vue":9,"./sections/badge.vue":10,"./sections/button/index.vue":13,"./sections/colour/index.vue":24,"./sections/containers/index.vue":30,"./sections/inputs/index.vue":32,"./sections/loaders/index.vue":37,"./sections/tag.vue":40,"./sections/typography/index.vue":43,"vue":6,"vue-hot-reload-api":5,"vueify/lib/insert-css":7}],9:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    props: {
+        sections: { type: Object, required: true }
+    },
+
+    created() {
+        this.$nextTick(() => this.scrollToActive());
+    },
+
+    watch: {
+        activeMenuItem(hash) {
+            if (hash) {
+                this.scrollToActive();
+            }
+        }
+    },
+
+    methods: {
+        scrollToActive() {
+            if (!this.activeMenuItem) {
+                return;
+            }
+
+            try {
+                const el = this.$el.querySelector('#' + this.activeMenuItem);
+                if (el) {
+                    el.scrollIntoViewIfNeeded();
+                }
+            } catch (err) {}
+        }
+    }
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('header',{staticClass:"navigation",attrs:{"id":"top"}},[_c('div',{staticClass:"navigation__headline"},[_c('span',{staticClass:"navigation__headline-logo"},[_c('svg',{attrs:{"viewBox":"0 0 32.42 28.7","width":"42","fill":"currentColor"}},[_c('path',{attrs:{"d":"M16.8 14.3C16.8 11.2 19.3 8.7 22.5 8.7 25.6 8.7 28.1 11.2 28.1 14.3 28.1 17.5 25.6 20 22.5 20 19.3 20 16.8 17.5 16.8 14.3ZM4.3 14.3C4.3 11.2 6.9 8.7 10 8.7 13.1 8.7 15.7 11.2 15.7 14.3 15.7 17.5 13.1 20 10 20 6.9 20 4.3 17.5 4.3 14.3ZM25.1 1C24.7 0.4 24 0 23.3 0L9.1 0C8.4 0 7.7 0.4 7.4 1L0.3 13.3C-0.1 14-0.1 14.7 0.3 15.4L7.4 27.7C7.7 28.3 8.4 28.7 9.1 28.7L23.3 28.7C24 28.7 24.7 28.3 25.1 27.7L32.2 15.4C32.5 14.7 32.5 14 32.2 13.3L25.1 1ZM20.3 14.3C20.3 13.1 21.3 12.2 22.5 12.2 23.7 12.2 24.6 13.1 24.6 14.3 24.6 15.5 23.7 16.5 22.5 16.5 21.3 16.5 20.3 15.5 20.3 14.3ZM19.4 14.3C19.4 16 20.8 17.4 22.5 17.4 24.2 17.4 25.5 16 25.5 14.3 25.5 12.6 24.2 11.3 22.5 11.3 20.8 11.3 19.4 12.6 19.4 14.3ZM6.9 14.3C6.9 16 8.3 17.4 10 17.4 11.7 17.4 13.1 16 13.1 14.3 13.1 12.6 11.7 11.3 10 11.3 8.3 11.3 6.9 12.6 6.9 14.3Z"}})])]),_vm._v(" "),_vm._m(0)]),_vm._v(" "),_c('menu',{staticClass:"navigation__menu"},_vm._l((_vm.sections),function(section,key){return _c('a',{key:key,staticClass:"navigation__menu-item",class:{ 'navigation__menu-item--active': key === _vm.activeMenuItem },attrs:{"href":'#' + key},on:{"click":function($event){_vm.activeMenuItem = key}}},[_c('i',{staticClass:"fa navigation-icon",class:{
+                'fas fa-paint-brush': key === 'colour',
+                'fas fa-font': key === 'typography',
+                'fas fa-hand-pointer': key === 'buttons',
+                'fas fa-keyboard': key === 'inputs',
+                'fas fa-columns': key === 'containers',
+                'fas fa-certificate': key === 'badges',
+                'fas fa-tag': key === 'tags',
+                'fas fa-spinner': key === 'loaders',
+                'fas fa-gift': key === 'other'
+            }}),_vm._v("\n            "+_vm._s(section)+"\n        ")])})),_vm._v(" "),_vm._m(1)])}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('h1',{staticClass:"navigation__headline-title"},[_c('b',[_vm._v("ubio")]),_vm._v(" "),_c('span',[_vm._v("CSS Framework")]),_vm._v(" "),_c('sub',{staticClass:"text--muted"},[_vm._v("v2.0")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('a',{staticClass:"navigation__up",attrs:{"href":"#top","title":"UP!"}},[_c('i',{staticClass:"fas fa-angle-double-up"})])}]
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7ecdcaae", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-7ecdcaae", __vue__options__)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":5}],10:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'badges'
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('article',[_c('header',[_vm._v("Styling")]),_vm._v(" "),_c('spec',{attrs:{"name":"Foundation","code":".badge, .badge--outline","source":"badge.css"}},[_c('div',{staticClass:"grid grid--gap",staticStyle:{"grid-template-columns":"repeat(6, auto)"}},[_c('span',{staticClass:"badge badge--small"},[_vm._v("Small")]),_vm._v(" "),_c('span',{staticClass:"badge"},[_vm._v("Default")]),_vm._v(" "),_c('span',{staticClass:"badge badge--large"},[_vm._v("Large")]),_vm._v(" "),_c('span',{staticClass:"badge badge--outline badge--small"},[_vm._v("Small")]),_vm._v(" "),_c('span',{staticClass:"badge badge--outline"},[_vm._v("Default")]),_vm._v(" "),_c('span',{staticClass:"badge badge--outline badge--large"},[_vm._v("Large")])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Custom","code":".badge.badge--yellow","hint":"Size is relative:\n<code>font-size</code>","source":"variables.css, badge.css"}},[_c('div',{staticClass:"group group--gap",staticStyle:{"font-size":"16px"}},[_c('span',{staticClass:"badge badge--yellow"},[_vm._v("PROCESSING")])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Tinted","code":".badge.badge--[name]\n.badge.badge--[name]--light\n.badge.badge--outline.color--[name]","source":"badge.css"}},[_c('div',{staticClass:"grid grid--gap",staticStyle:{"grid-template-columns":"repeat(4, auto)"}},[_vm._l((['blue', 'yellow', 'red', 'green']),function(color){return _c('span',{key:color,staticClass:"badge badge--fixed all-caps",class:("badge--" + color)},[_vm._v("\n                    "+_vm._s(color)+"\n                ")])}),_vm._v(" "),_c('span',{staticClass:"badge all-caps badge--blue"},[_c('i',{staticClass:"fas fa-info-circle"}),_vm._v("\n                    info\n                ")]),_vm._v(" "),_c('span',{staticClass:"badge all-caps badge--green"},[_c('i',{staticClass:"fas fa-check-circle"}),_vm._v("\n                    success\n                ")]),_vm._v(" "),_c('span',{staticClass:"badge all-caps badge--yellow"},[_c('i',{staticClass:"fas fa-exclamation-triangle"}),_vm._v("\n                    warning\n                ")]),_vm._v(" "),_c('span',{staticClass:"badge all-caps badge--red"},[_c('i',{staticClass:"fas fa-exclamation-circle"}),_vm._v("\n                    failure\n                ")]),_vm._v(" "),_c('span',{staticClass:"badge all-caps badge--blue--light"},[_c('i',{staticClass:"fas fa-info-circle"}),_vm._v("\n                    info\n                ")]),_vm._v(" "),_c('span',{staticClass:"badge all-caps badge--green--light"},[_c('i',{staticClass:"fas fa-check-circle"}),_vm._v("\n                    success\n                ")]),_vm._v(" "),_c('span',{staticClass:"badge all-caps badge--yellow--light"},[_c('i',{staticClass:"fas fa-exclamation-triangle"}),_vm._v("\n                    warning\n                ")]),_vm._v(" "),_c('span',{staticClass:"badge all-caps badge--red--light"},[_c('i',{staticClass:"fas fa-exclamation-circle"}),_vm._v("\n                    failure\n                ")]),_vm._v(" "),_c('span',{staticClass:"badge all-caps badge--outline color--blue"},[_c('i',{staticClass:"fas fa-info-circle"}),_vm._v("\n                    info\n                ")]),_vm._v(" "),_c('span',{staticClass:"badge all-caps badge--outline color--green"},[_c('i',{staticClass:"fas fa-check-circle"}),_vm._v("\n                    success\n                ")]),_vm._v(" "),_c('span',{staticClass:"badge all-caps badge--outline color--yellow"},[_c('i',{staticClass:"fas fa-exclamation-triangle"}),_vm._v("\n                    warning\n                ")]),_vm._v(" "),_c('span',{staticClass:"badge all-caps badge--outline color--red"},[_c('i',{staticClass:"fas fa-exclamation-circle"}),_vm._v("\n                    failure\n                ")])],2)]),_vm._v(" "),_c('spec',{attrs:{"name":"No caps","code":".badge.color--[name].no-caps\n.badge.no-caps","source":"badge.css"}},[_c('div',{staticClass:"grid grid--gap--small",staticStyle:{"grid-template-columns":"repeat(3, auto)"}},[_c('span',{staticClass:"badge no-caps bg--yellow"},[_vm._v("awaitingInput")]),_vm._v(" "),_c('span',{staticClass:"badge no-caps color--yellow badge--outline"},[_vm._v("awaitingTds")])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Fixed width","code":".badge.color--[name].no-caps\n.badge.color--[name].badge--outline.no-caps","source":"badge.css"}},[_c('div',{staticClass:"grid grid--gap--small",staticStyle:{"grid-template-columns":"repeat(7, 1fr)"}},_vm._l((['blue', 'yellow', 'red', 'green']),function(colour){return _c('div',{staticClass:"grid grid--gap--small"},[_c('span',{staticClass:"badge no-caps badge--fixed",class:("bg--" + colour)},[_vm._v("\n                        "+_vm._s(colour)+"\n                    ")]),_vm._v(" "),_c('span',{staticClass:"badge no-caps badge--fixed",class:("bg--" + colour)},[_c('i',{staticClass:"fas fa-bullseye"}),_vm._v("\n                        "+_vm._s(colour)+"\n                    ")]),_vm._v(" "),_c('span',{staticClass:"badge no-caps badge--fixed badge--outline",class:("color--" + colour)},[_vm._v(_vm._s(colour))]),_vm._v(" "),_c('span',{staticClass:"badge no-caps badge--fixed badge--outline",class:("color--" + colour)},[_c('i',{staticClass:"fas fa-bullseye"}),_vm._v("\n                        "+_vm._s(colour)+"\n                    ")]),_vm._v(" "),_c('span',{staticClass:"badge badge--fixed",class:("bg--" + colour)},[_vm._v("\n                        "+_vm._s(colour)+"\n                    ")]),_vm._v(" "),_c('span',{staticClass:"badge badge--fixed",class:("bg--" + colour)},[_c('i',{staticClass:"fas fa-bullseye"}),_vm._v("\n                        "+_vm._s(colour)+"\n                    ")]),_vm._v(" "),_c('span',{staticClass:"badge badge--fixed badge--outline",class:("badge--outline--" + colour)},[_vm._v("\n                        "+_vm._s(colour)+"\n                    ")]),_vm._v(" "),_c('span',{staticClass:"badge badge--fixed badge--outline",class:("badge--outline--" + colour)},[_c('i',{staticClass:"fas fa-bullseye"}),_vm._v("\n                        "+_vm._s(colour)+"\n                    ")])])}))]),_vm._v(" "),_c('spec',{attrs:{"name":"In-table small badge","code":".badge.badge--inline.badge--blue--outline","source":"badge.css"}},[_c('div',{staticClass:"box box--mono"},[_c('span',{staticClass:"badge badge--inline badge--blue--outline"},[_vm._v("\n                    c69\n                ")])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Environment","code":".badge.badge--production\n.badge.badge--staging","source":"badge.css"}},[_c('div',{staticClass:"grid grid--gap--small",staticStyle:{"grid-template-columns":"repeat(7, 1fr)"}},[_c('span',{staticClass:"badge badge--production"},[_vm._v("\n                    production\n                ")]),_vm._v(" "),_c('span',{staticClass:"badge badge--staging"},[_vm._v("\n                    staging\n                ")])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Round","code":".badge.badge--round","source":"badge.css"}},[_c('div',{staticClass:"group group--gap--large"},[_c('span',{staticClass:"badge badge--large badge--production badge--round"},[_vm._v("p")]),_vm._v(" "),_c('span',{staticClass:"badge badge--large badge--staging badge--round"},[_vm._v("s")]),_vm._v(" "),_c('span',{staticClass:"badge badge--production badge--round"},[_vm._v("p")]),_vm._v(" "),_c('span',{staticClass:"badge badge--staging badge--round"},[_vm._v("s")]),_vm._v(" "),_c('span',{staticClass:"badge badge--small badge--production badge--round"},[_vm._v("p")]),_vm._v(" "),_c('span',{staticClass:"badge badge--small badge--staging badge--round"},[_vm._v("s")])])])],1)])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4f6dd98a", __vue__options__)
+    hotAPI.createRecord("data-v-030025c8", __vue__options__)
   } else {
-    hotAPI.reload("data-v-4f6dd98a", __vue__options__)
+    hotAPI.reload("data-v-030025c8", __vue__options__)
   }
 })()}
-},{"vue":9,"vue-hot-reload-api":6}],14:[function(require,module,exports){
+},{"vue":6,"vue-hot-reload-api":5}],11:[function(require,module,exports){
 ;(function(){
 
 
 module.exports = {
-    props: {
-        activeItem: { type: String, required: false, default: '' }
+    name: 'button-base-size'
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('article',[_c('spec',{attrs:{"name":"Base pure HTML button","code":"button, button:disabled","source":"base.css"}},[_c('div',{staticClass:"group group--gap"},[_c('button',[_vm._v("Base button")]),_vm._v(" "),_c('button',{attrs:{"disabled":""}},[_vm._v("Base button disabled")])])]),_vm._v(" "),_c('spec',{attrs:{"name":".button","code":"a.button\na.button[disabled]","source":"button.css"}},[_c('div',{staticClass:"group group--gap"},[_c('a',{staticClass:"button"},[_vm._v("Link as a button")]),_vm._v(" "),_c('a',{staticClass:"button",attrs:{"disabled":""}},[_vm._v("Disabled link as a button")])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Small, normal & large scalers","code":".button.button--small\n.button\n.button.button--large","source":"button.css"}},[_c('div',{staticClass:"group group--gap"},[_c('a',{staticClass:"button button--small"},[_vm._v("Small")]),_vm._v(" "),_c('a',{staticClass:"button"},[_vm._v("Regular")]),_vm._v(" "),_c('a',{staticClass:"button button--large"},[_vm._v("Large")])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Custom size & colour","code":".button, .button--small, .button--large","hint":"Amend variables:\n<code>--cta-color--default</code>\n<code>--cta-color--default--active</code>\n<code>--font-size</code>","source":"variables.css, button.css"}},[_c('div',{staticClass:"group group--gap",staticStyle:{"--font-size":"16px"}},[_c('a',{staticClass:"button button--small"},[_vm._v("Small button")]),_vm._v(" "),_c('a',{staticClass:"button"},[_vm._v("Regular button")]),_vm._v(" "),_c('a',{staticClass:"button button--large"},[_vm._v("Large button")])])])],1)}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-62686e77", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-62686e77", __vue__options__)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":5}],12:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'button-sets'
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('article',[_c('header',[_vm._v("Groups")]),_vm._v(" "),_c('spec',{attrs:{"name":"Merged together","code":".group.group--merged","source":"group.css"}},[_c('div',{staticClass:"grid"},[_c('div',{staticClass:"group group--merged"},[_c('button',{staticClass:"button button--accent"},[_vm._v("All")]),_vm._v(" "),_c('button',{staticClass:"button"},[_vm._v("Live")]),_vm._v(" "),_c('button',{staticClass:"button"},[_vm._v("Test")])])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Merged together with border","code":".group.group--merged.group--merged--border","source":"group.css"}},[_c('div',{staticClass:"grid"},[_c('div',{staticClass:"group group--merged group--merged--border"},[_c('button',{staticClass:"button button--accent"},[_vm._v("All")]),_vm._v(" "),_c('button',{staticClass:"button"},[_vm._v("Live")]),_vm._v(" "),_c('button',{staticClass:"button"},[_vm._v("Test")])])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Merged with a space between","code":".group.group--semi-merged","source":"group.css"}},[_c('div',{staticClass:"grid grid--gap--large",staticStyle:{"grid-template-columns":"1fr 1fr"}},[_c('div',{staticClass:"group group--semi-merged"},[_c('button',{staticClass:"button"},[_vm._v("All")]),_vm._v(" "),_c('button',{staticClass:"button"},[_vm._v("Live")]),_vm._v(" "),_c('button',{staticClass:"button button--accent"},[_vm._v("Test")])]),_vm._v(" "),_c('div',{staticClass:"group group--semi-merged"},[_c('button',{staticClass:"button button--icon"},[_c('svg',{attrs:{"viewBox":"0 0 15 16"}},[_c('path',{attrs:{"fill":"currentColor","d":"M3.5,12.9761811 L11.6666667,12.9761811 L11.6666667,10.6428478 L3.5,10.6428478 L3.5,12.9761811 Z M3.5,7.14284778 L11.6666667,7.14284778 L11.6666667,3.64284778 L10.2083333,3.64284778 C9.72526042,3.64284778 9.33333333,3.25092069 9.33333333,2.76784778 L9.33333333,1.30951444 L3.5,1.30951444 L3.5,7.14284778 Z M14,7.72618111 C14,7.40717069 13.7356771,7.14284778 13.4166667,7.14284778 C13.0976563,7.14284778 12.8333333,7.40717069 12.8333333,7.72618111 C12.8333333,8.04519153 13.0976563,8.30951444 13.4166667,8.30951444 C13.7356771,8.30951444 14,8.04519153 14,7.72618111 Z M15.1666667,7.72618111 L15.1666667,11.5178478 C15.1666667,11.6727957 15.0299479,11.8095144 14.875,11.8095144 L12.8333333,11.8095144 L12.8333333,13.2678478 C12.8333333,13.7509207 12.4414062,14.1428478 11.9583333,14.1428478 L3.20833333,14.1428478 C2.72526042,14.1428478 2.33333333,13.7509207 2.33333333,13.2678478 L2.33333333,11.8095144 L0.291666667,11.8095144 C0.13671875,11.8095144 0,11.6727957 0,11.5178478 L0,7.72618111 C0,6.76914986 0.79296875,5.97618111 1.75,5.97618111 L2.33333333,5.97618111 L2.33333333,1.01784778 C2.33333333,0.53477486 2.72526042,0.142847776 3.20833333,0.142847776 L9.33333333,0.142847776 C9.81640625,0.142847776 10.4817708,0.416285276 10.828125,0.762639443 L12.2135417,2.14805611 C12.5598958,2.49441028 12.8333333,3.15977486 12.8333333,3.64284778 L12.8333333,5.97618111 L13.4166667,5.97618111 C14.3736979,5.97618111 15.1666667,6.76914986 15.1666667,7.72618111 Z"}})])]),_vm._v(" "),_c('button',{staticClass:"button button--icon"},[_c('svg',{attrs:{"viewBox":"0 0 15 16"}},[_c('g',{attrs:{"transform":"translate(-709.000000, -561.000000)"}},[_c('path',{attrs:{"fill":"currentColor","d":"M721.331891,572.620595 C720.98011,572.679226 720.618557,572.708541 720.257004,572.708541 C716.631701,572.708541 713.690418,569.767258 713.690418,566.141955 C713.690418,564.900949 714.051971,563.689257 714.706676,562.653457 C712.107402,563.425421 710.250778,565.809717 710.250778,568.643511 C710.250778,572.092923 713.055257,574.897402 716.504669,574.897402 C718.390608,574.897402 720.159287,574.037492 721.331891,572.620595 Z M723.315547,571.79 C722.094084,574.438132 719.416637,576.148181 716.504669,576.148181 C712.371238,576.148181 709,572.776943 709,568.643511 C709,564.588254 712.175804,561.29519 716.22129,561.148614 C716.494897,561.138842 716.719647,561.29519 716.817364,561.529711 C716.924852,561.774003 716.856451,562.057383 716.670788,562.233273 C715.556814,563.249531 714.941196,564.637113 714.941196,566.141955 C714.941196,569.073466 717.325492,571.457762 720.257004,571.457762 C721.028968,571.457762 721.771618,571.291643 722.484952,570.959405 C722.729245,570.851917 723.002853,570.900775 723.188515,571.086438 C723.374178,571.2721 723.423036,571.555479 723.315547,571.79 Z"}})])])]),_vm._v(" "),_c('button',{staticClass:"button button--icon"},[_c('svg',{attrs:{"viewBox":"0 0 16 16"}},[_c('g',{attrs:{"transform":"translate(-695.000000, -561.000000)"}},[_c('path',{attrs:{"d":"M705.590948,561.026 L710.926,561.026 L710.926,566.361052 L708.812598,566.361052 L708.812598,563.139402 L705.590948,563.139402 L705.590948,561.026 Z M708.812598,573.912598 L708.812598,570.690948 L710.926,570.690948 L710.926,576.026 L705.590948,576.026 L705.590948,573.912598 L708.812598,573.912598 Z M695.926,566.361052 L695.926,561.026 L701.261052,561.026 L701.261052,563.139402 L698.039402,563.139402 L698.039402,566.361052 L695.926,566.361052 Z M698.039402,570.690948 L698.039402,573.912598 L701.261052,573.912598 L701.261052,576.026 L695.926,576.026 L695.926,570.690948 L698.039402,570.690948 Z"}})])])])])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Pagination","code":".group.group--gap--small","source":"group.css"}},[_c('div',{staticClass:"grid grid--gap-small"},[_c('div',{staticClass:"group group--gap--small"},[_c('a',{staticClass:"button button--flat button--icon",attrs:{"disabled":""}},[_c('svg',{attrs:{"width":"8","height":"10"}},[_c('path',{attrs:{"d":"M5.4 8.4C5.4 8.4 5.4 8.5 5.3 8.6L4.9 9C4.8 9.1 4.7 9.1 4.7 9.1 4.6 9.1 4.5 9.1 4.4 9L0.3 4.9C0.2 4.8 0.2 4.7 0.2 4.7 0.2 4.6 0.2 4.5 0.3 4.4L4.4 0.3C4.5 0.2 4.6 0.2 4.7 0.2 4.7 0.2 4.8 0.2 4.9 0.3L5.3 0.7C5.4 0.8 5.4 0.9 5.4 0.9 5.4 1 5.4 1.1 5.3 1.1L1.8 4.7 5.3 8.2C5.4 8.2 5.4 8.3 5.4 8.4ZM8.8 8.4C8.8 8.4 8.8 8.5 8.7 8.6L8.3 9C8.2 9.1 8.2 9.1 8.1 9.1 8 9.1 7.9 9.1 7.9 9L3.7 4.9C3.7 4.8 3.6 4.7 3.6 4.7 3.6 4.6 3.7 4.5 3.7 4.4L7.9 0.3C7.9 0.2 8 0.2 8.1 0.2 8.2 0.2 8.2 0.2 8.3 0.3L8.7 0.7C8.8 0.8 8.8 0.9 8.8 0.9 8.8 1 8.8 1.1 8.7 1.1L5.2 4.7 8.7 8.2C8.8 8.2 8.8 8.3 8.8 8.4Z"}})])]),_vm._v(" "),_c('a',{staticClass:"button button--flat button--icon",attrs:{"disabled":""}},[_c('svg',{attrs:{"width":"5","height":"10"}},[_c('path',{attrs:{"d":"M5.4 0.9C5.4 1 5.4 1.1 5.3 1.1L1.8 4.7 5.3 8.2C5.4 8.2 5.4 8.3 5.4 8.4 5.4 8.4 5.4 8.5 5.3 8.6L4.9 9C4.8 9.1 4.7 9.1 4.7 9.1 4.6 9.1 4.5 9.1 4.5 9L0.3 4.9C0.2 4.8 0.2 4.7 0.2 4.7 0.2 4.6 0.2 4.5 0.3 4.5L4.5 0.3C4.5 0.2 4.6 0.2 4.7 0.2 4.7 0.2 4.8 0.2 4.9 0.3L5.3 0.7C5.4 0.8 5.4 0.9 5.4 0.9Z"}})])]),_vm._v(" "),_c('div',{staticClass:"group"},[_c('a',{staticClass:"button button--icon frameless",attrs:{"disabled":"disabled"}},[_vm._v("\n                        1\n                    ")]),_c('a',{staticClass:"button button--icon frameless"},[_vm._v("\n                        2\n                    ")]),_c('a',{staticClass:"button button--icon frameless"},[_vm._v("\n                        3\n                    ")]),_c('a',{staticClass:"button button--icon frameless"},[_vm._v("\n                        4\n                    ")]),_c('a',{staticClass:"button button--icon frameless"},[_vm._v("\n                        5\n                    ")])]),_vm._v(" "),_c('a',{staticClass:"button button--flat button--icon"},[_c('svg',{staticClass:"pagination__arrow-icon",attrs:{"width":"5","height":"10"}},[_c('path',{attrs:{"d":"M5.3 4.7C5.3 4.7 5.2 4.8 5.2 4.9L1 9C1 9.1 0.9 9.1 0.8 9.1 0.7 9.1 0.6 9.1 0.6 9L0.1 8.6C0.1 8.5 0.1 8.5 0.1 8.4 0.1 8.3 0.1 8.2 0.1 8.2L3.7 4.7 0.1 1.1C0.1 1.1 0.1 1 0.1 0.9 0.1 0.9 0.1 0.8 0.1 0.7L0.6 0.3C0.6 0.2 0.7 0.2 0.8 0.2 0.9 0.2 1 0.2 1 0.3L5.2 4.5C5.2 4.5 5.3 4.6 5.3 4.7Z"}})])]),_vm._v(" "),_c('a',{staticClass:"button button--flat button--icon"},[_c('svg',{staticClass:"pagination__arrow-icon",attrs:{"width":"8","height":"10"}},[_c('path',{attrs:{"d":"M5.3 4.7C5.3 4.7 5.2 4.8 5.2 4.9L1 9C1 9.1 0.9 9.1 0.8 9.1 0.7 9.1 0.6 9.1 0.6 9L0.1 8.6C0.1 8.5 0.1 8.4 0.1 8.4 0.1 8.3 0.1 8.2 0.1 8.2L3.7 4.7 0.1 1.1C0.1 1.1 0.1 1 0.1 0.9 0.1 0.9 0.1 0.8 0.1 0.7L0.6 0.3C0.6 0.2 0.7 0.2 0.8 0.2 0.9 0.2 1 0.2 1 0.3L5.2 4.4C5.2 4.5 5.3 4.6 5.3 4.7ZM8.7 4.7C8.7 4.7 8.6 4.8 8.6 4.9L4.4 9C4.4 9.1 4.3 9.1 4.2 9.1 4.2 9.1 4.1 9.1 4 9L3.6 8.6C3.5 8.5 3.5 8.4 3.5 8.4 3.5 8.3 3.5 8.2 3.6 8.2L7.1 4.7 3.6 1.1C3.5 1.1 3.5 1 3.5 0.9 3.5 0.9 3.5 0.8 3.6 0.7L4 0.3C4.1 0.2 4.2 0.2 4.2 0.2 4.3 0.2 4.4 0.2 4.4 0.3L8.6 4.4C8.6 4.5 8.7 4.6 8.7 4.7Z"}})])])])])])],1)}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-33a39fc9", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-33a39fc9", __vue__options__)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":5}],13:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'buttons',
+
+    components: {
+        'base-size': require('./base-size.vue'),
+        'button-styles': require('./styles.vue'),
+        'button-groups': require('./button-groups.vue')
     }
 };
 })()
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"section",class:{ 'section--active': _vm.activeItem === 'typography' },attrs:{"id":"typography"}},[_c('div',{staticClass:"section__title",class:{ 'section__title--active': _vm.activeItem === 'typography' }},[_c('i',{staticClass:"fa fa-font section__title-icon"}),_vm._v(" "),_c('span',{staticClass:"section__title-label"},[_vm._v("Typography")])]),_vm._v(" "),_vm._m(0)])}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"section__body"},[_c('h1',[_c('strong',[_vm._v("We are "),_c('b',[_vm._v("ubio")])]),_vm._v(". We automate the web.")]),_vm._v(" "),_c('h2',[_c('strong',[_vm._v("We are "),_c('b',[_vm._v("ubio")])]),_vm._v(". We automate the web.")]),_vm._v(" "),_c('h3',[_c('strong',[_vm._v("We are "),_c('b',[_vm._v("ubio")])]),_vm._v(". We automate the web.")]),_vm._v(" "),_c('h4',[_c('strong',[_vm._v("We are "),_c('b',[_vm._v("ubio")])]),_vm._v(". We automate the web.")]),_vm._v(" "),_c('h5',[_c('strong',[_vm._v("We are "),_c('b',[_vm._v("ubio")])]),_vm._v(". We automate the web.")]),_vm._v(" "),_c('h6',[_c('strong',[_vm._v("We are "),_c('b',[_vm._v("ubio")])]),_vm._v(". We automate the web.")]),_vm._v(" "),_c('p',[_vm._v("Paragraph text – 12px LF Regular "),_c('code',[_vm._v("#242a2e")]),_vm._v(" – showing "),_c('b',[_vm._v("bold type")]),_vm._v(", "),_c('span',{staticClass:"highlight"},[_vm._v("highlight")]),_vm._v(", "),_c('span',{staticClass:"ui-muted"},[_vm._v("muted")]),_vm._v(" text, a "),_c('a',{attrs:{"href":"#"}},[_vm._v("multi-word link")]),_vm._v(" and also lots of flowing text lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare non odio sed lobortis. Mauris in tortor vitae ex venenatis tempus. Donec efficitur eget lectus eget placerat. Ut non condimentum mauris, eu sodales neque. Proin porttitor bibendum ullamcorper. Mauris suscipit pretium lectus, nec pharetra mauris vulputate molestie.")])])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('base-size'),_vm._v(" "),_c('button-styles'),_vm._v(" "),_c('button-groups')],1)}
+__vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6955b5e2", __vue__options__)
+    hotAPI.createRecord("data-v-6de3104c", __vue__options__)
   } else {
-    hotAPI.reload("data-v-6955b5e2", __vue__options__)
+    hotAPI.reload("data-v-6de3104c", __vue__options__)
   }
 })()}
-},{"vue":9,"vue-hot-reload-api":6}],15:[function(require,module,exports){
-var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert(".swatches {\n    display: flex;\n    flex-flow: row nowrap;\n}\n\n.swatches__column {\n    display: flex;\n    flex-flow: column nowrap;\n}\n\n.swatches__name {\n    padding: var(--gap);\n}\n\n.swatches__step {\n    padding: var(--gap);\n}\n\n.swatches__hex,\n.swatches__hsl {\n    margin-top: var(--gap--small);\n    font-size: var(--font-size--small);\n    opacity: .75;\n}")
+},{"./base-size.vue":11,"./button-groups.vue":12,"./styles.vue":20,"vue":6,"vue-hot-reload-api":5}],14:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'button-styles-accent'
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('spec',{attrs:{"name":"Accent","code":".button.button--accent","hint":"To use with sets","source":"button.css"}},[_c('div',{staticClass:"group group--gap--large"},[_c('div',{staticClass:"box box--mono group group--semi-merged"},[_c('button',{staticClass:"button button--accent"},[_vm._v("All")]),_vm._v(" "),_c('button',{staticClass:"button"},[_vm._v("Live")]),_vm._v(" "),_c('button',{staticClass:"button"},[_vm._v("Test")])]),_vm._v(" "),_c('div',{staticClass:"box bg--cool--dark group group--semi-merged"},[_c('button',{staticClass:"button button--accent"},[_vm._v("All")]),_vm._v(" "),_c('button',{staticClass:"button button--dark-mode"},[_vm._v("Live")]),_vm._v(" "),_c('button',{staticClass:"button button--dark-mode"},[_vm._v("Test")])])])])}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-c9f49fe2", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-c9f49fe2", __vue__options__)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":5}],15:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'button-styles-flat'
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('spec',{attrs:{"name":"Flat button","code":".button.button--flat","source":"button.css"}},[_c('div',{staticClass:"group group--gap"},[_c('a',{staticClass:"button button--flat button--small"},[_vm._v("Small")]),_vm._v(" "),_c('a',{staticClass:"button button--flat"},[_vm._v("Regular")]),_vm._v(" "),_c('a',{staticClass:"button button--flat button--primary"},[_vm._v("Primary")]),_vm._v(" "),_c('a',{staticClass:"button button--secondary button--primary"},[_vm._v("Secondary")]),_vm._v(" "),_c('a',{staticClass:"button button--flat button--large"},[_vm._v("Large")])])])}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6f78927e", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-6f78927e", __vue__options__)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":5}],16:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'button-styles-icon-only'
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('spec',{attrs:{"name":"Icon only","code":"button.button--icon\n    i.fas | svg","source":"button.css"}},[_c('div',{staticClass:"grid grid--gap--large"},[_c('div',{staticClass:"group group--gap box box--cool"},[_c('a',{staticClass:"button button--icon button--large"},[_c('i',{staticClass:"fas fa-bullseye"})]),_vm._v(" "),_c('a',{staticClass:"button button--primary button--icon button--large"},[_c('i',{staticClass:"fas fa-bullseye"})]),_vm._v(" "),_c('a',{staticClass:"button button--secondary button--icon button--large"},[_c('i',{staticClass:"fas fa-bullseye"})]),_vm._v(" "),_c('a',{staticClass:"button button--icon"},[_c('i',{staticClass:"fas fa-bullseye"})]),_vm._v(" "),_c('a',{staticClass:"button button--primary button--icon"},[_c('i',{staticClass:"fas fa-bullseye"})]),_vm._v(" "),_c('a',{staticClass:"button button--secondary button--icon"},[_c('i',{staticClass:"fas fa-bullseye"})]),_vm._v(" "),_c('a',{staticClass:"button button--icon button--small"},[_c('i',{staticClass:"fas fa-bullseye"})]),_vm._v(" "),_c('a',{staticClass:"button button--primary button--icon button--small"},[_c('i',{staticClass:"fas fa-bullseye"})]),_vm._v(" "),_c('a',{staticClass:"button button--secondary button--icon button--small"},[_c('i',{staticClass:"fas fa-bullseye"})])]),_vm._v(" "),_c('div',{staticClass:"group group--gap box bg--cool--dark"},[_c('a',{staticClass:"button button--dark-mode button--icon button--large"},[_c('i',{staticClass:"fas fa-bullseye"})]),_vm._v(" "),_c('a',{staticClass:"button button--primary button--icon button--large"},[_c('i',{staticClass:"fas fa-bullseye"})]),_vm._v(" "),_c('a',{staticClass:"button button--secondary button--icon button--large"},[_c('i',{staticClass:"fas fa-bullseye"})]),_vm._v(" "),_c('a',{staticClass:"button button--dark-mode button--icon"},[_c('i',{staticClass:"fas fa-bullseye"})]),_vm._v(" "),_c('a',{staticClass:"button button--primary button--icon"},[_c('i',{staticClass:"fas fa-bullseye"})]),_vm._v(" "),_c('a',{staticClass:"button button--secondary button--icon"},[_c('i',{staticClass:"fas fa-bullseye"})]),_vm._v(" "),_c('a',{staticClass:"button button--dark-mode button--icon button--small"},[_c('i',{staticClass:"fas fa-bullseye"})]),_vm._v(" "),_c('a',{staticClass:"button button--primary button--icon button--small"},[_c('i',{staticClass:"fas fa-bullseye"})]),_vm._v(" "),_c('a',{staticClass:"button button--secondary button--icon button--small"},[_c('i',{staticClass:"fas fa-bullseye"})])])])])}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-c7bbbb6a", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-c7bbbb6a", __vue__options__)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":5}],17:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'button-styles-icon-within'
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('spec',{attrs:{"name":"Icon within","code":".button\n    .button__icon.fas.fa-bullseye\n    ...","source":"button.css"}},[_c('div',{staticClass:"grid grid--gap--large"},[_c('div',{staticClass:"grid grid--gap",staticStyle:{"grid-template-columns":"repeat(7, auto)"}},[_c('a',{staticClass:"button button--large"},[_c('i',{staticClass:"button__icon fas fa-bullseye"}),_vm._v("\n                Large\n            ")]),_vm._v(" "),_c('a',{staticClass:"button"},[_c('i',{staticClass:"button__icon fas fa-bullseye"}),_vm._v("\n                Regular\n            ")]),_vm._v(" "),_c('a',{staticClass:"button button--small"},[_c('i',{staticClass:"button__icon fas fa-bullseye"}),_vm._v("\n                Small\n            ")])]),_vm._v(" "),_c('div',{staticClass:"grid grid--gap",staticStyle:{"grid-template-columns":"repeat(7, auto)"}},[_c('a',{staticClass:"button button--primary button--large"},[_c('i',{staticClass:"button__icon fas fa-bullseye"}),_vm._v("\n                Large\n            ")]),_vm._v(" "),_c('a',{staticClass:"button button--primary"},[_c('i',{staticClass:"button__icon fas fa-bullseye"}),_vm._v("\n                Regular\n            ")]),_vm._v(" "),_c('a',{staticClass:"button button--primary button--small"},[_c('i',{staticClass:"button__icon fas fa-bullseye"}),_vm._v("\n                Small\n            ")])]),_vm._v(" "),_c('div',{staticClass:"grid grid--gap",staticStyle:{"grid-template-columns":"repeat(7, auto)"}},[_c('a',{staticClass:"button button--secondary button--large"},[_c('i',{staticClass:"button__icon fas fa-bullseye"}),_vm._v("\n                Large\n            ")]),_vm._v(" "),_c('a',{staticClass:"button button--secondary"},[_c('i',{staticClass:"button__icon fas fa-bullseye"}),_vm._v("\n                Regular\n            ")]),_vm._v(" "),_c('a',{staticClass:"button button--secondary button--small"},[_c('i',{staticClass:"button__icon fas fa-bullseye"}),_vm._v("\n                Small\n            ")])])])])}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0e166c6c", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-0e166c6c", __vue__options__)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":5}],18:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'button-styles-primary-secondary-custom'
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('spec',{attrs:{"name":"Primary & Secondary custom","code":".button.button--primary\n.button.button--secondary","hint":"Amend variables:\n<code>--cta-color--accent</code>\n<code>--cta-color--accent--active</code>\n<code>--font-size</code>","source":"variables.css, button.css"}},[_c('div',{staticClass:"group group--gap",staticStyle:{"--cta-color--accent--active":"var(--color-brand-red--600)","--cta-color--accent":"var(--color-brand-red--500)","--font-size":"16px"}},[_c('a',{staticClass:"button button--primary"},[_vm._v("Primary")]),_vm._v(" "),_c('a',{staticClass:"button button--secondary"},[_vm._v("Secondary")])])])}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7b0d42da", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-7b0d42da", __vue__options__)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":5}],19:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'button-styles-primary-secondary'
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('spec',{attrs:{"name":"Primary & Secondary","code":".button.button--primary\n.button.button--secondary","hint":"There supposed to be only one primary action per context","source":"button.css"}},[_c('div',{staticClass:"group group--gap"},[_c('a',{staticClass:"button button--primary"},[_vm._v("Primary")]),_vm._v(" "),_c('a',{staticClass:"button button--secondary"},[_vm._v("Secondary")]),_vm._v(" "),_c('a',{staticClass:"button button--primary",attrs:{"disabled":""}},[_vm._v("Disabled primary")]),_vm._v(" "),_c('a',{staticClass:"button button--secondary",attrs:{"disabled":""}},[_vm._v("Disabled secondary")])])])}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6b5f01b4", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-6b5f01b4", __vue__options__)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":5}],20:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'button-styles',
+
+    components: {
+        'styles-primary-secondary': require('./styles-primary-secondary.vue'),
+        'styles-primary-secondary-custom': require('./styles-primary-secondary-custom.vue'),
+        'styles-flat': require('./styles-flat.vue'),
+        'styles-accent': require('./styles-accent.vue'),
+        'styles-icon-within': require('./styles-icon-within.vue'),
+        'styles-icon-only': require('./styles-icon-only.vue')
+    }
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('article',[_c('header',[_vm._v("Styles")]),_vm._v(" "),_c('styles-primary-secondary'),_vm._v(" "),_c('styles-flat'),_vm._v(" "),_c('styles-accent'),_vm._v(" "),_c('styles-primary-secondary-custom'),_vm._v(" "),_c('styles-icon-within'),_vm._v(" "),_c('styles-icon-only')],1)}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2dfbd8d8", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-2dfbd8d8", __vue__options__)
+  }
+})()}
+},{"./styles-accent.vue":14,"./styles-flat.vue":15,"./styles-icon-only.vue":16,"./styles-icon-within.vue":17,"./styles-primary-secondary-custom.vue":18,"./styles-primary-secondary.vue":19,"vue":6,"vue-hot-reload-api":5}],21:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'bg--dark'
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('article',{staticClass:"article"},[_c('header',{staticClass:"article__title"},[_vm._v("Dark background")]),_vm._v(" "),_c('spec',{attrs:{"name":"Grey colors","code":".color--[name]\n.bg--[name]--dark","source":"color.css, bg.css"}},[_c('div',{staticClass:"grid grid--gap",staticStyle:{"align-items":"stretch","grid-template-columns":"1fr 1fr 1fr"}},_vm._l((_vm.$root.colorsGrey),function(color){return _c('div',{key:color},[_c('div',{staticClass:"box--panel",class:("bg--" + color + "--dark color--" + color)},[_c('p',[_c('span',{staticClass:"badge badge--fixed badge--outline",class:("color--" + color)},[_vm._v(_vm._s(color))]),_vm._v(" "),_c('span',{staticClass:"badge badge--fixed",class:("badge--" + color)},[_vm._v(_vm._s(color))]),_vm._v(" "),_c('span',{staticClass:"badge badge--fixed",class:("badge--" + color + "--light")},[_vm._v(_vm._s(color))])]),_vm._v(" "),_c('p',{staticClass:"color--dark-mode"},[_c('b',[_vm._v("Inversed text")]),_vm._v(". Eu sodales neque.\n                    ")]),_vm._v(" "),_c('p',{staticClass:"color--muted"},[_c('b',[_vm._v("Muted text")]),_vm._v(".\n                        Ut non "),_c('a',[_vm._v("link")]),_vm._v(" mauris, eu "),_c('mark',[_vm._v("highlight")]),_vm._v("\n                        neque.\n                    ")]),_vm._v(" "),_c('p',[_c('small',{staticClass:"color--red"},[_vm._v("99.999%")]),_vm._v(" "),_c('span',{staticClass:"color--red"},[_vm._v("50.00%")]),_vm._v(" "),_c('big',{staticClass:"color--red"},[_vm._v("99.99%")]),_c('br'),_vm._v(" "),_c('big',{staticClass:"color--yellow"},[_vm._v("99.99%")]),_vm._v(" "),_c('span',{staticClass:"color--yellow"},[_vm._v("50.00%")]),_vm._v(" "),_c('small',{staticClass:"color--yellow"},[_vm._v("99.999%")]),_c('br'),_vm._v(" "),_c('small',{staticClass:"color--green"},[_vm._v("99.999%")]),_vm._v(" "),_c('span',{staticClass:"color--green"},[_vm._v("50.00%")]),_vm._v(" "),_c('big',{staticClass:"color--green"},[_vm._v("99.99%")])],1),_vm._v(" "),_c('p',[_c('button',{staticClass:"button--primary"},[_vm._v("Primary")]),_vm._v(" "),_c('button',{staticClass:"button--secondary"},[_vm._v("Secondary")])]),_vm._v(" "),_c('p',[_c('button',[_vm._v("Default")]),_vm._v(" "),_c('button',{staticClass:"button--dark-mode"},[_vm._v("Default")]),_vm._v(" "),_c('i',{staticClass:"color--primary fas fa-bullseye"}),_vm._v(" "),_c('i',{staticClass:"color--secondary fas fa-bullseye"}),_vm._v(" "),_c('i',{staticClass:"color--muted fas fa-bullseye"})])])])}))])],1)}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4924e892", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-4924e892", __vue__options__)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":5}],22:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'bg--pale'
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('article',{staticClass:"article"},[_c('header',{staticClass:"article__title"},[_vm._v("Pale background (messages)")]),_vm._v(" "),_c('spec',{attrs:{"name":"Grey colors","code":".color--[name]\n.bg--[name]--pale","source":"color.css, bg.css"}},[_c('div',{staticClass:"grid grid--gap",staticStyle:{"align-items":"stretch","grid-template-columns":"1fr 1fr 1fr"}},_vm._l((_vm.$root.colorsGrey),function(color){return _c('div',{key:color},[_c('div',{staticClass:"box--panel",class:("bg--" + color + "--pale color--" + color)},[_c('b',[_vm._v(_vm._s(color.toUpperCase())+" text")]),_vm._v(".\n                    Ut non condimentum mauris, eu sodales\n                    neque.\n                ")])])}))]),_vm._v(" "),_c('spec',{attrs:{"name":"Semaphore colors","code":".color--[name]\n.bg--[name]--pale","source":"color.css, bg.css"}},[_c('div',{staticClass:"grid grid--gap",staticStyle:{"align-items":"stretch","grid-template-columns":"1fr 1fr 1fr 1fr"}},_vm._l((_vm.$root.colorsSemaphore),function(color){return _c('div',{key:color},[_c('div',{staticClass:"box",class:("bg--" + color + "--pale color--" + color)},[_c('b',[_vm._v("Lorem ipsum")]),_vm._v(".\n                    Ut non condimentum mauris, eu sodales\n                    neque.\n                ")])])}))])],1)}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1d216246", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-1d216246", __vue__options__)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":5}],23:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'bg-white',
+
+    components: {
+        'text-variations-sample': require('./text-variations-sample.vue')
+    }
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('article',{staticClass:"article"},[_c('header',{staticClass:"article__title"},[_vm._v("Default background (white)")]),_vm._v(" "),_c('spec',{attrs:{"name":"Text samples","code":".color--[name]","source":"color.css"}},[_c('div',{staticStyle:{"display":"grid","grid-template-columns":"1fr 1fr 1fr"}},_vm._l((_vm.$root.colors),function(color){return _c('div',{key:color,staticClass:"box"},[_c('p',[_c('span',{staticClass:"badge badge--small",class:("badge--" + color)},[_vm._v("\n                        "+_vm._s(color)+"\n                    ")])]),_vm._v(" "),_c('text-variations-sample',{class:("color--" + color + " bg--default")})],1)}))])],1)}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2c42fd86", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-2c42fd86", __vue__options__)
+  }
+})()}
+},{"./text-variations-sample.vue":26,"vue":6,"vue-hot-reload-api":5}],24:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'colour',
+
+    components: {
+        'swatches': require('./swatches.vue'),
+        'bg-white': require('./bg-white.vue'),
+        'bg-dark': require('./bg-dark.vue'),
+        'bg-pale': require('./bg-pale.vue')
+    }
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('article',{staticClass:"article"},[_c('header',{staticClass:"article__title"},[_vm._v("Palette")]),_vm._v(" "),_c('swatches')],1),_vm._v(" "),_c('bg-white'),_vm._v(" "),_c('bg-pale'),_vm._v(" "),_c('bg-dark')],1)}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-02e0a334", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-02e0a334", __vue__options__)
+  }
+})()}
+},{"./bg-dark.vue":21,"./bg-pale.vue":22,"./bg-white.vue":23,"./swatches.vue":25,"vue":6,"vue-hot-reload-api":5}],25:[function(require,module,exports){
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert(".swatches {\n    display: flex;\n    flex-flow: row nowrap;\n}\n\n.swatches__column {\n    display: flex;\n    flex-flow: column nowrap;\n    min-width: 100px;\n}\n\n.swatches__name {\n    padding: var(--gap);\n}\n\n.swatches__step {\n    padding: var(--gap);\n}\n\n.swatches__hex,\n.swatches__hsl {\n    margin-top: var(--gap--small);\n    font-size: var(--font-size--small);\n    opacity: .75;\n}")
 ;(function(){
 
 
 const parseColor = require('parse-color');
-const swatchNames = ['mono', 'warm', 'cool', 'blue', 'green', 'yellow', 'red', 'brand-red', 'brand-blue'];
-const swatchNumbers = ['000', '100', '200', '300', '400', '500', '600', '700', '800', '900'];
 
 module.exports = {
+    name: 'palette',
+
+    data() {
+        const swatchNumbers = ['000', '100', '200', '300', '400', '500', '600', '700', '800', '900'];
+        return {
+            swatchNumbers
+        };
+    },
 
     computed: {
 
         swatches() {
             const swatches = [];
-            for (const name of swatchNames) {
+            for (const name of this.$root.colors) {
                 const steps = [];
                 const swatch = { name, steps };
                 swatches.push(swatch);
-                for (const number of swatchNumbers) {
+                for (const number of this.swatchNumbers) {
                     const variable = `--color-${name}--${number}`;
                     const fgColor = number >= '500' ? 'white' : 'black';
                     const style = `background: var(${variable}); color: ${fgColor}`;
@@ -9713,7 +9785,7 @@ function evalColor(style) {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"swatches"},_vm._l((_vm.swatches),function(swatch){return _c('div',{staticClass:"swatches__column"},[_c('div',{staticClass:"swatches__name"},[_vm._v("\n            "+_vm._s(swatch.name)+"\n        ")]),_vm._v(" "),_c('div',{staticClass:"swatches__steps"},_vm._l((swatch.steps),function(step){return _c('div',{staticClass:"swatches__step",style:(step.style)},[_c('div',{staticClass:"swatches__number"},[_vm._v(_vm._s(step.number))]),_vm._v(" "),_c('div',{staticClass:"swatches__hex"},[_vm._v(_vm._s(step.color.hex))]),_vm._v(" "),_c('div',{staticClass:"swatches__hsl"},[_vm._v(_vm._s(step.color.hsl))])])}))])}))}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"swatches"},_vm._l((_vm.swatches),function(swatch){return _c('div',{staticClass:"swatches__column"},[_c('div',{staticClass:"swatches__name"},[_c('strong',[_vm._v(_vm._s(swatch.name))])]),_vm._v(" "),_c('div',{staticClass:"swatches__steps"},_vm._l((swatch.steps),function(step){return _c('div',{staticClass:"swatches__step",style:(step.style)},[_c('div',{staticClass:"swatches__number"},[_vm._v(_vm._s(step.number))]),_vm._v(" "),_c('div',{staticClass:"swatches__hex"},[_vm._v(_vm._s(step.color.hex))]),_vm._v(" "),_c('div',{staticClass:"swatches__hsl"},[_vm._v(_vm._s(step.color.hsl))])])}))])}))}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -9721,59 +9793,557 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   module.hot.accept()
   module.hot.dispose(__vueify_style_dispose__)
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0c648c62", __vue__options__)
+    hotAPI.createRecord("data-v-47f3d206", __vue__options__)
   } else {
-    hotAPI.reload("data-v-0c648c62", __vue__options__)
+    hotAPI.reload("data-v-47f3d206", __vue__options__)
   }
 })()}
-},{"parse-color":3,"vue":9,"vue-hot-reload-api":6,"vueify/lib/insert-css":7}],16:[function(require,module,exports){
-var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert(".clipboard {\n    display: inline-block;\n    color: inherit;\n}\n\n.clipboard__icon {\n    width: 1.2em;\n    height: 1em;\n    font-size: .9em;\n    line-height: 1;\n    display: inline-block;\n    text-align: center;\n    vertical-align: baseline;\n    color: currentColor;\n}\n\n.clipboard__label {\n    line-height: 1;\n    vertical-align: baseline;\n}")
+},{"parse-color":1,"vue":6,"vue-hot-reload-api":5,"vueify/lib/insert-css":7}],26:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'text-variations-sample'
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"text-variations-sample"},[_vm._m(0),_vm._v(" "),_vm._m(1),_vm._v(" "),_c('div',{staticClass:"text-variations-sample__item"},[_c('big',[_c('span',{staticClass:"all-caps"},[_vm._v("all caps")]),_vm._v(" "),_c('b',[_vm._v("bold")]),_vm._v(" "),_c('strong',[_vm._v("strong")]),_vm._v(" "),_c('i',[_vm._v("italic")])])],1),_vm._v(" "),_c('div',{staticClass:"text-variations-sample__item"},[_vm._m(2),_vm._v(" "),_c('i',{staticClass:"fas fa-bullseye"}),_vm._v(" "),_c('big',[_c('i',{staticClass:"fas fa-bullseye"})])],1)])}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"text-variations-sample__item"},[_c('span',{staticClass:"all-caps"},[_vm._v("all caps")]),_vm._v(" "),_c('b',[_vm._v("bold")]),_vm._v(" "),_c('strong',[_vm._v("strong")]),_vm._v(" "),_c('i',[_vm._v("italic")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"text-variations-sample__item"},[_c('small',[_c('span',{staticClass:"all-caps"},[_vm._v("all caps")]),_vm._v(" "),_c('b',[_vm._v("bold")]),_vm._v(" "),_c('strong',[_vm._v("strong")]),_vm._v(" "),_c('i',[_vm._v("italic")])])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('small',[_c('i',{staticClass:"fas fa-bullseye"})])}]
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f7ec755a", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-f7ec755a", __vue__options__)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":5}],27:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'box-outline'
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('article',{staticClass:"article"},[_c('header',{staticClass:"article__title"},[_vm._v("Outlined box")]),_vm._v(" "),_c('spec',{attrs:{"name":"blue","code":"p.box.box--blue.box--outline","source":"typography.css"}},[_c('p',{staticClass:"box box--blue box--outline"},[_vm._v("Donec efficitur eget lectus eget placerat. Ut non condimentum mauris, eu sodales neque. Mauris suscipit pretium lectus, nec pharetra mauris vulputate molestie.")])]),_vm._v(" "),_c('spec',{attrs:{"name":"green","code":"p.box.box--green.box--outline","source":"typography.css"}},[_c('p',{staticClass:"box box--green box--outline"},[_vm._v("Donec efficitur eget lectus eget placerat. Ut non condimentum mauris, eu sodales neque. Mauris suscipit pretium lectus, nec pharetra mauris vulputate molestie.")])]),_vm._v(" "),_c('spec',{attrs:{"name":"yellow","code":"p.box.box--yellow.box--outline","source":"typography.css"}},[_c('p',{staticClass:"box box--yellow box--outline"},[_vm._v("Donec efficitur eget lectus eget placerat. Ut non condimentum mauris, eu sodales neque. Mauris suscipit pretium lectus, nec pharetra mauris vulputate molestie.")])]),_vm._v(" "),_c('spec',{attrs:{"name":"red","code":"p.box.box--red.box--outline","source":"typography.css"}},[_c('p',{staticClass:"box box--red box--outline"},[_vm._v("Donec efficitur eget lectus eget placerat. Ut non condimentum mauris, eu sodales neque. Mauris suscipit pretium lectus, nec pharetra mauris vulputate molestie.")])])],1)}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-63111d8c", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-63111d8c", __vue__options__)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":5}],28:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'boxes'
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('article',{staticClass:"article"},[_c('header',{staticClass:"article__title"},[_vm._v("Tinted box")]),_vm._v(" "),_c('spec',{attrs:{"name":"blue","code":"p.box.box--blue","source":"typography.css"}},[_c('p',{staticClass:"box box--blue"},[_vm._v("Donec efficitur eget lectus eget placerat. Ut non condimentum mauris, eu sodales neque. Mauris suscipit pretium lectus, nec pharetra mauris vulputate molestie.")])]),_vm._v(" "),_c('spec',{attrs:{"name":"green","code":"p.box.box--green","source":"typography.css"}},[_c('p',{staticClass:"box box--green"},[_vm._v("Donec efficitur eget lectus eget placerat. Ut non condimentum mauris, eu sodales neque. Mauris suscipit pretium lectus, nec pharetra mauris vulputate molestie.")])]),_vm._v(" "),_c('spec',{attrs:{"name":"yellow","code":"p.box.box--yellow","source":"typography.css"}},[_c('p',{staticClass:"box box--yellow"},[_vm._v("Donec efficitur eget lectus eget placerat. Ut non condimentum mauris, eu sodales neque. Mauris suscipit pretium lectus, nec pharetra mauris vulputate molestie.")])]),_vm._v(" "),_c('spec',{attrs:{"name":"red","code":"p.box.box--red","source":"typography.css"}},[_c('p',{staticClass:"box box--red"},[_vm._v("Donec efficitur eget lectus eget placerat. Ut non condimentum mauris, eu sodales neque. Mauris suscipit pretium lectus, nec pharetra mauris vulputate molestie.")])])],1)}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1a0fd1b2", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-1a0fd1b2", __vue__options__)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":5}],29:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'containers-boxes',
+
+    components: {
+        'box-tinted': require('./box-tinted.vue'),
+        'box-outlined': require('./box-outlined.vue')
+    }
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('article',[_c('header',{staticClass:"article__title"},[_vm._v("Boxes")]),_vm._v(" "),_c('spec',{attrs:{"name":"Sizing","code":".box\n.box.box--small\n.box.box--large","source":"box.css"}},[_c('div',{staticClass:"group group--gap"},[_c('div',{staticClass:"grid grid--gap"},[_c('div',{staticClass:"box box--blue"},[_c('p',[_c('span',{staticClass:"badge badge--blue"},[_vm._v("Regular box")])]),_vm._v(" "),_c('p',[_vm._v("Mauris suscipit pretium lectus")])]),_vm._v(" "),_c('div',{staticClass:"box box--small box--red"},[_c('p',[_c('span',{staticClass:"badge badge--red"},[_vm._v("Small box")])]),_vm._v(" "),_c('p',[_vm._v("Mauris suscipit pretium lectus, nec pharetra.")])])]),_vm._v(" "),_c('div',{staticClass:"box box--large box--green"},[_c('p',[_c('span',{staticClass:"badge badge--green"},[_vm._v("Large box")])]),_vm._v(" "),_c('p',[_vm._v("Mauris suscipit pretium lectus, nec pharetra mauris vulputate molestie, nec pharetra mauris vulputate molestie.")])])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Custom size","code":".box.box--yellow","hint":"Amend variables:\n<code>--font-size</code>","source":"variables.css, button.css"}},[_c('div',{staticClass:"box box--yellow stretch",staticStyle:{"--font-size":"16px"}},[_c('p',[_c('i',{staticClass:"icon far fa-clock"}),_c('b',[_vm._v("This might take a moment")])]),_vm._v(" "),_c('p',{staticClass:"shift"},[_vm._v("We generate live data for test jobs. Hold on while we get it.")])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Tinting & outline","code":".box.box--outline.bg--cool--pale.color--blue","source":"box.css"}},[_c('div',{staticClass:"box box--outline color--blue bg--cool--pale stretch"},[_c('p',[_c('b',[_vm._v("Donec efficitur eget lectus eget placerat. Ut non condimentum mauris, eu sodales neque.")])]),_vm._v(" "),_c('p',[_vm._v(" Mauris suscipit pretium lectus, nec pharetra mauris vulputate molestie.")])])])],1),_vm._v(" "),_c('box-tinted'),_vm._v(" "),_c('box-outlined')],1)}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2adc8d13", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-2adc8d13", __vue__options__)
+  }
+})()}
+},{"./box-outlined.vue":27,"./box-tinted.vue":28,"vue":6,"vue-hot-reload-api":5}],30:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'containers',
+
+    components: {
+        'boxes': require('./boxes.vue'),
+        'tabs': require('./tabs.vue')
+    }
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('article',[_c('header',{staticClass:"article__title"},[_vm._v("Blocks")]),_vm._v(" "),_c('spec',{attrs:{"name":"Sizing & tinting","code":".block.block--small.block--mono\n.block.block--warm\n.block.block--large.block--cool","source":"box.css"}},[_c('div',{staticClass:"grid grid--gap stretch"},[_c('div',{staticClass:"block block--small block--mono"},[_c('b',[_vm._v("Small block panel")]),_vm._v("\n                    Mauris suscipit pretium lectus, nec pharetra.\n                ")]),_vm._v(" "),_c('div',{staticClass:"block block--warm"},[_c('b',[_vm._v("Regular block panel")]),_vm._v("\n                    Mauris suscipit pretium lectus.\n                ")]),_vm._v(" "),_c('div',{staticClass:"block block--large block--cool"},[_c('b',[_vm._v("Large block panel")]),_vm._v("\n                    Mauris suscipit pretium lectus, nec pharetra.\n                ")])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Bordered","code":".block.block--border.block--[color]","source":"box.css"}},[_c('div',{staticClass:"grid grid--gap stretch"},[_c('div',{staticClass:"block block--large block--border block--yellow"},[_c('b',[_vm._v("Large block panel")]),_vm._v("\n                    Mauris suscipit pretium lectus.\n                ")]),_vm._v(" "),_c('div',{staticClass:"block block--border block--blue"},[_c('b',[_vm._v("Regular block panel")]),_vm._v("\n                    Mauris suscipit pretium lectus.\n                ")]),_vm._v(" "),_c('div',{staticClass:"block block--border block--red"},[_c('b',[_vm._v("Regular block panel")]),_vm._v("\n                    Mauris suscipit pretium lectus.\n                ")]),_vm._v(" "),_c('div',{staticClass:"block block--small block--border block--green"},[_c('b',[_vm._v("Small block panel")]),_vm._v("\n                    Mauris suscipit pretium lectus.\n                ")])])])],1),_vm._v(" "),_c('boxes'),_vm._v(" "),_c('tabs')],1)}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a1b784a8", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-a1b784a8", __vue__options__)
+  }
+})()}
+},{"./boxes.vue":29,"./tabs.vue":31,"vue":6,"vue-hot-reload-api":5}],31:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'tabs',
+
+    data() {
+        return {
+            tabs: ['Database', 'Magic', 'Check'],
+            activeTab: 'Database',
+            activeTabIcons: 'Database'
+        };
+    }
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('article',[_c('header',{staticClass:"article__title"},[_vm._v("Tabs")]),_vm._v(" "),_c('spec',{attrs:{"name":"Basic tabs","code":".tabs .tabs__item[.tabs__item--active]\n.tab","source":"base.css"}},[_c('div',[_c('menu',{staticClass:"tabs"},_vm._l((_vm.tabs),function(tab){return _c('span',{staticClass:"tabs__item",class:{ 'tabs__item--active': tab === _vm.activeTab },on:{"click":function($event){_vm.activeTab = tab}}},[_vm._v("\n                    "+_vm._s(tab)+"\n                ")])})),_vm._v(" "),_c('div',{staticClass:"box--panel"},[_c('p',[_c('b',[_vm._v(_vm._s(_vm.activeTab)+" content")]),_vm._v("\n                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet sollicitudin tellus, eget eleifend sapien volutpat sed. Curabitur vestibulum vitae dui et tincidunt. Proin tellus magna, imperdiet nec rutrum id, pulvinar vitae nunc. Quisque eu ligula eleifend, fringilla enim sit amet, porttitor felis.\n                ")])])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Tabs with icons","code":".tabs__item[.tabs__item--active]","source":"base.css"}},[_c('div',[_c('menu',{staticClass:"tabs"},_vm._l((_vm.tabs),function(tab){return _c('span',{staticClass:"tabs__item",class:{ 'tabs__item--active': tab === _vm.activeTabIcons },on:{"click":function($event){_vm.activeTabIcons = tab}}},[_c('i',{class:("tabs__icon fas fa-" + (tab.toLowerCase()))}),_vm._v(" "),_c('span',[_vm._v(_vm._s(tab))])])})),_vm._v(" "),_c('div',{staticClass:"box--panel"},[_c('p',[_c('b',[_vm._v(_vm._s(_vm.activeTabIcons)+" content")]),_vm._v("\n                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet sollicitudin tellus, eget eleifend sapien volutpat sed. Curabitur vestibulum vitae dui et tincidunt. Proin tellus magna, imperdiet nec rutrum id, pulvinar vitae nunc. Quisque eu ligula eleifend, fringilla enim sit amet, porttitor felis. Donec nec varius felis, non imperdiet nunc.\n                ")])])])])],1)}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5e826b94", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-5e826b94", __vue__options__)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":5}],32:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'inputs',
+
+    components: {
+        'input-base': require('./input-base.vue'),
+        'input-styles': require('./input-styles.vue'),
+        'input-groups': require('./input-groups.vue'),
+        'input-toggle': require('./input-toggle.vue')
+    }
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('input-base'),_vm._v(" "),_c('input-styles'),_vm._v(" "),_c('input-toggle'),_vm._v(" "),_c('input-groups')],1)}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-cc485b7a", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-cc485b7a", __vue__options__)
+  }
+})()}
+},{"./input-base.vue":33,"./input-groups.vue":34,"./input-styles.vue":35,"./input-toggle.vue":36,"vue":6,"vue-hot-reload-api":5}],33:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'input-base'
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('article',[_c('header',[_vm._v("Base (pure HTML)")]),_vm._v(" "),_c('spec',{attrs:{"name":"Base input","code":"input, input:disabled, input:readonly","source":"base.css"}},[_c('div',{staticClass:"grid grid--gap stretch",staticStyle:{"grid-template-columns":"1fr 1fr 1fr"}},[_c('input',{attrs:{"placeholder":"Placeholder","type":"text"}}),_vm._v(" "),_c('input',{attrs:{"placeholder":"Placeholder","disabled":"","type":"text"}}),_vm._v(" "),_c('input',{attrs:{"placeholder":"Placeholder","readonly":"","type":"text"}}),_vm._v(" "),_c('input',{attrs:{"value":"Value","type":"text"}}),_vm._v(" "),_c('input',{attrs:{"value":"Value","disabled":"","type":"text"}}),_vm._v(" "),_c('input',{attrs:{"value":"Value","readonly":"","type":"text"}})])]),_vm._v(" "),_c('spec',{attrs:{"name":"Base textarea","code":"textarea, textarea:disabled, textarea:readonly","source":"base.css"}},[_c('div',{staticClass:"grid grid--gap stretch",staticStyle:{"grid-template-columns":"1fr 1fr 1fr"}},[_c('textarea',{attrs:{"placeholder":"Placeholder"}}),_vm._v(" "),_c('textarea',{attrs:{"placeholder":"Placeholder","disabled":""}}),_vm._v(" "),_c('textarea',{attrs:{"placeholder":"Placeholder","readonly":""}}),_vm._v(" "),_c('textarea',[_vm._v("Ut non condimentum mauris, eu sodales neque.")]),_vm._v(" "),_c('textarea',{attrs:{"disabled":""}},[_vm._v("Ut non condimentum mauris, eu sodales neque.")]),_vm._v(" "),_c('textarea',{attrs:{"readonly":""}},[_vm._v("Ut non condimentum mauris, eu sodales neque.")])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Base text (email, password) input, disabled, readonly","code":"input[type=text|email|password]","source":"base.css"}},[_c('div',{staticClass:"grid grid--gap stretch",staticStyle:{"grid-template-columns":"1fr 1fr 1fr"}},[_c('input',{attrs:{"value":"text","type":"text"}}),_vm._v(" "),_c('input',{attrs:{"value":"text","disabled":"","type":"text"}}),_vm._v(" "),_c('input',{attrs:{"value":"text","readonly":"","type":"text"}})])]),_vm._v(" "),_c('spec',{attrs:{"name":"Base number","code":"input[type=number]","source":"base.css"}},[_c('div',{staticClass:"grid grid--gap stretch",staticStyle:{"grid-template-columns":"1fr 1fr 1fr"}},[_c('input',{attrs:{"value":"10","type":"number"}}),_vm._v(" "),_c('input',{attrs:{"value":"10","disabled":"","type":"number"}}),_vm._v(" "),_c('input',{attrs:{"value":"10","readonly":"","type":"number"}})])]),_vm._v(" "),_c('spec',{attrs:{"name":"Base select","code":"big select\nselect:disabled\nsmall select","source":"base.css"}},[_c('div',{staticClass:"grid grid--gap--large",staticStyle:{"grid-template-columns":"1fr 1fr 1fr"}},[_c('big',[_c('select',[_c('option',{domProps:{"value":undefined}},[_vm._v("Please select an option")]),_vm._v(" "),_c('option',{attrs:{"value":"1"}},[_vm._v("Bourbon")]),_vm._v(" "),_c('option',{attrs:{"value":"2"}},[_vm._v("Custard cream")]),_vm._v(" "),_c('option',{attrs:{"value":"3"}},[_vm._v("Digestive")])])]),_vm._v(" "),_c('select',{attrs:{"disabled":""}},[_c('option',{domProps:{"value":undefined}},[_vm._v("Please select an option")]),_vm._v(" "),_c('optgroup',{attrs:{"label":"Set 1"}},[_c('option',{attrs:{"value":"1"}},[_vm._v("Bourbon")]),_vm._v(" "),_c('option',{attrs:{"value":"2"}},[_vm._v("Custard cream")]),_vm._v(" "),_c('option',{attrs:{"value":"3"}},[_vm._v("Digestive")])]),_vm._v(" "),_c('optgroup',{attrs:{"label":"Set 2"}},[_c('option',{attrs:{"value":"4"}},[_vm._v("Chocolate hobnob")]),_vm._v(" "),_c('option',{attrs:{"value":"5"}},[_vm._v("Garibaldi")]),_vm._v(" "),_c('option',{attrs:{"value":"6"}},[_vm._v("Brandy snap")])])]),_vm._v(" "),_c('small',[_c('select',[_c('option',{domProps:{"value":undefined}},[_vm._v("Please select an option")]),_vm._v(" "),_c('option',{attrs:{"value":"1"}},[_vm._v("Bourbon")]),_vm._v(" "),_c('option',{attrs:{"value":"2"}},[_vm._v("Custard cream")]),_vm._v(" "),_c('option',{attrs:{"value":"3"}},[_vm._v("Digestive")])])])],1)]),_vm._v(" "),_c('spec',{attrs:{"name":"Base checkbox (initial, active, disabled)","code":"input[type=checkbox]","source":"base.css"}},[_c('div',{staticClass:"grid grid--gap stretch",staticStyle:{"grid-template-columns":"1fr 1fr 1fr"}},[_c('label',[_c('input',{attrs:{"value":"10","type":"checkbox"}}),_vm._v("\n                Initial\n            ")]),_vm._v(" "),_c('label',[_c('input',{attrs:{"value":"10","type":"checkbox","checked":""}}),_vm._v("\n                Active\n            ")]),_vm._v(" "),_c('label',{attrs:{"disabled":""}},[_c('input',{attrs:{"value":"10","disabled":"","type":"checkbox"}}),_vm._v("\n                Disabled\n            ")])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Base radio (initial, active, disabled)","code":"input[type=radio]","source":"base.css"}},[_c('div',{staticClass:"grid grid--gap stretch",staticStyle:{"grid-template-columns":"1fr 1fr 1fr"}},[_c('label',[_c('input',{attrs:{"value":"10","type":"radio"}}),_vm._v("\n                Initial\n            ")]),_vm._v(" "),_c('label',[_c('input',{attrs:{"value":"10","type":"radio","checked":""}}),_vm._v("\n                Active\n            ")]),_vm._v(" "),_c('label',{attrs:{"disabled":""}},[_c('input',{attrs:{"value":"10","disabled":"","type":"radio"}}),_vm._v("\n                Disabled\n            ")])])])],1)}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-46368753", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-46368753", __vue__options__)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":5}],34:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'controls-groups'
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('article',[_c('header',[_vm._v("Groups")]),_vm._v(" "),_c('spec',{attrs:{"name":"Labeled input","code":".group.group--gap","source":"group.css"}},[_c('div',{staticClass:"group group--gap"},[_c('label',{attrs:{"for":"input1"}},[_vm._v("Label")]),_vm._v(" "),_c('input',{attrs:{"id":"input1","placeholder":"Placeholder","type":"text"}})])]),_vm._v(" "),_c('spec',{attrs:{"name":"Labeled input stretched","code":".group.group--gap.stretch","source":"group.css"}},[_c('div',{staticClass:"group group--gap stretch"},[_c('label',{attrs:{"for":"input2"}},[_vm._v("Label")]),_vm._v(" "),_c('input',{attrs:{"id":"input2","placeholder":"Placeholder","type":"text"}})])]),_vm._v(" "),_c('spec',{attrs:{"name":"Labeled input","code":".grid.box, .grid.box.stretch","source":"grid.css"}},[_c('div',{staticClass:"group stretch group--gap--large"},[_c('div',{staticClass:"grid box box--cool"},[_c('label',{attrs:{"for":"input3"}},[_vm._v("Label")]),_vm._v(" "),_c('input',{attrs:{"id":"input3","placeholder":"Placeholder","type":"text"}})]),_vm._v(" "),_c('div',{staticClass:"grid box bg--cool--dark color--dark-mode stretch"},[_c('label',{attrs:{"for":"input4"}},[_vm._v("Label")]),_vm._v(" "),_c('input',{attrs:{"id":"input4","placeholder":"Placeholder","type":"text"}})])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Icon label","code":".group","source":"group.css"}},[_c('div',{staticClass:"box box--mono group"},[_c('label',{staticClass:"icon"},[_c('i',{staticClass:"fa fa-search"})]),_vm._v(" "),_c('input',{attrs:{"type":"text","placeholder":"Search"}})])]),_vm._v(" "),_c('spec',{attrs:{"name":"Icon label stretch","code":".group.stretch","source":"group.css"}},[_c('div',{staticClass:"box box--warm group stretch"},[_c('label',{staticClass:"icon"},[_c('i',{staticClass:"fa fa-search"})]),_vm._v(" "),_c('input',{attrs:{"type":"text","placeholder":"Search"}})])]),_vm._v(" "),_c('spec',{attrs:{"name":"Icon inside","code":".input.stretch\n    .icon.color--muted\n    input[type=text]","source":"input.css"}},[_c('span',{staticClass:"input stretch"},[_c('span',{staticClass:"icon color--muted"},[_c('i',{staticClass:"fa fa-search"})]),_vm._v(" "),_c('input',{attrs:{"type":"text","placeholder":"key for user@ub.io"}})])]),_vm._v(" "),_c('spec',{attrs:{"name":"Frameless button inside","code":".button.button--icon frameless","source":"input.css, button.css"}},[_c('div',{staticClass:"group group--gap--large"},[_c('span',{staticClass:"input stretch"},[_c('input',{attrs:{"type":"text","placeholder":"key for user@ub.io"}}),_vm._v(" "),_c('button',{staticClass:"button button--primary button--icon frameless"},[_c('i',{staticClass:"fa fa-sync"})])]),_vm._v(" "),_c('span',{staticClass:"input"},[_c('input',{attrs:{"type":"text","placeholder":"key for user@ub.io"}}),_vm._v(" "),_c('button',{staticClass:"button--secondary button--icon frameless"},[_c('i',{staticClass:"fa fa-sync"})])]),_vm._v(" "),_c('span',{staticClass:"input"},[_c('input',{attrs:{"type":"text","placeholder":"key for user@ub.io"}}),_vm._v(" "),_c('button',{staticClass:"button--accent button--icon frameless"},[_c('i',{staticClass:"fa fa-sync"})])]),_vm._v(" "),_c('span',{staticClass:"input"},[_c('input',{attrs:{"type":"text","placeholder":"key for user@ub.io"}}),_vm._v(" "),_c('button',{staticClass:"button--icon frameless"},[_c('i',{staticClass:"fa fa-sync"})])])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Icon inside","code":".input\n    .icon.color--muted\n    input[type=text]","source":"input.css"}},[_c('span',{staticClass:"input"},[_c('span',{staticClass:"icon color--muted"},[_c('i',{staticClass:"fa fa-search"})]),_vm._v(" "),_c('input',{attrs:{"type":"text","placeholder":"key for user@ub.io"}})])]),_vm._v(" "),_c('spec',{attrs:{"name":"Button aside","code":".group.group--gap--small","source":"input.css, button.css"}},[_c('div',{staticClass:"grid"},[_c('div',{staticClass:"group group--gap--small"},[_c('input',{attrs:{"type":"text","placeholder":"key for user@ub.io"}}),_vm._v(" "),_c('button',{staticClass:"button button--primary"},[_c('i',{staticClass:"icon fa fa-sync"}),_vm._v("\n                    Search\n                ")])])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Button merged with input","code":".group.group--merged","source":"input.css, button.css"}},[_c('div',{staticClass:"grid"},[_c('div',{staticClass:"group group--merged"},[_c('input',{staticClass:"input",attrs:{"type":"text","placeholder":"key for user@ub.io"}}),_vm._v(" "),_c('button',{staticClass:"button button--primary"},[_vm._v("\n                    Search\n                ")])])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Buttons merged with input","code":".group.group--merged","source":"input.css, button.css"}},[_c('div',{staticClass:"grid"},[_c('div',{staticClass:"group group--merged"},[_c('input',{staticClass:"input",attrs:{"type":"text","placeholder":"key for user@ub.io"}}),_vm._v(" "),_c('button',{staticClass:"button button--icon button--secondary"},[_c('i',{staticClass:"fa fa-cog"})]),_vm._v(" "),_c('button',{staticClass:"button button--icon button--flat button--primary"},[_c('i',{staticClass:"fas fa-mouse-pointer"})])])])])],1)}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4fe12e56", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-4fe12e56", __vue__options__)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":5}],35:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'input-class'
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('article',[_c('header',[_vm._v("Styles")]),_vm._v(" "),_c('spec',{attrs:{"name":".input","code":"input.input input, textarea.input","source":"input.css"}},[_c('div',{staticClass:"grid grid--gap stretch",staticStyle:{"grid-template-columns":"1fr 1fr"}},[_c('input',{staticClass:"input",attrs:{"type":"text","placeholder":"I'm input"}}),_vm._v(" "),_c('textarea',{staticClass:"input"},[_vm._v("I'm text area")])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Text area input","code":".input.input--area\n.input.input--area.input--area--fixed","source":"input.css"}},[_c('div',{staticClass:"group group--gap stretch box box--warm"},[_c('textarea',{staticClass:"input input--area"},[_vm._v("I'm flexible text area")]),_vm._v(" "),_c('textarea',{staticClass:"input input--area input--area--fixed"},[_vm._v("I'm fixed width text area")])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Inner text area","code":".input.input--area textarea","source":"input.css"}},[_c('div',{staticClass:"box box--cool stretch"},[_c('div',{staticClass:"input input--area stretch"},[_c('textarea',[_vm._v("I'm text area")])])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Frameless input","code":".input.frameless input|textarea","source":"input.css"}},[_c('div',{staticClass:"grid grid--gap stretch",staticStyle:{"grid-template-columns":"1fr 1fr 1fr"}},[_c('div',[_c('input',{staticClass:"input frameless",attrs:{"type":"text","placeholder":"I'm input"}})]),_vm._v(" "),_c('div',{staticClass:"input frameless"},[_c('textarea',[_vm._v("I'm text area")])])])]),_vm._v(" "),_c('spec',{attrs:{"name":".input--area","code":".input.input--area textarea","source":"input.css"}},[_c('div',{staticClass:"grid grid--gap stretch",staticStyle:{"grid-template-columns":"1fr 1fr 1fr"}},[_c('div',{staticClass:"input input--area"},[_c('textarea',[_vm._v("I'm text area")])])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Input-styled dropdowns","code":"big.input select\nspan.input select\nsmall.input select","source":"input.css"}},[_c('div',{staticClass:"grid grid--gap--large",staticStyle:{"grid-template-columns":"1fr 1fr 1fr"}},[_c('big',{staticClass:"input"},[_c('select',[_c('option',{domProps:{"value":undefined}},[_vm._v("Please select an option")]),_vm._v(" "),_c('option',{attrs:{"value":"1"}},[_vm._v("Bourbon")]),_vm._v(" "),_c('option',{attrs:{"value":"2"}},[_vm._v("Custard cream")]),_vm._v(" "),_c('option',{attrs:{"value":"3"}},[_vm._v("Digestive")])])]),_vm._v(" "),_c('span',{staticClass:"input"},[_c('select',[_c('option',{domProps:{"value":undefined}},[_vm._v("Please select an option")]),_vm._v(" "),_c('optgroup',{attrs:{"label":"Set 1"}},[_c('option',{attrs:{"value":"1"}},[_vm._v("Bourbon")]),_vm._v(" "),_c('option',{attrs:{"value":"2"}},[_vm._v("Custard cream")]),_vm._v(" "),_c('option',{attrs:{"value":"3"}},[_vm._v("Digestive")])]),_vm._v(" "),_c('optgroup',{attrs:{"label":"Set 2"}},[_c('option',{attrs:{"value":"4"}},[_vm._v("Chocolate hobnob")]),_vm._v(" "),_c('option',{attrs:{"value":"5"}},[_vm._v("Garibaldi")]),_vm._v(" "),_c('option',{attrs:{"value":"6"}},[_vm._v("Brandy snap")])])])]),_vm._v(" "),_c('small',{staticClass:"input"},[_c('select',[_c('option',{domProps:{"value":undefined}},[_vm._v("Please select an option")]),_vm._v(" "),_c('option',{attrs:{"value":"1"}},[_vm._v("Bourbon")]),_vm._v(" "),_c('option',{attrs:{"value":"2"}},[_vm._v("Custard cream")]),_vm._v(" "),_c('option',{attrs:{"value":"3"}},[_vm._v("Digestive")])])])],1)]),_vm._v(" "),_c('spec',{attrs:{"name":"Button-styled dropdowns","code":".button.button--large select\n.button select\n.button.button--small select","source":"button.css"}},[_c('div',{staticClass:"grid grid--gap--large",staticStyle:{"grid-template-columns":"1fr 1fr 1fr"}},[_c('span',{staticClass:"button button--large"},[_c('select',[_c('option',{domProps:{"value":undefined}},[_vm._v("Please select an option")]),_vm._v(" "),_c('option',{attrs:{"value":"1"}},[_vm._v("Bourbon")]),_vm._v(" "),_c('option',{attrs:{"value":"2"}},[_vm._v("Custard cream")]),_vm._v(" "),_c('option',{attrs:{"value":"3"}},[_vm._v("Digestive")])])]),_vm._v(" "),_c('span',{staticClass:"button"},[_c('select',[_c('option',{domProps:{"value":undefined}},[_vm._v("Please select an option")]),_vm._v(" "),_c('optgroup',{attrs:{"label":"Set 1"}},[_c('option',{attrs:{"value":"1"}},[_vm._v("Bourbon")]),_vm._v(" "),_c('option',{attrs:{"value":"2"}},[_vm._v("Custard cream")]),_vm._v(" "),_c('option',{attrs:{"value":"3"}},[_vm._v("Digestive")])]),_vm._v(" "),_c('optgroup',{attrs:{"label":"Set 2"}},[_c('option',{attrs:{"value":"4"}},[_vm._v("Chocolate hobnob")]),_vm._v(" "),_c('option',{attrs:{"value":"5"}},[_vm._v("Garibaldi")]),_vm._v(" "),_c('option',{attrs:{"value":"6"}},[_vm._v("Brandy snap")])])])]),_vm._v(" "),_c('span',{staticClass:"button button--small"},[_c('select',[_c('option',{domProps:{"value":undefined}},[_vm._v("Please select an option")]),_vm._v(" "),_c('option',{attrs:{"value":"1"}},[_vm._v("Bourbon")]),_vm._v(" "),_c('option',{attrs:{"value":"2"}},[_vm._v("Custard cream")]),_vm._v(" "),_c('option',{attrs:{"value":"3"}},[_vm._v("Digestive")])])])])])],1)}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0bc9b664", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-0bc9b664", __vue__options__)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":5}],36:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'input-toggle',
+
+    data() {
+        return {
+            bool: false
+        };
+    },
+
+    components: {
+        'toggle': require('../../../inbox-components/toggle.vue')
+    }
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('spec',{attrs:{"name":"Toggle","code":"small toggle[label=Small]\ntoggle[label=Regular]\nbig toggle[label=Big]","source":"vue-component"}},[_c('div',{staticClass:"grid grid--gap stretch",staticStyle:{"grid-template-columns":"1fr 1fr 1fr"}},[_c('small',[_c('toggle',{attrs:{"bool":_vm.bool,"label":"Small"},on:{"update":function (val) { return _vm.bool = val; }}})],1),_vm._v(" "),_c('toggle',{attrs:{"bool":_vm.bool,"label":"Regular"},on:{"update":function (val) { return _vm.bool = val; }}}),_vm._v(" "),_c('big',[_c('toggle',{attrs:{"bool":_vm.bool,"label":"Big"},on:{"update":function (val) { return _vm.bool = val; }}})],1)],1)])}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-60d56054", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-60d56054", __vue__options__)
+  }
+})()}
+},{"../../../inbox-components/toggle.vue":46,"vue":6,"vue-hot-reload-api":5}],37:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'loaders',
+
+    components: {
+        spinner: require('./spinner.vue'),
+        loader: require('./loader.vue')
+    }
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('article',[_c('spec',{attrs:{"name":"Basic loaders","code":".loader.loader--small.color--default\n.loader.color--primary\n.loader.loader--large.color--muted","source":"loader.css"}},[_c('div',{staticClass:"group group--gap--large"},[_c('div',{staticClass:"box box--mono group group--gap--large"},[_c('loader',{staticClass:"loader--small color--default"}),_vm._v(" "),_c('loader',{staticClass:"color--primary"}),_vm._v(" "),_c('loader',{staticClass:"color--secondary"}),_vm._v(" "),_c('loader',{staticClass:"loader--large color--muted"})],1),_vm._v(" "),_c('div',{staticClass:"box bg--dark-mode group group--gap--large"},[_c('loader',{staticClass:"loader--small color--dark-mode"}),_vm._v(" "),_c('loader',{staticClass:"color--primary"}),_vm._v(" "),_c('loader',{staticClass:"color--secondary"}),_vm._v(" "),_c('loader',{staticClass:"loader--large color--muted"})],1)])]),_vm._v(" "),_c('spec',{attrs:{"name":"Spinners","code":".spinner.spinner--small\n.spinner\n.spinner.spinner--large","source":"spinner.css"}},[_c('div',{staticClass:"group group--gap--large"},[_c('div',{staticClass:"box box--mono group group--gap--large"},[_c('spinner',{staticClass:"spinner--small color--default"}),_vm._v(" "),_c('spinner',{staticClass:"color--primary"}),_vm._v(" "),_c('spinner',{staticClass:"color--secondary"}),_vm._v(" "),_c('spinner',{staticClass:"spinner--large color--muted"})],1),_vm._v(" "),_c('div',{staticClass:"box bg--dark-mode group group--gap--large"},[_c('spinner',{staticClass:"spinner--small color--dark-mode"}),_vm._v(" "),_c('spinner',{staticClass:"color--primary"}),_vm._v(" "),_c('spinner',{staticClass:"color--secondary"}),_vm._v(" "),_c('spinner',{staticClass:"spinner--large color--muted"})],1)])]),_vm._v(" "),_c('spec',{attrs:{"name":"Progress bar","source":"progress-bar.css","code":".progress-bar\n.progress-bar.progress-bar--large"}},[_c('div',{staticClass:"grid grid--gap--large"},[_c('div',{staticClass:"group group--gap--large"},[_c('div',{staticClass:"progress-bar"},[_c('span',{staticClass:"progress-bar__width",style:("width: 0%")}),_vm._v(" "),_c('span',{staticClass:"progress-bar__counter"},[_vm._v("0%")])]),_vm._v(" "),_c('div',{staticClass:"progress-bar"},[_c('span',{staticClass:"progress-bar__width",style:("width: 50%")}),_vm._v(" "),_c('span',{staticClass:"progress-bar__counter"},[_vm._v("50%")])]),_vm._v(" "),_c('div',{staticClass:"progress-bar"},[_c('span',{staticClass:"progress-bar__width",style:("width: 100%")}),_vm._v(" "),_c('span',{staticClass:"progress-bar__counter"},[_vm._v("100%")])])]),_vm._v(" "),_c('div',{staticClass:"group group--gap--large"},[_c('div',{staticClass:"progress-bar progress-bar--large"},[_c('span',{staticClass:"progress-bar__width",style:("width: 0%")}),_vm._v(" "),_c('span',{staticClass:"progress-bar__counter"},[_vm._v("0%")])]),_vm._v(" "),_c('div',{staticClass:"progress-bar progress-bar--large"},[_c('span',{staticClass:"progress-bar__width",style:("width: 50%")}),_vm._v(" "),_c('span',{staticClass:"progress-bar__counter"},[_vm._v("50%")])]),_vm._v(" "),_c('div',{staticClass:"progress-bar progress-bar--large"},[_c('span',{staticClass:"progress-bar__width",style:("width: 100%")}),_vm._v(" "),_c('span',{staticClass:"progress-bar__counter"},[_vm._v("100%")])])])])])],1)])}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3c6a813c", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-3c6a813c", __vue__options__)
+  }
+})()}
+},{"./loader.vue":38,"./spinner.vue":39,"vue":6,"vue-hot-reload-api":5}],38:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'loader'
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _vm._m(0)}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"loader no-print",attrs:{"title":"Loading..."}},[_c('span',{staticClass:"loader__rect loader__rect1"}),_vm._v(" "),_c('span',{staticClass:"loader__rect loader__rect2"}),_vm._v(" "),_c('span',{staticClass:"loader__rect loader__rect3"}),_vm._v(" "),_c('span',{staticClass:"loader__rect loader__rect4"}),_vm._v(" "),_c('span',{staticClass:"loader__rect loader__rect5"})])}]
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-38ae1c99", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-38ae1c99", __vue__options__)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":5}],39:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'spinner'
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('svg',{staticClass:"spinner no-print",attrs:{"title":"Loading...","viewBox":"0 0 25 25","xmlns":"http://www.w3.org/2000/svg"}},[_c('circle',{attrs:{"cx":"50%","cy":"50%","stroke":"currentColor","stroke-width":"3","fill":"none","stroke-dasharray":"30 18","r":"10.5"}})])}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5e15a283", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-5e15a283", __vue__options__)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":5}],40:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'badges'
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('article',[_c('spec',{attrs:{"name":"Basic tags","code":".tag","source":"tag.css"}},[_c('div',{staticClass:"control-grid control-grid--gap",staticStyle:{"grid-template-columns":"repeat(6, auto)"}},[_c('small',{staticClass:"tag"},[_c('span',{staticClass:"tag__label"},[_vm._v("Small")]),_vm._v(" "),_c('a',{staticClass:"tag__remover"},[_c('i',{staticClass:"fas fa-times"})])]),_vm._v(" "),_c('span',{staticClass:"tag"},[_c('span',{staticClass:"tag__label"},[_vm._v("Default")]),_vm._v(" "),_c('a',{staticClass:"tag__remover"},[_c('i',{staticClass:"fas fa-times"})])]),_vm._v(" "),_c('big',{staticClass:"tag"},[_c('span',{staticClass:"tag__label"},[_vm._v("Big")]),_vm._v(" "),_c('a',{staticClass:"tag__remover"},[_c('i',{staticClass:"fas fa-times"})])])],1)]),_vm._v(" "),_c('spec',{attrs:{"name":"Tinted","code":".tag.tag--[name]","source":"tag.css"}},[_c('div',{staticClass:"control-grid control-grid--gap",staticStyle:{"grid-template-columns":"repeat(4, auto)"}},_vm._l((_vm.$root.colors),function(color){return _c('span',{key:color,staticClass:"tag",class:("tag--" + color)},[_c('span',{staticClass:"tag__label"},[_vm._v("Lorem")]),_vm._v(" "),_c('a',{staticClass:"tag__remover"},[_c('i',{staticClass:"fas fa-times"})])])}))])],1)])}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2dfee1d3", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-2dfee1d3", __vue__options__)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":5}],41:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'typography-base-copy'
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('article',{staticClass:"article"},[_c('header',{staticClass:"article__title"},[_vm._v("Base: Copy styles")]),_vm._v(" "),_c('spec',{attrs:{"name":"Standard paragraph","code":"p","source":"base.css"}},[_c('p',[_vm._v("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare non odio sed lobortis. Mauris in tortor vitae ex venenatis tempus. Donec efficitur eget lectus eget placerat. Ut non condimentum mauris, eu sodales neque. Proin porttitor bibendum ullamcorper. Mauris suscipit pretium lectus, nec pharetra mauris vulputate molestie.")])]),_vm._v(" "),_c('spec',{attrs:{"name":"Inline elements <br />(bolds, italics, links, code, time)","code":"b, strong\ni, em\na\ncode, time\nmark","source":"base.css"}},[_c('p',[_c('b',[_vm._v("Lorem "),_c('strong',[_vm._v("STRONGER TEXT")]),_vm._v(" dolor sit amet")]),_vm._v(", consectetur "),_c('code',[_vm._v("I'm code sample: 1ee37a17-a730-405e-b066")]),_vm._v(" adipiscing elit. Ut ornare non odio sed lobortis. "),_c('i',[_vm._v("Mauris in tortor")]),_vm._v(" vitae ex venenatis tempus. "),_c('em',[_vm._v("Donec efficitur "),_c('a',{attrs:{"href":"#"}},[_vm._v("eget")]),_vm._v(" lectus "),_c('mark',[_vm._v("eget placerat. Ut non condimentum mauris, eu sodales neque")])]),_vm._v(". "),_c('time',[_vm._v("I'm time sample: 11.12.2019")]),_vm._v(" porttitor bibendum ullamcorper. Mauris suscipit pretium lectus, nec "),_c('strong',[_vm._v("pharetra")]),_vm._v(" mauris vulputate molestie.\n    ")])]),_vm._v(" "),_c('spec',{attrs:{"name":"Preformated code","code":"pre","source":"base.css"}},[_c('pre',[_vm._v(_vm._s("curl -X GET \\\nhttps://api.automationcloud.net/services \\\n-H 'authorization: $BASIC_AUTH_HEADER' \\\n-H 'content-type: application/json'")+"\n        ")])]),_vm._v(" "),_c('spec',{attrs:{"name":"Unordered list","code":"ul li","source":"base.css"}},[_c('ul',[_c('li',[_vm._v("Lorem ipsum dolor sit amet")]),_vm._v(" "),_c('li',[_vm._v("Consectetur adipiscing elit")]),_vm._v(" "),_c('li',[_vm._v("Ut ornare non odio sed lobortis")])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Ordered list","code":"ol li","source":"base.css"}},[_c('ol',[_c('li',[_vm._v("Lorem ipsum dolor sit amet")]),_vm._v(" "),_c('li',[_vm._v("Consectetur adipiscing elit")]),_vm._v(" "),_c('li',[_vm._v("Ut ornare non odio sed lobortis")])])])],1)}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2a275ba8", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-2a275ba8", __vue__options__)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":5}],42:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'typography-base-headings'
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('article',{staticClass:"article"},[_c('header',{staticClass:"article__title"},[_vm._v("Base: Headings")]),_vm._v(" "),_c('spec',{attrs:{"name":"h1","source":"base.css"}},[_c('h1',[_vm._v("We are "),_c('strong',[_vm._v("ubio")]),_vm._v(". We automate the web.")])]),_vm._v(" "),_c('spec',{attrs:{"name":"h2","source":"base.css"}},[_c('h2',[_vm._v("We are "),_c('strong',[_vm._v("ubio")]),_vm._v(". We automate the web.")])]),_vm._v(" "),_c('spec',{attrs:{"name":"h3","source":"base.css"}},[_c('h3',[_vm._v("We are "),_c('strong',[_vm._v("ubio")]),_vm._v(". We automate the web.")])]),_vm._v(" "),_c('spec',{attrs:{"name":"h4","source":"base.css"}},[_c('h4',[_vm._v("We are "),_c('strong',[_vm._v("ubio")]),_vm._v(". We automate the web.")])]),_vm._v(" "),_c('spec',{attrs:{"name":"h5","source":"base.css"}},[_c('h5',[_vm._v("We are "),_c('strong',[_vm._v("ubio")]),_vm._v(". We automate the web.")])]),_vm._v(" "),_c('spec',{attrs:{"name":"h6","source":"base.css"}},[_c('h6',[_vm._v("We are "),_c('strong',[_vm._v("ubio")]),_vm._v(". We automate the web.")])])],1)}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4ee92938", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-4ee92938", __vue__options__)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":5}],43:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'typography',
+
+    components: {
+        'base-headings': require('./base-headings.vue'),
+        'base-copy': require('./base-copy.vue')
+    }
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('base-headings'),_vm._v(" "),_c('base-copy'),_vm._v(" "),_c('article',{staticClass:"article"},[_c('header',{staticClass:"article__title"},[_vm._v("Custom headings")]),_vm._v(" "),_c('spec',{attrs:{"name":"All caps h1","code":"h1.all-caps.color--secondary","source":"typography.css"}},[_c('h1',{staticClass:"all-caps color--secondary"},[_vm._v("We are "),_c('strong',[_vm._v("ubio")]),_vm._v(". We automate the web.")])]),_vm._v(" "),_c('spec',{attrs:{"name":"All caps h2","code":"h2.all-caps.color--secondary","source":"typography.css"}},[_c('h2',{staticClass:"all-caps color--secondary"},[_vm._v("We are "),_c('strong',[_vm._v("ubio")]),_vm._v(". We automate the web.")])]),_vm._v(" "),_c('spec',{attrs:{"name":"All caps h3","code":"h3.all-caps.color--secondary","source":"typography.css"}},[_c('h3',{staticClass:"all-caps color--secondary"},[_vm._v("We are "),_c('strong',[_vm._v("ubio")]),_vm._v(". We automate the web.")])]),_vm._v(" "),_c('spec',{attrs:{"name":"All caps h4","code":"h4.all-caps.color--secondary","source":"typography.css"}},[_c('h4',{staticClass:"all-caps color--secondary"},[_vm._v("We are "),_c('strong',[_vm._v("ubio")]),_vm._v(". We automate the web.")])]),_vm._v(" "),_c('spec',{attrs:{"name":"All caps h5","code":"h5.all-caps.color--secondary","source":"typography.css"}},[_c('h5',{staticClass:"all-caps color--secondary"},[_vm._v("We are "),_c('strong',[_vm._v("ubio")]),_vm._v(". We automate the web.")])]),_vm._v(" "),_c('spec',{attrs:{"name":"All caps h6","code":"h6.all-caps.color--secondary","source":"typography.css"}},[_c('h6',{staticClass:"all-caps color--secondary"},[_vm._v("We are "),_c('strong',[_vm._v("ubio")]),_vm._v(". We automate the web.")])])],1),_vm._v(" "),_c('article',{staticClass:"article"},[_c('header',{staticClass:"article__title"},[_vm._v("Text helpers")]),_vm._v(" "),_c('spec',{attrs:{"name":"Highlight","code":".text--highlight","source":"typography.css"}},[_c('p',[_c('b',{staticClass:"text--highlight"},[_vm._v("Lorem ipsum dolor sit amet")]),_vm._v(", consectetur adipiscing elit. Ut ornare non odio sed lobortis. "),_c('i',[_vm._v("Mauris in tortor")]),_vm._v(" vitae ex venenatis tempus. "),_c('em',{staticClass:"text--highlight"},[_vm._v("Donec efficitur "),_c('a',{attrs:{"href":"#"}},[_vm._v("eget")]),_vm._v(" lectus eget placerat. Ut non condimentum mauris, eu sodales neque")]),_vm._v(". Proin porttitor bibendum ullamcorper. Mauris suscipit pretium lectus, nec "),_c('strong',[_vm._v("pharetra")]),_vm._v(" "),_c('span',{staticClass:"text--highlight"},[_vm._v("mauris vulputate molestie.")])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Truncate","code":".text--truncate","source":"typography.css"}},[_c('p',{staticClass:"text--truncate"},[_c('b',[_vm._v("Lorem ipsum dolor sit amet")]),_vm._v(", consectetur adipiscing elit. Ut ornare non odio sed lobortis. "),_c('i',[_vm._v("Mauris in tortor")]),_vm._v(" vitae ex venenatis tempus. Proin porttitor bibendum ullamcorper. Mauris suscipit pretium lectus, nec "),_c('strong',[_vm._v("pharetra")]),_vm._v(" "),_c('span',{staticClass:"text--highlight"},[_vm._v("mauris vulputate molestie.")])])]),_vm._v(" "),_c('spec',{attrs:{"name":"All caps","code":".all-caps","source":"typography.css"}},[_c('p',{staticClass:"all-caps"},[_c('b',[_vm._v("Lorem ipsum dolor sit amet")]),_vm._v(", consectetur adipiscing elit. "),_c('i',[_vm._v("Mauris in tortor")]),_vm._v(" vitae ex venenatis tempus. Mauris suscipit pretium lectus, nec "),_c('strong',[_vm._v("pharetra")])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Monospaced","code":".text--mono","source":"typography.css"}},[_c('p',{staticClass:"text--mono"},[_vm._v("\n                THE QUICK BROWN FOX JUMPED OVER THE LAZY DOG."),_c('br'),_vm._v("\n                The quick brown fox jumped over the lazy dog."),_c('br'),_vm._v("\n                0123456789"),_c('br'),_vm._v("\n                11111.11"),_c('br'),_vm._v("\n                88888.88"),_c('br'),_vm._v("\n                0Oo il1I! Z2z 8$s5S😺‼✏⚠😭⤴⤵")])]),_vm._v(" "),_c('spec',{attrs:{"name":"Code","code":".code","source":"typography.css"}},[_c('div',[_c('p',[_c('strong',[_vm._v("During the lifecycle of a Job its state changes. You poll to get the latest status.")]),_c('br'),_vm._v(" "),_c('code',{staticClass:"code"},[_vm._v("processing")]),_vm._v(",\n                    "),_c('span',{staticClass:"code"},[_vm._v("awaitingInput")]),_vm._v(",\n                    "),_c('code',{staticClass:"code"},[_vm._v("awaitingTds")]),_vm._v(",\n                    "),_c('span',{staticClass:"code"},[_vm._v("success")]),_vm._v(",\n                    "),_c('code',{staticClass:"code"},[_vm._v("fail")])])])]),_vm._v(" "),_c('spec',{attrs:{"name":"Dark preformated code snippet","code":".pre","source":"base.css"}},[_c('div',{staticClass:"pre stretch"},[_vm._v("curl -X GET \\\n    https://api-staging.automationcloud.net/services \\\n    -H 'authorization: $BASIC_AUTH_HEADER' \\\n    -H 'content-type: application/json'")])])],1)],1)}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-79496e89", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-79496e89", __vue__options__)
+  }
+})()}
+},{"./base-copy.vue":41,"./base-headings.vue":42,"vue":6,"vue-hot-reload-api":5}],44:[function(require,module,exports){
+;(function(){
+
+
+module.exports = {
+    name: 'snippet',
+
+    props: {
+        code: { type: String, required: true },
+        source: { type: String, required: true }
+    }
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"demo__snippet"},[_c('em',{staticClass:"demo__snippet-source"},[_vm._v(_vm._s(_vm.source))]),_vm._v(" "),_c('pre',{staticClass:"demo__snippet-code"},[_vm._v(_vm._s(_vm.code))])])}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a7fd371a", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-a7fd371a", __vue__options__)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":5}],45:[function(require,module,exports){
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert(".spec {\n    display: grid;\n    grid-template-columns: 160px 2fr 1fr;\n    grid-column-gap: 40px;\n    align-items: start;\n    justify-items: start;\n}\n\n.spec__description {\n    color: var(--color-blue--500);\n    line-height: 1.5;\n    margin: .5rem 0;\n}\n\n.spec__hint {\n    word-wrap: break-word;\n    word-break: break-word;\n    white-space: pre-wrap;\n    font-size: var(--font-size--small);\n}\n\n.spec__name {\n    font-weight: 600;\n    grid-gap: var(--gap--small);\n    display: inline-grid;\n    grid-auto-flow: column;\n    align-items: center;\n}")
+;(function(){
+
+
+module.exports = {
+    name: 'spec',
+
+    props: {
+        name: { type: String, required: true },
+        source: { type: String, required: true },
+        code: { type: String, required: false, default: '' },
+        hint: { type: String, required: false, default: '' }
+    },
+
+    components: {
+        snippet: require('./snippet.vue')
+    }
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"spec"},[_c('div',{staticClass:"spec__description"},[_c('div',{staticClass:"spec__name"},[_c('span',{domProps:{"innerHTML":_vm._s(_vm.name)}}),_vm._v(" "),_vm._t("name")],2),_vm._v(" "),_c('div',{staticClass:"spec__hint",domProps:{"innerHTML":_vm._s(_vm.hint)}})]),_vm._v(" "),_vm._t("default"),_vm._v(" "),_c('snippet',{attrs:{"source":_vm.source,"code":_vm.code || _vm.name}})],2)}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  module.hot.dispose(__vueify_style_dispose__)
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-18f33655", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-18f33655", __vue__options__)
+  }
+})()}
+},{"./snippet.vue":44,"vue":6,"vue-hot-reload-api":5,"vueify/lib/insert-css":7}],46:[function(require,module,exports){
 ;(function(){
 
 
 module.exports = {
     props: {
-        data: { required: true },
-        label: { type: String, required: false },
-        iconSize: { type: Number, required: false, default: 10 },
-        faIconClassName: {
-            type: String,
-            required: false,
-            validator: value => value.match(/^fa-/)
-        },
-        title: { type: String, required: false }
+        label: { type: String, required: false, default: '' },
+        bool: { type: Boolean, required: true }
     },
 
     data() {
         return {
-            copied: false
+            val: this.bool
         };
     },
 
-    methods: {
-        copy() {
-            this.copyDataToClipboard(this.data);
-            this.copied = true;
-            setTimeout(() => this.copied = false, 300);
+    watch: {
+        bool(value) {
+            this.val = value;
         },
 
-        copyDataToClipboard(data) {
-            const text = typeof data === 'string' ? data : JSON.stringify(data, null, 4);
-            const textArea = document.createElement('textarea');
-            textArea.style.position = 'fixed';
-            textArea.value = text;
-            document.body.appendChild(textArea);
-            textArea.select();
-
-            try {
-                const successful = document.execCommand('copy');
-                const msg = successful ? 'successful' : 'unsuccessful';
-                console.info('Copying text command was ' + msg);
-            } catch (err) {
-                console.error('Oops, unable to copy');
-            }
-
-            document.body.removeChild(textArea);
+        val(value) {
+            this.$emit('update', value);
         }
     }
 };
@@ -9781,57 +10351,36 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('a',{staticClass:"clipboard",attrs:{"title":_vm.title ? _vm.title : 'Copy to Clipboard'},on:{"click":function($event){$event.stopPropagation();_vm.copy()}}},[_c('span',{staticClass:"clipboard__icon"},[(_vm.copied)?_c('i',{staticClass:"fa fa-check"}):(_vm.faIconClassName)?_c('i',{class:("fa " + _vm.faIconClassName)}):_c('svg',{attrs:{"width":_vm.iconSize,"height":_vm.iconSize,"viewBox":"340 364 14 15","xmlns":"http://www.w3.org/2000/svg"}},[_c('path',{attrs:{"fill":"currentColor","d":"M342 375.974h4v.998h-4v-.998zm5-5.987h-5v.998h5v-.998zm2 2.994v-1.995l-3 2.993 3 2.994v-1.996h5v-1.995h-5zm-4.5-.997H342v.998h2.5v-.997zm-2.5 2.993h2.5v-.998H342v.998zm9 .998h1v1.996c-.016.28-.11.514-.297.702-.187.187-.422.28-.703.296h-10c-.547 0-1-.452-1-.998v-10.976c0-.546.453-.998 1-.998h3c0-1.107.89-1.996 2-1.996 1.11 0 2 .89 2 1.996h3c.547 0 1 .452 1 .998v4.99h-1v-2.995h-10v8.98h10v-1.996zm-9-7.983h8c0-.544-.453-.996-1-.996h-1c-.547 0-1-.453-1-.998 0-.546-.453-.998-1-.998-.547 0-1 .452-1 .998 0 .545-.453.998-1 .998h-1c-.547 0-1 .452-1 .997z","fill-rule":"evenodd"}})])]),_vm._v(" "),(_vm.label)?_c('span',{staticClass:"clipboard__label",domProps:{"innerHTML":_vm._s(_vm.label)}}):_vm._e()])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{staticClass:"toggle"},[_c('span',{staticClass:"toggle__toggler"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.val),expression:"val"}],staticClass:"toggle__input",attrs:{"type":"checkbox"},domProps:{"checked":Array.isArray(_vm.val)?_vm._i(_vm.val,null)>-1:(_vm.val)},on:{"change":function($event){var $$a=_vm.val,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.val=$$a.concat([$$v]))}else{$$i>-1&&(_vm.val=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.val=$$c}}}}),_vm._v(" "),_c('span',{staticClass:"toggle__slider",class:{
+                'toggle__slider--on': _vm.bool,
+                'toggle__slider--off': !_vm.bool }})]),_vm._v(" "),(_vm.label)?_c('span',{staticClass:"toggle__label"},[_vm._v("\n        "+_vm._s(_vm.label)+"\n    ")]):_vm._e()])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.accept()
-  module.hot.dispose(__vueify_style_dispose__)
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-bb98a1cc", __vue__options__)
+    hotAPI.createRecord("data-v-6a75d0d4", __vue__options__)
   } else {
-    hotAPI.reload("data-v-bb98a1cc", __vue__options__)
+    hotAPI.reload("data-v-6a75d0d4", __vue__options__)
   }
 })()}
-},{"vue":9,"vue-hot-reload-api":6,"vueify/lib/insert-css":7}],17:[function(require,module,exports){
-;(function(){
-
-
-module.exports = {
-    props: {
-        activeItem: { type: String, required: false, default: '' }
-    },
-
-    components: {
-        'clipboard': require('./clipboard.vue')
-    }
-};
-})()
-if (module.exports.__esModule) module.exports = module.exports.default
-var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
-if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"section",class:{ 'section--active': _vm.activeItem === 'tools' },attrs:{"id":"tools"}},[_c('div',{staticClass:"section__title",class:{ 'section__title--active': _vm.activeItem === 'tools' }},[_c('i',{staticClass:"fa fa-wrench section__title-icon"}),_vm._v(" "),_c('span',{staticClass:"section__title-label"},[_vm._v("tools")])]),_vm._v(" "),_c('div',{staticClass:"section__body"},[_c('h3',[_vm._v("Copy to clipboard")]),_vm._v(" "),_c('table',{staticClass:"section__table"},[_vm._m(0),_vm._v(" "),_c('tbody',[_c('tr',[_c('td',[_c('clipboard',{attrs:{"data":"We are ubio. We automate the web."}})],1),_vm._v(" "),_c('td',[_c('clipboard',{attrs:{"data":"We are ubio. We automate the web.","title":"Hint text (optional, default: Copy to Clipboard)","label":"We are <b>ubio</b>"}})],1),_vm._v(" "),_c('td',[_c('span',{staticClass:"block group group--gap group--nowrap"},[_c('clipboard',{attrs:{"data":"We are ubio. We automate the web.","icon-size":9,"label":"9"}}),_vm._v(" "),_c('clipboard',{attrs:{"data":"We are ubio. We automate the web.","icon-size":11,"label":"10 (default)"}}),_vm._v(" "),_c('clipboard',{attrs:{"data":"We are ubio. We automate the web.","icon-size":12,"label":"12"}}),_vm._v(" "),_c('clipboard',{attrs:{"data":"We are ubio. We automate the web.","icon-size":13,"label":"13"}}),_vm._v(" "),_c('clipboard',{attrs:{"data":"We are ubio. We automate the web.","icon-size":14,"label":"14"}})],1)]),_vm._v(" "),_c('td',[_c('span',{staticClass:"block group group--gap"},[_c('button',{staticClass:"button button--small button--primary"},[_c('clipboard',{attrs:{"data":"We are ubio. We automate the web.","icon-size":9,"label":"Click Me!"}})],1),_vm._v(" "),_c('button',{staticClass:"button button--primary"},[_c('clipboard',{attrs:{"data":"We are ubio. We automate the web.","title":"Hint text (optional)","label":"Click Me!"}})],1),_vm._v(" "),_c('button',{staticClass:"button button--large button--primary"},[_c('clipboard',{attrs:{"data":"We are ubio. We automate the web.","title":"Hint text (optional)","icon-size":15,"label":"Click Me!"}})],1)])]),_vm._v(" "),_c('td',[_c('span',{staticClass:"block group group--gap"},[_c('clipboard',{attrs:{"data":"We are ubio. We automate the web.","fa-icon-class-name":"fa-clipboard","label":"fa-clipboard"}}),_vm._v(" "),_c('clipboard',{attrs:{"data":"We are ubio. We automate the web.","fa-icon-class-name":"fa-copy","label":"fa-copy"}}),_vm._v(" "),_c('clipboard',{attrs:{"data":"We are ubio. We automate the web.","fa-icon-class-name":"fa-key","label":"fa-key"}})],1)])])])])])])}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('thead',[_c('tr',[_c('th',[_vm._v("base")]),_vm._v(" "),_c('th',[_vm._v(":label, :title")]),_vm._v(" "),_c('th',[_vm._v(":icon-size")]),_vm._v(" "),_c('th',[_vm._v(".button")]),_vm._v(" "),_c('th',[_vm._v(":fa-icon-class-name")])])])}]
-if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), true)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-fe965b54", __vue__options__)
-  } else {
-    hotAPI.reload("data-v-fe965b54", __vue__options__)
-  }
-})()}
-},{"./clipboard.vue":16,"vue":9,"vue-hot-reload-api":6}],18:[function(require,module,exports){
+},{"vue":6,"vue-hot-reload-api":5}],47:[function(require,module,exports){
 'use strict';
 
 const Vue = require('vue');
+Vue.component('spec', require('./demo/spec.vue'));
 
-const App = Vue.component('app', require('./app.vue'));
+const App = Vue.component('app', require('./demo/index.vue'));
 
 new App({
-    el: '#app'
+    el: '#app',
+    data: {
+        colors: ['mono', 'cool', 'warm', 'blue', 'yellow', 'red', 'green', 'brand-blue', 'brand-red'],
+        colorsGrey: ['mono', 'cool', 'warm'],
+        colorsSemaphore: ['blue', 'yellow', 'red', 'green'],
+        colorsBrand: ['brand-blue', 'brand-red']
+    }
 });
 
-},{"./app.vue":8,"vue":9}]},{},[18]);
+},{"./demo/index.vue":8,"./demo/spec.vue":45,"vue":6}]},{},[47]);

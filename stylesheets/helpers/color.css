@@ -1,0 +1,28 @@
+/* semantic foreground colours */
+.color--default { color: var(--ui-color) }
+.color--dark-mode { color: var(--ui-color--dark-mode) }
+
+.color--primary { color: var(--color-brand-red--500) }
+.color--secondary { color: var(--ui-color--secondary) }
+.color--muted { color: var(--ui-color--muted) }
+
+/* base foreground colours */
+.color--mono { color: var(--color-mono--500) }
+.color--cool { color: var(--color-cool--500) }
+.color--warm { color: var(--color-warm--500) }
+.color--blue { color: var(--color-blue--500) }
+.color--yellow { color: var(--color-yellow--500) }
+.color--green { color: var(--color-green--500) }
+.color--red { color: var(--color-red--500) }
+.color--brand-red { color: var(--color-brand-red--500) }
+.color--brand-blue { color: var(--color-brand-blue--500) }
+
+.color--mono--dark-mode { color: var(--color-mono--400) }
+.color--cool--dark-mode { color: var(--color-cool--400) }
+.color--warm--dark-mode { color: var(--color-warm--400) }
+.color--blue--dark-mode { color: var(--color-blue--400) }
+.color--yellow--dark-mode { color: var(--color-yellow--400) }
+.color--green--dark-mode { color: var(--color-green--400) }
+.color--red--dark-mode { color: var(--color-red--400) }
+.color--brand-red--dark-mode { color: var(--color-brand-red--400) }
+.color--brand-blue--dark-mode { color: var(--color-brand-blue--400) }

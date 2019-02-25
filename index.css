@@ -217,7 +217,7 @@ q:before, q:after {
 [disabled] {
     cursor: not-allowed;
     pointer-events: none;
-    opacity: .7;
+    opacity: .65;
 }
 
 html {
@@ -277,6 +277,7 @@ textarea {
     font-size: var(--font-size);
     line-height: 1.35;
     letter-spacing: 0;
+    color: var(--ui-color);
 }
 
 input:hover,
@@ -310,6 +311,11 @@ textarea {
     width: 100%;
 }
 
+input::placeholder,
+textarea::placeholder {
+    color: rgba(0,0,0,.5);
+}
+
 input[type="radio"],
 input[type="checkbox"] {
     height: auto;
@@ -320,6 +326,12 @@ input[readonly],
 textarea[readonly] {
     background: var(--color-warm--100);
     box-shadow: none;
+}
+
+input[disabled],
+textarea[disabled] {
+    background: var(--color-warm--100);
+    color: var(--ui-color);
 }
 
 select {

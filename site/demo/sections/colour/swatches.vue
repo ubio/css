@@ -2,7 +2,7 @@
     <div class="swatches">
         <div class="swatches__column"
             v-for="swatch of swatches"
-            :key="swatch">
+            :key="swatch.name">
             <div class="swatches__name">
                 <strong>{{ swatch.name }}</strong>
             </div>
@@ -10,7 +10,7 @@
                 <div class="swatches__step"
                     :style="step.style"
                     v-for="step of swatch.steps"
-                    :key="step">
+                    :key="step.number">
                     <div class="swatches__number">{{ step.number }}</div>
                     <div class="swatches__hex">{{ step.color.hex }}</div>
                     <div class="swatches__hsl">{{ step.color.hsl }}</div>

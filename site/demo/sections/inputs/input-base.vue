@@ -145,6 +145,6 @@
 
 <script>
 module.exports = {
-    name: 'input-base',
+    name: 'input-base'
 };
 </script>

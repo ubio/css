@@ -13,7 +13,7 @@ module.exports = {
     components: {
         'base-size': require('./base-size.vue'),
         'button-styles': require('./styles.vue'),
-        'button-groups': require('./button-groups.vue'),
-    },
+        'button-groups': require('./button-groups.vue')
+    }
 };
 </script>

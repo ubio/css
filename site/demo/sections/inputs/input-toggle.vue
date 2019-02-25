@@ -21,12 +21,12 @@ module.exports = {
 
     data() {
         return {
-            bool: false,
+            bool: false
         };
     },
 
     components: {
-        'toggle': require('../../../inbox-components/toggle.vue'),
-    },
+        'toggle': require('../../../inbox-components/toggle.vue')
+    }
 };
 </script>

@@ -49,6 +49,6 @@
 
 <script>
 module.exports = {
-    name: 'typography-base-copy',
+    name: 'typography-base-copy'
 };
 </script>

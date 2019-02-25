@@ -60,6 +60,6 @@
 
 <script>
 module.exports = {
-    name: 'button-styles-icon-within',
+    name: 'button-styles-icon-within'
 };
 </script>

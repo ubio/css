@@ -74,6 +74,6 @@
 
 <script>
 module.exports = {
-    name: 'button-styles-icon-only',
+    name: 'button-styles-icon-only'
 };
 </script>

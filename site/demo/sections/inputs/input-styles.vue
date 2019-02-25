@@ -154,7 +154,7 @@
 
 <script>
 module.exports = {
-    name: 'input-class',
+    name: 'input-class'
 };
 </script>
 

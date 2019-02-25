@@ -15,7 +15,7 @@ module.exports = {
         'input-base': require('./input-base.vue'),
         'input-styles': require('./input-styles.vue'),
         'input-groups': require('./input-groups.vue'),
-        'input-toggle': require('./input-toggle.vue'),
-    },
+        'input-toggle': require('./input-toggle.vue')
+    }
 };
 </script>

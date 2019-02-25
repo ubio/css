@@ -112,6 +112,7 @@
                     class="grid grid--gap--small">
                     <div
                         v-for="colour of ['blue', 'yellow', 'red', 'green']"
+                        :key="colour"
                         class="grid grid--gap--small">
                         <span class="badge no-caps badge--fixed" :class="`bg--${ colour }`">
                             {{ colour }}
@@ -190,6 +191,6 @@
 
 <script>
 module.exports = {
-    name: 'badges',
+    name: 'badges'
 };
 </script>

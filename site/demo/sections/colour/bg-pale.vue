@@ -46,6 +46,6 @@
 
 <script>
 module.exports = {
-    name: 'bg--pale',
+    name: 'bg--pale'
 };
 </script>

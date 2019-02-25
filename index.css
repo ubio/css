@@ -631,7 +631,7 @@ mark {
 }
 
 .button--dark-mode:hover {
-    background: var(--cta-color--dark-mode);
+    background: rgba(0,0,0,0.9);
     color: white;
 }
 

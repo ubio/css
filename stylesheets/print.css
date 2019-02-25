@@ -1,0 +1,21 @@
+@media print {
+    body {
+        color: #000;
+        background: white;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    * {
+        print-color-adjust: exact;
+    }
+
+    .no-print {
+        display: none;
+    }
+
+    @page {
+        margin: 1.5cm;
+    }
+}

@@ -1,18 +1,55 @@
 .input {
     display: inline-flex;
     box-sizing: border-box;
-    padding: 0 var(--gap--small);
+
     height: var(--control-height);
-    border-radius: var(--control-border-radius);
-    border: 1px solid rgba(0,0,0,0.1);
+    align-items: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 1px 2px rgba(2,36,102,.15) inset;
+}
+
+.input:hover {
+    border-color: var(--border-color--hover);
+}
+
+.input.frameless:hover {
+    border-color: transparent;
+}
+
+.input:focus,
+.input:focus-within {
+    border-color: #4A90E2;
+    box-shadow: 0 0 0 2px #ADD3FC;
+    outline: none;
+}
+
+.input input,
+.input textarea {
+    border: 0;
     box-shadow: none;
+    flex: 1;
+    background: transparent;
+}
 
-    font-family: var(--font-family);
-    font-size: var(--font-size);
-    line-height: 1;
-    letter-spacing: 0.025em;
+.input--area {
+    height: auto;
+}
 
-    cursor: pointer;
+.input--area--fixed {
+    resize: vertical;
+}
+
+.input * {
+    max-height: 100%;
+}
+
+.input .icon {
+    justify-content: center;
+    align-items: center;
 }
 
 .input--block {
@@ -24,15 +61,4 @@
     opacity: 0.5;
     cursor: not-allowed;
     pointer-events: none;
-}
-
-.input--small {
-    height: var(--control-height--small);
-    padding: 2px 4px;
-    font-size: var(--font-size--small);
-}
-
-textarea.input {
-    height: auto;
-    line-height: 1.35;
 }

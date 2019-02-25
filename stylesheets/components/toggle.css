@@ -1,0 +1,86 @@
+.toggle {
+    --toggle__width: 4em;
+    --toggle__height: 1em;
+
+    font-size: 1em;
+    display: inline-grid;
+    grid-gap: var(--gap--small);
+    align-items: center;
+    grid-auto-flow: column;
+    justify-self: start;
+}
+
+.toggle__toggler {
+    position: relative;
+    display: inline-block;
+    width: var(--toggle__width);
+    height: calc(2 * 3px + var(--toggle__height));
+    vertical-align: middle;
+}
+
+.toggle__label {
+    font-weight: 500;
+}
+
+.toggle__slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: inline-block;
+    margin: 0 !important;
+    padding: 0;
+    border-radius: var(--toggle__height);
+    cursor: pointer;
+    background-color: #888;
+    background-color: var(--color-mono--400);
+    transition: 0.4s;
+}
+
+.toggle__slider:before {
+    content: '';
+    position: absolute;
+    left: 3px;
+    bottom: 3px;
+    display: block;
+    height: var(--toggle__height);
+    width: var(--toggle__height);
+    border-radius: 50%;
+    background-color: #fff;
+    transition: 0.4s;
+}
+
+.toggle__input {
+    display: none;
+    visibility: hidden;
+}
+
+.toggle__slider--on {
+    background-color: var(--color-blue--500);
+}
+
+.toggle__slider--on:before {
+    transform: translateX(calc(var(--toggle__width) - var(--toggle__height) - 6px));
+}
+
+.toggle__slider:after {
+    position: absolute;
+    top: 3px;
+    bottom: 3px;
+    line-height: var(--toggle__height);
+    color: #fff;
+    height: var(--toggle__height);
+    width: calc(var(--toggle__width) - 2 * var(--toggle__height));
+}
+
+.toggle__slider--on:after {
+    content: 'On';
+    left: 6px;
+}
+
+.toggle__slider--off:after {
+    content: 'Off';
+    left: calc(var(--toggle__height) + 7px);
+    text-align: left;
+}

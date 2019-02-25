@@ -1,0 +1,40 @@
+.progress-bar {
+    color: var(--color-cool--400);
+    display: flex;
+    position: relative;
+    min-width: 5vw;
+    font-size: 10px;
+    background: var(--color-cool--100);
+    box-shadow: 0 0 0 1px currentColor inset;
+    vertical-align: middle;
+    line-height: 15px;
+    border-radius: 0;
+    overflow: hidden;
+    border-radius: 1px;
+}
+
+.progress-bar--large {
+    line-height: 26px;
+    font-size: 15px;
+    border-radius: 3px;
+}
+
+.progress-bar__width {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    background-color: var(--color-cool--400);
+    border-radius: inherit;
+    transition: width 1s;
+}
+
+.progress-bar__counter {
+    align-self: center;
+    margin-left: auto;
+    font-weight: 600;
+    padding: 0 var(--gap--small);
+    color: var(--color-mono--800);
+    z-index: 2;
+}

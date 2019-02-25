@@ -1,0 +1,27 @@
+.spinner {
+    --spinner-size: 28;
+    animation: spin 1.3s infinite linear;
+    width: var(--control-height);
+    height: var(--control-height);
+}
+
+.spinner--small {
+    width: calc(.5 * var(--control-height));
+    height: calc(.5 * var(--control-height));
+}
+
+
+.spinner--large {
+    width: calc(2 * var(--control-height));
+    height: calc(2 * var(--control-height));
+}
+
+
+@keyframes spin {
+    0% {
+        transform:rotate(0deg)
+    }
+    to {
+        transform:rotate(1turn)
+    }
+}

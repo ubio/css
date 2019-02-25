@@ -36,7 +36,7 @@
                     style="grid-template-columns: repeat(4, auto)"
                     class="grid grid--gap">
                     <span
-                        v-for="color of ['blue', 'yellow', 'red', 'green']"
+                        v-for="color of $root.colorsSemaphore"
                         :key="color"
                         class="badge badge--fixed all-caps"
                         :class="`badge--${ color }`">
@@ -46,10 +46,6 @@
                         <i class="fas fa-info-circle"></i>
                         info
                     </span>
-                    <span class="badge all-caps badge--green">
-                        <i class="fas fa-check-circle"></i>
-                        success
-                    </span>
                     <span class="badge all-caps badge--yellow">
                         <i class="fas fa-exclamation-triangle"></i>
                         warning
@@ -58,13 +54,13 @@
                         <i class="fas fa-exclamation-circle"></i>
                         failure
                     </span>
+                    <span class="badge all-caps badge--green">
+                        <i class="fas fa-check-circle"></i>
+                        success
+                    </span>
                     <span class="badge all-caps badge--blue--light">
                         <i class="fas fa-info-circle"></i>
                         info
-                    </span>
-                    <span class="badge all-caps badge--green--light">
-                        <i class="fas fa-check-circle"></i>
-                        success
                     </span>
                     <span class="badge all-caps badge--yellow--light">
                         <i class="fas fa-exclamation-triangle"></i>
@@ -74,13 +70,13 @@
                         <i class="fas fa-exclamation-circle"></i>
                         failure
                     </span>
+                    <span class="badge all-caps badge--green--light">
+                        <i class="fas fa-check-circle"></i>
+                        success
+                    </span>
                     <span class="badge all-caps badge--outline color--blue">
                         <i class="fas fa-info-circle"></i>
                         info
-                    </span>
-                    <span class="badge all-caps badge--outline color--green">
-                        <i class="fas fa-check-circle"></i>
-                        success
                     </span>
                     <span class="badge all-caps badge--outline color--yellow">
                         <i class="fas fa-exclamation-triangle"></i>
@@ -89,6 +85,10 @@
                     <span class="badge all-caps badge--outline color--red">
                         <i class="fas fa-exclamation-circle"></i>
                         failure
+                    </span>
+                    <span class="badge all-caps badge--outline color--green">
+                        <i class="fas fa-check-circle"></i>
+                        success
                     </span>
                 </div>
             </spec>
@@ -135,12 +135,12 @@
                         </span>
                         <span
                             class="badge badge--fixed badge--outline"
-                            :class="`badge--outline--${ colour }`">
+                            :class="`badge--${ colour }--outline`">
                             {{ colour }}
                         </span>
                         <span
                             class="badge badge--fixed badge--outline"
-                            :class="`badge--outline--${ colour }`">
+                            :class="`badge--${ colour }--outline`">
                             <i class="fas fa-bullseye"></i>
                             {{ colour }}
                         </span>

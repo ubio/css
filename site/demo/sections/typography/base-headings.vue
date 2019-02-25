@@ -36,6 +36,6 @@
 
 <script>
 module.exports = {
-    name: 'typography-base-headings',
+    name: 'typography-base-headings'
 };
 </script>

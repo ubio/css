@@ -20,7 +20,7 @@ module.exports = {
         'styles-flat': require('./styles-flat.vue'),
         'styles-accent': require('./styles-accent.vue'),
         'styles-icon-within': require('./styles-icon-within.vue'),
-        'styles-icon-only': require('./styles-icon-only.vue'),
-    },
+        'styles-icon-only': require('./styles-icon-only.vue')
+    }
 };
 </script>

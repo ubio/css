@@ -16,12 +16,12 @@ module.exports = {
             postcss()
                 .use(atImport({ resolve }))
                 .process(content, {
-                    from: path.resolve(__dirname, 'package.json'),
+                    from: path.resolve(__dirname, 'package.json')
                 })
                 .then(result => {
                     // console.log(result);
                     cb(null, result.css);
                 }, err => cb(err));
-        },
-    },
+        }
+    }
 };

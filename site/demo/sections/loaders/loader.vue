@@ -10,6 +10,6 @@
 
 <script>
 module.exports = {
-    name: 'loader',
+    name: 'loader'
 };
 </script>

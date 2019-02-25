@@ -12,7 +12,7 @@
             <h1 class="navigation__headline-title">
                 <b>ubio</b>
                 <span>CSS Framework</span>
-                <sub class="text--muted">v2.0</sub>
+                <sub class="text--muted">v{{ version }}</sub>
             </h1>
         </div>
 
@@ -46,9 +46,17 @@
 </template>
 
 <script>
+const { version } = require('../../package.json');
+
 module.exports = {
     props: {
-        sections: { type: Object, required: true },
+        sections: { type: Object, required: true }
+    },
+
+    data() {
+        return {
+            version
+        };
     },
 
     created() {
@@ -60,7 +68,7 @@ module.exports = {
             if (hash) {
                 this.scrollToActive();
             }
-        },
+        }
     },
 
     methods: {
@@ -75,7 +83,7 @@ module.exports = {
                     el.scrollIntoViewIfNeeded();
                 }
             } catch (err) { }
-        },
-    },
+        }
+    }
 };
 </script>

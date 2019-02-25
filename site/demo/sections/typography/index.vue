@@ -109,7 +109,7 @@ module.exports = {
 
     components: {
         'base-headings': require('./base-headings.vue'),
-        'base-copy': require('./base-copy.vue'),
-    },
+        'base-copy': require('./base-copy.vue')
+    }
 };
 </script>

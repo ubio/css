@@ -19,7 +19,7 @@ module.exports = {
         'swatches': require('./swatches.vue'),
         'bg-white': require('./bg-white.vue'),
         'bg-dark': require('./bg-dark.vue'),
-        'bg-pale': require('./bg-pale.vue'),
-    },
+        'bg-pale': require('./bg-pale.vue')
+    }
 };
 </script>

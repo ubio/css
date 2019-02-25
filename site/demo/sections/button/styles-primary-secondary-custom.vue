@@ -15,6 +15,6 @@
 
 <script>
 module.exports = {
-    name: 'button-styles-primary-secondary-custom',
+    name: 'button-styles-primary-secondary-custom'
 };
 </script>

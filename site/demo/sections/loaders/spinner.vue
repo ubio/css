@@ -18,6 +18,6 @@
 <script>
 
 module.exports = {
-    name: 'spinner',
+    name: 'spinner'
 };
 </script>

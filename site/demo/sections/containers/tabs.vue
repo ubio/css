@@ -8,6 +8,7 @@
             <div>
                 <menu class="tabs">
                     <span v-for="tab in tabs"
+                        :key="tab"
                         class="tabs__item"
                         @click="activeTab = tab"
                         :class="{ 'tabs__item--active': tab === activeTab }">
@@ -29,6 +30,7 @@
             <div>
                 <menu class="tabs">
                     <span v-for="tab in tabs"
+                        :key="tab"
                         class="tabs__item"
                         @click="activeTabIcons = tab"
                         :class="{ 'tabs__item--active': tab === activeTabIcons }">
@@ -55,8 +57,8 @@ module.exports = {
         return {
             tabs: ['Database', 'Magic', 'Check'],
             activeTab: 'Database',
-            activeTabIcons: 'Database',
+            activeTabIcons: 'Database'
         };
-    },
+    }
 };
 </script>

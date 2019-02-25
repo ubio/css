@@ -32,6 +32,6 @@
 
 <script>
 module.exports = {
-    name: 'text-variations-sample',
+    name: 'text-variations-sample'
 };
 </script>

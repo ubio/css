@@ -21,12 +21,12 @@ module.exports = {
         name: { type: String, required: true },
         source: { type: String, required: true },
         code: { type: String, required: false, default: '' },
-        hint: { type: String, required: false, default: '' },
+        hint: { type: String, required: false, default: '' }
     },
 
     components: {
-        snippet: require('./snippet.vue'),
-    },
+        snippet: require('./snippet.vue')
+    }
 };
 </script>
 

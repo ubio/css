@@ -9877,7 +9877,7 @@ module.exports={
     "eslint": "^5.14.1",
     "eslint-config-ub": "^3.0.0",
     "eslint-plugin-vue": "5.2.2",
-    "local-web-server": "^2.6.0",
+    "local-web-server": "^2.6.1",
     "npm-run-all": "^4.1.5",
     "postcss": "^7.0.14",
     "postcss-cli": "^6.1.2",
@@ -10441,7 +10441,7 @@ function evalColor(style) {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"swatches"},_vm._l((_vm.swatches),function(swatch){return _c('div',{key:swatch,staticClass:"swatches__column"},[_c('div',{staticClass:"swatches__name"},[_c('strong',[_vm._v(_vm._s(swatch.name))])]),_vm._v(" "),_c('div',{staticClass:"swatches__steps"},_vm._l((swatch.steps),function(step){return _c('div',{key:step,staticClass:"swatches__step",style:(step.style)},[_c('div',{staticClass:"swatches__number"},[_vm._v(_vm._s(step.number))]),_vm._v(" "),_c('div',{staticClass:"swatches__hex"},[_vm._v(_vm._s(step.color.hex))]),_vm._v(" "),_c('div',{staticClass:"swatches__hsl"},[_vm._v(_vm._s(step.color.hsl))])])}),0)])}),0)}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"swatches"},_vm._l((_vm.swatches),function(swatch){return _c('div',{key:swatch.name,staticClass:"swatches__column"},[_c('div',{staticClass:"swatches__name"},[_c('strong',[_vm._v(_vm._s(swatch.name))])]),_vm._v(" "),_c('div',{staticClass:"swatches__steps"},_vm._l((swatch.steps),function(step){return _c('div',{key:step.number,staticClass:"swatches__step",style:(step.style)},[_c('div',{staticClass:"swatches__number"},[_vm._v(_vm._s(step.number))]),_vm._v(" "),_c('div',{staticClass:"swatches__hex"},[_vm._v(_vm._s(step.color.hex))]),_vm._v(" "),_c('div',{staticClass:"swatches__hsl"},[_vm._v(_vm._s(step.color.hsl))])])}),0)])}),0)}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

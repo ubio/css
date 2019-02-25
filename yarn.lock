@@ -3027,7 +3027,7 @@ load-module@^1.0.0:
   dependencies:
     array-back "^2.0.0"
 
-local-web-server@^2.6.0:
+local-web-server@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/local-web-server/-/local-web-server-2.6.1.tgz#6c96bc3193edb00b5ba1d483607a71af6d5509e7"
   integrity sha512-KglUDD5jy3CMJ88E04aDjY6mRm387G2MX1XZI1bM6+dzrjLWKHURbef896tw7w7KI997r5UT0Y6NUm8To11/tQ==

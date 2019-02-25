@@ -346,7 +346,7 @@ select {
 }
 
 select:hover {
-    background-color: var(--color-warm--200);
+    background-color: transparent;
 }
 
 select[disabled] {

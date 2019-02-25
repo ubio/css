@@ -15,6 +15,6 @@
 
 <script>
 module.exports = {
-    name: 'button-styles-flat',
+    name: 'button-styles-flat'
 };
 </script>

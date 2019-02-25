@@ -48,7 +48,7 @@
 <script>
 module.exports = {
     props: {
-        sections: { type: Object, required: true },
+        sections: { type: Object, required: true }
     },
 
     created() {
@@ -60,7 +60,7 @@ module.exports = {
             if (hash) {
                 this.scrollToActive();
             }
-        },
+        }
     },
 
     methods: {
@@ -75,7 +75,7 @@ module.exports = {
                     el.scrollIntoViewIfNeeded();
                 }
             } catch (err) { }
-        },
-    },
+        }
+    }
 };
 </script>

@@ -11,6 +11,6 @@ new App({
         colors: ['mono', 'cool', 'warm', 'blue', 'yellow', 'red', 'green', 'brand-blue', 'brand-red'],
         colorsGrey: ['mono', 'cool', 'warm'],
         colorsSemaphore: ['blue', 'yellow', 'red', 'green'],
-        colorsBrand: ['brand-blue', 'brand-red'],
-    },
+        colorsBrand: ['brand-blue', 'brand-red']
+    }
 });

@@ -66,7 +66,7 @@ module.exports = {
 
     components: {
         'box-tinted': require('./box-tinted.vue'),
-        'box-outlined': require('./box-outlined.vue'),
-    },
+        'box-outlined': require('./box-outlined.vue')
+    }
 };
 </script>

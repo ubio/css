@@ -103,7 +103,7 @@ module.exports = {
 
     components: {
         spinner: require('./spinner.vue'),
-        loader: require('./loader.vue'),
-    },
+        loader: require('./loader.vue')
+    }
 };
 </script>

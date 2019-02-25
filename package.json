@@ -25,22 +25,22 @@
     "postversion": "npm publish && git push origin master --tags"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babelify": "^8.0.0",
-    "browserify": "^16.0.0",
-    "browserify-hmr": "^0.3.6",
-    "eslint": "^4.17.0",
-    "eslint-config-ub": "^2.0.0",
-    "eslint-plugin-vue": "2",
-    "local-web-server": "^2.4.0",
-    "npm-run-all": "^4.1.2",
-    "postcss": "^6.0.17",
-    "postcss-cli": "^5.0.0",
-    "postcss-import": "^11.1.0",
+    "babel-core": "^6.26.3",
+    "babelify": "8",
+    "browserify": "^16.2.3",
+    "browserify-hmr": "^0.3.7",
+    "eslint": "^5.14.1",
+    "eslint-config-ub": "^3.0.0",
+    "eslint-plugin-vue": "5.2.2",
+    "local-web-server": "^2.6.1",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^7.0.14",
+    "postcss-cli": "^6.1.2",
+    "postcss-import": "^12.0.1",
     "pre-commit": "^1.2.2",
-    "vue": "^2.5.13",
+    "vue": "^2.6.7",
     "vueify": "^9.4.1",
-    "watchify": "^3.10.0"
+    "watchify": "^3.11.1"
   },
   "dependencies": {
     "parse-color": "^1.0.0"

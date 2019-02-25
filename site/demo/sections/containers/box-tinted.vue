@@ -30,6 +30,6 @@
 
 <script>
 module.exports = {
-    name: 'boxes',
+    name: 'boxes'
 };
 </script>

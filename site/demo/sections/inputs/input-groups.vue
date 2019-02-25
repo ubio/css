@@ -188,6 +188,6 @@
 
 <script>
 module.exports = {
-    name: 'controls-groups',
+    name: 'controls-groups'
 };
 </script>

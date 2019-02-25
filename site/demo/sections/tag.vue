@@ -45,6 +45,6 @@
 
 <script>
 module.exports = {
-    name: 'badges',
+    name: 'badges'
 };
 </script>

@@ -21,6 +21,6 @@
 
 <script>
 module.exports = {
-    name: 'button-styles-accent',
+    name: 'button-styles-accent'
 };
 </script>

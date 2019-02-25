@@ -46,6 +46,6 @@
 
 <script>
 module.exports = {
-    name: 'button-base-size',
+    name: 'button-base-size'
 };
 </script>

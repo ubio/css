@@ -57,7 +57,7 @@ module.exports = {
 
     components: {
         'boxes': require('./boxes.vue'),
-        'tabs': require('./tabs.vue'),
-    },
+        'tabs': require('./tabs.vue')
+    }
 };
 </script>

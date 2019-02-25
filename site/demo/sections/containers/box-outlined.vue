@@ -30,6 +30,6 @@
 
 <script>
 module.exports = {
-    name: 'box-outline',
+    name: 'box-outline'
 };
 </script>

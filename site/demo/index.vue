@@ -28,8 +28,8 @@ module.exports = {
                 'badges': 'Badges',
                 'tags': 'Tags',
                 'containers': 'Containers',
-                'loaders': 'Loaders',
-            },
+                'loaders': 'Loaders'
+            }
         };
     },
 
@@ -42,8 +42,8 @@ module.exports = {
         'badges': require('./sections/badge.vue'),
         'tags': require('./sections/tag.vue'),
         'containers': require('./sections/containers/index.vue'),
-        'loaders': require('./sections/loaders/index.vue'),
-    },
+        'loaders': require('./sections/loaders/index.vue')
+    }
 };
 </script>
 

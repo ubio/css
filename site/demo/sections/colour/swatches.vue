@@ -1,14 +1,16 @@
 <template>
     <div class="swatches">
         <div class="swatches__column"
-            v-for="swatch of swatches">
+            v-for="swatch of swatches"
+            :key="swatch">
             <div class="swatches__name">
                 <strong>{{ swatch.name }}</strong>
             </div>
             <div class="swatches__steps">
                 <div class="swatches__step"
                     :style="step.style"
-                    v-for="step of swatch.steps">
+                    v-for="step of swatch.steps"
+                    :key="step">
                     <div class="swatches__number">{{ step.number }}</div>
                     <div class="swatches__hex">{{ step.color.hex }}</div>
                     <div class="swatches__hsl">{{ step.color.hsl }}</div>
@@ -27,7 +29,7 @@ module.exports = {
     data() {
         const swatchNumbers = ['000', '100', '200', '300', '400', '500', '600', '700', '800', '900'];
         return {
-            swatchNumbers,
+            swatchNumbers
         };
     },
 
@@ -48,14 +50,14 @@ module.exports = {
                         number,
                         variable,
                         style,
-                        color,
+                        color
                     });
                 }
             }
             return swatches;
-        },
+        }
 
-    },
+    }
 
 };
 

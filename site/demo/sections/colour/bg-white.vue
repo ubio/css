@@ -30,7 +30,7 @@ module.exports = {
     name: 'bg-white',
 
     components: {
-        'text-variations-sample': require('./text-variations-sample.vue'),
-    },
+        'text-variations-sample': require('./text-variations-sample.vue')
+    }
 };
 </script>

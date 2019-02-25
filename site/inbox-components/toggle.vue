@@ -22,12 +22,12 @@
 module.exports = {
     props: {
         label: { type: String, required: false, default: '' },
-        bool: { type: Boolean, required: true },
+        bool: { type: Boolean, required: true }
     },
 
     data() {
         return {
-            val: this.bool,
+            val: this.bool
         };
     },
 
@@ -38,7 +38,7 @@ module.exports = {
 
         val(value) {
             this.$emit('update', value);
-        },
-    },
+        }
+    }
 };
 </script>

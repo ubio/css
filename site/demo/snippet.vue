@@ -11,7 +11,7 @@ module.exports = {
 
     props: {
         code: { type: String, required: true },
-        source: { type: String, required: true },
-    },
+        source: { type: String, required: true }
+    }
 };
 </script>

@@ -89,6 +89,6 @@
 
 <script>
 module.exports = {
-    name: 'button-sets',
+    name: 'button-sets'
 };
 </script>

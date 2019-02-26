@@ -15,10 +15,13 @@
                         <p>
                             <span
                                 class="badge badge--fixed badge--outline"
-                                :class="`color--${ color }`">{{ color }}</span>
+                                :class="`color--${ color }--dark-mode`">{{ color }}</span>
                             <span
                                 class="badge badge--fixed"
                                 :class="`badge--${ color }`">{{ color }}</span>
+                            <span
+                                class="badge badge--fixed"
+                                :class="`badge--${ color }--highlight`">{{ color }}</span>
                             <span
                                 class="badge badge--fixed"
                                 :class="`badge--${ color }--light`">{{ color }}</span>
@@ -26,21 +29,27 @@
                         <p class="color--dark-mode">
                             <b>Inversed text</b>. Eu sodales neque.
                         </p>
+                        <p class="color--primary--dark-mode">
+                            <b>Primary text</b>. <mark>highlight</mark> <a>link</a> mauris.
+                        </p>
+                        <p class="color--secondary--dark-mode">
+                            <b>Secondary text</b>.
+                            Ut non <a>link</a> mauris.
+                        </p>
                         <p class="color--muted">
                             <b>Muted text</b>.
-                            Ut non <a>link</a> mauris, eu <mark>highlight</mark>
-                            neque.
+                            Ut non <a>link</a> mauris.
                         </p>
                         <p>
-                            <small class="color--red">99.999%</small>
-                            <span class="color--red">50.00%</span>
-                            <big class="color--red">99.99%</big><br/>
-                            <big class="color--yellow">99.99%</big>
-                            <span class="color--yellow">50.00%</span>
-                            <small class="color--yellow">99.999%</small><br/>
-                            <small class="color--green">99.999%</small>
-                            <span class="color--green">50.00%</span>
-                            <big class="color--green">99.99%</big>
+                            <small class="color--brand-red--dark-mode">99.999%</small>
+                            <span class="color--brand-red--dark-mode">50.00%</span>
+                            <big class="color--brand-red--dark-mode">99.99%</big><br/>
+                            <big class="color--yellow--dark-mode">99.99%</big>
+                            <span class="color--yellow--dark-mode">50.00%</span>
+                            <small class="color--yellow--dark-mode">99.999%</small><br/>
+                            <small class="color--green--dark-mode">99.999%</small>
+                            <span class="color--green--dark-mode">50.00%</span>
+                            <big class="color--green--dark-mode">99.99%</big>
                         </p>
                         <p>
                             <button class="button--primary">Primary</button>
@@ -48,10 +57,7 @@
                         </p>
                         <p>
                             <button>Default</button>
-                            <button class="button--dark-mode">Default</button>
-                            <i class="color--primary fas fa-bullseye"></i>
-                            <i class="color--secondary fas fa-bullseye"></i>
-                            <i class="color--muted fas fa-bullseye"></i>
+                            <button class="button--dark-mode">Default dark</button>
                         </p>
                     </div>
                 </div>

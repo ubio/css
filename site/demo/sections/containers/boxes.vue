@@ -45,9 +45,9 @@
             </spec>
             <spec
                 name="Tinting & outline"
-                :code="`.box.box--outline.bg--cool--pale.color--blue`"
+                :code="`.box.box--outline.color--blue`"
                 source="box.css">
-                <div class="box box--outline color--blue bg--cool--pale stretch">
+                <div class="box box--outline color--blue stretch">
                     <p><b>Donec efficitur eget lectus eget placerat. Ut non condimentum mauris, eu sodales neque.</b></p>
                     <p> Mauris suscipit pretium lectus, nec pharetra mauris vulputate molestie.</p>
                 </div>

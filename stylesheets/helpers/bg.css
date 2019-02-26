@@ -3,25 +3,25 @@
 .bg--dark-mode { background: var(--ui-background--dark-mode) }
 
 /* base background colours */
-.bg--mono { background: var(--color-mono--500) }
-.bg--cool { background: var(--color-cool--500) }
-.bg--warm { background: var(--color-warm--500) }
-.bg--blue { background: var(--color-blue--500) }
-.bg--yellow { background: var(--color-yellow--500) }
-.bg--green { background: var(--color-green--500) }
-.bg--red { background: var(--color-red--500) }
-.bg--brand-red { background: var(--color-brand-red--500) }
-.bg--brand-blue { background: var(--color-brand-blue--500) }
+.bg--mono { background: var(--color-mono--600) }
+.bg--cool { background: var(--color-cool--600) }
+.bg--warm { background: var(--color-warm--600) }
+.bg--blue { background: var(--color-blue--600) }
+.bg--yellow { background: var(--color-yellow--600) }
+.bg--green { background: var(--color-green--600) }
+.bg--red { background: var(--color-red--600) }
+.bg--brand-red { background: var(--color-brand-red--600) }
+.bg--brand-blue { background: var(--color-brand-blue--600) }
 
-.bg--mono--pale { background: var(--color-mono--000) }
-.bg--cool--pale { background: var(--color-cool--000) }
-.bg--warm--pale { background: var(--color-warm--000) }
-.bg--blue--pale { background: var(--color-blue--000) }
-.bg--yellow--pale { background: var(--color-yellow--000) }
-.bg--green--pale { background: var(--color-green--000) }
-.bg--red--pale { background: var(--color-red--000) }
-.bg--brand-red--pale { background: var(--color-brand-red--000) }
-.bg--brand-blue--pale { background: var(--color-brand-blue--000) }
+.bg--mono--pale { background: var(--color-mono--100) }
+.bg--cool--pale { background: var(--color-cool--100) }
+.bg--warm--pale { background: var(--color-warm--100) }
+.bg--blue--pale { background: var(--color-blue--100) }
+.bg--yellow--pale { background: var(--color-yellow--100) }
+.bg--green--pale { background: var(--color-green--100) }
+.bg--red--pale { background: var(--color-red--100) }
+.bg--brand-red--pale { background: var(--color-brand-red--100) }
+.bg--brand-blue--pale { background: var(--color-brand-blue--100) }
 
 .bg--mono--light { background: var(--color-mono--400) }
 .bg--cool--light { background: var(--color-cool--400) }

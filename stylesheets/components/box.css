@@ -10,27 +10,27 @@
 
 .box--mono {
     background: var(--color-mono--100);
-    color: var(--color-mono--500);
+    color: var(--color-mono--600);
 }
 
 .box--cool {
     background: var(--color-cool--100);
-    color: var(--color-cool--500);
+    color: var(--color-cool--600);
 }
 
 .box--warm {
     background: var(--color-warm--100);
-    color: var(--color-warm--500);
+    color: var(--color-warm--600);
 }
 
 .box--blue {
     background: var(--color-blue--100);
-    color: var(--color-blue--500);
+    color: var(--color-blue--600);
 }
 
 .box--yellow {
     background: var(--color-yellow--100);
-    color: var(--color-yellow--500);
+    color: var(--color-yellow--600);
 }
 
 .box--red {
@@ -40,22 +40,74 @@
 
 .box--green {
     background: var(--color-green--100);
-    color: var(--color-green--500);
+    color: var(--color-green--600);
 }
 
 .box--brand-red {
     background: var(--color-brand-red--100);
-    color: var(--color-brand-red--500);
+    color: var(--color-brand-red--600);
 }
 
 .box--brand-blue {
     background: var(--color-brand-blue--100);
+    color: var(--color-brand-blue--600);
+}
+
+.box--mono--outline {
+    background: var(--color-mono--000);
+    color: var(--color-mono--500);
+}
+
+.box--cool--outline {
+    background: var(--color-cool--000);
+    color: var(--color-cool--500);
+    border-color: currentColor;
+}
+
+.box--warm--outline {
+    background: var(--color-warm--000);
+    color: var(--color-warm--500);
+    border-color: currentColor;
+}
+
+.box--blue--outline {
+    background: var(--color-blue--000);
+    color: var(--color-blue--600);
+    border-color: currentColor;
+}
+
+.box--yellow--outline {
+    background: var(--color-yellow--000);
+    color: var(--color-yellow--600);
+    border-color: currentColor;
+}
+
+.box--red--outline {
+    background: var(--color-red--000);
+    color: var(--color-red--600);
+    border-color: currentColor;
+}
+
+.box--green--outline {
+    background: var(--color-green--000);
+    color: var(--color-green--600);
+    border-color: currentColor;
+}
+
+.box--brand-red--outline {
+    background: var(--color-brand-red--00);
+    color: var(--color-brand-red--500);
+    border-color: currentColor;
+}
+
+.box--brand-blue--outline {
+    background: var(--color-brand-blue--00);
     color: var(--color-brand-blue--500);
+    border-color: currentColor;
 }
 
 .box--outline {
     border-color: currentColor;
-    background: transparent;
 }
 
 .box--small {

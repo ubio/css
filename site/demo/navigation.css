@@ -39,6 +39,10 @@
     text-decoration: none;
 }
 
+.navigation__menu-item:hover {
+    color: var(--ui-color--secondary);
+}
+
 .navigation__menu-icon {
     width: 16px;
     color: currentColor;

@@ -5,6 +5,7 @@
             <swatches/>
         </article>
 
+        <semantics />
         <bg-white />
         <bg-pale />
         <bg-dark />
@@ -17,6 +18,7 @@ module.exports = {
 
     components: {
         'swatches': require('./swatches.vue'),
+        'semantics': require('./semantics.vue'),
         'bg-white': require('./bg-white.vue'),
         'bg-dark': require('./bg-dark.vue'),
         'bg-pale': require('./bg-pale.vue')

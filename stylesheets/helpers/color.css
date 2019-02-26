@@ -1,12 +1,17 @@
 /* semantic foreground colours */
 .color--default { color: var(--ui-color) }
+.color--default--dark-mode { color: var(--ui-color--dark-mode) }
 .color--dark-mode { color: var(--ui-color--dark-mode) }
 
-.color--primary { color: var(--color-brand-red--500) }
+.color--primary { color: var(--ui-color--primary) }
+.color--primary--dark-mode { color: var(--ui-color--primary--dark-mode) }
 .color--secondary { color: var(--ui-color--secondary) }
+.color--secondary--dark-mode { color: var(--ui-color--secondary--dark-mode) }
+.color--accent { color: var(--ui-color--accent) }
 .color--muted { color: var(--ui-color--muted) }
 
 /* base foreground colours */
+
 .color--mono { color: var(--color-mono--600) }
 .color--cool { color: var(--color-cool--600) }
 .color--warm { color: var(--color-warm--600) }
@@ -17,12 +22,12 @@
 .color--brand-red { color: var(--color-brand-red--600) }
 .color--brand-blue { color: var(--color-brand-blue--600) }
 
-.color--mono--dark-mode { color: var(--color-mono--400) }
-.color--cool--dark-mode { color: var(--color-cool--400) }
-.color--warm--dark-mode { color: var(--color-warm--400) }
-.color--blue--dark-mode { color: var(--color-blue--400) }
-.color--yellow--dark-mode { color: var(--color-yellow--400) }
-.color--green--dark-mode { color: var(--color-green--400) }
-.color--red--dark-mode { color: var(--color-red--400) }
-.color--brand-red--dark-mode { color: var(--color-brand-red--400) }
-.color--brand-blue--dark-mode { color: var(--color-brand-blue--400) }
+.color--mono--dark-mode { color: var(--color-mono--500) }
+.color--cool--dark-mode { color: var(--color-cool--500) }
+.color--warm--dark-mode { color: var(--color-warm--500) }
+.color--blue--dark-mode { color: var(--color-blue--500) }
+.color--yellow--dark-mode { color: var(--color-yellow--500) }
+.color--green--dark-mode { color: var(--color-green--500) }
+.color--red--dark-mode { color: var(--color-red--500) }
+.color--brand-red--dark-mode { color: var(--color-brand-red--500) }
+.color--brand-blue--dark-mode { color: var(--color-brand-blue--500) }

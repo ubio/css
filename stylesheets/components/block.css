@@ -4,15 +4,7 @@
     font-size: var(--font-size);
 }
 
-.block--mono { background: var(--color-mono--200) }
-.block--cool { background: var(--color-cool--200) }
-.block--warm { background: var(--color-warm--200) }
-.block--blue { background: var(--color-blue--200) }
-.block--yellow { background: var(--color-yellow--200) }
-.block--green { background: var(--color-green--200) }
-.block--red { background: var(--color-red--200) }
-
-.block--border {
+.block--rounded {
     border-radius: var(--border-radius);
 }
 

@@ -7,7 +7,7 @@
                 source="tag.css">
                 <div
                     style="grid-template-columns: repeat(6, auto)"
-                    class="control-grid control-grid--gap">
+                    class="grid grid--gap">
                     <small class="tag">
                         <span class="tag__label">Small</span>
                         <a class="tag__remover"><i class="fas fa-times"></i></a>
@@ -26,9 +26,7 @@
                 name="Tinted"
                 :code="`.tag.tag--[name]`"
                 source="tag.css">
-                <div
-                    style="grid-template-columns: repeat(4, auto)"
-                    class="control-grid control-grid--gap">
+                <div class="group group--gap--small">
                     <span
                         v-for="color of $root.colors"
                         :key="color"

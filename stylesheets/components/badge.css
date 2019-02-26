@@ -32,17 +32,17 @@
 }
 
 .badge--production { background-color: var(--color-brand-red--500) }
-.badge--staging { background-color: var(--color-green--500) }
+.badge--staging { background-color: var(--color-yellow--500) }
 
-.badge--mono { background-color: var(--color-mono--500) }
-.badge--cool { background-color: var(--color-cool--500) }
-.badge--warm { background-color: var(--color-warm--500) }
-.badge--blue { background-color: var(--color-blue--500) }
-.badge--brand-blue { background-color: var(--color-brand-blue--500) }
-.badge--yellow { background-color: var(--color-yellow--500) }
-.badge--red { background-color: var(--color-red--500) }
-.badge--brand-red { background-color: var(--color-brand-red--500) }
-.badge--green { background-color: var(--color-green--500) }
+.badge--mono { background-color: var(--color-mono--600) }
+.badge--cool { background-color: var(--color-cool--600) }
+.badge--warm { background-color: var(--color-warm--600) }
+.badge--blue { background-color: var(--color-blue--600) }
+.badge--brand-blue { background-color: var(--color-brand-blue--600) }
+.badge--yellow { background-color: var(--color-yellow--600) }
+.badge--red { background-color: var(--color-red--600) }
+.badge--brand-red { background-color: var(--color-brand-red--600) }
+.badge--green { background-color: var(--color-green--600) }
 
 .badge--mono--light {
     background-color: var(--color-mono--400);
@@ -83,6 +83,17 @@
     color: var(--ui-color);
 }
 
+.badge--mono--highlight { background-color: var(--color-mono--500) }
+.badge--cool--highlight { background-color: var(--color-cool--500) }
+.badge--warm--highlight { background-color: var(--color-warm--500) }
+
+.badge--blue--highlight { background-color: var(--color-blue--500) }
+.badge--yellow--highlight { background-color: var(--color-yellow--500) }
+.badge--red--highlight { background-color: var(--color-red--500) }
+.badge--green--highlight { background-color: var(--color-green--500) }
+
+.badge--brand-red--highlight { background-color: var(--color-brand-red--500) }
+.badge--brand-blue--highlight { background-color: var(--color-brand-blue--500) }
 
 .badge--outline {
     box-shadow: 0 0 0 1px currentColor inset;
@@ -150,14 +161,14 @@
 }
 
 .badge--fixed {
-    min-width: 12ch;
+    min-width: 14ch;
     max-width: 100%;
 }
 
 .badge--round {
     min-width: 3ch;
-    padding: 0;
-    border-radius: 2.5em;
+    padding: 0 .5em;
+    border-radius: 5em;
     justify-content: center;
 }
 

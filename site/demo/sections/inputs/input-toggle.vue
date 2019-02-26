@@ -1,10 +1,8 @@
 <template>
     <spec
         name="Toggle"
-        :code="`small toggle[label=Small]
-toggle[label=Regular]
-big toggle[label=Big]`"
-        source="vue-component">
+        :code="`toggle`"
+        source="toggle.vue">
         <div
             style="grid-template-columns: 1fr 1fr 1fr"
             class="grid grid--gap stretch">

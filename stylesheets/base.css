@@ -224,13 +224,13 @@ li {
 
 a {
     cursor: pointer;
-    color: var(--cta-color--accent);
+    color: var(--color-blue--500);
     text-decoration: underline;
 }
 
 a:hover {
     text-decoration: none;
-    color: var(--ui-color--secondary);
+    color: var(--color-blue--500);
 }
 
 b {

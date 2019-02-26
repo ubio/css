@@ -3,20 +3,20 @@
         <article>
             <spec
                 name="Basic loaders"
-                :code="`.loader.loader--small.color--default\n.loader.color--primary\n.loader.loader--large.color--muted`"
+                :code="`.loader.loader--small.color--default\n.loader.color--primary\n.loader.loader--large.color--secondary--dark-mode`"
                 source="loader.css">
                 <div class="group group--gap--large">
                     <div class="box box--mono group group--gap--large">
                         <loader  class="loader--small color--default" />
                         <loader class="color--primary" />
                         <loader class="color--secondary" />
-                        <loader class="loader--large color--muted" />
+                        <loader class="loader--large color--secondary--dark-mode" />
                     </div>
                     <div class="box bg--dark-mode group group--gap--large">
                         <loader  class="loader--small color--dark-mode" />
                         <loader class="color--primary" />
                         <loader class="color--secondary" />
-                        <loader class="loader--large color--muted" />
+                        <loader class="loader--large color--secondary--dark-mode" />
                     </div>
                 </div>
             </spec>
@@ -29,13 +29,13 @@
                         <spinner class="spinner--small color--default" />
                         <spinner class="color--primary" />
                         <spinner class="color--secondary" />
-                        <spinner class="spinner--large color--muted" />
+                        <spinner class="spinner--large color--secondary--dark-mode" />
                     </div>
                     <div class="box bg--dark-mode group group--gap--large">
                         <spinner class="spinner--small color--dark-mode" />
                         <spinner class="color--primary" />
                         <spinner class="color--secondary" />
-                        <spinner class="spinner--large color--muted" />
+                        <spinner class="spinner--large color--secondary--dark-mode" />
                     </div>
                 </div>
             </spec>

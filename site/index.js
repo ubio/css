@@ -8,7 +8,7 @@ const App = Vue.component('app', require('./demo/index.vue'));
 new App({
     el: '#app',
     data: {
-        colors: ['mono', 'cool', 'warm', 'blue', 'yellow', 'red', 'green', 'brand-blue', 'brand-red'],
+        colors: ['mono', 'cool', 'warm', 'yellow', 'blue', 'brand-blue', 'red', 'brand-red', 'green'],
         colorsGrey: ['mono', 'cool', 'warm'],
         colorsSemaphore: ['blue', 'yellow', 'red', 'green'],
         colorsBrand: ['brand-blue', 'brand-red']

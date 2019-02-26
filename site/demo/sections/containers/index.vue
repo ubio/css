@@ -4,41 +4,33 @@
             <header class="article__title">Blocks</header>
             <spec
                 name="Sizing & tinting"
-                :code="`.block.block--small.block--mono\n.block.block--warm\n.block.block--large.block--cool`"
+                :code="`.block.block--small\n.block\n.block.block--large`"
                 source="box.css">
                 <div class="grid grid--gap stretch">
-                    <div class="block block--small block--mono">
+                    <div class="block block--small bg--mono--pale">
                         <b>Small block panel</b>
                         Mauris suscipit pretium lectus, nec pharetra.
                     </div>
-                    <div class="block block--warm">
+                    <div class="block bg--warm--pale">
                         <b>Regular block panel</b>
                         Mauris suscipit pretium lectus.
                     </div>
-                    <div class="block block--large block--cool">
+                    <div class="block block--large bg--cool--pale">
                         <b>Large block panel</b>
                         Mauris suscipit pretium lectus, nec pharetra.
                     </div>
                 </div>
             </spec>
             <spec
-                name="Bordered"
-                :code="`.block.block--border.block--[color]`"
+                name="Rounded"
+                :code="`.block.block--large.block--rounded`"
                 source="box.css">
                 <div class="grid grid--gap stretch">
-                    <div class="block block--large block--border block--yellow">
+                    <div class="block block--large block--rounded bg--brand-red color--dark-mode">
                         <b>Large block panel</b>
                         Mauris suscipit pretium lectus.
                     </div>
-                    <div class="block block--border block--blue">
-                        <b>Regular block panel</b>
-                        Mauris suscipit pretium lectus.
-                    </div>
-                    <div class="block block--border block--red">
-                        <b>Regular block panel</b>
-                        Mauris suscipit pretium lectus.
-                    </div>
-                    <div class="block block--small block--border block--green">
+                    <div class="block block--small block--rounded bg--green color--dark-mode">
                         <b>Small block panel</b>
                         Mauris suscipit pretium lectus.
                     </div>

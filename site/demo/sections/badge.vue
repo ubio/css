@@ -30,41 +30,37 @@
             </spec>
             <spec
                 name="Tinted"
-                :code="`.badge.badge--[name]\n.badge.badge--[name]--light\n.badge.badge--outline.color--[name]`"
+                :code="`.badge.badge--[name]\n.badge.badge--[name]--highlight\n.badge.badge--[name]--light\n.badge.badge--outline.color--[name]`"
                 source="badge.css">
                 <div
                     style="grid-template-columns: repeat(4, auto)"
                     class="grid grid--gap">
                     <span
-                        v-for="color of ['blue', 'yellow', 'red', 'green']"
+                        v-for="color of $root.colorsSemaphore"
                         :key="color"
                         class="badge badge--fixed all-caps"
                         :class="`badge--${ color }`">
                         {{ color }}
                     </span>
-                    <span class="badge all-caps badge--blue">
+                    <span class="badge all-caps badge--blue--highlight">
                         <i class="fas fa-info-circle"></i>
                         info
                     </span>
-                    <span class="badge all-caps badge--green">
-                        <i class="fas fa-check-circle"></i>
-                        success
-                    </span>
-                    <span class="badge all-caps badge--yellow">
+                    <span class="badge all-caps badge--yellow--highlight">
                         <i class="fas fa-exclamation-triangle"></i>
                         warning
                     </span>
-                    <span class="badge all-caps badge--red">
+                    <span class="badge all-caps badge--red--highlight">
                         <i class="fas fa-exclamation-circle"></i>
                         failure
+                    </span>
+                    <span class="badge all-caps badge--green--highlight">
+                        <i class="fas fa-check-circle"></i>
+                        success
                     </span>
                     <span class="badge all-caps badge--blue--light">
                         <i class="fas fa-info-circle"></i>
                         info
-                    </span>
-                    <span class="badge all-caps badge--green--light">
-                        <i class="fas fa-check-circle"></i>
-                        success
                     </span>
                     <span class="badge all-caps badge--yellow--light">
                         <i class="fas fa-exclamation-triangle"></i>
@@ -74,13 +70,13 @@
                         <i class="fas fa-exclamation-circle"></i>
                         failure
                     </span>
+                    <span class="badge all-caps badge--green--light">
+                        <i class="fas fa-check-circle"></i>
+                        success
+                    </span>
                     <span class="badge all-caps badge--outline color--blue">
                         <i class="fas fa-info-circle"></i>
                         info
-                    </span>
-                    <span class="badge all-caps badge--outline color--green">
-                        <i class="fas fa-check-circle"></i>
-                        success
                     </span>
                     <span class="badge all-caps badge--outline color--yellow">
                         <i class="fas fa-exclamation-triangle"></i>
@@ -89,6 +85,10 @@
                     <span class="badge all-caps badge--outline color--red">
                         <i class="fas fa-exclamation-circle"></i>
                         failure
+                    </span>
+                    <span class="badge all-caps badge--outline color--green">
+                        <i class="fas fa-check-circle"></i>
+                        success
                     </span>
                 </div>
             </spec>
@@ -108,10 +108,14 @@
                 :code="`.badge.color--[name].no-caps\n.badge.color--[name].badge--outline.no-caps`"
                 source="badge.css">
                 <div
-                    style="grid-template-columns: repeat(7, 1fr)"
-                    class="grid grid--gap--small">
+                    style="grid-template-columns: repeat(5, 1fr);"
+                    class="grid grid--gap">
                     <div
-                        v-for="colour of ['blue', 'yellow', 'red', 'green']"
+                        v-for="colour of [
+                            ...$root.colorsGrey,
+                            ...$root.colorsSemaphore,
+                            ...$root.colorsBrand
+                        ]"
                         :key="colour"
                         class="grid grid--gap--small">
                         <span class="badge no-caps badge--fixed" :class="`bg--${ colour }`">
@@ -135,12 +139,12 @@
                         </span>
                         <span
                             class="badge badge--fixed badge--outline"
-                            :class="`badge--outline--${ colour }`">
+                            :class="`badge--${ colour }--outline`">
                             {{ colour }}
                         </span>
                         <span
                             class="badge badge--fixed badge--outline"
-                            :class="`badge--outline--${ colour }`">
+                            :class="`badge--${ colour }--outline`">
                             <i class="fas fa-bullseye"></i>
                             {{ colour }}
                         </span>
@@ -179,10 +183,13 @@
                 <div class="group group--gap--large">
                     <span class="badge badge--large badge--production badge--round">p</span>
                     <span class="badge badge--large badge--staging badge--round">s</span>
+                    <span class="badge badge--large badge--round">126</span>
                     <span class="badge badge--production badge--round">p</span>
                     <span class="badge badge--staging badge--round">s</span>
+                    <span class="badge badge--round">126</span>
                     <span class="badge badge--small badge--production badge--round">p</span>
                     <span class="badge badge--small badge--staging badge--round">s</span>
+                    <span class="badge badge--small badge--round">126</span>
                 </div>
             </spec>
         </article>

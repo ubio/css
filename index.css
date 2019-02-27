@@ -825,7 +825,7 @@ mark {
     height: var(--toggle__height);
     width: var(--toggle__height);
     border-radius: 50%;
-    background-color: #fff;
+    background-color: var(--ui-color--inverse);
     transition: 0.4s;
 }
 
@@ -847,7 +847,7 @@ mark {
     top: 3px;
     bottom: 3px;
     line-height: var(--toggle__height);
-    color: #fff;
+    color: var(--ui-color--inverse);
     height: var(--toggle__height);
     width: calc(var(--toggle__width) - 2 * var(--toggle__height));
 }
@@ -1506,6 +1506,7 @@ mark {
     --ui-color--default--hover: black;
 
     --ui-color: white;
+    --ui-color--inverse: var(--ui-color--black);
     --ui-color--primary: var(--color-blue--400);
     --ui-color--secondary: var(--color-cool--400);
     --ui-color--muted: var(--color-cool--500);
@@ -1549,6 +1550,7 @@ mark {
     padding: 3px 0;
     border-radius: 2px;
     box-shadow: 3px 0 0 var(--color-yellow--400), -3px 0 0 var(--color-yellow--400);
+    color: var(--ui-color--black);
 }
 
 .text--truncate {

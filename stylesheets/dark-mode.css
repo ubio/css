@@ -5,6 +5,7 @@
     --ui-color--default--hover: black;
 
     --ui-color: white;
+    --ui-color--inverse: var(--ui-color--black);
     --ui-color--primary: var(--color-blue--400);
     --ui-color--secondary: var(--color-cool--400);
     --ui-color--muted: var(--color-cool--500);

@@ -1,6 +1,7 @@
 <template>
-    <div class="demo">
-        <navigation :sections="sections" />
+    <div class="demo" :class="{ 'dark-mode': $root.darkMode }">
+        <navigation
+            :sections="sections" />
 
         <div class="demo__container">
             <section

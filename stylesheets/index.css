@@ -23,7 +23,7 @@
 @import "./components/progress-bar.css";
 @import "./components/tag.css";
 
-@import "./dark.css";
+@import "./dark-mode.css";
 
 /* UI helpers */
 @import "./helpers/utils.css";

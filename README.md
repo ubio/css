@@ -4,12 +4,12 @@ This framework provides the UI foundation layer for any UBIO-style app.
 Demo https://universalbasket.github.io/css/
 
 ## Idea
-In order to make UBIO apps visually consistent, we extract core styles responsible for colour scheme and typography into a single CSS file, so it can be used as a base layer of any project.
+In order to make UBIO apps visually consistent, we extract core styles responsible for the colour scheme and typography into a single CSS file, so it can be used as a base layer for any project.
 
 This is a living project, that evolves as we go.
 
 We keep it simple, scalable and flexible.
-This doesn't include grid framework and icons, it's up to a particular project to care of its layout and chose icons. For prototyping purposes we recommend https://fontawesome.com/icons
+This doesn't include a grid framework and icons, it's up to a particular project to take care of its layout and choose icons. For prototyping purposes we recommend https://fontawesome.com/icons
 
 ## Recommended naming convention: BEM
 
@@ -39,7 +39,7 @@ To consider: CDN vs. serve statically (e.g. GH Pages) vs. inlining in applicatio
 
 - `--aspect--modifier`
 - aspect may consist of multiple words, separated by a dash,
-- aspect can match CSS keys (`font-size`, `font-family`, `border-radius`) or be custom (`color-brand-red`)
+- aspect can match CSS keys (`font-size`, `font-family`, `border-radius`) or can be custom (`color-brand-red`)
 - aspect follows hierarchy from top to bottom, e.g. "height of control" is `--control-height`
     - `--gap--small`
     - `--border-radius`
@@ -50,9 +50,9 @@ To consider: CDN vs. serve statically (e.g. GH Pages) vs. inlining in applicatio
 #### Variables.css structure
 - `Typography` section defines base and monospace font families.
 - `Gaps` section provides a small set of fixed gaps that help with building consistent negative space: margins and paddings (as this spacing is independent of a particular element's font-size – elements appear better aligned together)
-- `Base` components such as font sizes & control heights, border colour and radius – this helps align UI elements together as they either fit into small/regular/large size grid or are fully responsive and adjust to any scale. Fill free to amend base font-size or override small/large font/control sizes with hardcoded pixel values if responsibility is not what you look for.
+- `Base` components such as font sizes & control heights, border colour and radius – this helps align UI elements together as they either fit into small/regular/large size grid or are fully responsive and adjust to any scale. Feel free to amend base font-size or override small/large font/control sizes with hardcoded pixel values if responsibility is not what you're looking for.
 - `CTA colours` - are responsible for default and accent colouring of "calls to action" (such as buttons, button-sets, toggles, sliders e.t.c) Amend this if your main accent colour is something else, but it's recommended to pick colours from the palette provided as part of the framework.
-- `UI Colours` - are for default background and foreground colours, there is also primary, secondary, muted colours for the foreground. Amend as per project needs. This will affect text, links and the background, but the call to actions (mainly buttons) are described separately (use CTA colour variables for that)
+- `UI Colours` - are for default background and foreground colours, there are also primary, secondary, muted colours for the foreground. Amend as per project needs. This will affect text, links and the background, but the call to actions (mainly buttons) are described separately (use CTA colour variables for that)
 - `Colour Palette`
 
 
@@ -72,9 +72,9 @@ Amend with caution, this affects many UI elements provided by the framework.
 
 ### Base
 
-The base layer is most interesting from the typography and from UI point of view, as it describes semantically meaningful HTML tags that one can use without any additional CSS classes.
+The base layer is the most interesting from the typography and UI point of view, as it describes semantically meaningful HTML tags that one can use without any additional CSS classes.
 
-In order to amend typography for a specific project, it's recommended to create specific classes describing the desired style, rather than overriding the base.css with new rules for tags, as base.css might change in future. Think of it as of a prototyping tool that serves a project with lightly styled HTML tags.
+In order to amend typography for a specific project, it's recommended to create specific classes describing the desired style, rather than overriding the base.css with new rules for tags, as base.css might change in the future. Think of it as a prototyping tool that serves a project with lightly styled HTML tags.
 
 ### Core UI components
 - form
@@ -95,7 +95,7 @@ In order to amend typography for a specific project, it's recommended to create 
 
 ### UI helpers
 - utils - useful helpers to speed up prototyping, are subject to change, should be moved to Core UI components sections as tested and proven to be useful as a part of the core
-- color (named after CSS rule `color`) - set of most used foreground colours (default and dark mode)
+- color (named after CSS rule `color`) - set for most used foreground colours (default and dark mode)
 - bg - set of most used background colours (default and dark mode)
 
 ### Print styles
@@ -104,7 +104,7 @@ In order to amend typography for a specific project, it's recommended to create 
 
 ## About the project
 
-In case of conflicts in docs/build/app.js, no need to resolve the conflicts in build files, just to overwrite them
+In case of conflicts in docs/build/app.js, there is no need to resolve the conflicts in build files, just overwrite them
 
 ```
 yarn run build

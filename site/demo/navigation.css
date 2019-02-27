@@ -65,7 +65,7 @@
     font-size: var(--font-size--large);
 }
 
-.navigation__dark-mode {
+.navigation__night-dark {
     position: fixed;
     bottom: 0;
     right: 0;

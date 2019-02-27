@@ -31,7 +31,7 @@
                     <label for="input3">Label</label>
                     <input id="input3" placeholder="Placeholder" type="text" />
                 </div>
-                <div class="grid box dark-mode stretch">
+                <div class="grid box night-dark stretch">
                     <label for="input4">Label</label>
                     <input id="input4" placeholder="Placeholder" type="text" />
                 </div>
@@ -50,7 +50,7 @@
                         type="text"
                         placeholder="Search" />
                 </div>
-                <div class="box dark-mode group">
+                <div class="box night-dark group">
                     <label class="icon">
                         <i class="fa fa-search"></i>
                     </label>

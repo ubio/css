@@ -22,7 +22,7 @@
             source="base.css">
             <div
                 style="grid-template-columns: 1fr 1fr 1fr"
-                class="block block--rounded dark-mode grid grid--gap stretch">
+                class="block block--rounded night-dark grid grid--gap stretch">
                 <input placeholder="Placeholder" type="text" />
                 <input placeholder="Placeholder" disabled type="text" />
                 <input placeholder="Placeholder" readonly type="text" />

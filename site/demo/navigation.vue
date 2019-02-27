@@ -45,7 +45,7 @@
         <a
             @click="$root.darkMode = !$root.darkMode"
             title="Dark theme is work in progress"
-            class="navigation__dark-mode">
+            class="navigation__night-dark">
             <i class="far color--muted"
                 :class="{
                     'fa-moon': !$root.darkMode,

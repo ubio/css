@@ -5,75 +5,6 @@
     /* Typography */
 
     --font-family: 'Libre Franklin', Helvetica, Arial, sans-serif;
-    --font-family--mono: Menlo, Consolas, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace;
-
-    /* Gaps */
-
-    --gap--small: 5px;
-    --gap: 10px;
-    --gap--large: 20px;
-
-
-    /* Base components */
-
-    --font-size: 12px;
-    --font-size--small: .8em;
-    --font-size--large: 1.5em;
-
-    --control-height: 2.3335em;
-    --control-height--small: 1.875em;
-    --control-height--large: 2.66675em;
-
-    --border-radius: 4px;
-    --border-color--hover: var(--color-blue--500);
-    --border-color: #C2CCD0;
-
-    /* UI Colours: black on white*/
-    --ui-background: white;
-
-    --ui-color: var(--ui-color--black);
-
-    --ui-color--default: var(--color-mono--200);
-    --ui-color--default--hover: var(--color-mono--300);
-
-    --ui-color--cta: var(--color-blue--500);
-    --ui-color--cta--hover: var(--color-blue--600);
-
-    --ui-color--accent: var(--color-brand-red--500);
-    --ui-color--accent--hover: var(--color-brand-red--600);
-
-    --ui-color--inverse: var(--ui-color--white);
-    --ui-color--primary: var(--color-blue--600);
-    --ui-color--secondary: var(--color-cool--600);
-    --ui-color--muted: var(--color-cool--400);
-
-    --ui-color--black: var(--color-mono--800);
-    --ui-color--white: white;
-
-    /*tabs*/
-    --tab-slider-size: 2px;
-    --tab-slider-color: var(--color-warm--200);
-    --tab-slider-color--active: var(--color-blue--500);
-
-    --ui-color--mono: var(--color-mono--600);
-    --ui-color--cool: var(--color-cool--600);
-    --ui-color--warm: var(--color-warm--600);
-    --ui-color--blue: var(--color-blue--600);
-    --ui-color--yellow: var(--color-yellow--600);
-    --ui-color--green: var(--color-green--600);
-    --ui-color--red: var(--color-red--600);
-    --ui-color--brand-red: var(--color-brand-red--600);
-    --ui-color--brand-blue: var(--color-brand-blue--600);
-
-    --ui-color--mono--pale: var(--color-mono--000);
-    --ui-color--cool--pale: var(--color-cool--000);
-    --ui-color--warm--pale: var(--color-warm--000);
-    --ui-color--blue--pale: var(--color-blue--000);
-    --ui-color--yellow--pale: var(--color-yellow--000);
-    --ui-color--green--pale: var(--color-green--000);
-    --ui-color--red--pale: var(--color-red--000);
-    --ui-color--brand-red--pale: var(--color-brand-red--000);
-    --ui-color--brand-blue--pale: var(--color-brand-blue--000);
 
     /* Color Palette */
 
@@ -176,6 +107,119 @@
     --color-brand-blue--800: #004E57;
     --color-brand-blue--900: #003238;
 
+}
+
+:root {
+    --font-family--mono: Menlo, Consolas, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace;
+
+    /* Gaps */
+
+    --gap--small: 5px;
+    --gap: 10px;
+    --gap--large: 20px;
+
+
+    /* Base components */
+
+    --font-size: 12px;
+    --font-size--small: .8em;
+    --font-size--large: 1.5em;
+
+    --control-height: 2.3335em;
+    --control-height--small: 1.875em;
+    --control-height--large: 2.66675em;
+
+    --border-radius: 4px;
+
+    /* UI Colours: black on white*/
+    --ui-background: white;
+
+    --ui-color: var(--ui-color--black);
+
+    --ui-color--default: var(--color-mono--200);
+    --ui-color--default--hover: var(--color-mono--300);
+
+    --ui-color--cta: var(--color-blue--500);
+    --ui-color--cta--hover: var(--color-blue--600);
+
+    --ui-color--accent: var(--color-brand-red--500);
+    --ui-color--accent--hover: var(--color-brand-red--600);
+
+    --ui-color--inverse: var(--ui-color--white);
+    --ui-color--primary: var(--color-blue--600);
+    --ui-color--secondary: var(--color-cool--600);
+    --ui-color--muted: var(--color-cool--400);
+
+    --ui-color--black: var(--color-mono--800);
+    --ui-color--white: white;
+
+    /*tabs*/
+    --tab-slider-size: 2px;
+    --tab-slider-color: var(--color-warm--200);
+    --tab-slider-color--active: var(--color-blue--500);
+
+    --ui-color--mono: var(--color-mono--600);
+    --ui-color--cool: var(--color-cool--600);
+    --ui-color--warm: var(--color-warm--600);
+    --ui-color--blue: var(--color-blue--600);
+    --ui-color--yellow: var(--color-yellow--600);
+    --ui-color--green: var(--color-green--600);
+    --ui-color--red: var(--color-red--600);
+    --ui-color--brand-red: var(--color-brand-red--600);
+    --ui-color--brand-blue: var(--color-brand-blue--600);
+
+    --ui-color--mono--pale: var(--color-mono--000);
+    --ui-color--cool--pale: var(--color-cool--000);
+    --ui-color--warm--pale: var(--color-warm--000);
+    --ui-color--blue--pale: var(--color-blue--000);
+    --ui-color--yellow--pale: var(--color-yellow--000);
+    --ui-color--green--pale: var(--color-green--000);
+    --ui-color--red--pale: var(--color-red--000);
+    --ui-color--brand-red--pale: var(--color-brand-red--000);
+    --ui-color--brand-blue--pale: var(--color-brand-blue--000);
+
+    --border-color: #C2CCD0;
+    --border-color--hover: var(--color-blue--500);
+}
+
+.theme--night-dark  {
+    --ui-background: var(--color-cool--800);
+
+    --ui-color--default: rgba(0,0,0,.5);
+    --ui-color--default--hover: black;
+
+    --ui-color: white;
+    --ui-color--inverse: var(--ui-color--black);
+    --ui-color--primary: var(--color-blue--400);
+    --ui-color--secondary: var(--color-cool--400);
+    --ui-color--muted: var(--color-cool--500);
+
+    --ui-color--mono: var(--color-mono--400);
+    --ui-color--cool: var(--color-cool--400);
+    --ui-color--warm: var(--color-warm--400);
+    --ui-color--blue: var(--color-blue--400);
+    --ui-color--yellow: var(--color-yellow--400);
+    --ui-color--green: var(--color-green--400);
+    --ui-color--red: var(--color-red--400);
+    --ui-color--brand-red: var(--color-brand-red--400);
+    --ui-color--brand-blue: var(--color-brand-blue--400);
+
+    --ui-color--mono--pale: var(--color-mono--700);
+    --ui-color--cool--pale: var(--color-cool--700);
+    --ui-color--warm--pale: var(--color-warm--700);
+    --ui-color--blue--pale: var(--color-blue--700);
+    --ui-color--yellow--pale: var(--color-yellow--700);
+    --ui-color--green--pale: var(--color-green--700);
+    --ui-color--red--pale: var(--color-red--700);
+    --ui-color--brand-red--pale: var(--color-brand-red--700);
+    --ui-color--brand-blue--pale: var(--color-brand-blue--700);
+
+    --border-color: var(--ui-color--black);
+    --tab-slider-color: var(--color-cool--900);
+    --tab-slider-color--active: var(--ui-color--blue);
+
+    background: var(--ui-background);
+    color: var(--ui-color);
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/
@@ -1498,46 +1542,6 @@ mark {
 .tag--brand-red { background-color: var(--color-brand-red--400) }
 
 .tag--brand-blue { background-color: var(--color-brand-blue--400) }
-
-.dark-mode {
-    --ui-background: var(--color-cool--800);
-
-    --ui-color--default: rgba(0,0,0,.5);
-    --ui-color--default--hover: black;
-
-    --ui-color: white;
-    --ui-color--inverse: var(--ui-color--black);
-    --ui-color--primary: var(--color-blue--400);
-    --ui-color--secondary: var(--color-cool--400);
-    --ui-color--muted: var(--color-cool--500);
-
-    --ui-color--mono: var(--color-mono--400);
-    --ui-color--cool: var(--color-cool--400);
-    --ui-color--warm: var(--color-warm--400);
-    --ui-color--blue: var(--color-blue--400);
-    --ui-color--yellow: var(--color-yellow--400);
-    --ui-color--green: var(--color-green--400);
-    --ui-color--red: var(--color-red--400);
-    --ui-color--brand-red: var(--color-brand-red--400);
-    --ui-color--brand-blue: var(--color-brand-blue--400);
-
-    --ui-color--mono--pale: var(--color-mono--700);
-    --ui-color--cool--pale: var(--color-cool--700);
-    --ui-color--warm--pale: var(--color-warm--700);
-    --ui-color--blue--pale: var(--color-blue--700);
-    --ui-color--yellow--pale: var(--color-yellow--700);
-    --ui-color--green--pale: var(--color-green--700);
-    --ui-color--red--pale: var(--color-red--700);
-    --ui-color--brand-red--pale: var(--color-brand-red--700);
-    --ui-color--brand-blue--pale: var(--color-brand-blue--700);
-
-    --border-color: var(--ui-color--black);
-    --tab-slider-color: var(--color-cool--900);
-    --tab-slider-color--active: var(--ui-color--blue);
-
-    background: var(--ui-background);
-    color: var(--ui-color);
-}
 
 /* UI helpers */
 

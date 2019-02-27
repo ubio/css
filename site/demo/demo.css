@@ -7,11 +7,6 @@
     grid-template-rows: 100vh;
 }
 
-.dark-mode {
-    --header-bg: var(--ui-background);
-    --snippet-bg: rgba(0,0,0,.5);
-}
-
 .demo__snippet {
     display: grid;
     grid-gap: var(--gap);
@@ -32,6 +27,11 @@
 .demo__snippet-code {
     height: min-content;
     white-space: pre-wrap;
+}
+
+.demo.theme--night-dark {
+    --header-bg: var(--ui-background);
+    --snippet-bg: rgba(0,0,0,.5);
 }
 
 /* Inbox */

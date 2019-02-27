@@ -10,7 +10,7 @@
                 <button class="button">Live</button>
                 <button class="button">Test</button>
             </div>
-            <div class="box group group--semi-merged dark-mode">
+            <div class="box group group--semi-merged night-dark">
                 <button class="button button--accent">All</button>
                 <button class="button button">Live</button>
                 <button class="button button">Test</button>

@@ -27,7 +27,7 @@
             name="Tabs on dark"
             :code="`.tabs .tabs__item[.tabs__item--active]`"
             source="tabs.css">
-            <div class="dark-mode">
+            <div class="night-dark">
                 <menu class="tabs">
                     <span v-for="tab in tabs"
                         :key="tab"

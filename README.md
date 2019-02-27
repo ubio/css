@@ -24,10 +24,10 @@ This doesn't include grid framework and icons, it's up to a particular project t
 ## Project structure
 - `Libre Franklin` font, served by fonts.googleapis.com – UBIO's font of choice
 - `variables.css` – by overriding this one can customize core UI components to specific project needs
+- `themes` - currently only contains default and the "night-dark" themes
 - `reset.css` – unifies browser-specific HTML styles
 - `base.css` – a tiny layer that styles up semantic HTML tags
 - `components/` - this folder contains a set of core UI styles, each UI component is described in a separate CSS file, the component name matches the file name. Examples: button.css, input.css, e.t.c.
-- `dark-mode.css` - dark theme, switches background and foreground colours, contains variable overrides
 - `helpers/` - this folder contains a set of CSS class helpers: utility classes, colour, background helpers.
 - `print.css` - a base layer for the print stylesheet
 

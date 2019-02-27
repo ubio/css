@@ -1,5 +1,5 @@
 <template>
-    <div class="demo" :class="{ 'dark-mode': $root.darkMode }">
+    <div class="demo" :class="{ 'theme--night-dark': $root.darkMode }">
         <navigation
             :sections="sections" />
 

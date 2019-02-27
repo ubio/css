@@ -44,7 +44,7 @@
                 :code="`.tag.tag--[name]`"
                 source="tag.css">
                 <div
-                    class="dark-mode block block--rounded grid grid--gap--small"
+                    class="night-dark block block--rounded grid grid--gap--small"
                     style="grid-template-columns: repeat(9, 1fr)">
                     <span
                         v-for="color of $root.colors"

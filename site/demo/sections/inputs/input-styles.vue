@@ -18,7 +18,7 @@
             source="input.css">
             <div
                 style="grid-template-columns: 1fr 1fr"
-                class="dark-mode block block--rounded grid grid--gap stretch">
+                class="night-dark block block--rounded grid grid--gap stretch">
                 <input class="input" type="text" placeholder="I'm input">
                 <textarea class="input">I'm text area</textarea>
             </div>

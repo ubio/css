@@ -14,7 +14,7 @@
                         <loader class="color--secondary" />
                         <loader class="loader--large color--muted" />
                     </div>
-                    <div class="box box--center group group--gap--large dark-mode">
+                    <div class="box box--center group group--gap--large night-dark">
                         <loader  class="loader--small" />
                         <loader class="color--primary" />
                         <loader class="color--secondary" />
@@ -34,7 +34,7 @@
                         <spinner class="color--secondary" />
                         <big><spinner class="color--muted" /></big>
                     </div>
-                    <div class="box box--center group group--gap--large dark-mode">
+                    <div class="box box--center group group--gap--large night-dark">
                         <small><spinner class="color--primary" /></small>
                         <spinner class="color--secondary" />
                         <big><spinner class="color--muted" /></big>

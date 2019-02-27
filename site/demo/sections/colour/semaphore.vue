@@ -29,7 +29,7 @@
             source="color.css">
             <div
                 style="grid-template-columns: repeat(4, 1fr)"
-                class="grid grid--gap dark-mode">
+                class="grid grid--gap night-dark">
                 <div
                     v-for="color of $root.colorsSemaphore"
                     class="box"

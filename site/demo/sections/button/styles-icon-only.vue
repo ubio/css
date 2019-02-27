@@ -36,7 +36,7 @@
                     <i class="fas fa-bullseye"></i>
                 </a>
             </div>
-            <div class="group group--gap box dark-mode">
+            <div class="group group--gap box night-dark">
                 <a class="button button button--icon button--large">
                     <i class="fas fa-bullseye"></i>
                 </a>

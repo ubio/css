@@ -82,7 +82,7 @@
                 source="badge.css">
                 <div
                     style="grid-template-columns: repeat(4, auto)"
-                    class="box grid grid--gap dark-mode">
+                    class="box grid grid--gap night-dark">
                     <span
                         v-for="color of $root.colorsSemaphore"
                         :key="color"

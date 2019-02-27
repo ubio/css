@@ -11,7 +11,7 @@
                 <a class="button button--primary" disabled>Disabled primary</a>
                 <a class="button button--secondary" disabled>Disabled secondary</a>
             </div>
-            <div class="block block--rounded dark-mode group group--gap">
+            <div class="block block--rounded night-dark group group--gap">
                 <a class="button button--primary">Primary</a>
                 <a class="button button--secondary">Secondary</a>
                 <a class="button button--primary" disabled>Disabled primary</a>

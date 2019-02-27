@@ -107,10 +107,10 @@ In order to amend typography for a specific project, it's recommended to create 
 In case of conflicts in docs/build/app.js, there is no need to resolve the conflicts in build files, just overwrite them
 
 ```
-yarn run build
+npm run build
 ```
 
 To publish
 ```
-yarn version --new-version <patch|minor|major>
+npm version <patch|minor|major>
 ```

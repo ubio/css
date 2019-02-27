@@ -10,10 +10,10 @@
                 <button class="button">Live</button>
                 <button class="button">Test</button>
             </div>
-            <div class="box bg--cool--dark group group--semi-merged">
+            <div class="box group group--semi-merged dark-mode">
                 <button class="button button--accent">All</button>
-                <button class="button button--dark-mode">Live</button>
-                <button class="button button--dark-mode">Test</button>
+                <button class="button button">Live</button>
+                <button class="button button">Test</button>
             </div>
         </div>
     </spec>

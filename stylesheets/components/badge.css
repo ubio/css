@@ -7,17 +7,15 @@
 
     padding: 0 .8em;
     box-sizing: border-box;
-
     border-radius: 2px;
-
     text-align: center;
-    white-space: nowrap;
 
+    white-space: nowrap;
     letter-spacing: 0.6px;
     font-weight: 500;
 
     color: var(--ui-background);
-    background-color: var(--color-mono--500);
+    background-color: var(--ui-color--mono);
     border: 0;
     line-height: 2em;
     font-size: inherit;
@@ -34,120 +32,48 @@
 .badge--production { background-color: var(--color-brand-red--500) }
 .badge--staging { background-color: var(--color-yellow--500) }
 
-.badge--mono { background-color: var(--color-mono--600) }
-.badge--cool { background-color: var(--color-cool--600) }
-.badge--warm { background-color: var(--color-warm--600) }
-.badge--blue { background-color: var(--color-blue--600) }
-.badge--brand-blue { background-color: var(--color-brand-blue--600) }
-.badge--yellow { background-color: var(--color-yellow--600) }
-.badge--red { background-color: var(--color-red--600) }
-.badge--brand-red { background-color: var(--color-brand-red--600) }
-.badge--green { background-color: var(--color-green--600) }
+.badge--mono { background-color: var(--ui-color--mono) }
+.badge--cool { background-color: var(--ui-color--cool) }
+.badge--warm { background-color: var(--ui-color--warm) }
+.badge--blue { background-color: var(--ui-color--blue) }
+.badge--brand-blue { background-color: var(--ui-color--brand-blue) }
+.badge--yellow { background-color: var(--ui-color--yellow) }
+.badge--red { background-color: var(--ui-color--red) }
+.badge--brand-red { background-color: var(--ui-color--brand-red) }
+.badge--green { background-color: var(--ui-color--green) }
 
-.badge--mono--light {
-    background-color: var(--color-mono--400);
-    color: var(--ui-color);
-}
-.badge--cool--light {
-    background-color: var(--color-cool--400);
-    color: var(--ui-color);
-}
-.badge--warm--light {
-    background-color: var(--color-warm--400);
-    color: var(--ui-color);
+.badge[class*="--light"] {
+    color: var(--ui-color--black);
 }
 
-.badge--blue--light {
-    background-color: var(--color-blue--400);
-    color: var(--ui-color);
-}
-.badge--yellow--light {
-    background-color: var(--color-yellow--400);
-    color: var(--ui-color);
-}
-.badge--red--light {
-    background-color: var(--color-red--400);
-    color: var(--ui-color);
-}
-.badge--green--light {
-    background-color: var(--color-green--400);
-    color: var(--ui-color);
-}
+.badge--mono--light { background-color: var(--color-mono--400) }
+.badge--cool--light { background-color: var(--color-cool--400) }
+.badge--warm--light { background-color: var(--color-warm--400) }
+.badge--blue--light { background-color: var(--color-blue--400) }
+.badge--yellow--light { background-color: var(--color-yellow--400) }
+.badge--red--light { background-color: var(--color-red--400) }
+.badge--green--light { background-color: var(--color-green--400) }
+.badge--brand-red--light { ackground-color: var(--color-brand-red--400) }
+.badge--brand-blue--light { background-color: var(--color-brand-blue--400) }
 
-.badge--brand-red--light {
-    background-color: var(--color-brand-red--400);
-    color: var(--ui-color);
+.badge[class*="--outline"] {
+    box-shadow: 0 0 0 1px currentColor inset;
+    background: transparent;
 }
-.badge--brand-blue--light {
-    background-color: var(--color-brand-blue--400);
-    color: var(--ui-color);
-}
-
-.badge--mono--highlight { background-color: var(--color-mono--500) }
-.badge--cool--highlight { background-color: var(--color-cool--500) }
-.badge--warm--highlight { background-color: var(--color-warm--500) }
-
-.badge--blue--highlight { background-color: var(--color-blue--500) }
-.badge--yellow--highlight { background-color: var(--color-yellow--500) }
-.badge--red--highlight { background-color: var(--color-red--500) }
-.badge--green--highlight { background-color: var(--color-green--500) }
-
-.badge--brand-red--highlight { background-color: var(--color-brand-red--500) }
-.badge--brand-blue--highlight { background-color: var(--color-brand-blue--500) }
 
 .badge--outline {
-    box-shadow: 0 0 0 1px currentColor inset;
-    color: var(--color-mono--500);
-    background: transparent;
+    color: var(--ui-color--mono);
 }
 
-.badge--mono--outline {
-    color: var(--color-mono--600);
-    background: transparent;
-    box-shadow: 0 0 0 1px currentColor inset;
-}
-.badge--cool--outline {
-    color: var(--color-cool--600);
-    background: transparent;
-    box-shadow: 0 0 0 1px currentColor inset;
-}
-.badge--warm--outline {
-    color: var(--color-warm--600);
-    background: transparent;
-    box-shadow: 0 0 0 1px currentColor inset;
-}
-
-.badge--blue--outline {
-    color: var(--color-blue--600);
-    background: transparent;
-    box-shadow: 0 0 0 1px currentColor inset;
-}
-.badge--yellow--outline {
-    color: var(--color-yellow--600);
-    background: transparent;
-    box-shadow: 0 0 0 1px currentColor inset;
-}
-.badge--red--outline {
-    color: var(--color-red--600);
-    background: transparent;
-    box-shadow: 0 0 0 1px currentColor inset;
-}
-.badge--green--outline {
-    color: var(--color-green--600);
-    background: transparent;
-    box-shadow: 0 0 0 1px currentColor inset;
-}
-
-.badge--brand-red--outline {
-    color: var(--color-brand-red--600);
-    background: transparent;
-    box-shadow: 0 0 0 1px currentColor inset;
-}
-.badge--brand-blue--outline {
-    color: var(--color-brand-blue--600);
-    background: transparent;
-    box-shadow: 0 0 0 1px currentColor inset;
-}
+.badge--mono--outline { color: var(--ui-color--mono) }
+.badge--cool--outline { color: var(--ui-color--cool) }
+.badge--warm--outline { color: var(--ui-color--warm) }
+.badge--blue--outline { color: var(--ui-color--blue) }
+.badge--yellow--outline { color: var(--ui-color--yellow) }
+.badge--red--outline { color: var(--ui-color--red) }
+.badge--green--outline { color: var(--ui-color--green) }
+.badge--brand-red--outline { color: var(--ui-color--brand-red) }
+.badge--brand-blue--outline { color: var(--ui-color--brand-blue) }
 
 .badge--small {
     line-height: calc(1.1 * var(--font-size));

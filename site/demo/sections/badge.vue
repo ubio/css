@@ -30,33 +30,17 @@
             </spec>
             <spec
                 name="Tinted"
-                :code="`.badge.badge--[name]\n.badge.badge--[name]--highlight\n.badge.badge--[name]--light\n.badge.badge--outline.color--[name]`"
+                :code="`.badge.badge--[name]\n.badge.badge--[name]--light\n.badge.badge--[name]--outline`"
                 source="badge.css">
                 <div
                     style="grid-template-columns: repeat(4, auto)"
-                    class="grid grid--gap">
+                    class="box grid grid--gap">
                     <span
                         v-for="color of $root.colorsSemaphore"
                         :key="color"
                         class="badge badge--fixed all-caps"
                         :class="`badge--${ color }`">
                         {{ color }}
-                    </span>
-                    <span class="badge all-caps badge--blue--highlight">
-                        <i class="fas fa-info-circle"></i>
-                        info
-                    </span>
-                    <span class="badge all-caps badge--yellow--highlight">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        warning
-                    </span>
-                    <span class="badge all-caps badge--red--highlight">
-                        <i class="fas fa-exclamation-circle"></i>
-                        failure
-                    </span>
-                    <span class="badge all-caps badge--green--highlight">
-                        <i class="fas fa-check-circle"></i>
-                        success
                     </span>
                     <span class="badge all-caps badge--blue--light">
                         <i class="fas fa-info-circle"></i>
@@ -74,19 +58,51 @@
                         <i class="fas fa-check-circle"></i>
                         success
                     </span>
-                    <span class="badge all-caps badge--outline color--blue">
+                    <span class="badge all-caps badge--blue--outline">
                         <i class="fas fa-info-circle"></i>
                         info
                     </span>
-                    <span class="badge all-caps badge--outline color--yellow">
+                    <span class="badge all-caps badge--yellow--outline">
                         <i class="fas fa-exclamation-triangle"></i>
                         warning
                     </span>
-                    <span class="badge all-caps badge--outline color--red">
+                    <span class="badge all-caps badge--red--outline">
                         <i class="fas fa-exclamation-circle"></i>
                         failure
                     </span>
-                    <span class="badge all-caps badge--outline color--green">
+                    <span class="badge all-caps badge--green--outline">
+                        <i class="fas fa-check-circle"></i>
+                        success
+                    </span>
+                </div>
+            </spec>
+            <spec
+                name="Tinted on dark"
+                :code="`.badge.badge--[name]\n.badge.badge--[name]--light\n.badge.badge--[name]--outline`"
+                source="badge.css">
+                <div
+                    style="grid-template-columns: repeat(4, auto)"
+                    class="box grid grid--gap dark-mode">
+                    <span
+                        v-for="color of $root.colorsSemaphore"
+                        :key="color"
+                        class="badge badge--fixed all-caps"
+                        :class="`badge--${ color }`">
+                        {{ color }}
+                    </span>
+                    <span class="badge all-caps badge--blue--outline">
+                        <i class="fas fa-info-circle"></i>
+                        info
+                    </span>
+                    <span class="badge all-caps badge--yellow--outline">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        warning
+                    </span>
+                    <span class="badge all-caps badge--red--outline">
+                        <i class="fas fa-exclamation-circle"></i>
+                        failure
+                    </span>
+                    <span class="badge all-caps badge--green--outline">
                         <i class="fas fa-check-circle"></i>
                         success
                     </span>
@@ -94,18 +110,18 @@
             </spec>
             <spec
                 name="No caps"
-                :code="`.badge.color--[name].no-caps\n.badge.no-caps`"
+                :code="`.badge.badge--[name].no-caps\n.badge.badge--[name]--outline.no-caps`"
                 source="badge.css">
                 <div
                     style="grid-template-columns: repeat(3, auto)"
                     class="grid grid--gap--small">
-                    <span class="badge no-caps bg--yellow">awaitingInput</span>
-                    <span class="badge no-caps color--yellow badge--outline">awaitingTds</span>
+                    <span class="badge no-caps badge--yellow">awaitingInput</span>
+                    <span class="badge no-caps badge--yellow--outline">awaitingTds</span>
                 </div>
             </spec>
             <spec
                 name="Fixed width"
-                :code="`.badge.color--[name].no-caps\n.badge.color--[name].badge--outline.no-caps`"
+                :code="`.badge.badge--[name].no-caps\n.badge.badge--[name]--outline.no-caps`"
                 source="badge.css">
                 <div
                     style="grid-template-columns: repeat(5, 1fr);"
@@ -125,25 +141,33 @@
                             <i class="fas fa-bullseye"></i>
                             {{ colour }}
                         </span>
-                        <span class="badge no-caps badge--fixed badge--outline" :class="`color--${ colour }`">{{ colour }}</span>
-                        <span class="badge no-caps badge--fixed badge--outline" :class="`color--${ colour }`">
-                            <i class="fas fa-bullseye"></i>
-                            {{ colour }}
-                        </span>
-                        <span class="badge badge--fixed" :class="`bg--${ colour }`">
-                            {{ colour }}
-                        </span>
-                        <span class="badge badge--fixed" :class="`bg--${ colour }`">
+                        <span
+                            class="badge no-caps badge--fixed"
+                            :class="`badge--${ colour }--outline`">{{ colour }}</span>
+                        <span
+                            class="badge no-caps badge--fixed"
+                            :class="`badge--${ colour }--outline`">
                             <i class="fas fa-bullseye"></i>
                             {{ colour }}
                         </span>
                         <span
-                            class="badge badge--fixed badge--outline"
+                            class="badge badge--fixed"
+                            :class="`badge--${ colour }`">
+                            {{ colour }}
+                        </span>
+                        <span
+                            class="badge badge--fixed"
+                            :class="`badge--${ colour }`">
+                            <i class="fas fa-bullseye"></i>
+                            {{ colour }}
+                        </span>
+                        <span
+                            class="badge badge--fixed"
                             :class="`badge--${ colour }--outline`">
                             {{ colour }}
                         </span>
                         <span
-                            class="badge badge--fixed badge--outline"
+                            class="badge badge--fixed"
                             :class="`badge--${ colour }--outline`">
                             <i class="fas fa-bullseye"></i>
                             {{ colour }}

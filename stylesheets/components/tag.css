@@ -4,7 +4,7 @@
     justify-content: center;
     line-height: 1.75em;
     width: auto;
-    color: var(--ui-color);
+    color: var(--ui-color--black);
     border-radius: 1px;
     font-weight: 500;
     margin-right: 4px;
@@ -12,7 +12,7 @@
 }
 
 .tag__remover {
-    color: #fff;
+    color: var(--ui-color--white);
     border-left: 2px solid var(--ui-background);
     padding: 0 var(--gap--small);
 }

@@ -12,7 +12,7 @@
             <h1 class="navigation__headline-title">
                 <b>ubio</b>
                 <span>CSS Framework</span>
-                <sub class="color--secondary--dark-mode">v{{ version }}</sub>
+                <sub class="color--muted">v{{ version }}</sub>
             </h1>
         </div>
 

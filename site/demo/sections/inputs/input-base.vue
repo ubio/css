@@ -7,7 +7,22 @@
             source="base.css">
             <div
                 style="grid-template-columns: 1fr 1fr 1fr"
-                class="grid grid--gap stretch">
+                class="block block--rounded grid grid--gap stretch">
+                <input placeholder="Placeholder" type="text" />
+                <input placeholder="Placeholder" disabled type="text" />
+                <input placeholder="Placeholder" readonly type="text" />
+                <input value="Value" type="text" />
+                <input value="Value" disabled type="text" />
+                <input value="Value" readonly type="text" />
+            </div>
+        </spec>
+        <spec
+            name="Base input on dark"
+            code="input, input:disabled, input:readonly"
+            source="base.css">
+            <div
+                style="grid-template-columns: 1fr 1fr 1fr"
+                class="block block--rounded dark-mode grid grid--gap stretch">
                 <input placeholder="Placeholder" type="text" />
                 <input placeholder="Placeholder" disabled type="text" />
                 <input placeholder="Placeholder" readonly type="text" />
@@ -22,7 +37,7 @@
             source="base.css">
             <div
                 style="grid-template-columns: 1fr 1fr 1fr"
-                class="grid grid--gap stretch">
+                class="block block--rounded grid grid--gap stretch">
                 <textarea placeholder="Placeholder"></textarea>
                 <textarea placeholder="Placeholder" disabled></textarea>
                 <textarea placeholder="Placeholder" readonly></textarea>
@@ -56,48 +71,16 @@
                 <input value="10" readonly type="number" />
             </div>
         </spec>
+
         <spec
             name="Base select"
             :code="`big select
     select:disabled
     small select`"
             source="base.css">
-            <div
-                style="grid-template-columns: 1fr 1fr 1fr"
-                class="grid grid--gap--large">
-                <big>
-                    <select>
-                        <option :value="undefined">Please select an option</option>
-                        <option value="1">Bourbon</option>
-                        <option value="2">Custard cream</option>
-                        <option value="3">Digestive</option>
-                    </select>
-                </big>
-
-                <select disabled>
-                    <option :value="undefined">Please select an option</option>
-                    <optgroup label="Set 1">
-                        <option value="1">Bourbon</option>
-                        <option value="2">Custard cream</option>
-                        <option value="3">Digestive</option>
-                    </optgroup>
-                    <optgroup label="Set 2">
-                        <option value="4">Chocolate hobnob</option>
-                        <option value="5">Garibaldi</option>
-                        <option value="6">Brandy snap</option>
-                    </optgroup>
-                  </select>
-
-                <small>
-                    <select>
-                        <option :value="undefined">Please select an option</option>
-                        <option value="1">Bourbon</option>
-                        <option value="2">Custard cream</option>
-                        <option value="3">Digestive</option>
-                    </select>
-                </small>
-            </div>
+            <base-select />
         </spec>
+
         <spec
             name="Base checkbox (initial, active, disabled)"
             code="input[type=checkbox]"
@@ -145,6 +128,10 @@
 
 <script>
 module.exports = {
-    name: 'input-base'
+    name: 'input-base',
+
+    components: {
+        'base-select': require('./input-base-select.vue')
+    }
 };
 </script>

@@ -31,7 +31,7 @@
                     <label for="input3">Label</label>
                     <input id="input3" placeholder="Placeholder" type="text" />
                 </div>
-                <div class="grid box bg--cool--dark color--dark-mode stretch">
+                <div class="grid box dark-mode stretch">
                     <label for="input4">Label</label>
                     <input id="input4" placeholder="Placeholder" type="text" />
                 </div>
@@ -41,13 +41,23 @@
             name="Icon label"
             code=".group"
             source="group.css">
-            <div class="box box--mono group">
-                <label class="icon">
-                    <i class="fa fa-search"></i>
-                </label>
-                <input
-                    type="text"
-                    placeholder="Search" />
+            <div class="group group--gap stretch">
+                <div class="box box--mono group stretch">
+                    <label class="icon">
+                        <i class="fa fa-search"></i>
+                    </label>
+                    <input
+                        type="text"
+                        placeholder="Search" />
+                </div>
+                <div class="box dark-mode group">
+                    <label class="icon">
+                        <i class="fa fa-search"></i>
+                    </label>
+                    <input
+                        type="text"
+                        placeholder="Search" />
+                </div>
             </div>
         </spec>
         <spec

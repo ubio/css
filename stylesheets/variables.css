@@ -26,46 +26,52 @@
     --border-color--hover: var(--color-blue--500);
     --border-color: #C2CCD0;
 
-
-    /* CTA colours */
-
-    /*black on white*/
-    --cta-color: var(--color-mono--200);
-    --cta-color--active: var(--color-mono--300);
-
-    /*white on black*/
-    --cta-color--dark-mode: rgba(0,0,0,.5);
-    --cta-color--active--dark-mode: white;
-
-    /*colour on white and black*/
-    --cta-color--accent: var(--color-blue--500);
-    --cta-color--accent--active: var(--color-blue--600);
-
-    /* UI Colours */
-
-    /*black on white*/
-    --ui-color: var(--color-mono--800);
+    /* UI Colours: black on white*/
     --ui-background: white;
 
-    /*white on black*/
-    --ui-color--dark-mode: white;
-    --ui-background--dark-mode: var(--color-cool--800);
+    --ui-color: var(--ui-color--black);
 
-    /*colour on white and black*/
+    --ui-color--default: var(--color-mono--200);
+    --ui-color--default--hover: var(--color-mono--300);
 
-    --ui-color--primary: var(--color-blue--600);
-    --ui-color--primary--dark-mode: var(--color-blue--400);
-
-    --ui-color--secondary: var(--color-cool--600);
-    --ui-color--secondary--dark-mode: var(--color-cool--400);
+    --ui-color--cta: var(--color-blue--500);
+    --ui-color--cta--hover: var(--color-blue--600);
 
     --ui-color--accent: var(--color-brand-red--500);
-    --ui-color--muted: rgba(130,130,130,.75);
+    --ui-color--accent--hover: var(--color-brand-red--600);
+
+    --ui-color--inverse: var(--ui-color--white);
+    --ui-color--primary: var(--color-blue--600);
+    --ui-color--secondary: var(--color-cool--600);
+    --ui-color--muted: var(--color-cool--400);
+
+    --ui-color--black: var(--color-mono--800);
+    --ui-color--white: white;
 
     /*tabs*/
     --tab-slider-size: 2px;
-    --tab-slider-color: var(--cta-color--accent);
+    --tab-slider-color: var(--color-warm--200);
+    --tab-slider-color--active: var(--color-blue--500);
 
+    --ui-color--mono: var(--color-mono--600);
+    --ui-color--cool: var(--color-cool--600);
+    --ui-color--warm: var(--color-warm--600);
+    --ui-color--blue: var(--color-blue--600);
+    --ui-color--yellow: var(--color-yellow--600);
+    --ui-color--green: var(--color-green--600);
+    --ui-color--red: var(--color-red--600);
+    --ui-color--brand-red: var(--color-brand-red--600);
+    --ui-color--brand-blue: var(--color-brand-blue--600);
+
+    --ui-color--mono--pale: var(--color-mono--000);
+    --ui-color--cool--pale: var(--color-cool--000);
+    --ui-color--warm--pale: var(--color-warm--000);
+    --ui-color--blue--pale: var(--color-blue--000);
+    --ui-color--yellow--pale: var(--color-yellow--000);
+    --ui-color--green--pale: var(--color-green--000);
+    --ui-color--red--pale: var(--color-red--000);
+    --ui-color--brand-red--pale: var(--color-brand-red--000);
+    --ui-color--brand-blue--pale: var(--color-brand-blue--000);
 
     /* Color Palette */
 

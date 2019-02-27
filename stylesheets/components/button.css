@@ -9,7 +9,7 @@
     box-shadow: 0 -1px 0 0 rgba(0,0,0,0.3) inset;
     border: 0;
 
-    background-color: var(--cta-color);
+    background-color: var(--ui-color--default);
     fill: var(--ui-color);
     color: var(--ui-color);
 
@@ -24,12 +24,12 @@
 }
 
 .button:visited {
-    color: var(--color--default);
+    color: var(--ui-color);
 }
 
 .button:hover {
     text-decoration: none;
-    background: var(--cta-color--active);
+    background: var(--ui-color--default--hover);
     color: var(--ui-color);
 }
 
@@ -40,80 +40,52 @@
     outline: none;
 }
 
-.button[disabled] {
-    color: var(--color-mono--500);
-    fill: var(--color-mono--500);
-    opacity: .7;
-}
-
 .button--primary,
 .button--primary:visited {
-    background: var(--cta-color--accent);
+    background: var(--ui-color--cta);
     color: white;
 }
 
 .button--primary:hover {
-    background: var(--cta-color--accent--active);
+    background: var(--ui-color--cta--hover);
     color: white;
-}
-
-.button--primary[disabled] {
-    color: var(--color-mono--400);
 }
 
 .button--secondary,
 .button--secondary:visited {
-    color: var(--cta-color--accent);
+    color: var(--ui-color--cta);
     background: transparent;
     box-shadow: 0 0 0 2px currentColor inset;
 }
 
 .button--secondary:hover {
     background: transparent;
-    color: var(--cta-color--accent--active);
-}
-
-.button--secondary[disabled] {
-    color: var(--cta-color--accent);
-    background: transparent;
+    color: var(--ui-color--cta--hover);
 }
 
 .button--accent,
 .button--accent:visited {
-    background: var(--color-brand-red--500);
+    background: var(--ui-color--accent);
     color: white;
 }
 
 .button--accent:hover {
-    background: var(--color-brand-red--600);
+    background: var(--ui-color--accent--hover);
     color: white;
 }
 
-.button--accent[disabled] {
-    background: var(--color-brand-red--300);
-    color: var(--color-brand-red--400);
+.button[disabled] {
+    color: var(--ui-color--mono);
+    fill: var(--ui-color--mono);
+    opacity: .7;
+    background: var(--ui-color--mono--pale);
+    box-shadow: 0 -1px 0 0 rgba(0,0,0,0.3) inset;
 }
 
 .button.frameless { color: var(--ui-color) }
 .button--primary.frameless { color: var(--ui-color--primary) }
 .button--secondary.frameless { color: var(--ui-color--secondary) }
 .button--accent.frameless { color: var(--ui-color--accent) }
-
-.button--dark-mode,
-.button--dark-mode:visited {
-    background: var(--cta-color--dark-mode);
-    box-shadow: 0 -1px 0 0 rgba(0,0,0,0.9) inset;
-    color: white;
-}
-
-.button--dark-mode:hover {
-    background: rgba(0,0,0,0.9);
-    color: white;
-}
-
-.button--dark-mode[disabled] {
-    color: white;
-}
 
 .button--flat {
     box-shadow: none;

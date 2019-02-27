@@ -1,27 +1,25 @@
 <template>
     <article class="article">
-        <header class="article__title">Semantics</header>
+        <header class="article__title">Semaphore</header>
         <spec
             name="White background"
             :code="`.color--[name]`"
             source="color.css">
             <div
-                style="grid-template-columns: repeat(5, 1fr);"
+                style="grid-template-columns: repeat(4, 1fr);"
                 class="grid grid--gap">
                 <div
-                    v-for="color of ['default', 'primary', 'secondary', 'accent', 'muted']"
+                    v-for="color of $root.colorsSemaphore"
                     class="box"
                     :key="color">
                     <p>
                         <span
-                            class="badge badge--outline badge--small"
-                            :class="`color--${ color }`">
+                            class="badge badge--small"
+                            :class="`badge--${ color }`">
                             {{ color }}
                         </span>
                     </p>
-                    <p :class="`color--${ color } bg--default`">
-                        Lorem ipsum. Ut non condimentum mauris, eu sodales neque.
-                    </p>
+                    <text-variations-sample :class="`color--${ color }`" />
                 </div>
             </div>
         </spec>
@@ -30,22 +28,20 @@
             :code="`.color--[name]`"
             source="color.css">
             <div
-                style="grid-template-columns: repeat(5, 1fr)"
+                style="grid-template-columns: repeat(4, 1fr)"
                 class="grid grid--gap dark-mode">
                 <div
-                    v-for="color of ['default', 'primary', 'secondary', 'accent', 'muted']"
+                    v-for="color of $root.colorsSemaphore"
                     class="box"
                     :key="color">
                     <p>
                         <span
-                            class="badge badge--outline badge--small"
-                            :class="`color--${ color }`">
+                            class="badge badge--small"
+                            :class="`badge--${ color }`">
                             {{ color }}
                         </span>
                     </p>
-                    <p :class="`color--${ color }`">
-                        Lorem ipsum. Ut non condimentum mauris, eu sodales neque.
-                    </p>
+                    <text-variations-sample :class="`color--${ color }`" />
                 </div>
             </div>
         </spec>
@@ -54,6 +50,10 @@
 
 <script>
 module.exports = {
-    name: 'semantics'
+    name: 'semaphore',
+
+    components: {
+        'text-variations-sample': require('./text-variations-sample.vue')
+    }
 };
 </script>

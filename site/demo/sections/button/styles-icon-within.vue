@@ -14,7 +14,7 @@
                     Large
                 </a>
                 <a class="button">
-                    <i class="button__icon fas fa-bullseye"></i>
+                    <spinner class="button__icon" />
                     Regular
                 </a>
                 <a class="button button--small">
@@ -34,7 +34,7 @@
                     Regular
                 </a>
                 <a class="button button--primary button--small">
-                    <i class="button__icon fas fa-bullseye"></i>
+                    <spinner class="button__icon" />
                     Small
                 </a>
             </div>
@@ -42,7 +42,7 @@
                 class="grid grid--gap"
                 style="grid-template-columns: repeat(7, auto);">
                 <a class="button button--secondary button--large">
-                    <i class="button__icon fas fa-bullseye"></i>
+                    <spinner class="button__icon" />
                     Large
                 </a>
                 <a class="button button--secondary">
@@ -60,6 +60,10 @@
 
 <script>
 module.exports = {
-    name: 'button-styles-icon-within'
+    name: 'button-styles-icon-within',
+
+    components: {
+        spinner: require('../loaders/spinner.vue')
+    }
 };
 </script>

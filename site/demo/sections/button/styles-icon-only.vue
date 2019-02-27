@@ -36,8 +36,8 @@
                     <i class="fas fa-bullseye"></i>
                 </a>
             </div>
-            <div class="group group--gap box bg--cool--dark">
-                <a class="button button--dark-mode button--icon button--large">
+            <div class="group group--gap box dark-mode">
+                <a class="button button button--icon button--large">
                     <i class="fas fa-bullseye"></i>
                 </a>
                 <a class="button button--primary button--icon button--large">
@@ -47,7 +47,7 @@
                     <i class="fas fa-bullseye"></i>
                 </a>
 
-                <a class="button button--dark-mode button--icon">
+                <a class="button button button--icon">
                     <i class="fas fa-bullseye"></i>
                 </a>
                 <a class="button button--primary button--icon">
@@ -57,7 +57,7 @@
                     <i class="fas fa-bullseye"></i>
                 </a>
 
-                <a class="button button--dark-mode button--icon button--small">
+                <a class="button button button--icon button--small">
                     <i class="fas fa-bullseye"></i>
                 </a>
                 <a class="button button--primary button--icon button--small">

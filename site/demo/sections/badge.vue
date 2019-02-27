@@ -77,38 +77,6 @@
                 </div>
             </spec>
             <spec
-                name="Tinted on dark"
-                :code="`.badge.badge--[name]\n.badge.badge--[name]--light\n.badge.badge--[name]--outline`"
-                source="badge.css">
-                <div
-                    style="grid-template-columns: repeat(4, auto)"
-                    class="box grid grid--gap night-dark">
-                    <span
-                        v-for="color of $root.colorsSemaphore"
-                        :key="color"
-                        class="badge badge--fixed all-caps"
-                        :class="`badge--${ color }`">
-                        {{ color }}
-                    </span>
-                    <span class="badge all-caps badge--blue--outline">
-                        <i class="fas fa-info-circle"></i>
-                        info
-                    </span>
-                    <span class="badge all-caps badge--yellow--outline">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        warning
-                    </span>
-                    <span class="badge all-caps badge--red--outline">
-                        <i class="fas fa-exclamation-circle"></i>
-                        failure
-                    </span>
-                    <span class="badge all-caps badge--green--outline">
-                        <i class="fas fa-check-circle"></i>
-                        success
-                    </span>
-                </div>
-            </spec>
-            <spec
                 name="No caps"
                 :code="`.badge.badge--[name].no-caps\n.badge.badge--[name]--outline.no-caps`"
                 source="badge.css">

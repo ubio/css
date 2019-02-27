@@ -13,17 +13,6 @@
             </div>
         </spec>
         <spec
-            name=".input on dark"
-            :code="`input.input input, textarea.input`"
-            source="input.css">
-            <div
-                style="grid-template-columns: 1fr 1fr"
-                class="night-dark block block--rounded grid grid--gap stretch">
-                <input class="input" type="text" placeholder="I'm input">
-                <textarea class="input">I'm text area</textarea>
-            </div>
-        </spec>
-        <spec
             name="Text area input"
             :code="`.input.input--area\n.input.input--area.input--area--fixed`"
             source="input.css">

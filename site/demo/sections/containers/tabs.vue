@@ -24,28 +24,6 @@
             </div>
         </spec>
         <spec
-            name="Tabs on dark"
-            :code="`.tabs .tabs__item[.tabs__item--active]`"
-            source="tabs.css">
-            <div class="night-dark">
-                <menu class="tabs">
-                    <span v-for="tab in tabs"
-                        :key="tab"
-                        class="tabs__item"
-                        @click="activeDarkTab = tab"
-                        :class="{ 'tabs__item--active': tab === activeDarkTab }">
-                        {{ tab }}
-                    </span>
-                </menu>
-                <div class="box">
-                    <p>
-                        <b>{{ activeDarkTab }} content</b>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet sollicitudin tellus, eget eleifend sapien volutpat sed. Curabitur vestibulum vitae dui et tincidunt. Proin tellus magna, imperdiet nec rutrum id, pulvinar vitae nunc. Quisque eu ligula eleifend, fringilla enim sit amet, porttitor felis.
-                    </p>
-                </div>
-            </div>
-        </spec>
-        <spec
             name="Tabs with icons"
             :code="`.tabs .tabs__item[.tabs__item--active]`"
             source="tabs.css">

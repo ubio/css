@@ -103,7 +103,7 @@ textarea {
 
 input::placeholder,
 textarea::placeholder {
-    color: rgba(0,0,0,.5);
+    color: var(--ui-color--muted);
 }
 
 input[type="radio"],
@@ -133,7 +133,7 @@ select {
     background-size: 1.5em;
     background-repeat: no-repeat;
     background-color: transparent;
-    color: currentColor;
+    color: inherit;
 
     height: 2em;
     padding: 0 2em 0 var(--gap--small);

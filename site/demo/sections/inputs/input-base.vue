@@ -7,22 +7,7 @@
             source="base.css">
             <div
                 style="grid-template-columns: 1fr 1fr 1fr"
-                class="block block--rounded grid grid--gap stretch">
-                <input placeholder="Placeholder" type="text" />
-                <input placeholder="Placeholder" disabled type="text" />
-                <input placeholder="Placeholder" readonly type="text" />
-                <input value="Value" type="text" />
-                <input value="Value" disabled type="text" />
-                <input value="Value" readonly type="text" />
-            </div>
-        </spec>
-        <spec
-            name="Base input on dark"
-            code="input, input:disabled, input:readonly"
-            source="base.css">
-            <div
-                style="grid-template-columns: 1fr 1fr 1fr"
-                class="block block--rounded night-dark grid grid--gap stretch">
+                class="grid grid--gap stretch">
                 <input placeholder="Placeholder" type="text" />
                 <input placeholder="Placeholder" disabled type="text" />
                 <input placeholder="Placeholder" readonly type="text" />
@@ -37,7 +22,7 @@
             source="base.css">
             <div
                 style="grid-template-columns: 1fr 1fr 1fr"
-                class="block block--rounded grid grid--gap stretch">
+                class="grid grid--gap stretch">
                 <textarea placeholder="Placeholder"></textarea>
                 <textarea placeholder="Placeholder" disabled></textarea>
                 <textarea placeholder="Placeholder" readonly></textarea>

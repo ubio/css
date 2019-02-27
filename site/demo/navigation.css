@@ -64,3 +64,10 @@
     color: var(--ui-color--muted);
     font-size: var(--font-size--large);
 }
+
+.navigation__night-dark {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: var(--gap--large);
+}

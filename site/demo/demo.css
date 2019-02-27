@@ -1,4 +1,7 @@
 .demo {
+    --header-bg: rgba(255,255,255,.85);
+    --snippet-bg: var(--color-warm--100);
+
     padding: 0 40px 0 80px;
     display: grid;
     grid-template-rows: 100vh;
@@ -7,7 +10,7 @@
 .demo__snippet {
     display: grid;
     grid-gap: var(--gap);
-    background-color: var(--color-warm--100);
+    background-color: var(--snippet-bg);
     color: var(--color-cool--500);
     border-radius: 3px;
     padding: var(--gap);
@@ -24,6 +27,11 @@
 .demo__snippet-code {
     height: min-content;
     white-space: pre-wrap;
+}
+
+.demo.theme--night-dark {
+    --header-bg: var(--ui-background);
+    --snippet-bg: rgba(0,0,0,.5);
 }
 
 /* Inbox */
@@ -44,7 +52,7 @@ section > header {
     left: 0;
     z-index: 1;
 
-    background: rgba(255,255,255,.85);
+    background: var(--header-bg);
     padding: var(--gap--large) 0;
 
     color: var(--color-blue--500);
@@ -75,7 +83,7 @@ article > header {
     left: 0;
     z-index: 1;
 
-    background: rgba(255,255,255,.85);
+    background: var(--header-bg);
     margin: var(--gap) 0 calc(2 * var(--gap--large));
     padding: 0 0 var(--gap--large);
 

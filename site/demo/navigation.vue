@@ -12,7 +12,7 @@
             <h1 class="navigation__headline-title">
                 <b>ubio</b>
                 <span>CSS Framework</span>
-                <sub class="color--secondary--dark-mode">v{{ version }}</sub>
+                <sub class="color--muted">v{{ version }}</sub>
             </h1>
         </div>
 
@@ -41,6 +41,17 @@
 
         <a href="#top" class="navigation__up" title="UP!">
             <i class="fas fa-angle-double-up"></i>
+        </a>
+        <a
+            @click="$root.darkMode = !$root.darkMode"
+            title="Dark theme is work in progress"
+            class="navigation__night-dark">
+            <i class="far color--muted"
+                :class="{
+                    'fa-moon': !$root.darkMode,
+                    'fa-sun': $root.darkMode
+                }">
+            </i>
         </a>
     </header>
 </template>

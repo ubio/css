@@ -10,15 +10,25 @@
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
     box-shadow: 0 1px 2px rgba(2,36,102,.15) inset;
-    background-color: var(--ui-background);
+    background-color: var(--ui-color--white);
+    color: var(--ui-color--black);
 }
 
 .input:hover {
     border-color: var(--border-color--hover);
 }
 
+.input.frameless {
+    color: var(--ui-color);
+}
+
+.input.frameless::placeholder {
+    color: var(--ui-color--muted);
+}
+
 .input.frameless:hover {
     border-color: transparent;
+    background: transparent;
 }
 
 .input:focus,
@@ -34,6 +44,16 @@
     box-shadow: none;
     flex: 1;
     background: transparent;
+}
+
+.input.frameless input,
+.input.frameless textarea {
+    color: var(--ui-color);
+}
+
+.input input::placeholder,
+.input textarea::placeholder {
+    color: var(--ui-color--muted);
 }
 
 .input--area {

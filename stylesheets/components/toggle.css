@@ -47,7 +47,7 @@
     height: var(--toggle__height);
     width: var(--toggle__height);
     border-radius: 50%;
-    background-color: #fff;
+    background-color: var(--ui-color--inverse);
     transition: 0.4s;
 }
 
@@ -69,7 +69,7 @@
     top: 3px;
     bottom: 3px;
     line-height: var(--toggle__height);
-    color: #fff;
+    color: var(--ui-color--inverse);
     height: var(--toggle__height);
     width: calc(var(--toggle__width) - 2 * var(--toggle__height));
 }

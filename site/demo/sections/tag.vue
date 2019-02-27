@@ -26,7 +26,9 @@
                 name="Tinted"
                 :code="`.tag.tag--[name]`"
                 source="tag.css">
-                <div class="group group--gap--small">
+                <div
+                    class="block block--rounded grid grid--gap--small"
+                    style="grid-template-columns: repeat(9, 1fr)">
                     <span
                         v-for="color of $root.colors"
                         :key="color"

@@ -1,13 +1,14 @@
 <template>
     <article class="article">
-        <header class="article__title">Default background (white)</header>
         <spec
-            name="Text samples"
+            name="Semaphore"
             :code="`.color--[name]`"
             source="color.css">
-            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr;">
+            <div
+                style="grid-template-columns: repeat(4, 1fr);"
+                class="grid grid--gap">
                 <div
-                    v-for="color of $root.colors"
+                    v-for="color of $root.colorsSemaphore"
                     class="box"
                     :key="color">
                     <p>
@@ -17,8 +18,7 @@
                             {{ color }}
                         </span>
                     </p>
-                    <text-variations-sample
-                    :class="`color--${ color } bg--default`" />
+                    <text-variations-sample :class="`color--${ color }`" />
                 </div>
             </div>
         </spec>
@@ -27,7 +27,7 @@
 
 <script>
 module.exports = {
-    name: 'bg-white',
+    name: 'semaphore',
 
     components: {
         'text-variations-sample': require('./text-variations-sample.vue')

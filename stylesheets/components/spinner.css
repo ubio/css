@@ -1,21 +1,12 @@
 .spinner {
-    --spinner-size: 28;
     animation: spin 1.3s infinite linear;
-    width: var(--control-height);
-    height: var(--control-height);
+    width: 2em;
+    height: 2em;
 }
 
-.spinner--small {
-    width: calc(.5 * var(--control-height));
-    height: calc(.5 * var(--control-height));
+.spinner.button__icon {
+    height: 1em;
 }
-
-
-.spinner--large {
-    width: calc(2 * var(--control-height));
-    height: calc(2 * var(--control-height));
-}
-
 
 @keyframes spin {
     0% {

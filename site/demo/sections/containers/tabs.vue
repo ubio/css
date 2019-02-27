@@ -3,8 +3,8 @@
         <header class="article__title">Tabs</header>
         <spec
             name="Basic tabs"
-            :code="`.tabs .tabs__item[.tabs__item--active]\n.tab`"
-            source="base.css">
+            :code="`.tabs .tabs__item[.tabs__item--active]`"
+            source="tabs.css">
             <div>
                 <menu class="tabs">
                     <span v-for="tab in tabs"
@@ -15,7 +15,7 @@
                         {{ tab }}
                     </span>
                 </menu>
-                <div class="box--panel">
+                <div class="box">
                     <p>
                         <b>{{ activeTab }} content</b>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet sollicitudin tellus, eget eleifend sapien volutpat sed. Curabitur vestibulum vitae dui et tincidunt. Proin tellus magna, imperdiet nec rutrum id, pulvinar vitae nunc. Quisque eu ligula eleifend, fringilla enim sit amet, porttitor felis.
@@ -23,10 +23,10 @@
                 </div>
             </div>
         </spec>
-    <spec
+        <spec
             name="Tabs with icons"
-            :code="`.tabs__item[.tabs__item--active]`"
-            source="base.css">
+            :code="`.tabs .tabs__item[.tabs__item--active]`"
+            source="tabs.css">
             <div>
                 <menu class="tabs">
                     <span v-for="tab in tabs"
@@ -38,7 +38,7 @@
                         <span>{{ tab }}</span>
                     </span>
                 </menu>
-                <div class="box--panel">
+                <div class="box">
                     <p>
                         <b>{{ activeTabIcons }} content</b>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet sollicitudin tellus, eget eleifend sapien volutpat sed. Curabitur vestibulum vitae dui et tincidunt. Proin tellus magna, imperdiet nec rutrum id, pulvinar vitae nunc. Quisque eu ligula eleifend, fringilla enim sit amet, porttitor felis. Donec nec varius felis, non imperdiet nunc.
@@ -57,6 +57,7 @@ module.exports = {
         return {
             tabs: ['Database', 'Magic', 'Check'],
             activeTab: 'Database',
+            activeDarkTab: 'Database',
             activeTabIcons: 'Database'
         };
     }

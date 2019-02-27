@@ -14,6 +14,7 @@ html {
 body {
     font-family: var(--font-family);
     font-size: var(--font-size);
+    font-weight: 400;
     line-height: 1;
     background: var(--ui-background);
     color: var(--ui-color);
@@ -55,7 +56,7 @@ textarea {
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
     box-shadow: 0 1px 2px rgba(2,36,102,.15) inset;
-    background-color: var(--ui-background);
+    background-color: var(--ui-color--white);
 
     text-overflow: ellipsis;
 
@@ -63,7 +64,7 @@ textarea {
     font-size: var(--font-size);
     line-height: 1.35;
     letter-spacing: 0;
-    color: var(--ui-color);
+    color: var(--ui-color--black);
 }
 
 input:hover,
@@ -89,6 +90,8 @@ input[type="email"],
 input[type="number"] {
     height: var(--control-height);
     width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 textarea {
@@ -100,7 +103,7 @@ textarea {
 
 input::placeholder,
 textarea::placeholder {
-    color: rgba(0,0,0,.5);
+    color: var(--ui-color--muted);
 }
 
 input[type="radio"],
@@ -125,12 +128,12 @@ select {
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560"><path d="M480 344.2L268.9 131.9c-15.8-15.9-41.3-15.9-57.1 0 -15.8 15.9-15.8 41.6 0 57.4l237.6 238.9c8.4 8.5 19.6 12.3 30.6 11.7 11 0.6 22.2-3.2 30.6-11.7l237.6-238.9c15.8-15.9 15.8-41.6 0-57.4s-41.3-15.9-57.1 0L480 344.2z"/></svg>');
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" fill="grey"><path d="M480 344.2L268.9 131.9c-15.8-15.9-41.3-15.9-57.1 0 -15.8 15.9-15.8 41.6 0 57.4l237.6 238.9c8.4 8.5 19.6 12.3 30.6 11.7 11 0.6 22.2-3.2 30.6-11.7l237.6-238.9c15.8-15.9 15.8-41.6 0-57.4s-41.3-15.9-57.1 0L480 344.2z"/></svg>');
     background-position: 100%;
     background-size: 1.5em;
     background-repeat: no-repeat;
     background-color: transparent;
-    color: currentColor;
+    color: inherit;
 
     height: 2em;
     padding: 0 2em 0 var(--gap--small);
@@ -146,6 +149,7 @@ select {
 
 select:hover {
     background-color: transparent;
+    cursor: pointer;
 }
 
 select[disabled] {
@@ -167,7 +171,7 @@ button {
     box-shadow: 0 -1px 0 0 rgba(0,0,0,0.3) inset;
     border: 0;
 
-    background: var(--color-mono--200);
+    background-color: var(--ui-color--default);
     fill: var(--ui-color);
     color: var(--ui-color);
 
@@ -187,7 +191,7 @@ button[disabled] {
 }
 
 button:hover {
-    background: var(--color-mono--300);
+    background: var(--ui-color--default--hover);
     color: var(--ui-color);
 }
 

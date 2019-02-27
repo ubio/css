@@ -31,7 +31,7 @@
         <spec
             name="Custom size & colour"
             :code="`.button, .button--small, .button--large`"
-            :hint="`Amend variables:\n<code>--cta-color--default</code>\n<code>--cta-color--default--active</code>\n<code>--font-size</code>`"
+            :hint="`Amend variables:\n<code>--ui-color--cta</code>\n<code>--ui-color--cta--hover</code>\n<code>--font-size</code>`"
             source="variables.css, button.css">
             <div
                 class="group group--gap"

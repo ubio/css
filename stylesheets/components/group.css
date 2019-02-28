@@ -35,6 +35,13 @@
     border-bottom-left-radius: 0;
 }
 
+.group--merged > button + button,
+.group--merged > button + .button,
+.group--merged > .button + button,
+.group--merged > .button + .button {
+    margin-left: 0;
+}
+
 .group--merged--border > * + * {
     border-left: 1px solid var(--border-color);
 }

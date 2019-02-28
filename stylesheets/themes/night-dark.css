@@ -30,6 +30,7 @@
     --ui-color--brand-red--pale: var(--color-brand-red--700);
     --ui-color--brand-blue--pale: var(--color-brand-blue--700);
 
+    --border-color: rgba(0,0,0,.35);
     --tab-slider-color: var(--color-cool--900);
     --tab-slider-color--active: var(--ui-color--blue);
 

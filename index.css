@@ -214,6 +214,7 @@
     --ui-color--brand-red--pale: var(--color-brand-red--700);
     --ui-color--brand-blue--pale: var(--color-brand-blue--700);
 
+    --border-color: rgba(0,0,0,.35);
     --tab-slider-color: var(--color-cool--900);
     --tab-slider-color--active: var(--ui-color--blue);
 
@@ -684,14 +685,29 @@ mark {
 }
 
 .button[disabled] {
-    color: var(--ui-color--mono);
-    fill: var(--ui-color--mono);
+/*    color: var(--ui-color--muted);
+    fill: var(--ui-color--muted);*/
+    color: var(--color-mono--500);
+    fill: var(--color-mono--500);
     opacity: .7;
-    background: var(--ui-color--mono--pale);
+
+    background-color: var(--ui-color--default);
     box-shadow: 0 -1px 0 0 rgba(0,0,0,0.3) inset;
+    border-color: transparent;
 }
 
-.button.frameless { color: var(--ui-color) }
+.button.frameless {
+    color: var(--ui-color);
+    background: transparent;
+}
+
+.button.frameless:hover {
+    background: var(--ui-color--cool--pale);
+}
+
+.button.frameless[disabled] {
+    box-shadow: none;
+}
 
 .button--primary.frameless { color: var(--ui-color--primary) }
 
@@ -962,6 +978,13 @@ mark {
     margin-left: -1px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+}
+
+.group--merged > button + button,
+.group--merged > button + .button,
+.group--merged > .button + button,
+.group--merged > .button + .button {
+    margin-left: 0;
 }
 
 .group--merged--border > * + * {

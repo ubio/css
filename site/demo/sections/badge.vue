@@ -34,7 +34,7 @@
                 source="badge.css">
                 <div
                     style="grid-template-columns: repeat(4, auto)"
-                    class="box grid grid--gap">
+                    class="grid grid--gap">
                     <span
                         v-for="color of $root.colorsSemaphore"
                         :key="color"

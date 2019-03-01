@@ -75,12 +75,15 @@
 }
 
 .button[disabled] {
-    color: var(--ui-color--muted);
-    fill: var(--ui-color--muted);
-    background-color: var(--ui-color--default);
-    box-shadow: none;
-    border-color: transparent;
+/*    color: var(--ui-color--muted);
+    fill: var(--ui-color--muted);*/
+    color: var(--color-mono--500);
+    fill: var(--color-mono--500);
     opacity: .7;
+
+    background-color: var(--ui-color--default);
+    box-shadow: 0 -1px 0 0 rgba(0,0,0,0.3) inset;
+    border-color: transparent;
 }
 
 .button.frameless {
@@ -90,6 +93,10 @@
 
 .button.frameless:hover {
     background: var(--ui-color--cool--pale);
+}
+
+.button.frameless[disabled] {
+    box-shadow: none;
 }
 
 .button--primary.frameless { color: var(--ui-color--primary) }

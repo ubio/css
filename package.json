@@ -11,6 +11,9 @@
     "check",
     "build"
   ],
+  "files": [
+    "index.css"
+  ],
   "scripts": {
     "check": "eslint --ext=js,vue .",
     "dev": "run-p watch:* serve",

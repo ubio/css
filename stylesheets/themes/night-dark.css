@@ -30,9 +30,29 @@
     --ui-color--brand-red--pale: var(--color-brand-red--700);
     --ui-color--brand-blue--pale: var(--color-brand-blue--700);
 
-    --border-color: rgba(0,0,0,.35);
+    /* Tabs */
+
+    /*--tab-slider-size: 2px;*/
     --tab-slider-color: var(--color-cool--900);
     --tab-slider-color--active: var(--ui-color--blue);
+
+    /* Borders */
+
+    --border-color: var(--color-cool--600);
+    --border-color--merged: rgba(0,0,0,0.3);
+    --border-color--focus: var(--color-blue--600);
+    --border-shadow--focus: var(--color-blue--400);
+    --border-color--hover: var(--color-blue--300);
+    /*--border-radius: 4px;*/
+
+
+    /* Inputs */
+
+    --input-background: var(--ui-background);
+    --input-background--readonly: var(--color-cool--700);
+    --input-background--disabled: var(--color-mono--700);
+    --input-color: var(--ui-color--white);
+    --input-color--placeholder: var(--ui-color--muted);
 
     background: var(--ui-background);
     color: var(--ui-color);

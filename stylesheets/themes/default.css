@@ -18,11 +18,9 @@
     --control-height--small: 1.875em;
     --control-height--large: 2.66675em;
 
-    --border-radius: 4px;
+    /* UI Colours: black on white */
 
-    /* UI Colours: black on white*/
     --ui-background: white;
-
     --ui-color: var(--ui-color--black);
 
     --ui-color--default: var(--color-mono--200);
@@ -41,11 +39,6 @@
 
     --ui-color--black: var(--color-mono--800);
     --ui-color--white: white;
-
-    /*tabs*/
-    --tab-slider-size: 2px;
-    --tab-slider-color: var(--color-warm--200);
-    --tab-slider-color--active: var(--color-blue--500);
 
     --ui-color--mono: var(--color-mono--600);
     --ui-color--cool: var(--color-cool--600);
@@ -67,6 +60,30 @@
     --ui-color--brand-red--pale: var(--color-brand-red--000);
     --ui-color--brand-blue--pale: var(--color-brand-blue--000);
 
-    --border-color: #C2CCD0;
+
+    /* Tabs */
+
+    --tab-slider-size: 2px;
+    --tab-slider-color: var(--color-warm--200);
+    --tab-slider-color--active: var(--color-blue--500);
+
+
+    /* Borders */
+
+    --border-color: var(--color-cool--400);
+    --border-color--merged: rgba(0,0,0,0.3);
+    --border-color--focus: var(--color-blue--600);
+    --border-shadow--focus: var(--color-blue--300);
     --border-color--hover: var(--color-blue--500);
+    --border-radius: 4px;
+
+
+    /* Inputs */
+
+    --input-background: var(--ui-color--white);
+    --input-background--readonly: var(--color-warm--100);
+    --input-background--disabled: var(--color-cool--200);
+    --input-color: var(--ui-color--black);
+    --input-color--placeholder: var(--color-cool--400);
+
 }

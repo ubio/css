@@ -29,14 +29,14 @@
 
 .button:hover {
     text-decoration: none;
-    background: var(--ui-color--default--hover);
+    background-color: var(--ui-color--default--hover);
     color: var(--ui-color);
 }
 
 .button:focus,
 .button:active {
-    border-color: #4A90E2;
-    box-shadow: 0 0 0 2px #ADD3FC;
+    border-color: var(--border-color--focus);
+    box-shadow: 0 0 0 2px var(--border-shadow--focus);
     outline: none;
 }
 
@@ -75,8 +75,6 @@
 }
 
 .button[disabled] {
-/*    color: var(--ui-color--muted);
-    fill: var(--ui-color--muted);*/
     color: var(--color-mono--500);
     fill: var(--color-mono--500);
     opacity: .7;
@@ -103,7 +101,8 @@
 .button--secondary.frameless { color: var(--ui-color--secondary) }
 .button--accent.frameless { color: var(--ui-color--accent) }
 
-.button--flat {
+.button--flat,
+.button--flat[disabled] {
     box-shadow: none;
 }
 

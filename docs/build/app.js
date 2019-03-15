@@ -9854,6 +9854,7 @@ module.exports={
   "private": false,
   "pre-commit": [
     "check",
+    "stylelint",
     "build"
   ],
   "files": [

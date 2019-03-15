@@ -1,15 +1,13 @@
 .input {
     display: inline-flex;
     box-sizing: border-box;
-
     height: var(--control-height);
     align-items: center;
     text-overflow: ellipsis;
     white-space: nowrap;
-
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
-    box-shadow: 0 1px 2px rgba(2,36,102,.15) inset;
+    box-shadow: 0 1px 2px rgba(2, 36, 102, .15) inset;
     background-color: var(--input-background);
     color: var(--input-color);
 }
@@ -89,7 +87,7 @@
 }
 
 .input[disabled] {
-    opacity: 0.5;
+    opacity: .5;
     cursor: not-allowed;
     pointer-events: none;
 }

@@ -34,10 +34,10 @@
     border-radius: var(--toggle__height);
     cursor: pointer;
     background-color: var(--ui-color--default);
-    transition: 0.4s;
+    transition: .4s;
 }
 
-.toggle__slider:before {
+.toggle__slider::before {
     content: '';
     position: absolute;
     left: 3px;
@@ -47,7 +47,7 @@
     width: var(--toggle__height);
     border-radius: 50%;
     background-color: var(--ui-background);
-    transition: 0.4s;
+    transition: .4s;
 }
 
 .toggle__input {
@@ -63,11 +63,11 @@
     background-color: var(--ui-color--primary);
 }
 
-.toggle__slider--on:before {
+.toggle__slider--on::before {
     transform: translateX(calc(var(--toggle__width) - var(--toggle__height) - 6px));
 }
 
-.toggle__slider:after {
+.toggle__slider::after {
     position: absolute;
     top: 3px;
     bottom: 3px;
@@ -77,12 +77,12 @@
     width: calc(var(--toggle__width) - 2 * var(--toggle__height));
 }
 
-.toggle__slider--on:after {
+.toggle__slider--on::after {
     content: 'On';
     left: 6px;
 }
 
-.toggle__slider--off:after {
+.toggle__slider--off::after {
     content: 'Off';
     color: var(--ui-color);
     left: calc(var(--toggle__height) + 7px);

@@ -8,7 +8,6 @@
     box-shadow: 0 0 0 1px currentColor inset;
     vertical-align: middle;
     line-height: 15px;
-    border-radius: 0;
     overflow: hidden;
     border-radius: 1px;
 }

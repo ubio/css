@@ -4,16 +4,13 @@
     grid-auto-flow: column;
     align-items: center;
     justify-content: start;
-
     padding: 0 .8em;
     box-sizing: border-box;
     border-radius: 2px;
     text-align: center;
-
     white-space: nowrap;
-    letter-spacing: 0.6px;
+    letter-spacing: .6px;
     font-weight: 500;
-
     color: var(--ui-background);
     background-color: var(--ui-color--mono);
     border: 0;
@@ -29,32 +26,32 @@
     font-weight: 400;
 }
 
-.badge--production { background-color: var(--color-brand-red--500) }
-.badge--staging { background-color: var(--color-yellow--500) }
+.badge--production { background-color: var(--color-brand-red--500); }
+.badge--staging { background-color: var(--color-yellow--500); }
 
-.badge--mono { background-color: var(--ui-color--mono) }
-.badge--cool { background-color: var(--ui-color--cool) }
-.badge--warm { background-color: var(--ui-color--warm) }
-.badge--blue { background-color: var(--ui-color--blue) }
-.badge--brand-blue { background-color: var(--ui-color--brand-blue) }
-.badge--yellow { background-color: var(--ui-color--yellow) }
-.badge--red { background-color: var(--ui-color--red) }
-.badge--brand-red { background-color: var(--ui-color--brand-red) }
-.badge--green { background-color: var(--ui-color--green) }
+.badge--mono { background-color: var(--ui-color--mono); }
+.badge--cool { background-color: var(--ui-color--cool); }
+.badge--warm { background-color: var(--ui-color--warm); }
+.badge--blue { background-color: var(--ui-color--blue); }
+.badge--brand-blue { background-color: var(--ui-color--brand-blue); }
+.badge--yellow { background-color: var(--ui-color--yellow); }
+.badge--red { background-color: var(--ui-color--red); }
+.badge--brand-red { background-color: var(--ui-color--brand-red); }
+.badge--green { background-color: var(--ui-color--green); }
 
 .badge[class*="--light"] {
     color: var(--ui-color--black);
 }
 
-.badge--mono--light { background-color: var(--color-mono--400) }
-.badge--cool--light { background-color: var(--color-cool--400) }
-.badge--warm--light { background-color: var(--color-warm--400) }
-.badge--blue--light { background-color: var(--color-blue--400) }
-.badge--yellow--light { background-color: var(--color-yellow--400) }
-.badge--red--light { background-color: var(--color-red--400) }
-.badge--green--light { background-color: var(--color-green--400) }
-.badge--brand-red--light { ackground-color: var(--color-brand-red--400) }
-.badge--brand-blue--light { background-color: var(--color-brand-blue--400) }
+.badge--mono--light { background-color: var(--color-mono--400); }
+.badge--cool--light { background-color: var(--color-cool--400); }
+.badge--warm--light { background-color: var(--color-warm--400); }
+.badge--blue--light { background-color: var(--color-blue--400); }
+.badge--yellow--light { background-color: var(--color-yellow--400); }
+.badge--red--light { background-color: var(--color-red--400); }
+.badge--green--light { background-color: var(--color-green--400); }
+.badge--brand-red--light { background-color: var(--color-brand-red--400); }
+.badge--brand-blue--light { background-color: var(--color-brand-blue--400); }
 
 .badge[class*="--outline"] {
     box-shadow: 0 0 0 1px currentColor inset;
@@ -65,25 +62,26 @@
     color: var(--ui-color--mono);
 }
 
-.badge--mono--outline { color: var(--ui-color--mono) }
-.badge--cool--outline { color: var(--ui-color--cool) }
-.badge--warm--outline { color: var(--ui-color--warm) }
-.badge--blue--outline { color: var(--ui-color--blue) }
-.badge--yellow--outline { color: var(--ui-color--yellow) }
-.badge--red--outline { color: var(--ui-color--red) }
-.badge--green--outline { color: var(--ui-color--green) }
-.badge--brand-red--outline { color: var(--ui-color--brand-red) }
-.badge--brand-blue--outline { color: var(--ui-color--brand-blue) }
+.badge--mono--outline { color: var(--ui-color--mono); }
+.badge--cool--outline { color: var(--ui-color--cool); }
+.badge--warm--outline { color: var(--ui-color--warm); }
+.badge--blue--outline { color: var(--ui-color--blue); }
+.badge--yellow--outline { color: var(--ui-color--yellow); }
+.badge--red--outline { color: var(--ui-color--red); }
+.badge--green--outline { color: var(--ui-color--green); }
+.badge--brand-red--outline { color: var(--ui-color--brand-red); }
+.badge--brand-blue--outline { color: var(--ui-color--brand-blue); }
 
 .badge--small {
     line-height: calc(1.1 * var(--font-size));
     height: calc(1.1 * var(--font-size));
-    font-size: var(--font-size--small)
+    font-size: var(--font-size--small);
 }
+
 .badge--large {
     line-height: calc(2.75 * var(--font-size));
     height: calc(2.75 * var(--font-size));
-    font-size: var(--font-size--large)
+    font-size: var(--font-size--large);
 }
 
 .badge--fixed {

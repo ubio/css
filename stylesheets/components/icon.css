@@ -9,6 +9,7 @@
     width: var(--control-height--small);
     font-size: var(--font-size--small);
 }
+
 .icon--large {
     width: var(--control-height--large);
     font-size: var(--font-size--large);

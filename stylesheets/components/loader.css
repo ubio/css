@@ -4,8 +4,8 @@
     display: inline-flex;
 }
 
-.loader--small { height: var(--gap--small) }
-.loader--large { height: var(--gap--large) }
+.loader--small { height: var(--gap--small); }
+.loader--large { height: var(--gap--large); }
 
 .loader__rect {
     background: currentColor;
@@ -13,7 +13,6 @@
     width: 4px;
     border-radius: 1.5px;
     margin: 0 2px;
-
     animation: loading 1s ease-in-out infinite;
 }
 
@@ -22,24 +21,26 @@
 }
 
 .loader__rect3 {
-    animation-delay: -1.0s;
+    animation-delay: -1s;
 }
 
 .loader__rect4 {
-    animation-delay: -0.9s;
+    animation-delay: -.9s;
 }
 
 .loader__rect5 {
-    animation-delay: -0.8s;
+    animation-delay: -.8s;
 }
 
 @keyframes loading {
     0% {
         transform: scale(1);
     }
+
     20% {
         transform: scale(1, 2.2);
     }
+
     40% {
         transform: scale(1);
     }

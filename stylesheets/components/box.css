@@ -120,6 +120,7 @@
     padding: var(--gap--small) var(--gap--large);
     font-size: var(--font-size--small);
 }
+
 .box--large {
     padding: var(--gap--large) calc(2 * var(--gap--large));
     font-size: var(--font-size--large);
@@ -132,17 +133,17 @@
     color: var(--ui-color);
 }
 
-.box--panel--mono { background: var(--color-mono--200) }
-.box--panel--cool { background: var(--color-cool--200) }
-.box--panel--warm { background: var(--color-warm--200) }
-.box--panel--blue { background: var(--color-blue--200) }
-.box--panel--yellow { background: var(--color-yellow--200) }
-.box--panel--green { background: var(--color-green--200) }
-.box--panel--red { background: var(--color-red--200) }
+.box--panel--mono { background: var(--color-mono--200); }
+.box--panel--cool { background: var(--color-cool--200); }
+.box--panel--warm { background: var(--color-warm--200); }
+.box--panel--blue { background: var(--color-blue--200); }
+.box--panel--yellow { background: var(--color-yellow--200); }
+.box--panel--green { background: var(--color-green--200); }
+.box--panel--red { background: var(--color-red--200); }
 
 .box--panel--border {
     border-radius: var(--border-radius);
 }
 
-.box--panel--small { padding: var(--gap--small) }
-.box--panel--large { padding: var(--gap--large) }
+.box--panel--small { padding: var(--gap--small); }
+.box--panel--large { padding: var(--gap--large); }

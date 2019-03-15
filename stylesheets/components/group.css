@@ -8,9 +8,9 @@
     margin: 0;
 }
 
-.group--gap > * + * { margin-left: var(--gap) }
-.group--gap--small > * + * { margin-left: var(--gap--small) }
-.group--gap--large > * + * { margin-left: var(--gap--large) }
+.group--gap > * + * { margin-left: var(--gap); }
+.group--gap--small > * + * { margin-left: var(--gap--small); }
+.group--gap--large > * + * { margin-left: var(--gap--large); }
 
 .group--block {
     display: flex;

@@ -17,7 +17,7 @@
   ],
   "scripts": {
     "check": "eslint --ext=js,vue .",
-    "stylelint": "stylelint stylesheets/*.css",
+    "stylelint": "stylelint stylesheets/*",
     "dev": "run-p watch:* serve",
     "build": "run-p build:* && git add -A",
     "serve": "ws",

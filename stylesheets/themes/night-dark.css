@@ -54,6 +54,9 @@
     --input-color: var(--ui-color--white);
     --input-color--placeholder: var(--ui-color--muted);
 
+    /* Frameless */
+    --button-background--frameless: var(--ui-color--cool--pale);
+
     background: var(--ui-background);
     color: var(--ui-color);
 }

@@ -86,4 +86,7 @@
     --input-color: var(--ui-color--black);
     --input-color--placeholder: var(--color-cool--400);
 
+    /* Frameless */
+    --button-background--frameless: var(--ui-color--cool--pale);
+
 }

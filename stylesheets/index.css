@@ -12,6 +12,7 @@
 /* Core UI components */
 @import "./components/spinner.css";
 @import "./components/button.css";
+@import "./components/icon.css";
 @import "./components/input.css";
 @import "./components/toggle.css";
 

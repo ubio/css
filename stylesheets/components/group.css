@@ -23,12 +23,6 @@
     border-radius: var(--border-radius);
 }
 
-.group--merged > *:not(:last-child) {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-}
-
-
 .group--merged > * + * {
     margin-left: -1px;
     border-top-left-radius: 0;
@@ -66,3 +60,9 @@
     border-top-right-radius: var(--border-radius);
     border-bottom-right-radius: var(--border-radius);
 }
+
+.group--merged > *:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+

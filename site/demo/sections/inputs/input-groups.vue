@@ -105,7 +105,7 @@
                      <input
                         type="text"
                         placeholder="key for user@ub.io" />
-                    <button class="button--secondary button--icon frameless">
+                    <button class="button button--secondary button--icon frameless">
                         <i class="fa fa-sync"></i>
                     </button>
                 </span>
@@ -113,7 +113,7 @@
                      <input
                         type="text"
                         placeholder="key for user@ub.io" />
-                    <button class="button--accent button--icon frameless">
+                    <button class="button button--accent button--icon frameless">
                         <i class="fa fa-sync"></i>
                     </button>
                 </span>
@@ -121,7 +121,7 @@
                      <input
                         type="text"
                         placeholder="key for user@ub.io" />
-                    <button class="button--icon frameless">
+                    <button class="button button--icon frameless">
                         <i class="fa fa-sync"></i>
                     </button>
                 </span>

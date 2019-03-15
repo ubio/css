@@ -90,7 +90,7 @@
 }
 
 .button.frameless:hover {
-    background: var(--ui-color--cool--pale);
+    background: var(--button-background--frameless);
 }
 
 .button.frameless[disabled] {

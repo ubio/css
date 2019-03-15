@@ -59,7 +59,7 @@
 }
 
 .frameless:hover {
-    background: var(--color-warm--200);
+    background: transparent;
 }
 
 .select {
@@ -88,22 +88,6 @@
 .shift { margin-left: var(--control-height) }
 .shift--small { margin-left: var(--control-height--small) }
 .shift--large { margin-left: var(--control-height--large) }
-
-.icon {
-    display: inline-flex;
-    width: var(--control-height);
-    align-items: center;
-    justify-content: start;
-}
-
-.icon--small {
-    width: var(--control-height--small);
-    font-size: var(--font-size--small);
-}
-.icon--large {
-    width: var(--control-height--large);
-    font-size: var(--font-size--large);
-}
 
 /*BLOCKS*/
 

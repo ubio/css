@@ -8,34 +8,42 @@
     background: var(--color-mono--100);
     color: var(--ui-color--black);
 }
+
 .block--cool--pale {
     background: var(--color-cool--100);
     color: var(--ui-color--black);
 }
+
 .block--warm--pale {
     background: var(--color-warm--100);
     color: var(--ui-color--black);
 }
+
 .block--blue--pale {
     background: var(--color-blue--100);
     color: var(--ui-color--black);
 }
+
 .block--yellow--pale {
     background: var(--color-yellow--100);
     color: var(--ui-color--black);
 }
+
 .block--green--pale {
     background: var(--color-green--100);
     color: var(--ui-color--black);
 }
+
 .block--red--pale {
     background: var(--color-red--100);
     color: var(--ui-color--black);
 }
+
 .block--brand-red--pale {
     background: var(--color-brand-red--100);
     color: var(--ui-color--black);
 }
+
 .block--brand-blue--pale {
     background: var(--color-brand-blue--100);
     color: var(--ui-color--black);
@@ -45,34 +53,42 @@
     background: var(--color-mono--600);
     color: var(--ui-color--white);
 }
+
 .block--cool {
     background: var(--color-cool--600);
     color: var(--ui-color--white);
 }
+
 .block--warm {
     background: var(--color-warm--600);
     color: var(--ui-color--white);
 }
+
 .block--blue {
     background: var(--color-blue--600);
     color: var(--ui-color--white);
 }
+
 .block--yellow {
     background: var(--color-yellow--600);
     color: var(--ui-color--white);
 }
+
 .block--green {
     background: var(--color-green--600);
     color: var(--ui-color--white);
 }
+
 .block--red {
     background: var(--color-red--600);
     color: var(--ui-color--white);
 }
+
 .block--brand-red {
     background: var(--color-brand-red--600);
     color: var(--ui-color--white);
 }
+
 .block--brand-blue {
     background: var(--color-brand-blue--600);
     color: var(--ui-color--white);
@@ -82,5 +98,5 @@
     border-radius: var(--border-radius);
 }
 
-.block--small { padding: var(--gap--small) var(--gap) }
-.block--large { padding: var(--gap--large) }
+.block--small { padding: var(--gap--small) var(--gap); }
+.block--large { padding: var(--gap--large); }

@@ -23,7 +23,7 @@
     width: 1.5em;
 }
 
-.tabs__item:after {
+.tabs__item::after {
     content: '';
     position: absolute;
     display: block;
@@ -33,14 +33,14 @@
     width: 0%;
     background: transparent;
     border-radius: var(--tab-slider-size);
-    transition: width 0.4s;
+    transition: width .4s;
 }
 
 .tabs__item--active {
     font-weight: 500;
 }
 
-.tabs__item--active:after {
+.tabs__item--active::after {
     background: var(--tab-slider-color--active);
     width: 100%;
 }

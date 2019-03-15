@@ -1,35 +1,35 @@
 @import "https://fonts.googleapis.com/css?family=Libre+Franklin:100,200,300,400,500,600,700";
-
 @import "./variables.css";
 @import "./themes/default.css";
 @import "./themes/night-dark.css";
-
 @import "./reset.css";
+
 
 /* Semantic tags styled */
 @import "./base.css";
 
+
 /* Core UI components */
 @import "./components/spinner.css";
 @import "./components/button.css";
+@import "./components/icon.css";
 @import "./components/input.css";
 @import "./components/toggle.css";
-
-@import "./components/group.css";
-@import "./components/box.css";
-@import "./components/tabs.css";
-@import "./components/block.css";
-
 @import "./components/badge.css";
 @import "./components/loader.css";
 @import "./components/progress-bar.css";
 @import "./components/tag.css";
+@import "./components/group.css";
+@import "./components/box.css";
+@import "./components/tabs.css";
+@import "./components/block.css";
 
 
 /* UI helpers */
 @import "./helpers/utils.css";
 @import "./helpers/color.css";
 @import "./helpers/bg.css";
+
 
 /* Print CSS base */
 @import "./print.css";

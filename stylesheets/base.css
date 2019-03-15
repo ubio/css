@@ -3,7 +3,6 @@
 [disabled] {
     cursor: not-allowed;
     pointer-events: none;
-    opacity: .65;
 }
 
 html {
@@ -18,9 +17,50 @@ body {
     line-height: 1;
     background: var(--ui-background);
     color: var(--ui-color);
-
     height: auto;
     min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+small,
+strike,
+strong,
+sub,
+sup,
+b,
+u,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+label,
+legend {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    box-sizing: border-box;
 }
 
 hr {
@@ -47,81 +87,8 @@ label {
     margin-bottom: .25em;
 }
 
-input,
-textarea {
-    display: inline-block;
-    box-sizing: border-box;
-    padding: calc((var(--control-height) - var(--font-size) * 1.35)/ 2) .5em;
-
-    border-radius: var(--border-radius);
-    border: 1px solid var(--border-color);
-    box-shadow: 0 1px 2px rgba(2,36,102,.15) inset;
-    background-color: var(--ui-color--white);
-
-    text-overflow: ellipsis;
-
-    font-family: var(--font-family);
-    font-size: var(--font-size);
-    line-height: 1.35;
-    letter-spacing: 0;
-    color: var(--ui-color--black);
-}
-
-input:hover,
-textarea:hover,
-select:hover {
-    border-color: var(--border-color--hover);
-}
-
-button:focus,
-input:focus,
-textarea:focus,
-select:focus,
-a:focus,
-a:active {
-    border-color: #4A90E2;
-    box-shadow: 0 0 0 2px #ADD3FC;
-    outline: none;
-}
-
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="number"] {
-    height: var(--control-height);
-    width: 100%;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-
-textarea {
-    line-height: 1.35;
-    min-height: var(--control-height);
-    width: 100%;
-}
-
-
-input::placeholder,
-textarea::placeholder {
-    color: var(--ui-color--muted);
-}
-
-input[type="radio"],
-input[type="checkbox"] {
-    height: auto;
-    margin: var(--gap--small);
-}
-
-input[readonly],
-textarea[readonly] {
-    background: var(--color-warm--100);
-    box-shadow: none;
-}
-
-input[disabled],
-textarea[disabled] {
-    background: var(--color-warm--100);
-    color: var(--ui-color);
+label[disabled] {
+    opacity: .5;
 }
 
 select {
@@ -134,21 +101,17 @@ select {
     background-repeat: no-repeat;
     background-color: transparent;
     color: inherit;
-
     height: 2em;
     padding: 0 2em 0 var(--gap--small);
     border-radius: 4px;
     border: 0;
-
     text-overflow: ellipsis;
     white-space: nowrap;
-
     font-family: var(--font-family);
     font-size: 1em;
 }
 
 select:hover {
-    background-color: transparent;
     cursor: pointer;
 }
 
@@ -160,21 +123,62 @@ select[multiple] {
     height: auto;
 }
 
+input,
+textarea {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: calc((var(--control-height) - var(--font-size) * 1.35) / 2) .5em;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 1px 2px rgba(2, 36, 102, .15) inset;
+    background-color: var(--input-background);
+    color: var(--input-color);
+    text-overflow: ellipsis;
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    line-height: 1.35;
+    letter-spacing: 0;
+}
+
+textarea {
+    line-height: 1.35;
+    min-height: var(--control-height);
+    width: 100%;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--input-color--placeholder);
+}
+
+input:hover,
+textarea:hover,
+select:hover {
+    border-color: var(--border-color--hover);
+}
+
+a {
+    cursor: pointer;
+    color: var(--color-blue--500);
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+    color: var(--color-blue--500);
+}
+
 button {
     display: inline-flex;
     box-sizing: border-box;
-
     height: var(--control-height);
-    padding: calc((var(--control-height) - 1em)/2 - 2px) 1.25em;
-
+    padding: calc((var(--control-height) - 1em) / 2 - 2px) 1.25em;
     border-radius: 4px;
-    box-shadow: 0 -1px 0 0 rgba(0,0,0,0.3) inset;
+    box-shadow: 0 -1px 0 0 rgba(0, 0, 0, .3) inset;
     border: 0;
-
     background-color: var(--ui-color--default);
     fill: var(--ui-color);
     color: var(--ui-color);
-
     font-size: 1em;
     font-family: var(--font-family);
     line-height: 1.25;
@@ -195,16 +199,43 @@ button:hover {
     color: var(--ui-color);
 }
 
-/* Base Typography elements */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"] {
+    height: var(--control-height);
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
 
-h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big,
-cite, code, del, dfn, em, small, strike, strong, sub, sup, b, u, i,
-dl, dt, dd, ol, ul, li, label, legend {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    vertical-align: baseline;
-    box-sizing: border-box;
+input[type="radio"],
+input[type="checkbox"] {
+    height: auto;
+    margin: var(--gap--small);
+}
+
+input[readonly],
+textarea[readonly] {
+    background: var(--input-background--readonly);
+    box-shadow: none;
+}
+
+input[disabled],
+textarea[disabled] {
+    background: var(--input-background--disabled);
+    color: var(--ui-color--secondary);
+}
+
+button:focus,
+input:focus,
+textarea:focus,
+select:focus,
+a:focus,
+a:active {
+    border-color: var(--border-color--focus);
+    box-shadow: 0 0 0 2px var(--border-shadow--focus);
+    outline: none;
 }
 
 p {
@@ -226,17 +257,6 @@ li {
     list-style-position: outside;
 }
 
-a {
-    cursor: pointer;
-    color: var(--color-blue--500);
-    text-decoration: underline;
-}
-
-a:hover {
-    text-decoration: none;
-    color: var(--color-blue--500);
-}
-
 b {
     font-weight: 600;
 }
@@ -245,7 +265,9 @@ strong {
     font-weight: 700;
 }
 
-time, code, pre {
+time,
+code,
+pre {
     font-family: var(--font-family--mono);
     line-height: 1.6;
     word-wrap: break-word;
@@ -261,7 +283,12 @@ pre {
     white-space: pre-wrap;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     line-height: 1;
     margin: 0 0 2rem;
 }

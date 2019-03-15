@@ -8,28 +8,28 @@
     border-radius: 1px;
     font-weight: 500;
     margin-right: 4px;
-    background-color: var(--color-mono--200);
 }
 
 .tag__remover {
     color: var(--ui-color--white);
-    border-left: 2px solid var(--ui-background);
+    margin-left: 2px;
     padding: 0 var(--gap--small);
+    background-color: var(--color-mono--200);
 }
 
 .tag__label {
+    background-color: var(--color-mono--200);
     padding: 0 var(--gap--small);
 }
 
+.tag--mono > * { background-color: var(--color-mono--400); }
+.tag--cool > * { background-color: var(--color-cool--400); }
+.tag--warm > * { background-color: var(--color-warm--400); }
 
-.tag--mono { background-color: var(--color-mono--400) }
-.tag--cool { background-color: var(--color-cool--400) }
-.tag--warm { background-color: var(--color-warm--400) }
+.tag--blue > * { background-color: var(--color-blue--400); }
+.tag--yellow > * { background-color: var(--color-yellow--400); }
+.tag--red > * { background-color: var(--color-red--400); }
+.tag--green > * { background-color: var(--color-green--400); }
 
-.tag--blue { background-color: var(--color-blue--400) }
-.tag--yellow { background-color: var(--color-yellow--400) }
-.tag--red { background-color: var(--color-red--400) }
-.tag--green { background-color: var(--color-green--400) }
-
-.tag--brand-red { background-color: var(--color-brand-red--400) }
-.tag--brand-blue { background-color: var(--color-brand-blue--400) }
+.tag--brand-red > * { background-color: var(--color-brand-red--400); }
+.tag--brand-blue > * { background-color: var(--color-brand-blue--400); }

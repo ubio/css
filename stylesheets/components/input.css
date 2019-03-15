@@ -1,17 +1,25 @@
 .input {
     display: inline-flex;
     box-sizing: border-box;
-
     height: var(--control-height);
     align-items: center;
     text-overflow: ellipsis;
     white-space: nowrap;
-
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
-    box-shadow: 0 1px 2px rgba(2,36,102,.15) inset;
-    background-color: var(--ui-color--white);
-    color: var(--ui-color--black);
+    box-shadow: 0 1px 2px rgba(2, 36, 102, .15) inset;
+    background-color: var(--input-background);
+    color: var(--input-color);
+}
+
+.input--small {
+    font-size: var(--font-size--small);
+    height: var(--control-height--small);
+}
+
+.input--large {
+    font-size: var(--font-size--large);
+    height: var(--control-height--large);
 }
 
 .input:hover {
@@ -33,8 +41,8 @@
 
 .input:focus,
 .input:focus-within {
-    border-color: #4A90E2;
-    box-shadow: 0 0 0 2px #ADD3FC;
+    border-color: var(--border-color--focus);
+    box-shadow: 0 0 0 2px var(--border-shadow--focus);
     outline: none;
 }
 
@@ -79,7 +87,7 @@
 }
 
 .input[disabled] {
-    opacity: 0.5;
+    opacity: .5;
     cursor: not-allowed;
     pointer-events: none;
 }

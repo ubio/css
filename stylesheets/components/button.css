@@ -6,7 +6,6 @@
     height: var(--control-height);
     line-height: var(--control-height);
     border-radius: 4px;
-    box-shadow: 0 -1px 0 0 rgba(0, 0, 0, .3) inset;
     border: 0;
     background-color: var(--ui-color--default);
     fill: var(--ui-color);
@@ -80,7 +79,6 @@
     fill: var(--color-mono--500);
     opacity: .7;
     background-color: var(--ui-color--default);
-    box-shadow: 0 -1px 0 0 rgba(0, 0, 0, .3) inset;
     border-color: transparent;
 }
 
@@ -93,20 +91,11 @@
     background: var(--button-background--frameless);
 }
 
-.button.frameless[disabled] {
-    box-shadow: none;
-}
-
 .button--primary.frameless { color: var(--ui-color--primary); }
 .button--secondary.frameless { color: var(--ui-color--secondary); }
 .button--accent.frameless { color: var(--ui-color--accent); }
 .button--inverse.frameless { color: var(--ui-background); }
 .button--muted.frameless { color: var(--ui-color--muted); }
-
-.button--flat,
-.button--flat[disabled] {
-    box-shadow: none;
-}
 
 .button--small {
     font-size: var(--font-size--small);

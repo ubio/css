@@ -1339,8 +1339,7 @@ mark {
 .tabs__item {
     position: relative;
     top: var(--tab-slider-size);
-    padding: var(--gap) var(--gap--large);
-    margin: 0 var(--gap--small) 0 0;
+    padding: var(--gap);
     border-bottom: var(--tab-slider-size) solid var(--tab-slider-color);
     color: inherit;
     font-size: 13px;
@@ -1348,8 +1347,12 @@ mark {
     text-decoration: none;
     cursor: pointer;
 }
-.tabs__icon {
-    width: 1.5em;
+.tabs__item:hover {
+    color: currentColor;
+}
+.tabs__item:active,
+.tabs__item:focus {
+    box-shadow: none;
 }
 .tabs__item::after {
     content: '';
@@ -1363,12 +1366,38 @@ mark {
     border-radius: var(--tab-slider-size);
     transition: width .4s;
 }
-.tabs__item--active {
+.tabs__item--active,
+.tabs__item.active {
     font-weight: 500;
 }
-.tabs__item--active::after {
+.tabs__item--active::after,
+.tabs__item.active::after {
     background: var(--tab-slider-color--active);
     width: 100%;
+}
+.tabs__icon {
+    width: 1.5em;
+}
+.tabs__slot {
+    margin-left: auto;
+    display: inline-grid;
+    grid-auto-flow: column;
+    grid-gap: var(--gap);
+    align-items: center;
+}
+@media screen and (max-width: 660px) {
+    .tabs {
+        flex-wrap: wrap;
+        width: 100%;
+        border: 0;
+    }
+
+    .tabs__slot {
+        width: 100%;
+        margin: 0;
+        justify-content: start;
+        padding: var(--gap) 0;
+    }
 }
 .block {
     padding: var(--gap);

@@ -2,6 +2,7 @@
     height: var(--gap);
     text-align: center;
     display: inline-flex;
+    color: var(--color-cool--400);
 }
 
 .loader--small { height: var(--gap--small); }

@@ -2,8 +2,9 @@
     display: inline-flex;
     box-sizing: border-box;
     align-items: center;
-    padding: calc((var(--control-height) - 1em) / 2 - 2px) 1.25em;
+    padding: 0 1.25em;
     height: var(--control-height);
+    line-height: var(--control-height);
     border-radius: 4px;
     box-shadow: 0 -1px 0 0 rgba(0, 0, 0, .3) inset;
     border: 0;
@@ -12,7 +13,6 @@
     color: var(--ui-color);
     font-size: var(--font-size);
     font-family: var(--font-family);
-    line-height: 1;
     font-weight: 500;
     white-space: nowrap;
     letter-spacing: .01em;
@@ -53,6 +53,10 @@
     color: var(--ui-color--cta);
     background: transparent;
     box-shadow: 0 0 0 2px currentColor inset;
+}
+
+.button--secondary.button--small {
+    box-shadow: 0 0 0 1.5px currentColor inset;
 }
 
 .button--secondary:hover {
@@ -96,6 +100,8 @@
 .button--primary.frameless { color: var(--ui-color--primary); }
 .button--secondary.frameless { color: var(--ui-color--secondary); }
 .button--accent.frameless { color: var(--ui-color--accent); }
+.button--inverse.frameless { color: var(--ui-background); }
+.button--muted.frameless { color: var(--ui-color--muted); }
 
 .button--flat,
 .button--flat[disabled] {
@@ -103,15 +109,18 @@
 }
 
 .button--small {
-    font-size: calc(var(--font-size) / 1.25);
+    font-size: var(--font-size--small);
     height: var(--control-height--small);
-    padding: calc(var(--control-height--small) / 2 - var(--font-size--small) / 2 - 2px) .85em;
+    line-height: var(--control-height--small);
+    padding: 0 .85em;
+    border-radius: 2px;
 }
 
 .button--large {
-    font-size: calc(var(--font-size) * 1.5);
+    font-size: var(--font-size--large);
     height: var(--control-height--large);
-    padding: calc(var(--control-height--large) / 2 - var(--font-size--large) / 2 - 2px) 1.25em;
+    line-height: var(--control-height--large);
+    padding: 0 1.25em;
     border-radius: calc(var(--border-radius) * 1.5);
 }
 
@@ -150,4 +159,13 @@
     color: currentColor;
     left: 0;
     margin: 0;
+}
+
+select.button {
+    padding: 0 var(--gap--large) 0 var(--gap--small);
+}
+
+input.button {
+    padding: 0 var(--gap--small);
+    text-align: center;
 }

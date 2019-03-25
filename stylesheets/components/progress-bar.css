@@ -35,5 +35,5 @@
     font-weight: 600;
     padding: 0 var(--gap--small);
     color: var(--color-mono--800);
-    z-index: 2;
+    z-index: 1;
 }

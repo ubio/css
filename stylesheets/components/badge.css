@@ -4,30 +4,26 @@
     grid-auto-flow: column;
     align-items: center;
     justify-content: start;
-    padding: 0 .8em;
-    box-sizing: border-box;
     border-radius: 2px;
-    text-align: center;
+    border: 0;
     white-space: nowrap;
+    text-align: center;
     letter-spacing: .6px;
     font-weight: 500;
+    font-size: var(--font-size--small);
     color: var(--ui-background);
     background-color: var(--ui-color--mono);
-    border: 0;
-    line-height: 2em;
-    font-size: inherit;
+    line-height: calc(1.1 * var(--control-height--small));
+    height: var(--control-height--small);
+    min-width: var(--control-height--small);
+    padding: 0 .5em;
+    text-decoration: none;
     text-transform: uppercase;
-}
-
-.badge--inline {
-    line-height: inherit;
-    text-transform: initial;
-    font-size: .8em;
-    font-weight: 400;
 }
 
 .badge--production { background-color: var(--color-brand-red--500); }
 .badge--staging { background-color: var(--color-yellow--500); }
+.badge--development { background: var(--color-red--700); }
 
 .badge--mono { background-color: var(--ui-color--mono); }
 .badge--cool { background-color: var(--ui-color--cool); }
@@ -39,7 +35,8 @@
 .badge--brand-red { background-color: var(--ui-color--brand-red); }
 .badge--green { background-color: var(--ui-color--green); }
 
-.badge[class*="--light"] {
+.badge[class*="--light"],
+.badge[class*="--light"]:hover {
     color: var(--ui-color--black);
 }
 
@@ -58,10 +55,7 @@
     background: transparent;
 }
 
-.badge--outline {
-    color: var(--ui-color--mono);
-}
-
+.badge--outline { color: var(--ui-color--mono); }
 .badge--mono--outline { color: var(--ui-color--mono); }
 .badge--cool--outline { color: var(--ui-color--cool); }
 .badge--warm--outline { color: var(--ui-color--warm); }
@@ -73,15 +67,26 @@
 .badge--brand-blue--outline { color: var(--ui-color--brand-blue); }
 
 .badge--small {
-    line-height: calc(1.1 * var(--font-size));
-    height: calc(1.1 * var(--font-size));
-    font-size: var(--font-size--small);
+    font-size: 8px;
+    line-height: 14px;
+    height: 14px;
+    min-width: 14px;
+}
+
+.badge--inline {
+    height: auto;
+    line-height: 1.1;
+    padding: 2px 4px;
+    text-transform: initial;
+    font-size: .85em;
+    font-weight: 400;
 }
 
 .badge--large {
-    line-height: calc(2.75 * var(--font-size));
-    height: calc(2.75 * var(--font-size));
-    font-size: var(--font-size--large);
+    line-height: var(--control-height);
+    height: var(--control-height);
+    min-width: var(--control-height);
+    font-size: var(--font-size);
 }
 
 .badge--fixed {
@@ -90,17 +95,9 @@
 }
 
 .badge--round {
-    min-width: 3ch;
-    padding: 0 .5em;
-    border-radius: 5em;
+    border-radius: var(--control-height--small);
     justify-content: center;
 }
 
-.badge--round.badge--small {
-    min-width: 15px;
-    font-size: 10px;
-}
-
-.badge--round.badge--large {
-    min-width: 2.8ch;
-}
+.badge--round.badge--small { border-radius: 14px; }
+.badge--round.badge--large { border-radius: var(--control-height); }

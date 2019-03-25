@@ -13,6 +13,18 @@
             </div>
         </spec>
         <spec
+            name="Sizes"
+            :code="`.input--small, .input--large`"
+            source="input.css">
+            <div
+                style="grid-template-columns: 1fr 1fr 1fr"
+                class="block block--rounded grid grid--gap stretch">
+                <input class="input input--small" type="text" placeholder="I'm small input">
+                <input class="input" type="text" placeholder="I'm default input">
+                <input class="input input--large" type="text" placeholder="I'm large input">
+            </div>
+        </spec>
+        <spec
             name="Text area input"
             :code="`.input.input--area\n.input.input--area.input--area--fixed`"
             source="input.css">

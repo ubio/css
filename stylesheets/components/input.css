@@ -13,12 +13,12 @@
 }
 
 .input--small {
-    font-size: var(--font-size--small);
+    font-size: .95em;
     height: var(--control-height--small);
 }
 
 .input--large {
-    font-size: var(--font-size--large);
+    font-size: 1.2em;
     height: var(--control-height--large);
 }
 

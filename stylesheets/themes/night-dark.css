@@ -35,7 +35,7 @@
     /* Borders */
 
     --border-color: var(--color-cool--600);
-    --border-color--merged: rgba(0, 0, 0, .3);
+    --border-color--merged: var(--color-cool--600);
     --border-color--focus: var(--color-blue--600);
     --border-shadow--focus: var(--color-blue--400);
     --border-color--hover: var(--color-blue--300);

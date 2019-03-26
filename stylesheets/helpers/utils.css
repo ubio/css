@@ -15,6 +15,23 @@
     white-space: nowrap;
     overflow: hidden;
     max-width: 100%;
+    display: inline-block;
+}
+
+.text--break {
+    word-break: break-all;
+}
+
+.text--small {
+    font-size: var(--font-size--small);
+}
+
+.text--large {
+    font-size: var(--font-size--large);
+}
+
+.nowrap {
+    white-space: nowrap;
 }
 
 .code {
@@ -87,10 +104,30 @@
 .shift--small { margin-left: var(--control-height--small); }
 .shift--large { margin-left: var(--control-height--large); }
 
-/* BLOCKS */
-
 .stretch {
     width: 100%;
     justify-items: stretch;
 }
 
+
+/* VISIBILITY */
+.hidden {
+    display: none;
+}
+
+
+/* RESPONSIVENESS */
+
+.mobile-only {
+    display: none;
+}
+
+@media screen and (max-width: 660px) {
+    .desktop-only {
+        display: none;
+    }
+
+    .mobile-only {
+        display: block;
+    }
+}

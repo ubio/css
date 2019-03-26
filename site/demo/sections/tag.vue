@@ -27,7 +27,7 @@
                 :code="`.tag.tag--[name]`"
                 source="tag.css">
                 <div
-                    class="block block--rounded grid grid--gap--small"
+                    class="grid grid--gap"
                     style="grid-template-columns: repeat(9, 1fr)">
                     <span
                         v-for="color of $root.colors"

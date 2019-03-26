@@ -14,7 +14,7 @@
     --font-size--small: .8em;
     --font-size--large: 1.5em;
     --control-height: 2.3335em;
-    --control-height--small: 1.875em;
+    --control-height--small: 18px;
     --control-height--large: 2.66675em;
 
     /* UI Colours: black on white */
@@ -63,7 +63,7 @@
     /* Borders */
 
     --border-color: var(--color-cool--400);
-    --border-color--merged: rgba(0, 0, 0, .3);
+    --border-color--merged: var(--color-cool--400);
     --border-color--focus: var(--color-blue--600);
     --border-shadow--focus: var(--color-blue--300);
     --border-color--hover: var(--color-blue--500);

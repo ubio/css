@@ -162,13 +162,22 @@
             name="Button merged with input"
             :code="`.group.group--merged`"
             source="input.css, button.css">
-            <div class="grid">
+            <div class="group group--gap--large">
                 <div class="group group--merged">
                     <input
                         type="text"
                         class="input"
                         placeholder="key for user@ub.io" />
                     <button class="button button--primary">
+                        Search
+                    </button>
+                </div>
+                <div class="group group--merged group--merged--border">
+                    <input
+                        type="text"
+                        class="input"
+                        placeholder="key for user@ub.io" />
+                    <button class="button">
                         Search
                     </button>
                 </div>

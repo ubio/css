@@ -7,7 +7,6 @@
     color: var(--ui-color--black);
     border-radius: 1px;
     font-weight: 500;
-    margin-right: 4px;
 }
 
 .tag__remover {
@@ -20,6 +19,8 @@
 .tag__label {
     background-color: var(--color-mono--200);
     padding: 0 var(--gap--small);
+    color: inherit;
+    width: 100%;
 }
 
 .tag--mono > * { background-color: var(--color-mono--400); }

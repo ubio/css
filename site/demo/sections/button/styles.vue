@@ -6,6 +6,7 @@
         <styles-primary-secondary-custom />
         <styles-icon-within />
         <styles-icon-only />
+        <styles-select />
     </article>
 </template>
 
@@ -18,7 +19,8 @@ module.exports = {
         'styles-primary-secondary-custom': require('./styles-primary-secondary-custom.vue'),
         'styles-accent': require('./styles-accent.vue'),
         'styles-icon-within': require('./styles-icon-within.vue'),
-        'styles-icon-only': require('./styles-icon-only.vue')
+        'styles-icon-only': require('./styles-icon-only.vue'),
+        'styles-select': require('./styles-select.vue')
     }
 };
 </script>

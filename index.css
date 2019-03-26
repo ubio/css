@@ -113,7 +113,7 @@
     --font-size--small: .8em;
     --font-size--large: 1.5em;
     --control-height: 2.3335em;
-    --control-height--small: 1.875em;
+    --control-height--small: 18px;
     --control-height--large: 2.66675em;
 
     /* UI Colours: black on white */
@@ -438,6 +438,7 @@ select {
     white-space: nowrap;
     font-family: var(--font-family);
     font-size: 1em;
+    line-height: initial;
 }
 select:hover {
     cursor: pointer;
@@ -527,7 +528,7 @@ input[type="number"] {
 input[type="radio"],
 input[type="checkbox"] {
     height: auto;
-    margin: var(--gap--small);
+    margin: 0 var(--gap--small) 0 0;
 }
 input[readonly],
 textarea[readonly] {
@@ -789,8 +790,17 @@ menu li {
     left: 0;
     margin: 0;
 }
+.button select {
+    line-height: initial;
+    margin: 0 calc(-1 * 1.25em);
+    padding: 0 2em 0 var(--gap--small);
+}
+.button--small select {
+    margin: 0 calc(-1 * .85em);
+}
 select.button {
-    padding: 0 var(--gap--large) 0 var(--gap--small);
+    padding: 0 2em 0 var(--gap--small);
+    letter-spacing: 0;
 }
 input.button {
     padding: 0 var(--gap--small);
@@ -827,8 +837,7 @@ input.button {
     height: var(--control-height--small);
 }
 .input--large {
-    font-size: 1.2em;
-    height: var(--control-height--large);
+    font-size: var(--font-size--large);
 }
 .input:hover {
     border-color: var(--border-color--hover);
@@ -863,6 +872,9 @@ input.button {
 .input input::placeholder,
 .input textarea::placeholder {
     color: var(--ui-color--muted);
+}
+.input select {
+    line-height: initial;
 }
 .input--area {
     height: auto;
@@ -1352,7 +1364,7 @@ input.button {
 .tabs__item {
     position: relative;
     top: var(--tab-slider-size);
-    padding: var(--gap);
+    padding: var(--gap) var(--gap--large) var(--gap) var(--gap);
     border-bottom: var(--tab-slider-size) solid var(--tab-slider-color);
     color: inherit;
     font-size: 13px;
@@ -1582,16 +1594,6 @@ input.button {
 .stretch {
     width: 100%;
     justify-items: stretch;
-}
-/* POSITIONING */
-.sticky {
-    position: sticky;
-    z-index: 2;
-    top: 0;
-}
-.sticky--bottom {
-    top: auto;
-    bottom: 0;
 }
 /* VISIBILITY */
 .hidden {

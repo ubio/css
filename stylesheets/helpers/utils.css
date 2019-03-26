@@ -108,19 +108,6 @@
     justify-items: stretch;
 }
 
-/* POSITIONING */
-
-.sticky {
-    position: sticky;
-    z-index: 2;
-    top: 0;
-}
-
-.sticky--bottom {
-    top: auto;
-    bottom: 0;
-}
-
 
 /* VISIBILITY */
 .hidden {

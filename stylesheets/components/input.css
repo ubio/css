@@ -17,8 +17,7 @@
 }
 
 .input--large {
-    font-size: 1.2em;
-    height: var(--control-height--large);
+    font-size: var(--font-size--large);
 }
 
 .input:hover {
@@ -61,6 +60,10 @@
 .input input::placeholder,
 .input textarea::placeholder {
     color: var(--ui-color--muted);
+}
+
+.input select {
+    line-height: initial;
 }
 
 .input--area {

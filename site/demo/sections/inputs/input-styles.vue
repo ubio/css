@@ -74,60 +74,54 @@
 
         <spec
             name="Input-styled dropdowns"
-            :code="`big.input select
-    span.input select
-    small.input select`"
+            :code="`select.input.input--large
+    select.input
+    select.input.input--small`"
             source="input.css">
             <div
                 style="grid-template-columns: 1fr 1fr 1fr"
                 class="grid grid--gap--large">
-                <big class="input">
-                    <select>
-                        <option :value="undefined">Please select an option</option>
+                <select class="input input--large">
+                    <option :value="undefined">Please select an option</option>
+                    <option value="1">Bourbon</option>
+                    <option value="2">Custard cream</option>
+                    <option value="3">Digestive</option>
+                </select>
+
+                <select class="input">
+                    <option :value="undefined">Please select an option</option>
+                    <optgroup label="Set 1">
                         <option value="1">Bourbon</option>
                         <option value="2">Custard cream</option>
                         <option value="3">Digestive</option>
-                    </select>
-                </big>
+                    </optgroup>
+                    <optgroup label="Set 2">
+                        <option value="4">Chocolate hobnob</option>
+                        <option value="5">Garibaldi</option>
+                        <option value="6">Brandy snap</option>
+                    </optgroup>
+                </select>
 
-                <span class="input">
-                    <select>
-                        <option :value="undefined">Please select an option</option>
-                        <optgroup label="Set 1">
-                            <option value="1">Bourbon</option>
-                            <option value="2">Custard cream</option>
-                            <option value="3">Digestive</option>
-                        </optgroup>
-                        <optgroup label="Set 2">
-                            <option value="4">Chocolate hobnob</option>
-                            <option value="5">Garibaldi</option>
-                            <option value="6">Brandy snap</option>
-                        </optgroup>
-                    </select>
-                </span>
-
-                <small class="input">
-                    <select>
-                        <option :value="undefined">Please select an option</option>
-                        <option value="1">Bourbon</option>
-                        <option value="2">Custard cream</option>
-                        <option value="3">Digestive</option>
-                    </select>
-                </small>
+                <select class="input input--small">
+                    <option :value="undefined">Please select an option</option>
+                    <option value="1">Bourbon</option>
+                    <option value="2">Custard cream</option>
+                    <option value="3">Digestive</option>
+                </select>
             </div>
         </spec>
 
         <spec
             name="Button-styled dropdowns"
-            :code="`.button.button--large select
-    .button select
-    .button.button--small select`"
+            :code="`select.button.button--large
+    select.button
+    select.button.button--small`"
             source="button.css">
             <div
                 style="grid-template-columns: 1fr 1fr 1fr"
                 class="grid grid--gap--large">
-                <span class="button button--large">
-                    <select>
+                <span>
+                    <select class="button button--large">
                         <option :value="undefined">Please select an option</option>
                         <option value="1">Bourbon</option>
                         <option value="2">Custard cream</option>
@@ -135,8 +129,8 @@
                     </select>
                 </span>
 
-                <span class="button">
-                    <select>
+                <span>
+                    <select class="button">
                         <option :value="undefined">Please select an option</option>
                         <optgroup label="Set 1">
                             <option value="1">Bourbon</option>
@@ -151,8 +145,8 @@
                     </select>
                 </span>
 
-                <span class="button button--small">
-                    <select>
+                <span>
+                    <select class="button button--small">
                         <option :value="undefined">Please select an option</option>
                         <option value="1">Bourbon</option>
                         <option value="2">Custard cream</option>

@@ -150,8 +150,19 @@
     margin: 0;
 }
 
+.button select {
+    line-height: initial;
+    margin: 0 calc(-1 * 1.25em);
+    padding: 0 2em 0 var(--gap--small);
+}
+
+.button--small select {
+    margin: 0 calc(-1 * .85em);
+}
+
 select.button {
-    padding: 0 var(--gap--large) 0 var(--gap--small);
+    padding: 0 2em 0 var(--gap--small);
+    letter-spacing: 0;
 }
 
 input.button {

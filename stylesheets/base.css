@@ -114,6 +114,7 @@ select {
     white-space: nowrap;
     font-family: var(--font-family);
     font-size: 1em;
+    line-height: initial;
 }
 
 select:hover {
@@ -218,7 +219,7 @@ input[type="number"] {
 input[type="radio"],
 input[type="checkbox"] {
     height: auto;
-    margin: var(--gap--small);
+    margin: 0 var(--gap--small) 0 0;
 }
 
 input[readonly],

@@ -1604,19 +1604,6 @@ input.button {
 .hidden {
     display: none;
 }
-/* RESPONSIVENESS */
-.mobile-only {
-    display: none;
-}
-@media screen and (max-width: 660px) {
-    .desktop-only {
-        display: none;
-    }
-
-    .mobile-only {
-        display: block;
-    }
-}
 /* semantic foreground colours */
 .color--default { color: var(--ui-color); }
 .color--inverse { color: var(--ui-color--inverse); }

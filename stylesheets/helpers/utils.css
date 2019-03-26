@@ -114,20 +114,3 @@
 .hidden {
     display: none;
 }
-
-
-/* RESPONSIVENESS */
-
-.mobile-only {
-    display: none;
-}
-
-@media screen and (max-width: 660px) {
-    .desktop-only {
-        display: none;
-    }
-
-    .mobile-only {
-        display: block;
-    }
-}

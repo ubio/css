@@ -1417,6 +1417,10 @@ input.button {
         border: 0;
     }
 
+    .tabs__item {
+        padding: var(--gap);
+    }
+
     .tabs__slot {
         width: 100%;
         margin: 0;
@@ -1521,6 +1525,7 @@ input.button {
     white-space: nowrap;
     overflow: hidden;
     max-width: 100%;
+    display: inline-block;
 }
 .text--break {
     word-break: break-all;

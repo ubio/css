@@ -6,7 +6,7 @@
             :code="`.tabs .tabs__item[.tabs__item--active]`"
             source="tabs.css">
             <div>
-                <menu class="tabs">
+                <menu class="tabs group group--gap">
                     <span v-for="tab in tabs"
                         :key="tab"
                         class="tabs__item"
@@ -28,7 +28,7 @@
             :code="`.tabs .tabs__item[.tabs__item--active]`"
             source="tabs.css">
             <div>
-                <menu class="tabs">
+                <menu class="tabs group group--gap">
                     <span v-for="tab in tabs"
                         :key="tab"
                         class="tabs__item"

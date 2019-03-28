@@ -1177,11 +1177,16 @@ input.button {
 }
 .group > * {
     margin: 0;
-    flex-shrink: 0;
 }
 .group--gap > * + * { margin-left: var(--gap); }
 .group--gap--small > * + * { margin-left: var(--gap--small); }
 .group--gap--large > * + * { margin-left: var(--gap--large); }
+.group--no-shrink {
+    flex-shrink: 0;
+}
+.group-wrap {
+    flex-wrap: wrap;
+}
 .group--block {
     display: flex;
 }
@@ -1359,7 +1364,7 @@ input.button {
 .tabs__item {
     position: relative;
     top: var(--tab-slider-size);
-    padding: var(--gap) var(--gap--large) var(--gap) var(--gap);
+    padding: var(--gap);
     border-bottom: var(--tab-slider-size) solid var(--tab-slider-color);
     color: inherit;
     font-size: 13px;

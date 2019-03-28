@@ -9,7 +9,7 @@
 .tabs__item {
     position: relative;
     top: var(--tab-slider-size);
-    padding: var(--gap) var(--gap--large) var(--gap) var(--gap);
+    padding: var(--gap);
     border-bottom: var(--tab-slider-size) solid var(--tab-slider-color);
     color: inherit;
     font-size: 13px;

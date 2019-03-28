@@ -62,22 +62,3 @@
     grid-gap: var(--gap);
     align-items: center;
 }
-
-@media screen and (max-width: 660px) {
-    .tabs {
-        flex-wrap: wrap;
-        width: 100%;
-        border: 0;
-    }
-
-    .tabs__item {
-        padding: var(--gap);
-    }
-
-    .tabs__slot {
-        width: 100%;
-        margin: 0;
-        justify-content: start;
-        padding: var(--gap) 0;
-    }
-}

@@ -1183,6 +1183,7 @@ input.button {
 }
 .group > * {
     margin: 0;
+    flex-shrink: 0;
 }
 .group--gap > * + * { margin-left: var(--gap); }
 .group--gap--small > * + * { margin-left: var(--gap--small); }

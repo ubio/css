@@ -624,12 +624,6 @@ h6 {
     font-weight: 600;
     margin: 0 0 1rem;
 }
-small {
-    font-size: var(--font-size--small);
-}
-big {
-    font-size: var(--font-size--large);
-}
 sub {
     font-size: 70%;
 }
@@ -1187,6 +1181,12 @@ input.button {
 .group--gap > * + * { margin-left: var(--gap); }
 .group--gap--small > * + * { margin-left: var(--gap--small); }
 .group--gap--large > * + * { margin-left: var(--gap--large); }
+.group--no-shrink {
+    flex-shrink: 0;
+}
+.group-wrap {
+    flex-wrap: wrap;
+}
 .group--block {
     display: flex;
 }
@@ -1364,7 +1364,7 @@ input.button {
 .tabs__item {
     position: relative;
     top: var(--tab-slider-size);
-    padding: var(--gap) var(--gap--large) var(--gap) var(--gap);
+    padding: var(--gap);
     border-bottom: var(--tab-slider-size) solid var(--tab-slider-color);
     color: inherit;
     font-size: 13px;
@@ -1409,24 +1409,6 @@ input.button {
     grid-auto-flow: column;
     grid-gap: var(--gap);
     align-items: center;
-}
-@media screen and (max-width: 660px) {
-    .tabs {
-        flex-wrap: wrap;
-        width: 100%;
-        border: 0;
-    }
-
-    .tabs__item {
-        padding: var(--gap);
-    }
-
-    .tabs__slot {
-        width: 100%;
-        margin: 0;
-        justify-content: start;
-        padding: var(--gap) 0;
-    }
 }
 .block {
     padding: var(--gap);

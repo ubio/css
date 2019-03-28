@@ -335,14 +335,6 @@ h6 {
     margin: 0 0 1rem;
 }
 
-small {
-    font-size: var(--font-size--small);
-}
-
-big {
-    font-size: var(--font-size--large);
-}
-
 sub {
     font-size: 70%;
 }

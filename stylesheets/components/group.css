@@ -12,7 +12,7 @@
 .group--gap--small > * + * { margin-left: var(--gap--small); }
 .group--gap--large > * + * { margin-left: var(--gap--large); }
 
-.group--no-shrink {
+.group--no-shrink > * {
     flex-shrink: 0;
 }
 

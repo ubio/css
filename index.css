@@ -705,10 +705,14 @@ menu li {
     color: var(--ui-color--cta);
     background: transparent;
     border: 2px solid currentColor;
-    line-height: 1;
+    line-height: calc(var(--control-height) - 4px);
 }
 .button--secondary.button--small {
     border-width: 1px;
+    line-height: calc(var(--control-height--small) - 2px);
+}
+.button--secondary.button--large {
+    line-height: calc(var(--control-height--large) - 4px);
 }
 .button--secondary:hover {
     background: transparent;
@@ -779,6 +783,7 @@ menu li {
     flex-shrink: 0;
     line-height: inherit;
     vertical-align: baseline;
+    align-self: center;
 }
 .button--icon svg,
 .button--icon .button__icon {

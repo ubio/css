@@ -19,8 +19,12 @@
                 </a>
                 <a class="button button--small">
                     <i class="button__icon fas fa-bullseye"></i>
-                    Small
+                    Small link
                 </a>
+                <button class="button--small">
+                    <i class="button__icon fas fa-bullseye"></i>
+                    Small button
+                </button>
             </div>
             <div
                 class="grid grid--gap"
@@ -35,8 +39,12 @@
                 </a>
                 <a class="button button--primary button--small">
                     <spinner class="button__icon" />
-                    Small
+                    Small link
                 </a>
+                <button class="button--primary button--small">
+                    <spinner class="button__icon" />
+                    Small button
+                </button>
             </div>
             <div
                 class="grid grid--gap"
@@ -51,8 +59,12 @@
                 </a>
                 <a class="button button--secondary button--small">
                     <i class="button__icon fas fa-bullseye"></i>
-                    Small
+                    Small link
                 </a>
+                <button class="button--secondary button--small">
+                    <spinner class="button__icon" />
+                    Small button
+                </button>
             </div>
         </div>
     </spec>

@@ -31,7 +31,6 @@
 
 .button:focus,
 .button:active {
-    border-color: var(--border-color--focus);
     box-shadow: 0 0 0 2px var(--border-shadow--focus);
     outline: none;
 }
@@ -51,11 +50,17 @@
 .button--secondary:visited {
     color: var(--ui-color--cta);
     background: transparent;
-    box-shadow: 0 0 0 2px currentColor inset;
+    border: 2px solid currentColor;
+    line-height: calc(var(--control-height) - 4px);
 }
 
 .button--secondary.button--small {
-    box-shadow: 0 0 0 1.5px currentColor inset;
+    border-width: 1px;
+    line-height: calc(var(--control-height--small) - 2px);
+}
+
+.button--secondary.button--large {
+    line-height: calc(var(--control-height--large) - 4px);
 }
 
 .button--secondary:hover {
@@ -139,6 +144,7 @@
     flex-shrink: 0;
     line-height: inherit;
     vertical-align: baseline;
+    align-self: center;
 }
 
 .button--icon svg,

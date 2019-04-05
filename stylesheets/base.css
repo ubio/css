@@ -240,9 +240,14 @@ textarea:focus,
 select:focus,
 a:focus,
 a:active {
-    border-color: var(--border-color--focus);
     box-shadow: 0 0 0 2px var(--border-shadow--focus);
     outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--border-color--focus);
 }
 
 p {

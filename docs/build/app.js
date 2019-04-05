@@ -9845,7 +9845,7 @@ exports.insert = function (css) {
 },{}],11:[function(require,module,exports){
 module.exports={
   "name": "@ubio/css",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "UBIO CSS framework foundation",
   "main": "index.css",
   "repository": "git@github.com:universalbasket/css",

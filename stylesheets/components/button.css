@@ -31,7 +31,6 @@
 
 .button:focus,
 .button:active {
-    border-color: var(--border-color--focus);
     box-shadow: 0 0 0 2px var(--border-shadow--focus);
     outline: none;
 }
@@ -51,11 +50,12 @@
 .button--secondary:visited {
     color: var(--ui-color--cta);
     background: transparent;
-    box-shadow: 0 0 0 2px currentColor inset;
+    border: 2px solid currentColor;
+    line-height: 1;
 }
 
 .button--secondary.button--small {
-    box-shadow: 0 0 0 1.5px currentColor inset;
+    border-width: 1px;
 }
 
 .button--secondary:hover {

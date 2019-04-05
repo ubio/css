@@ -546,9 +546,13 @@ textarea:focus,
 select:focus,
 a:focus,
 a:active {
-    border-color: var(--border-color--focus);
     box-shadow: 0 0 0 2px var(--border-shadow--focus);
     outline: none;
+}
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--border-color--focus);
 }
 p {
     line-height: 1.5;
@@ -684,7 +688,6 @@ menu li {
 }
 .button:focus,
 .button:active {
-    border-color: var(--border-color--focus);
     box-shadow: 0 0 0 2px var(--border-shadow--focus);
     outline: none;
 }
@@ -701,10 +704,11 @@ menu li {
 .button--secondary:visited {
     color: var(--ui-color--cta);
     background: transparent;
-    box-shadow: 0 0 0 2px currentColor inset;
+    border: 2px solid currentColor;
+    line-height: 1;
 }
 .button--secondary.button--small {
-    box-shadow: 0 0 0 1.5px currentColor inset;
+    border-width: 1px;
 }
 .button--secondary:hover {
     background: transparent;

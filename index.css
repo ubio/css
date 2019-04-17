@@ -180,64 +180,66 @@
     /* Frameless */
     --button-background--frameless: var(--ui-color--cool--pale);
 }
-.theme--night-dark {
-    --ui-background: var(--color-cool--800);
-    --ui-color--default: rgba(0, 0, 0, .5);
-    --ui-color--default--hover: black;
-    --ui-color: white;
-    --ui-color--inverse: var(--ui-color--black);
-    --ui-color--primary: var(--color-blue--400);
-    --ui-color--secondary: var(--color-cool--400);
-    --ui-color--muted: var(--color-cool--500);
-    --ui-color--mono: var(--color-mono--400);
-    --ui-color--cool: var(--color-cool--400);
-    --ui-color--warm: var(--color-warm--400);
-    --ui-color--blue: var(--color-blue--400);
-    --ui-color--yellow: var(--color-yellow--400);
-    --ui-color--green: var(--color-green--400);
-    --ui-color--red: var(--color-red--400);
-    --ui-color--brand-red: var(--color-brand-red--400);
-    --ui-color--brand-blue: var(--color-brand-blue--400);
-    --ui-color--mono--pale: var(--color-mono--700);
-    --ui-color--cool--pale: var(--color-cool--700);
-    --ui-color--warm--pale: var(--color-warm--700);
-    --ui-color--blue--pale: var(--color-blue--700);
-    --ui-color--yellow--pale: var(--color-yellow--700);
-    --ui-color--green--pale: var(--color-green--700);
-    --ui-color--red--pale: var(--color-red--700);
-    --ui-color--brand-red--pale: var(--color-brand-red--700);
-    --ui-color--brand-blue--pale: var(--color-brand-blue--700);
+@media not print {
+    .theme--night-dark {
+        --ui-background: var(--color-cool--800);
+        --ui-color--default: rgba(0, 0, 0, .5);
+        --ui-color--default--hover: black;
+        --ui-color: white;
+        --ui-color--inverse: var(--ui-color--black);
+        --ui-color--primary: var(--color-blue--400);
+        --ui-color--secondary: var(--color-cool--400);
+        --ui-color--muted: var(--color-cool--500);
+        --ui-color--mono: var(--color-mono--400);
+        --ui-color--cool: var(--color-cool--400);
+        --ui-color--warm: var(--color-warm--400);
+        --ui-color--blue: var(--color-blue--400);
+        --ui-color--yellow: var(--color-yellow--400);
+        --ui-color--green: var(--color-green--400);
+        --ui-color--red: var(--color-red--400);
+        --ui-color--brand-red: var(--color-brand-red--400);
+        --ui-color--brand-blue: var(--color-brand-blue--400);
+        --ui-color--mono--pale: var(--color-mono--700);
+        --ui-color--cool--pale: var(--color-cool--700);
+        --ui-color--warm--pale: var(--color-warm--700);
+        --ui-color--blue--pale: var(--color-blue--700);
+        --ui-color--yellow--pale: var(--color-yellow--700);
+        --ui-color--green--pale: var(--color-green--700);
+        --ui-color--red--pale: var(--color-red--700);
+        --ui-color--brand-red--pale: var(--color-brand-red--700);
+        --ui-color--brand-blue--pale: var(--color-brand-blue--700);
 
-    /* Tabs */
+        /* Tabs */
 
-    /* --tab-slider-size: 2px; */
-    --tab-slider-color: var(--color-cool--900);
-    --tab-slider-color--active: var(--ui-color--blue);
+        /* --tab-slider-size: 2px; */
+        --tab-slider-color: var(--color-cool--900);
+        --tab-slider-color--active: var(--ui-color--blue);
 
-    /* Borders */
+        /* Borders */
 
-    --border-color: var(--color-cool--600);
-    --border-color--merged: var(--color-cool--600);
-    --border-color--focus: var(--color-blue--600);
-    --border-shadow--focus: var(--color-blue--400);
-    --border-color--hover: var(--color-blue--300);
+        --border-color: var(--color-cool--600);
+        --border-color--merged: var(--color-cool--600);
+        --border-color--focus: var(--color-blue--600);
+        --border-shadow--focus: var(--color-blue--400);
+        --border-color--hover: var(--color-blue--300);
 
-    /* --border-radius: 4px; */
+        /* --border-radius: 4px; */
 
 
-    /* Inputs */
+        /* Inputs */
 
-    --input-background: var(--ui-background);
-    --input-background--readonly: var(--color-cool--700);
-    --input-background--disabled: var(--color-mono--700);
-    --input-color: var(--ui-color--white);
-    --input-color--placeholder: var(--ui-color--muted);
+        --input-background: var(--ui-background);
+        --input-background--readonly: var(--color-cool--700);
+        --input-background--disabled: var(--color-mono--700);
+        --input-color: var(--ui-color--white);
+        --input-color--placeholder: var(--ui-color--muted);
 
-    /* Frameless */
-    --button-background--frameless: var(--ui-color--cool--pale);
+        /* Frameless */
+        --button-background--frameless: var(--ui-color--cool--pale);
 
-    background: var(--ui-background);
-    color: var(--ui-color);
+        background: var(--ui-background);
+        color: var(--ui-color);
+    }
 }
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126

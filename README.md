@@ -104,8 +104,6 @@ In order to amend typography for a specific project, it's recommended to create 
 
 ## About the project
 
-In case of conflicts in docs/build/app.js, there is no need to resolve the conflicts in build files, just overwrite them
-
 ```
 npm run build
 ```

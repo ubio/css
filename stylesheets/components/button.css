@@ -120,7 +120,7 @@
 
 .button--icon {
     padding: 0;
-    width: calc(var(--control-height) * 1.2);
+    width: calc(var(--control-height) * 1.1);
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
@@ -160,6 +160,7 @@
     line-height: 1;
     margin: 0 calc(-1 * .95em);
     padding: 0 2.5em 0 var(--gap);
+    height: 100%;
 }
 
 .button--small select {

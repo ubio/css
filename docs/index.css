@@ -845,7 +845,7 @@ input.button {
     display: inline-flex;
     width: var(--control-height);
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
 }
 .icon--small {
     width: var(--control-height--small);

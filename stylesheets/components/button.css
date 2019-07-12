@@ -179,5 +179,6 @@ select.button {
 
 input.button {
     padding: 0 .5em;
-    text-align: center;
+    text-align: left;
+    width: auto;
 }

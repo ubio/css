@@ -12,7 +12,7 @@
 }
 
 .input--small {
-    font-size: .95em;
+    font-size: var(--font-size--small);
     height: var(--control-height--small);
     border-radius: 2px;
 }
@@ -93,4 +93,13 @@
     opacity: .5;
     cursor: not-allowed;
     pointer-events: none;
+}
+
+select.input {
+    padding: 0 2.5em 0 .5em;
+    letter-spacing: 0;
+}
+
+input.input {
+    padding: 0 .5em;
 }

@@ -21,7 +21,7 @@
     "build:files": "postcss stylesheets/index.css -o index.css && cp index.css docs",
     "build:demo:css": "postcss src/demo/index.css -o docs/demo.css",
     "build:demo:js": "rollup -c && node build-html.js",
-    "watch": "npm run watch:files && run-p watch:demo:*",
+    "watch": "concurrently 'npm run watch:files' 'run-p watch:demo:*'",
     "watch:files": "chokidar 'stylesheets/**/*.css' -c 'npm run build:files'",
     "watch:demo:css": "chokidar 'src/demo/index.css' -c 'npm run build:demo:css'",
     "watch:demo:js": "rollup -c -w",

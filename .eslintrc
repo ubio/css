@@ -15,10 +15,10 @@
     },
     "parserOptions": {
         "ecmaVersion": 8,
-        "sourceType": "script"
+        "sourceType": "module"
     },
     "rules": {
-        "no-console": 2,
+        "no-console": 0,
         "no-use-before-define": 0,
         "prefer-arrow-callback": 0,
         "max-nested-callbacks": 0,

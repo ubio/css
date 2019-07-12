@@ -8,6 +8,6 @@
     "comment-empty-line-before": null,
     "rule-empty-line-before": null,
     "at-rule-empty-line-before": null,
-    "no-duplicate-selectors": [true, { "except": ":root" } ]
+    "no-duplicate-selectors": true
   }
 }

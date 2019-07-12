@@ -28,7 +28,7 @@
     "lint": "run-p lint:* && git add -A",
     "lint:js": "eslint --ext=js,vue . --fix",
     "lint:css": "stylelint stylesheets/* --fix",
-    "preversion": "run-p lint:*",
+    "preversion": "run-p lint:* && npm run build  && git add -A",
     "version": "run-p build",
     "postversion": "npm publish && git push origin master --tags"
   },

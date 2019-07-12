@@ -16,6 +16,10 @@
     font-weight: 300;
     text-decoration: none;
     cursor: pointer;
+    min-width: 4ch;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .tabs__item:hover {

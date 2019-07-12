@@ -7499,7 +7499,7 @@
   }
 
   var name = "@ubio/css";
-  var version = "2.0.9";
+  var version = "2.0.11";
   var description = "UBIO CSS framework foundation";
   var main = "index.css";
   var repository = "git@github.com:universalbasket/css";
@@ -7519,11 +7519,11 @@
   	"watch:files": "chokidar 'stylesheets/**/*.css' -c 'npm run build:files'",
   	"watch:demo:css": "chokidar 'src/demo/index.css' -c 'npm run build:demo:css'",
   	"watch:demo:js": "rollup -c -w",
-  	lint: "run-p lint:* && git add -A",
+  	lint: "run-p lint:*",
   	"lint:js": "eslint --ext=js,vue . --fix",
   	"lint:css": "stylelint stylesheets/* --fix",
-  	preversion: "run-p lint:* && npm run build  && git add -A",
-  	version: "run-p build",
+  	preversion: "npm run lint",
+  	version: "run-p build && git add -A",
   	postversion: "npm publish && git push origin master --tags"
   };
   var devDependencies = {
@@ -7563,8 +7563,7 @@
   	license: license,
   	"private": false,
   	"pre-commit": [
-  	"lint:js",
-  	"lint:css"
+  	"lint"
   ],
   	files: files,
   	scripts: scripts,

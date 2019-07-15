@@ -2,7 +2,6 @@ import vue from 'rollup-plugin-vue';
 import resolve from 'rollup-plugin-node-resolve';
 import replace from 'rollup-plugin-replace';
 import commonJS from 'rollup-plugin-commonjs'
-import buble from 'rollup-plugin-buble';
 import json from 'rollup-plugin-json';
 
 const extensions = ['.js', '.vue', '.json'];
@@ -25,16 +24,15 @@ const plugins = [
             }
         },
         css: false
-    }),
-    buble()
+    })
 ];
 
 export default {
     plugins,
     input: './src/index.js',
     output: {
-        file: 'docs/build/app.js',
-        format: 'umd'
+        file: 'docs/index.js',
+        format: 'esm'
     },
     watch: {
         include: 'src/**'

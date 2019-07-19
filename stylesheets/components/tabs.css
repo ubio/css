@@ -2,7 +2,7 @@
     display: flex;
     align-items: baseline;
     list-style: none;
-    border-bottom: var(--tab-slider-size) solid var(--tab-slider-color);
+    box-shadow: 0 var(--tab-slider-size) var(--tab-slider-color);
     margin: 0;
 }
 
@@ -10,7 +10,6 @@
     position: relative;
     top: var(--tab-slider-size);
     padding: var(--gap);
-    border-bottom: var(--tab-slider-size) solid var(--tab-slider-color);
     color: inherit;
     font-size: 13px;
     font-weight: 300;
@@ -35,7 +34,7 @@
     content: '';
     position: absolute;
     display: block;
-    bottom: calc(-1 * var(--tab-slider-size));
+    bottom: 0;
     left: 0;
     height: var(--tab-slider-size);
     width: 0%;

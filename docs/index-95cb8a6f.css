@@ -1,8 +1,30 @@
 @import "https://fonts.googleapis.com/css?family=Libre+Franklin:100,200,300,400,500,600,700";
 :root {
+
     /* Typography */
 
     --font-family: 'Libre Franklin', Helvetica, Arial, sans-serif;
+    --font-family--mono: Menlo, Consolas, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace;
+
+
+    /* Gaps */
+
+    --gap--small: 5px;
+    --gap: 10px;
+    --gap--large: 20px;
+
+
+    /* Base components */
+
+    --font-size: 12px;
+    --font-size--small: .8em;
+    --font-size--large: 1.5em;
+    --control-height: 2em;
+    --control-height--small: 18px;
+    --control-height--large: 2.5em;
+    --tab-slider-size: 2px;
+    --border-radius: 4px;
+
 
     /* Color Palette */
 
@@ -97,24 +119,7 @@
     --color-brand-blue--800: #004e57;
     --color-brand-blue--900: #003238;
 }
-:root { /* stylelint-disable-line */
-    --font-family--mono: Menlo, Consolas, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace;
-
-    /* Gaps */
-
-    --gap--small: 5px;
-    --gap: 10px;
-    --gap--large: 20px;
-
-
-    /* Base components */
-
-    --font-size: 12px;
-    --font-size--small: .8em;
-    --font-size--large: 1.5em;
-    --control-height: 2em;
-    --control-height--small: 18px;
-    --control-height--large: 2.5em;
+body { /* stylelint-disable-line */
 
     /* UI Colours: black on white */
 
@@ -154,7 +159,6 @@
 
     /* Tabs */
 
-    --tab-slider-size: 2px;
     --tab-slider-color: var(--color-warm--200);
     --tab-slider-color--active: var(--color-blue--500);
 
@@ -166,7 +170,6 @@
     --border-color--focus: var(--color-blue--600);
     --border-shadow--focus: var(--color-blue--300);
     --border-color--hover: var(--color-blue--500);
-    --border-radius: 4px;
 
 
     /* Inputs */
@@ -1461,14 +1464,13 @@ input.input {
     display: flex;
     align-items: baseline;
     list-style: none;
-    border-bottom: var(--tab-slider-size) solid var(--tab-slider-color);
+    box-shadow: 0 var(--tab-slider-size) var(--tab-slider-color);
     margin: 0;
 }
 .tabs__item {
     position: relative;
     top: var(--tab-slider-size);
     padding: var(--gap);
-    border-bottom: var(--tab-slider-size) solid var(--tab-slider-color);
     color: inherit;
     font-size: 13px;
     font-weight: 300;
@@ -1490,7 +1492,7 @@ input.input {
     content: '';
     position: absolute;
     display: block;
-    bottom: calc(-1 * var(--tab-slider-size));
+    bottom: 0;
     left: 0;
     height: var(--tab-slider-size);
     width: 0%;

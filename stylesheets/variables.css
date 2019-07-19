@@ -1,7 +1,29 @@
 :root {
+
     /* Typography */
 
     --font-family: 'Libre Franklin', Helvetica, Arial, sans-serif;
+    --font-family--mono: Menlo, Consolas, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace;
+
+
+    /* Gaps */
+
+    --gap--small: 5px;
+    --gap: 10px;
+    --gap--large: 20px;
+
+
+    /* Base components */
+
+    --font-size: 12px;
+    --font-size--small: .8em;
+    --font-size--large: 1.5em;
+    --control-height: 2em;
+    --control-height--small: 18px;
+    --control-height--large: 2.5em;
+    --tab-slider-size: 2px;
+    --border-radius: 4px;
+
 
     /* Color Palette */
 

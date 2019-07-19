@@ -25,8 +25,8 @@ if (indexCssFilenames.length !== 1) {
 
 const text = fs.readFileSync(path.join(__dirname, 'src', 'demo', 'index.html'), 'utf-8');
 const patched = text
-    .replace('{{module}}', `/${jsFilenames[0]}`)
-    .replace('{{index-css}}', `/${indexCssFilenames[0]}`)
-    .replace('{{demo-css}}', `/${demoCssFilenames[0]}`);
+    .replace('{{module}}', `./${jsFilenames[0]}`)
+    .replace('{{index-css}}', `./${indexCssFilenames[0]}`)
+    .replace('{{demo-css}}', `./${demoCssFilenames[0]}`);
 
 fs.writeFileSync(path.join(__dirname, 'docs', 'index.html'), patched, 'utf-8');

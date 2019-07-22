@@ -152,7 +152,7 @@
                         type="text"
                         placeholder="key for user@ub.io" />
                     <button class="button button--primary">
-                        <i class="icon fa fa-sync"></i>
+                        <i class="button__icon fa fa-sync"></i>
                         Search
                     </button>
                 </div>

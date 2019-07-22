@@ -128,12 +128,10 @@
 
 .button--icon.button--large {
     width: calc(var(--control-height--large) * 1.1);
-    /* padding: 0 var(--gap--large); */
 }
 
 .button--icon.button--small {
     width: calc(var(--control-height--small) * 1.1);
-    /* padding: 0 var(--gap--small); */
 }
 
 .button__icon {

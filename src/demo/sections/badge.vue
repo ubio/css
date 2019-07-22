@@ -158,7 +158,7 @@
                 :code="`.badge.badge--production\n.badge.badge--staging`"
                 source="badge.css">
                 <div
-                    style="grid-template-columns: repeat(7, 1fr)"
+                    style="grid-template-columns: auto auto"
                     class="grid grid--gap--small">
                     <span class="badge badge--production">
                         production

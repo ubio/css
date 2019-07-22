@@ -4,9 +4,8 @@
     align-items: center;
     padding: 0 .95em;
     height: var(--control-height);
-    line-height: var(--control-height);
     border-radius: 4px;
-    border: 0;
+    border: 2px solid var(--ui-color--default);
     background-color: var(--ui-color--default);
     fill: var(--ui-color);
     color: var(--ui-color);
@@ -38,6 +37,7 @@
 .button--primary,
 .button--primary:visited {
     background: var(--ui-color--cta);
+    border: 2px solid var(--ui-color--cta);
     color: white;
 }
 
@@ -71,6 +71,7 @@
 .button--accent,
 .button--accent:visited {
     background: var(--ui-color--accent);
+    border: 2px solid var(--ui-color--accent);
     color: white;
 }
 
@@ -105,7 +106,6 @@
 .button--small {
     font-size: var(--font-size--small);
     height: var(--control-height--small);
-    line-height: var(--control-height--small);
     padding: 0 .7em;
     border-radius: 2px;
 }
@@ -119,8 +119,8 @@
 }
 
 .button--icon {
-    padding: 0;
-    width: calc(var(--control-height) * 1.1);
+    padding: 0 .5em;
+    min-width: var(--control-height);
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
@@ -128,10 +128,12 @@
 
 .button--icon.button--large {
     width: calc(var(--control-height--large) * 1.1);
+    /* padding: 0 var(--gap--large); */
 }
 
 .button--icon.button--small {
     width: calc(var(--control-height--small) * 1.1);
+    /* padding: 0 var(--gap--small); */
 }
 
 .button__icon {
@@ -149,11 +151,14 @@
 
 .button--icon svg,
 .button--icon .button__icon {
-    height: 1em;
     fill: currentColor;
     color: currentColor;
     left: 0;
     margin: 0;
+}
+
+.button--icon .button__icon {
+    height: 1em;
 }
 
 .button select {

@@ -15,12 +15,12 @@
 
     /* Base components */
 
-    --font-size: 12px;
-    --font-size--small: .8em;
-    --font-size--large: 1.5em;
-    --control-height: 2em;
-    --control-height--small: 18px;
-    --control-height--large: 2.5em;
+    --font-size: 12px; /* 1em */
+    --font-size--small: .834em; /* 12px * .834em = 10px */
+    --font-size--large: 1.5em; /* 12px * 1.5em = 18px */
+    --control-height: 2em; /* 12px * 2em = 24px */
+    --control-height--small: 1.8em; /* 10px * 1.8em = 18px */
+    --control-height--large: 2.5em; /* 18px * 2.5em = 45px */
     --tab-slider-size: 2px;
     --border-radius: 4px;
 

@@ -1,7 +1,7 @@
 @media not print {
     .theme--night-dark {
         --ui-background: var(--color-cool--800);
-        --ui-color--default: rgba(0, 0, 0, .5);
+        --ui-color--default: #171e25;
         --ui-color--default--hover: black;
         --ui-color: white;
         --ui-color--inverse: var(--ui-color--black);
@@ -36,7 +36,7 @@
         /* Borders */
 
         --border-color: var(--color-cool--600);
-        --border-color--merged: var(--color-cool--600);
+        --border-color--merged: var(--color-cool--800);
         --border-color--focus: var(--color-blue--600);
         --border-shadow--focus: var(--color-blue--400);
         --border-color--hover: var(--color-blue--300);

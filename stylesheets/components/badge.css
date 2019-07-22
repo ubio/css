@@ -13,7 +13,7 @@
     font-size: var(--font-size--small);
     color: var(--ui-background);
     background-color: var(--ui-color--mono);
-    line-height: calc(1.1 * var(--control-height--small));
+    line-height: var(--control-height--small);
     height: var(--control-height--small);
     min-width: var(--control-height--small);
     padding: 0 .5em;

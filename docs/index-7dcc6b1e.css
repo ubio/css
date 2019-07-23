@@ -778,10 +778,10 @@ menu li {
 .button.frameless {
     color: var(--ui-color);
     background: transparent;
+    border-color: transparent;
 }
 .button.frameless:hover {
     background: var(--button-background--frameless);
-    border-color: var(--button-background--frameless);
 }
 .button--primary.frameless { color: var(--ui-color--primary); }
 .button--secondary.frameless { color: var(--ui-color--secondary); }

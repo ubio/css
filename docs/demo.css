@@ -112,8 +112,9 @@ article > header {
     color: var(--ui-color--muted);
     font-size: var(--font-size--large);
 }
-.navigation__night-dark {
+.navigation__theme-switch {
     position: fixed;
+    z-index: 2;
     bottom: 0;
     right: 0;
     padding: var(--gap--large);

@@ -119,7 +119,7 @@
     --color-brand-blue--800: #004e57;
     --color-brand-blue--900: #003238;
 }
-body { /* stylelint-disable-line */
+:root { /* stylelint-disable-line */
 
     /* UI Colours: black on white */
 
@@ -719,6 +719,7 @@ menu li {
 .button:hover {
     text-decoration: none;
     background-color: var(--ui-color--default--hover);
+    border-color: var(--ui-color--default--hover);
     color: var(--ui-color);
 }
 .button:focus,
@@ -734,6 +735,7 @@ menu li {
 }
 .button--primary:hover {
     background: var(--ui-color--cta--hover);
+    border-color: var(--ui-color--cta--hover);
     color: white;
 }
 .button--secondary,
@@ -753,6 +755,7 @@ menu li {
 .button--secondary:hover {
     background: transparent;
     color: var(--ui-color--cta--hover);
+    border-color: var(--ui-color--cta--hover);
 }
 .button--accent,
 .button--accent:visited {
@@ -762,6 +765,7 @@ menu li {
 }
 .button--accent:hover {
     background: var(--ui-color--accent--hover);
+    border-color: var(--ui-color--accent--hover);
     color: white;
 }
 .button[disabled] {
@@ -777,6 +781,7 @@ menu li {
 }
 .button.frameless:hover {
     background: var(--button-background--frameless);
+    border-color: var(--button-background--frameless);
 }
 .button--primary.frameless { color: var(--ui-color--primary); }
 .button--secondary.frameless { color: var(--ui-color--secondary); }
@@ -792,7 +797,6 @@ menu li {
 .button--large {
     font-size: var(--font-size--large);
     height: var(--control-height--large);
-    line-height: var(--control-height--large);
     padding: 0 1.25em;
     border-radius: calc(var(--border-radius) * 1.5);
 }
@@ -805,11 +809,9 @@ menu li {
 }
 .button--icon.button--large {
     width: calc(var(--control-height--large) * 1.1);
-    /* padding: 0 var(--gap--large); */
 }
 .button--icon.button--small {
     width: calc(var(--control-height--small) * 1.1);
-    /* padding: 0 var(--gap--small); */
 }
 .button__icon {
     position: relative;
@@ -888,6 +890,7 @@ input.button {
 }
 .input--large {
     font-size: var(--font-size--large);
+    height: var(--control-height--large);
 }
 .input:hover {
     border-color: var(--border-color--hover);
@@ -1475,7 +1478,6 @@ input.input {
     top: var(--tab-slider-size);
     padding: var(--gap);
     color: inherit;
-    font-size: 13px;
     font-weight: 300;
     text-decoration: none;
     cursor: pointer;

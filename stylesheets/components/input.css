@@ -19,6 +19,7 @@
 
 .input--large {
     font-size: var(--font-size--large);
+    height: var(--control-height--large);
 }
 
 .input:hover {

@@ -782,6 +782,7 @@ menu li {
 }
 .button.frameless:hover {
     background: var(--button-background--frameless);
+    border-color: transparent;
 }
 .button--primary.frameless { color: var(--ui-color--primary); }
 .button--secondary.frameless { color: var(--ui-color--secondary); }

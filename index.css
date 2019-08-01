@@ -180,9 +180,6 @@
     --input-color: var(--ui-color--black);
     --input-color--placeholder: var(--color-cool--400);
 
-    /* Select */
-    --context-menu-color: var(--ui-color--black);
-    --context-menu-background: #f3f3f3;
 
     /* Frameless */
     --button-background--frameless: var(--ui-color--cool--pale);
@@ -460,10 +457,6 @@ select[disabled] {
 }
 select[multiple] {
     height: auto;
-}
-select:active {
-    color: var(--context-menu-color);
-    background-color: var(--context-menu-background);
 }
 select option {
     font-weight: normal;
@@ -850,6 +843,8 @@ menu li {
     margin: 0 calc(-1 * .95em);
     padding: 0 2.5em 0 .5em;
     height: 100%;
+    color: inherit;
+    background-color: inherit;
 }
 .button--small select {
     margin: 0 calc(-1 * .7em);

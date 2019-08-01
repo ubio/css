@@ -132,7 +132,6 @@ select[multiple] {
 }
 
 select option {
-    font-weight: normal;
     color: inherit;
     background: inherit;
 }
@@ -250,8 +249,7 @@ a:active {
 }
 
 input:focus,
-textarea:focus,
-select:focus {
+textarea:focus {
     border-color: var(--border-color--focus);
 }
 

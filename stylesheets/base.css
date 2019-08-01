@@ -131,9 +131,15 @@ select[multiple] {
     height: auto;
 }
 
-option {
-    color: initial;
-    background: initial;
+select:active {
+    color: var(--context-menu-color);
+    background-color: var(--context-menu-background);
+}
+
+select option {
+    font-weight: normal;
+    color: inherit;
+    background: inherit;
 }
 
 input,

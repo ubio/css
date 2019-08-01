@@ -1,7 +1,7 @@
 <template>
     <spec
-        name="Select.button"
-        :code="`select.button.button--large, \nselect.button, \nselect.button.button--small`"
+        name="Select in a .button"
+        :code="`.button.button--large select, \n.button select, \n.button.button--small select`"
         source="button.css">
         <div
             class="grid grid--gap"

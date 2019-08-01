@@ -169,6 +169,8 @@
     margin: 0 calc(-1 * .95em);
     padding: 0 2.5em 0 .5em;
     height: 100%;
+    color: inherit;
+    background-color: inherit;
 }
 
 .button--small select {

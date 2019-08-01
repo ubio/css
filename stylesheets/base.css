@@ -131,11 +131,6 @@ select[multiple] {
     height: auto;
 }
 
-select:active {
-    color: var(--context-menu-color);
-    background-color: var(--context-menu-background);
-}
-
 select option {
     font-weight: normal;
     color: inherit;

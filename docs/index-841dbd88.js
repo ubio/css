@@ -7492,7 +7492,7 @@ if (inBrowser) {
 }
 
 var name = "@ubio/css";
-var version = "2.1.6";
+var version = "2.1.7";
 var description = "UBIO CSS framework foundation";
 var main = "index.css";
 var repository = "git@github.com:universalbasket/css";
@@ -9660,7 +9660,7 @@ var script$h = {
 const __vue_script__$h = script$h;
 
 /* template */
-var __vue_render__$h = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('spec',{attrs:{"name":"Select.button","code":"select.button.button--large, \nselect.button, \nselect.button.button--small","source":"button.css"}},[_c('div',{staticClass:"grid grid--gap",staticStyle:{"grid-template-columns":"auto auto auto"}},[_c('span',{staticClass:"button button--large"},[_c('select',[_c('option',{domProps:{"value":undefined}},[_vm._v("Please select an option")]),_c('option',{attrs:{"value":"1"}},[_vm._v("Bourbon")]),_c('option',{attrs:{"value":"2"}},[_vm._v("Custard cream")]),_c('option',{attrs:{"value":"3"}},[_vm._v("Digestive")])])]),_c('span',{staticClass:"button"},[_c('select',[_c('option',{domProps:{"value":undefined}},[_vm._v("Please select an option")]),_c('option',{attrs:{"value":"1"}},[_vm._v("Bourbon")]),_c('option',{attrs:{"value":"2"}},[_vm._v("Custard cream")]),_c('option',{attrs:{"value":"3"}},[_vm._v("Digestive")])])]),_c('span',{staticClass:"button button--small"},[_c('select',[_c('option',{domProps:{"value":undefined}},[_vm._v("Please select an option")]),_c('option',{attrs:{"value":"1"}},[_vm._v("Bourbon")]),_c('option',{attrs:{"value":"2"}},[_vm._v("Custard cream")]),_c('option',{attrs:{"value":"3"}},[_vm._v("Digestive")])])])])])};
+var __vue_render__$h = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('spec',{attrs:{"name":"Select in a .button","code":".button.button--large select, \n.button select, \n.button.button--small select","source":"button.css"}},[_c('div',{staticClass:"grid grid--gap",staticStyle:{"grid-template-columns":"auto auto auto"}},[_c('span',{staticClass:"button button--large"},[_c('select',[_c('option',{domProps:{"value":undefined}},[_vm._v("Please select an option")]),_c('option',{attrs:{"value":"1"}},[_vm._v("Bourbon")]),_c('option',{attrs:{"value":"2"}},[_vm._v("Custard cream")]),_c('option',{attrs:{"value":"3"}},[_vm._v("Digestive")])])]),_c('span',{staticClass:"button"},[_c('select',[_c('option',{domProps:{"value":undefined}},[_vm._v("Please select an option")]),_c('option',{attrs:{"value":"1"}},[_vm._v("Bourbon")]),_c('option',{attrs:{"value":"2"}},[_vm._v("Custard cream")]),_c('option',{attrs:{"value":"3"}},[_vm._v("Digestive")])])]),_c('span',{staticClass:"button button--small"},[_c('select',[_c('option',{domProps:{"value":undefined}},[_vm._v("Please select an option")]),_c('option',{attrs:{"value":"1"}},[_vm._v("Bourbon")]),_c('option',{attrs:{"value":"2"}},[_vm._v("Custard cream")]),_c('option',{attrs:{"value":"3"}},[_vm._v("Digestive")])])])])])};
 var __vue_staticRenderFns__$h = [];
 
   /* style */

@@ -1,7 +1,10 @@
 # ubio CSS Framework
 
-This framework provides the UI foundation layer for any UBIO-style app.
+This framework provides the UI foundation layer for any UBIO-style app.<br>
 Demo https://universalbasket.github.io/css/
+
+Visually tested with<br>
+<a href="https://www.browserstack.com" title="App & Browser Testing Made Easy"><img src="browserstack-logo.svg?sanitize=true&raw=true" height="30" alt="BrowserStack" /></a>
 
 ## Idea
 In order to make UBIO apps visually consistent, we extract core styles responsible for the colour scheme and typography into a single CSS file, so it can be used as a base layer for any project.

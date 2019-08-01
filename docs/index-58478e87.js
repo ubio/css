@@ -7492,7 +7492,7 @@ if (inBrowser) {
 }
 
 var name = "@ubio/css";
-var version = "2.1.4";
+var version = "2.1.5";
 var description = "UBIO CSS framework foundation";
 var main = "index.css";
 var repository = "git@github.com:universalbasket/css";

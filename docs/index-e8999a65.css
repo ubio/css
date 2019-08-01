@@ -180,6 +180,10 @@
     --input-color: var(--ui-color--black);
     --input-color--placeholder: var(--color-cool--400);
 
+    /* Select */
+    --context-menu-color: var(--ui-color--black);
+    --context-menu-background: #f3f3f3;
+
     /* Frameless */
     --button-background--frameless: var(--ui-color--cool--pale);
 }
@@ -457,9 +461,14 @@ select[disabled] {
 select[multiple] {
     height: auto;
 }
-option {
-    color: initial;
-    background: initial;
+select:active {
+    color: var(--context-menu-color);
+    background-color: var(--context-menu-background);
+}
+select option {
+    font-weight: normal;
+    color: inherit;
+    background: inherit;
 }
 input,
 textarea {

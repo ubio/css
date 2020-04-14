@@ -7525,9 +7525,9 @@ var scripts = {
 };
 var devDependencies = {
 	"browser-sync": "^2.26.7",
-	"chokidar-cli": "^1.2.2",
-	concurrently: "^4.1.1",
-	eslint: "^6.0.1",
+	"chokidar-cli": "^2.0.0",
+	concurrently: "^4.1.2",
+	eslint: "^6.3.0",
 	"eslint-config-ub": "^3.0.0",
 	"eslint-plugin-vue": "^5.2.3",
 	"parse-color": "^1.0.0",
@@ -7535,8 +7535,8 @@ var devDependencies = {
 	"postcss-cli": "^6.1.3",
 	"postcss-import": "^12.0.1",
 	"pre-commit": "^1.2.2",
-	rollup: "^1.16.7",
-	"rollup-plugin-commonjs": "^10.0.1",
+	rollup: "^1.20.3",
+	"rollup-plugin-commonjs": "^10.1.0",
 	"rollup-plugin-json": "^4.0.0",
 	"rollup-plugin-node-resolve": "^5.2.0",
 	"rollup-plugin-replace": "^2.2.0",
@@ -7724,15 +7724,19 @@ var __vue_staticRenderFns__ = [function () {var _vm=this;var _h=_vm.$createEleme
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var Navigation = normalizeComponent_1(
+  const __vue_component__ = normalizeComponent_1(
     { render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ },
     __vue_inject_styles__,
     __vue_script__,
     __vue_scope_id__,
     __vue_is_functional_template__,
     __vue_module_identifier__,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -8677,15 +8681,19 @@ var __vue_staticRenderFns__$1 = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var Swatches = normalizeComponent_1(
+  const __vue_component__$1 = normalizeComponent_1(
     { render: __vue_render__$1, staticRenderFns: __vue_staticRenderFns__$1 },
     __vue_inject_styles__$1,
     __vue_script__$1,
     __vue_scope_id__$1,
     __vue_is_functional_template__$1,
     __vue_module_identifier__$1,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -8743,15 +8751,19 @@ var __vue_staticRenderFns__$2 = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var Semantics = normalizeComponent_1(
+  const __vue_component__$2 = normalizeComponent_1(
     { render: __vue_render__$2, staticRenderFns: __vue_staticRenderFns__$2 },
     __vue_inject_styles__$2,
     __vue_script__$2,
     __vue_scope_id__$2,
     __vue_is_functional_template__$2,
     __vue_module_identifier__$2,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -8812,15 +8824,19 @@ var __vue_staticRenderFns__$3 = [function () {var _vm=this;var _h=_vm.$createEle
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var Sample = normalizeComponent_1(
+  const __vue_component__$3 = normalizeComponent_1(
     { render: __vue_render__$3, staticRenderFns: __vue_staticRenderFns__$3 },
     __vue_inject_styles__$3,
     __vue_script__$3,
     __vue_scope_id__$3,
     __vue_is_functional_template__$3,
     __vue_module_identifier__$3,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -8831,7 +8847,7 @@ var script$4 = {
     name: 'semaphore',
 
     components: {
-        'text-variations-sample': Sample
+        'text-variations-sample': __vue_component__$3
     }
 };
 
@@ -8854,15 +8870,19 @@ var __vue_staticRenderFns__$4 = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var Semaphore = normalizeComponent_1(
+  const __vue_component__$4 = normalizeComponent_1(
     { render: __vue_render__$4, staticRenderFns: __vue_staticRenderFns__$4 },
     __vue_inject_styles__$4,
     __vue_script__$4,
     __vue_scope_id__$4,
     __vue_is_functional_template__$4,
     __vue_module_identifier__$4,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -8937,15 +8957,19 @@ var __vue_staticRenderFns__$5 = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var BgPale = normalizeComponent_1(
+  const __vue_component__$5 = normalizeComponent_1(
     { render: __vue_render__$5, staticRenderFns: __vue_staticRenderFns__$5 },
     __vue_inject_styles__$5,
     __vue_script__$5,
     __vue_scope_id__$5,
     __vue_is_functional_template__$5,
     __vue_module_identifier__$5,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -8956,10 +8980,10 @@ var script$6 = {
     name: 'colour',
 
     components: {
-        'swatches': Swatches,
-        'semantics': Semantics,
-        'semaphore': Semaphore,
-        'bg-pale': BgPale
+        'swatches': __vue_component__$1,
+        'semantics': __vue_component__$2,
+        'semaphore': __vue_component__$4,
+        'bg-pale': __vue_component__$5
     }
 };
 
@@ -8982,15 +9006,19 @@ var __vue_staticRenderFns__$6 = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var Colour = normalizeComponent_1(
+  const __vue_component__$6 = normalizeComponent_1(
     { render: __vue_render__$6, staticRenderFns: __vue_staticRenderFns__$6 },
     __vue_inject_styles__$6,
     __vue_script__$6,
     __vue_scope_id__$6,
     __vue_is_functional_template__$6,
     __vue_module_identifier__$6,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -9055,15 +9083,19 @@ var __vue_staticRenderFns__$7 = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var BaseHeadings = normalizeComponent_1(
+  const __vue_component__$7 = normalizeComponent_1(
     { render: __vue_render__$7, staticRenderFns: __vue_staticRenderFns__$7 },
     __vue_inject_styles__$7,
     __vue_script__$7,
     __vue_scope_id__$7,
     __vue_is_functional_template__$7,
     __vue_module_identifier__$7,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -9141,15 +9173,19 @@ var __vue_staticRenderFns__$8 = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var BaseCopy = normalizeComponent_1(
+  const __vue_component__$8 = normalizeComponent_1(
     { render: __vue_render__$8, staticRenderFns: __vue_staticRenderFns__$8 },
     __vue_inject_styles__$8,
     __vue_script__$8,
     __vue_scope_id__$8,
     __vue_is_functional_template__$8,
     __vue_module_identifier__$8,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -9160,8 +9196,8 @@ var script$9 = {
     name: 'typography',
 
     components: {
-        'base-headings': BaseHeadings,
-        'base-copy': BaseCopy
+        'base-headings': __vue_component__$7,
+        'base-copy': __vue_component__$8
     }
 };
 
@@ -9184,15 +9220,19 @@ var __vue_staticRenderFns__$9 = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var Typography = normalizeComponent_1(
+  const __vue_component__$9 = normalizeComponent_1(
     { render: __vue_render__$9, staticRenderFns: __vue_staticRenderFns__$9 },
     __vue_inject_styles__$9,
     __vue_script__$9,
     __vue_scope_id__$9,
     __vue_is_functional_template__$9,
     __vue_module_identifier__$9,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -9267,15 +9307,19 @@ var __vue_staticRenderFns__$a = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var BaseSize = normalizeComponent_1(
+  const __vue_component__$a = normalizeComponent_1(
     { render: __vue_render__$a, staticRenderFns: __vue_staticRenderFns__$a },
     __vue_inject_styles__$a,
     __vue_script__$a,
     __vue_scope_id__$a,
     __vue_is_functional_template__$a,
     __vue_module_identifier__$a,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -9321,15 +9365,19 @@ var __vue_staticRenderFns__$b = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var StylesPrimarySecondary = normalizeComponent_1(
+  const __vue_component__$b = normalizeComponent_1(
     { render: __vue_render__$b, staticRenderFns: __vue_staticRenderFns__$b },
     __vue_inject_styles__$b,
     __vue_script__$b,
     __vue_scope_id__$b,
     __vue_is_functional_template__$b,
     __vue_module_identifier__$b,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -9373,15 +9421,19 @@ var __vue_staticRenderFns__$c = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var StylesPrimarySecondaryCustom = normalizeComponent_1(
+  const __vue_component__$c = normalizeComponent_1(
     { render: __vue_render__$c, staticRenderFns: __vue_staticRenderFns__$c },
     __vue_inject_styles__$c,
     __vue_script__$c,
     __vue_scope_id__$c,
     __vue_is_functional_template__$c,
     __vue_module_identifier__$c,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -9426,15 +9478,19 @@ var __vue_staticRenderFns__$d = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var StylesAccent = normalizeComponent_1(
+  const __vue_component__$d = normalizeComponent_1(
     { render: __vue_render__$d, staticRenderFns: __vue_staticRenderFns__$d },
     __vue_inject_styles__$d,
     __vue_script__$d,
     __vue_scope_id__$d,
     __vue_is_functional_template__$d,
     __vue_module_identifier__$d,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -9481,15 +9537,19 @@ var __vue_staticRenderFns__$e = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var Spinner = normalizeComponent_1(
+  const __vue_component__$e = normalizeComponent_1(
     { render: __vue_render__$e, staticRenderFns: __vue_staticRenderFns__$e },
     __vue_inject_styles__$e,
     __vue_script__$e,
     __vue_scope_id__$e,
     __vue_is_functional_template__$e,
     __vue_module_identifier__$e,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -9500,7 +9560,7 @@ var script$f = {
     name: 'button-styles-icon-within',
 
     components: {
-        spinner: Spinner
+        spinner: __vue_component__$e
     }
 };
 
@@ -9523,15 +9583,19 @@ var __vue_staticRenderFns__$f = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var StylesIconWithin = normalizeComponent_1(
+  const __vue_component__$f = normalizeComponent_1(
     { render: __vue_render__$f, staticRenderFns: __vue_staticRenderFns__$f },
     __vue_inject_styles__$f,
     __vue_script__$f,
     __vue_scope_id__$f,
     __vue_is_functional_template__$f,
     __vue_module_identifier__$f,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -9602,15 +9666,19 @@ var __vue_staticRenderFns__$g = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var StylesIconOnly = normalizeComponent_1(
+  const __vue_component__$g = normalizeComponent_1(
     { render: __vue_render__$g, staticRenderFns: __vue_staticRenderFns__$g },
     __vue_inject_styles__$g,
     __vue_script__$g,
     __vue_scope_id__$g,
     __vue_is_functional_template__$g,
     __vue_module_identifier__$g,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -9675,15 +9743,19 @@ var __vue_staticRenderFns__$h = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var StylesSelect = normalizeComponent_1(
+  const __vue_component__$h = normalizeComponent_1(
     { render: __vue_render__$h, staticRenderFns: __vue_staticRenderFns__$h },
     __vue_inject_styles__$h,
     __vue_script__$h,
     __vue_scope_id__$h,
     __vue_is_functional_template__$h,
     __vue_module_identifier__$h,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -9694,12 +9766,12 @@ var script$i = {
     name: 'button-styles',
 
     components: {
-        'styles-primary-secondary': StylesPrimarySecondary,
-        'styles-primary-secondary-custom': StylesPrimarySecondaryCustom,
-        'styles-accent': StylesAccent,
-        'styles-icon-within': StylesIconWithin,
-        'styles-icon-only': StylesIconOnly,
-        'styles-select': StylesSelect
+        'styles-primary-secondary': __vue_component__$b,
+        'styles-primary-secondary-custom': __vue_component__$c,
+        'styles-accent': __vue_component__$d,
+        'styles-icon-within': __vue_component__$f,
+        'styles-icon-only': __vue_component__$g,
+        'styles-select': __vue_component__$h
     }
 };
 
@@ -9722,15 +9794,19 @@ var __vue_staticRenderFns__$i = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var ButtonStyles = normalizeComponent_1(
+  const __vue_component__$i = normalizeComponent_1(
     { render: __vue_render__$i, staticRenderFns: __vue_staticRenderFns__$i },
     __vue_inject_styles__$i,
     __vue_script__$i,
     __vue_scope_id__$i,
     __vue_is_functional_template__$i,
     __vue_module_identifier__$i,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -9848,15 +9924,19 @@ var __vue_staticRenderFns__$j = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var ButtonGroups = normalizeComponent_1(
+  const __vue_component__$j = normalizeComponent_1(
     { render: __vue_render__$j, staticRenderFns: __vue_staticRenderFns__$j },
     __vue_inject_styles__$j,
     __vue_script__$j,
     __vue_scope_id__$j,
     __vue_is_functional_template__$j,
     __vue_module_identifier__$j,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -9867,9 +9947,9 @@ var script$k = {
     name: 'buttons',
 
     components: {
-        'base-size': BaseSize,
-        'button-styles': ButtonStyles,
-        'button-groups': ButtonGroups
+        'base-size': __vue_component__$a,
+        'button-styles': __vue_component__$i,
+        'button-groups': __vue_component__$j
     }
 };
 
@@ -9892,15 +9972,19 @@ var __vue_staticRenderFns__$k = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var Buttons = normalizeComponent_1(
+  const __vue_component__$k = normalizeComponent_1(
     { render: __vue_render__$k, staticRenderFns: __vue_staticRenderFns__$k },
     __vue_inject_styles__$k,
     __vue_script__$k,
     __vue_scope_id__$k,
     __vue_is_functional_template__$k,
     __vue_module_identifier__$k,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -9967,15 +10051,19 @@ var __vue_staticRenderFns__$l = [function () {var _vm=this;var _h=_vm.$createEle
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var BaseSelect = normalizeComponent_1(
+  const __vue_component__$l = normalizeComponent_1(
     { render: __vue_render__$l, staticRenderFns: __vue_staticRenderFns__$l },
     __vue_inject_styles__$l,
     __vue_script__$l,
     __vue_scope_id__$l,
     __vue_is_functional_template__$l,
     __vue_module_identifier__$l,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -9986,7 +10074,7 @@ var script$m = {
     name: 'input-base',
 
     components: {
-        'base-select': BaseSelect
+        'base-select': __vue_component__$l
     }
 };
 
@@ -10009,15 +10097,19 @@ var __vue_staticRenderFns__$m = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var InputBase = normalizeComponent_1(
+  const __vue_component__$m = normalizeComponent_1(
     { render: __vue_render__$m, staticRenderFns: __vue_staticRenderFns__$m },
     __vue_inject_styles__$m,
     __vue_script__$m,
     __vue_scope_id__$m,
     __vue_is_functional_template__$m,
     __vue_module_identifier__$m,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -10206,15 +10298,19 @@ var __vue_staticRenderFns__$n = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var InputStyles = normalizeComponent_1(
+  const __vue_component__$n = normalizeComponent_1(
     { render: __vue_render__$n, staticRenderFns: __vue_staticRenderFns__$n },
     __vue_inject_styles__$n,
     __vue_script__$n,
     __vue_scope_id__$n,
     __vue_is_functional_template__$n,
     __vue_module_identifier__$n,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -10450,15 +10546,19 @@ var __vue_staticRenderFns__$o = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var InputGroups = normalizeComponent_1(
+  const __vue_component__$o = normalizeComponent_1(
     { render: __vue_render__$o, staticRenderFns: __vue_staticRenderFns__$o },
     __vue_inject_styles__$o,
     __vue_script__$o,
     __vue_scope_id__$o,
     __vue_is_functional_template__$o,
     __vue_module_identifier__$o,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -10528,15 +10628,19 @@ var __vue_staticRenderFns__$p = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var Toggle = normalizeComponent_1(
+  const __vue_component__$p = normalizeComponent_1(
     { render: __vue_render__$p, staticRenderFns: __vue_staticRenderFns__$p },
     __vue_inject_styles__$p,
     __vue_script__$p,
     __vue_scope_id__$p,
     __vue_is_functional_template__$p,
     __vue_module_identifier__$p,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -10553,7 +10657,7 @@ var script$q = {
     },
 
     components: {
-        'toggle': Toggle
+        'toggle': __vue_component__$p
     }
 };
 
@@ -10576,15 +10680,19 @@ var __vue_staticRenderFns__$q = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var InputToggle = normalizeComponent_1(
+  const __vue_component__$q = normalizeComponent_1(
     { render: __vue_render__$q, staticRenderFns: __vue_staticRenderFns__$q },
     __vue_inject_styles__$q,
     __vue_script__$q,
     __vue_scope_id__$q,
     __vue_is_functional_template__$q,
     __vue_module_identifier__$q,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -10595,10 +10703,10 @@ var script$r = {
     name: 'inputs',
 
     components: {
-        'input-base': InputBase,
-        'input-styles': InputStyles,
-        'input-groups': InputGroups,
-        'input-toggle': InputToggle
+        'input-base': __vue_component__$m,
+        'input-styles': __vue_component__$n,
+        'input-groups': __vue_component__$o,
+        'input-toggle': __vue_component__$q
     }
 };
 
@@ -10621,15 +10729,19 @@ var __vue_staticRenderFns__$r = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var Inputs = normalizeComponent_1(
+  const __vue_component__$r = normalizeComponent_1(
     { render: __vue_render__$r, staticRenderFns: __vue_staticRenderFns__$r },
     __vue_inject_styles__$r,
     __vue_script__$r,
     __vue_scope_id__$r,
     __vue_is_functional_template__$r,
     __vue_module_identifier__$r,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -10850,15 +10962,19 @@ var __vue_staticRenderFns__$s = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var Badges = normalizeComponent_1(
+  const __vue_component__$s = normalizeComponent_1(
     { render: __vue_render__$s, staticRenderFns: __vue_staticRenderFns__$s },
     __vue_inject_styles__$s,
     __vue_script__$s,
     __vue_scope_id__$s,
     __vue_is_functional_template__$s,
     __vue_module_identifier__$s,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -10932,15 +11048,19 @@ var __vue_staticRenderFns__$t = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var Tags = normalizeComponent_1(
+  const __vue_component__$t = normalizeComponent_1(
     { render: __vue_render__$t, staticRenderFns: __vue_staticRenderFns__$t },
     __vue_inject_styles__$t,
     __vue_script__$t,
     __vue_scope_id__$t,
     __vue_is_functional_template__$t,
     __vue_module_identifier__$t,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -10975,15 +11095,19 @@ var __vue_staticRenderFns__$u = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var Sample$1 = normalizeComponent_1(
+  const __vue_component__$u = normalizeComponent_1(
     { render: __vue_render__$u, staticRenderFns: __vue_staticRenderFns__$u },
     __vue_inject_styles__$u,
     __vue_script__$u,
     __vue_scope_id__$u,
     __vue_is_functional_template__$u,
     __vue_module_identifier__$u,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -10994,7 +11118,7 @@ var script$v = {
     name: 'boxes',
 
     components: {
-        'box-sample': Sample$1
+        'box-sample': __vue_component__$u
     }
 };
 
@@ -11017,15 +11141,19 @@ var __vue_staticRenderFns__$v = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var BoxTinted = normalizeComponent_1(
+  const __vue_component__$v = normalizeComponent_1(
     { render: __vue_render__$v, staticRenderFns: __vue_staticRenderFns__$v },
     __vue_inject_styles__$v,
     __vue_script__$v,
     __vue_scope_id__$v,
     __vue_is_functional_template__$v,
     __vue_module_identifier__$v,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -11036,7 +11164,7 @@ var script$w = {
     name: 'box-outline',
 
     components: {
-        'box-sample': Sample$1
+        'box-sample': __vue_component__$u
     }
 };
 
@@ -11059,15 +11187,19 @@ var __vue_staticRenderFns__$w = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var BoxOutlined = normalizeComponent_1(
+  const __vue_component__$w = normalizeComponent_1(
     { render: __vue_render__$w, staticRenderFns: __vue_staticRenderFns__$w },
     __vue_inject_styles__$w,
     __vue_script__$w,
     __vue_scope_id__$w,
     __vue_is_functional_template__$w,
     __vue_module_identifier__$w,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -11078,8 +11210,8 @@ var script$x = {
     name: 'containers-boxes',
 
     components: {
-        'box-tinted': BoxTinted,
-        'box-outlined': BoxOutlined
+        'box-tinted': __vue_component__$v,
+        'box-outlined': __vue_component__$w
     }
 };
 
@@ -11102,15 +11234,19 @@ var __vue_staticRenderFns__$x = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var Boxes = normalizeComponent_1(
+  const __vue_component__$x = normalizeComponent_1(
     { render: __vue_render__$x, staticRenderFns: __vue_staticRenderFns__$x },
     __vue_inject_styles__$x,
     __vue_script__$x,
     __vue_scope_id__$x,
     __vue_is_functional_template__$x,
     __vue_module_identifier__$x,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -11199,15 +11335,19 @@ var __vue_staticRenderFns__$y = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var Tabs = normalizeComponent_1(
+  const __vue_component__$y = normalizeComponent_1(
     { render: __vue_render__$y, staticRenderFns: __vue_staticRenderFns__$y },
     __vue_inject_styles__$y,
     __vue_script__$y,
     __vue_scope_id__$y,
     __vue_is_functional_template__$y,
     __vue_module_identifier__$y,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -11218,8 +11358,8 @@ var script$z = {
     name: 'containers',
 
     components: {
-        'boxes': Boxes,
-        'tabs': Tabs
+        'boxes': __vue_component__$x,
+        'tabs': __vue_component__$y
     }
 };
 
@@ -11242,15 +11382,19 @@ var __vue_staticRenderFns__$z = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var Containers = normalizeComponent_1(
+  const __vue_component__$z = normalizeComponent_1(
     { render: __vue_render__$z, staticRenderFns: __vue_staticRenderFns__$z },
     __vue_inject_styles__$z,
     __vue_script__$z,
     __vue_scope_id__$z,
     __vue_is_functional_template__$z,
     __vue_module_identifier__$z,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -11289,15 +11433,19 @@ var __vue_staticRenderFns__$A = [function () {var _vm=this;var _h=_vm.$createEle
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var Loader = normalizeComponent_1(
+  const __vue_component__$A = normalizeComponent_1(
     { render: __vue_render__$A, staticRenderFns: __vue_staticRenderFns__$A },
     __vue_inject_styles__$A,
     __vue_script__$A,
     __vue_scope_id__$A,
     __vue_is_functional_template__$A,
     __vue_module_identifier__$A,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -11308,8 +11456,8 @@ var script$B = {
     name: 'loaders',
 
     components: {
-        spinner: Spinner,
-        loader: Loader
+        spinner: __vue_component__$e,
+        loader: __vue_component__$A
     }
 };
 
@@ -11332,15 +11480,19 @@ var __vue_staticRenderFns__$B = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var Loaders = normalizeComponent_1(
+  const __vue_component__$B = normalizeComponent_1(
     { render: __vue_render__$B, staticRenderFns: __vue_staticRenderFns__$B },
     __vue_inject_styles__$B,
     __vue_script__$B,
     __vue_scope_id__$B,
     __vue_is_functional_template__$B,
     __vue_module_identifier__$B,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -11365,15 +11517,15 @@ var script$C = {
     },
 
     components: {
-        'navigation': Navigation,
-        'colour': Colour,
-        'typography': Typography,
-        'buttons': Buttons,
-        'inputs': Inputs,
-        'badges': Badges,
-        'tags': Tags,
-        'containers': Containers,
-        'loaders': Loaders
+        'navigation': __vue_component__,
+        'colour': __vue_component__$6,
+        'typography': __vue_component__$9,
+        'buttons': __vue_component__$k,
+        'inputs': __vue_component__$r,
+        'badges': __vue_component__$s,
+        'tags': __vue_component__$t,
+        'containers': __vue_component__$z,
+        'loaders': __vue_component__$B
     }
 };
 
@@ -11396,15 +11548,19 @@ var __vue_staticRenderFns__$C = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var App = normalizeComponent_1(
+  const __vue_component__$C = normalizeComponent_1(
     { render: __vue_render__$C, staticRenderFns: __vue_staticRenderFns__$C },
     __vue_inject_styles__$C,
     __vue_script__$C,
     __vue_scope_id__$C,
     __vue_is_functional_template__$C,
     __vue_module_identifier__$C,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -11445,15 +11601,19 @@ var __vue_staticRenderFns__$D = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var Snippet = normalizeComponent_1(
+  const __vue_component__$D = normalizeComponent_1(
     { render: __vue_render__$D, staticRenderFns: __vue_staticRenderFns__$D },
     __vue_inject_styles__$D,
     __vue_script__$D,
     __vue_scope_id__$D,
     __vue_is_functional_template__$D,
     __vue_module_identifier__$D,
+    false,
+    undefined,
     undefined,
     undefined
   );
@@ -11471,7 +11631,7 @@ var script$E = {
     },
 
     components: {
-        snippet: Snippet
+        snippet: __vue_component__$D
     }
 };
 
@@ -11494,20 +11654,24 @@ var __vue_staticRenderFns__$E = [];
   
   /* style inject SSR */
   
+  /* style inject shadow dom */
+  
 
   
-  var Spec = normalizeComponent_1(
+  const __vue_component__$E = normalizeComponent_1(
     { render: __vue_render__$E, staticRenderFns: __vue_staticRenderFns__$E },
     __vue_inject_styles__$E,
     __vue_script__$E,
     __vue_scope_id__$E,
     __vue_is_functional_template__$E,
     __vue_module_identifier__$E,
+    false,
+    undefined,
     undefined,
     undefined
   );
 
-Vue.component('spec', Spec);
+Vue.component('spec', __vue_component__$E);
 
 /* eslint-disable no-new */
 new Vue({
@@ -11519,5 +11683,5 @@ new Vue({
         colorsBrand: ['brand-blue', 'brand-red'],
         darkMode: false
     },
-    render: h => h(App)
+    render: h => h(__vue_component__$C)
 });

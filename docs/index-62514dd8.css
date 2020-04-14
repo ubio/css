@@ -571,8 +571,7 @@ button:focus,
 input:focus,
 textarea:focus,
 select:focus,
-a:focus,
-a:active {
+a:focus {
     box-shadow: 0 0 0 2px var(--border-shadow--focus);
     outline: none;
 }

@@ -3,7 +3,7 @@
   "version": "2.1.9",
   "description": "UBIO CSS framework foundation",
   "main": "index.css",
-  "repository": "git@github.com:universalbasket/css",
+  "repository": "git@github.com:ubio/css",
   "author": "ubio",
   "license": "MIT",
   "private": false,

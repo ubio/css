@@ -7502,7 +7502,7 @@
   var version = "2.0.11";
   var description = "UBIO CSS framework foundation";
   var main = "index.css";
-  var repository = "git@github.com:universalbasket/css";
+  var repository = "git@github.com:ubio/css";
   var author = "ubio";
   var license = "MIT";
   var files = [
@@ -7728,11 +7728,11 @@
     /* functional template */
     var __vue_is_functional_template__ = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var Navigation = normalizeComponent_1(
       { render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ },
       __vue_inject_styles__,
@@ -8465,11 +8465,11 @@
     // export rgb2hsl and ["rgb"]["hsl"]
     convert[from] = convert[from] || {};
 
-    convert[from][to] = convert[func] = (function(func) { 
+    convert[from][to] = convert[func] = (function(func) {
       return function(arg) {
         if (typeof arg == "number")
           { arg = Array.prototype.slice.call(arguments); }
-        
+
         var val = conversions[func](arg);
         if (typeof val == "string" || val === undefined)
           { return val; } // keyword
@@ -8497,12 +8497,12 @@
      }
      // color.rgb(10, 10, 10)
      if (typeof values == "number") {
-        values = Array.prototype.slice.call(args);        
+        values = Array.prototype.slice.call(args);
      }
 
      return this.setValues(space, values);
   };
-    
+
   /* Set the values for a space, invalidating cache */
   Converter.prototype.setValues = function(space, values) {
      this.space = space;
@@ -8541,7 +8541,7 @@
           var base = name.replace(/a$/, '');
           var size = base === 'cmyk' ? 4 : 3;
           conv = colorConvert[base];
-          
+
           parts = m[2].replace(/^\s+|\s+$/g, '')
               .split(/\s*,\s*/)
               .map(function (x, i) {
@@ -8557,7 +8557,7 @@
           if (name === base) { parts.push(1); }
           alpha = parts[size] === undefined ? 1 : parts[size];
           parts = parts.slice(0, size);
-          
+
           conv[base] = function () { return parts };
       }
       else if (/^#[A-Fa-f0-9]+$/.test(cstr)) {
@@ -8587,7 +8587,7 @@
           parts = cstr;
           alpha = 1;
       }
-      
+
       var res = {
           rgb: undefined,
           hsl: undefined,
@@ -8601,18 +8601,18 @@
       try { res.hsv = conv.hsv(parts); } catch (e) {}
       try { res.cmyk = conv.cmyk(parts); } catch (e) {}
       try { res.keyword = conv.keyword(parts); } catch (e) {}
-      
+
       if (res.rgb) { res.hex = '#' + res.rgb.map(function (x) {
           var s = x.toString(16);
           if (s.length === 1) { return '0' + s; }
           return s;
       }).join(''); }
-      
+
       if (res.rgb) { res.rgba = res.rgb.concat(alpha); }
       if (res.hsl) { res.hsla = res.hsl.concat(alpha); }
       if (res.hsv) { res.hsva = res.hsv.concat(alpha); }
       if (res.cmyk) { res.cmyka = res.cmyk.concat(alpha); }
-      
+
       return res;
   };
 
@@ -8683,11 +8683,11 @@
     /* functional template */
     var __vue_is_functional_template__$1 = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var Swatches = normalizeComponent_1(
       { render: __vue_render__$1, staticRenderFns: __vue_staticRenderFns__$1 },
       __vue_inject_styles__$1,
@@ -8749,11 +8749,11 @@
     /* functional template */
     var __vue_is_functional_template__$2 = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var Semantics = normalizeComponent_1(
       { render: __vue_render__$2, staticRenderFns: __vue_staticRenderFns__$2 },
       __vue_inject_styles__$2,
@@ -8818,11 +8818,11 @@
     /* functional template */
     var __vue_is_functional_template__$3 = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var Sample = normalizeComponent_1(
       { render: __vue_render__$3, staticRenderFns: __vue_staticRenderFns__$3 },
       __vue_inject_styles__$3,
@@ -8860,11 +8860,11 @@
     /* functional template */
     var __vue_is_functional_template__$4 = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var Semaphore = normalizeComponent_1(
       { render: __vue_render__$4, staticRenderFns: __vue_staticRenderFns__$4 },
       __vue_inject_styles__$4,
@@ -8943,11 +8943,11 @@
     /* functional template */
     var __vue_is_functional_template__$5 = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var BgPale = normalizeComponent_1(
       { render: __vue_render__$5, staticRenderFns: __vue_staticRenderFns__$5 },
       __vue_inject_styles__$5,
@@ -8988,11 +8988,11 @@
     /* functional template */
     var __vue_is_functional_template__$6 = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var Colour = normalizeComponent_1(
       { render: __vue_render__$6, staticRenderFns: __vue_staticRenderFns__$6 },
       __vue_inject_styles__$6,
@@ -9061,11 +9061,11 @@
     /* functional template */
     var __vue_is_functional_template__$7 = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var BaseHeadings = normalizeComponent_1(
       { render: __vue_render__$7, staticRenderFns: __vue_staticRenderFns__$7 },
       __vue_inject_styles__$7,
@@ -9147,11 +9147,11 @@
     /* functional template */
     var __vue_is_functional_template__$8 = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var BaseCopy = normalizeComponent_1(
       { render: __vue_render__$8, staticRenderFns: __vue_staticRenderFns__$8 },
       __vue_inject_styles__$8,
@@ -9190,11 +9190,11 @@
     /* functional template */
     var __vue_is_functional_template__$9 = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var Typography = normalizeComponent_1(
       { render: __vue_render__$9, staticRenderFns: __vue_staticRenderFns__$9 },
       __vue_inject_styles__$9,
@@ -9273,11 +9273,11 @@
     /* functional template */
     var __vue_is_functional_template__$a = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var BaseSize = normalizeComponent_1(
       { render: __vue_render__$a, staticRenderFns: __vue_staticRenderFns__$a },
       __vue_inject_styles__$a,
@@ -9327,11 +9327,11 @@
     /* functional template */
     var __vue_is_functional_template__$b = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var StylesPrimarySecondary = normalizeComponent_1(
       { render: __vue_render__$b, staticRenderFns: __vue_staticRenderFns__$b },
       __vue_inject_styles__$b,
@@ -9379,11 +9379,11 @@
     /* functional template */
     var __vue_is_functional_template__$c = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var StylesPrimarySecondaryCustom = normalizeComponent_1(
       { render: __vue_render__$c, staticRenderFns: __vue_staticRenderFns__$c },
       __vue_inject_styles__$c,
@@ -9432,11 +9432,11 @@
     /* functional template */
     var __vue_is_functional_template__$d = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var StylesAccent = normalizeComponent_1(
       { render: __vue_render__$d, staticRenderFns: __vue_staticRenderFns__$d },
       __vue_inject_styles__$d,
@@ -9487,11 +9487,11 @@
     /* functional template */
     var __vue_is_functional_template__$e = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var Spinner = normalizeComponent_1(
       { render: __vue_render__$e, staticRenderFns: __vue_staticRenderFns__$e },
       __vue_inject_styles__$e,
@@ -9529,11 +9529,11 @@
     /* functional template */
     var __vue_is_functional_template__$f = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var StylesIconWithin = normalizeComponent_1(
       { render: __vue_render__$f, staticRenderFns: __vue_staticRenderFns__$f },
       __vue_inject_styles__$f,
@@ -9608,11 +9608,11 @@
     /* functional template */
     var __vue_is_functional_template__$g = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var StylesIconOnly = normalizeComponent_1(
       { render: __vue_render__$g, staticRenderFns: __vue_staticRenderFns__$g },
       __vue_inject_styles__$g,
@@ -9681,11 +9681,11 @@
     /* functional template */
     var __vue_is_functional_template__$h = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var StylesSelect = normalizeComponent_1(
       { render: __vue_render__$h, staticRenderFns: __vue_staticRenderFns__$h },
       __vue_inject_styles__$h,
@@ -9728,11 +9728,11 @@
     /* functional template */
     var __vue_is_functional_template__$i = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var ButtonStyles = normalizeComponent_1(
       { render: __vue_render__$i, staticRenderFns: __vue_staticRenderFns__$i },
       __vue_inject_styles__$i,
@@ -9854,11 +9854,11 @@
     /* functional template */
     var __vue_is_functional_template__$j = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var ButtonGroups = normalizeComponent_1(
       { render: __vue_render__$j, staticRenderFns: __vue_staticRenderFns__$j },
       __vue_inject_styles__$j,
@@ -9898,11 +9898,11 @@
     /* functional template */
     var __vue_is_functional_template__$k = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var Buttons = normalizeComponent_1(
       { render: __vue_render__$k, staticRenderFns: __vue_staticRenderFns__$k },
       __vue_inject_styles__$k,
@@ -9973,11 +9973,11 @@
     /* functional template */
     var __vue_is_functional_template__$l = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var BaseSelect = normalizeComponent_1(
       { render: __vue_render__$l, staticRenderFns: __vue_staticRenderFns__$l },
       __vue_inject_styles__$l,
@@ -10015,11 +10015,11 @@
     /* functional template */
     var __vue_is_functional_template__$m = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var InputBase = normalizeComponent_1(
       { render: __vue_render__$m, staticRenderFns: __vue_staticRenderFns__$m },
       __vue_inject_styles__$m,
@@ -10212,11 +10212,11 @@
     /* functional template */
     var __vue_is_functional_template__$n = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var InputStyles = normalizeComponent_1(
       { render: __vue_render__$n, staticRenderFns: __vue_staticRenderFns__$n },
       __vue_inject_styles__$n,
@@ -10456,11 +10456,11 @@
     /* functional template */
     var __vue_is_functional_template__$o = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var InputGroups = normalizeComponent_1(
       { render: __vue_render__$o, staticRenderFns: __vue_staticRenderFns__$o },
       __vue_inject_styles__$o,
@@ -10534,11 +10534,11 @@
     /* functional template */
     var __vue_is_functional_template__$p = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var Toggle = normalizeComponent_1(
       { render: __vue_render__$p, staticRenderFns: __vue_staticRenderFns__$p },
       __vue_inject_styles__$p,
@@ -10582,11 +10582,11 @@
     /* functional template */
     var __vue_is_functional_template__$q = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var InputToggle = normalizeComponent_1(
       { render: __vue_render__$q, staticRenderFns: __vue_staticRenderFns__$q },
       __vue_inject_styles__$q,
@@ -10627,11 +10627,11 @@
     /* functional template */
     var __vue_is_functional_template__$r = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var Inputs = normalizeComponent_1(
       { render: __vue_render__$r, staticRenderFns: __vue_staticRenderFns__$r },
       __vue_inject_styles__$r,
@@ -10856,11 +10856,11 @@
     /* functional template */
     var __vue_is_functional_template__$s = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var Badges = normalizeComponent_1(
       { render: __vue_render__$s, staticRenderFns: __vue_staticRenderFns__$s },
       __vue_inject_styles__$s,
@@ -10938,11 +10938,11 @@
     /* functional template */
     var __vue_is_functional_template__$t = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var Tags = normalizeComponent_1(
       { render: __vue_render__$t, staticRenderFns: __vue_staticRenderFns__$t },
       __vue_inject_styles__$t,
@@ -10981,11 +10981,11 @@
     /* functional template */
     var __vue_is_functional_template__$u = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var Sample$1 = normalizeComponent_1(
       { render: __vue_render__$u, staticRenderFns: __vue_staticRenderFns__$u },
       __vue_inject_styles__$u,
@@ -11023,11 +11023,11 @@
     /* functional template */
     var __vue_is_functional_template__$v = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var BoxTinted = normalizeComponent_1(
       { render: __vue_render__$v, staticRenderFns: __vue_staticRenderFns__$v },
       __vue_inject_styles__$v,
@@ -11065,11 +11065,11 @@
     /* functional template */
     var __vue_is_functional_template__$w = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var BoxOutlined = normalizeComponent_1(
       { render: __vue_render__$w, staticRenderFns: __vue_staticRenderFns__$w },
       __vue_inject_styles__$w,
@@ -11108,11 +11108,11 @@
     /* functional template */
     var __vue_is_functional_template__$x = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var Boxes = normalizeComponent_1(
       { render: __vue_render__$x, staticRenderFns: __vue_staticRenderFns__$x },
       __vue_inject_styles__$x,
@@ -11205,11 +11205,11 @@
     /* functional template */
     var __vue_is_functional_template__$y = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var Tabs = normalizeComponent_1(
       { render: __vue_render__$y, staticRenderFns: __vue_staticRenderFns__$y },
       __vue_inject_styles__$y,
@@ -11248,11 +11248,11 @@
     /* functional template */
     var __vue_is_functional_template__$z = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var Containers = normalizeComponent_1(
       { render: __vue_render__$z, staticRenderFns: __vue_staticRenderFns__$z },
       __vue_inject_styles__$z,
@@ -11295,11 +11295,11 @@
     /* functional template */
     var __vue_is_functional_template__$A = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var Loader = normalizeComponent_1(
       { render: __vue_render__$A, staticRenderFns: __vue_staticRenderFns__$A },
       __vue_inject_styles__$A,
@@ -11338,11 +11338,11 @@
     /* functional template */
     var __vue_is_functional_template__$B = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var Loaders = normalizeComponent_1(
       { render: __vue_render__$B, staticRenderFns: __vue_staticRenderFns__$B },
       __vue_inject_styles__$B,
@@ -11402,11 +11402,11 @@
     /* functional template */
     var __vue_is_functional_template__$C = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var App = normalizeComponent_1(
       { render: __vue_render__$C, staticRenderFns: __vue_staticRenderFns__$C },
       __vue_inject_styles__$C,
@@ -11451,11 +11451,11 @@
     /* functional template */
     var __vue_is_functional_template__$D = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var Snippet = normalizeComponent_1(
       { render: __vue_render__$D, staticRenderFns: __vue_staticRenderFns__$D },
       __vue_inject_styles__$D,
@@ -11500,11 +11500,11 @@
     /* functional template */
     var __vue_is_functional_template__$E = false;
     /* style inject */
-    
-    /* style inject SSR */
-    
 
-    
+    /* style inject SSR */
+
+
+
     var Spec = normalizeComponent_1(
       { render: __vue_render__$E, staticRenderFns: __vue_staticRenderFns__$E },
       __vue_inject_styles__$E,

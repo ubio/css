@@ -25,7 +25,6 @@ This doesn't include a grid framework and icons, it's up to a particular project
 
 
 ## Project structure
-- `Libre Franklin` font, served by fonts.googleapis.com – UBIO's font of choice
 - `variables.css` – by overriding this one can customize core UI components to specific project needs
 - `themes` - currently only contains default and the "night-dark" themes
 - `reset.css` – unifies browser-specific HTML styles
@@ -51,7 +50,7 @@ To consider: CDN vs. serve statically (e.g. GH Pages) vs. inlining in applicatio
     - `--control-height--small`
 
 #### Variables.css structure
-- `Typography` section defines base and monospace font families.
+- `Typography` section defines base and monospace font families. We prefer [Libre Franklin](https://fonts.google.com/specimen/Libre+Franklin) font.
 - `Gaps` section provides a small set of fixed gaps that help with building consistent negative space: margins and paddings (as this spacing is independent of a particular element's font-size – elements appear better aligned together)
 - `Base` components such as font sizes & control heights, border colour and radius – this helps align UI elements together as they either fit into small/regular/large size grid or are fully responsive and adjust to any scale. Feel free to amend base font-size or override small/large font/control sizes with hardcoded pixel values if responsibility is not what you're looking for.
 - `CTA colours` - are responsible for default and accent colouring of "calls to action" (such as buttons, button-sets, toggles, sliders e.t.c) Amend this if your main accent colour is something else, but it's recommended to pick colours from the palette provided as part of the framework.

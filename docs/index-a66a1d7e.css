@@ -720,8 +720,7 @@ menu li {
     border-color: var(--ui-color--default--hover);
     color: var(--ui-color);
 }
-.button:focus,
-.button:active {
+.button:focus {
     box-shadow: 0 0 0 2px var(--border-shadow--focus);
     outline: none;
 }

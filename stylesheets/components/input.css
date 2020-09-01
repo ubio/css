@@ -3,8 +3,6 @@
     box-sizing: border-box;
     height: var(--control-height);
     align-items: center;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
     background-color: var(--input-background);
